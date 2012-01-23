@@ -1,0 +1,17 @@
+#bulk_collection{:class => collection_key}
+  - if collection.present?
+    = form_tag(form_params, :id => 'select_form') do
+      = hidden_field_tag :bulk_action, nil
+      = hidden_field_tag :bulk_return_to, return_to
+      %small.bulk_options
+        = link_to_function t("shared.bulk_collection.select_all"), "selectAll();"
+        |
+        %span.select#no_items_selected
+          = select_hint
+        %span.select#items_selected{:style => "display: none"}
+          = t("shared.bulk_collection.selected")
+          = select_options
+      
+      .container
+        - collection.each do |resource|
+          = render :partial => "shared/bulk_collection_entry", :locals => {:collection_key => collection_key, :resource => resource, :resource_partial => resource_partial}

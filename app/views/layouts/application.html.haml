@@ -1,0 +1,59 @@
+!!! 5
+%html
+  %head
+    %title Outline
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags 
+
+    %style{:type => "text/css"}
+
+  %body
+
+    .topbar
+      .fill
+        .container
+          = link_to current_domain.title, root_path, :class => "brand"
+          
+
+          %ul.nav
+            %li{:class => :active}= link_to "Home", "#"
+          
+          - if logged_in?
+            %ul.nav.secondary-nav
+              %li.dropdown
+                %a.dropdown-toggle{:href => "#"} Domain
+                
+                %ul.dropdown-menu
+                  %li= link_to "Users", users_path
+                  %li= link_to "Edit Settings", users_path
+              %li.dropdown
+                %a.dropdown-toggle{:href => "#"}= current_user.login
+                
+                %ul.dropdown-menu
+                  %li= link_to "Logout", logout_path
+
+          - else
+            %form.pull-right{:action => user_sessions_path, :method => "POST"}
+              %input.input-small{:name => "user_session[login]", :type => :text, :placeholder => "Username"}
+              %input.input-small{:name => "user_session[password]", :type => :password, :placeholder => "Password"}
+              %button.btn{:type => :submit} Login
+            
+
+    .container
+
+      .content
+        .page-header
+          %h1
+            Page name 
+            %small Supporting text or tagline
+        
+        .row
+          .span12
+            = yield
+          .span4
+            %h3 Secondary content
+
+      %footer
+        %p
+          &copy; Company 2011

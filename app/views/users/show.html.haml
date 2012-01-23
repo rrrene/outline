@@ -1,0 +1,5 @@
+:preserve
+%pre
+  = resource.inspect
+
+= link_to "Edit", edit_user_path(resource), :class => "btn"

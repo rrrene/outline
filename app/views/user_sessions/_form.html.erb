@@ -1,0 +1,18 @@
+<%= form_for :user_session, :url => '/user_sessions' do |f| %>
+  <p>
+    <%= f.label :login, t("user_sessions.new.login") %><br>
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    <%= f.label :password, t("user_sessions.new.password") %><br>
+    <%= f.password_field :password %>
+  </p>
+  <% if @failed %>
+    <p class="bad">
+      <%= t("user_sessions.new.failed") %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.submit t("user_sessions.new.submit") %>
+  </p>
+<% end %>
