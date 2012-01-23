@@ -1,5 +1,5 @@
 Outline::Application.routes.draw do
-  get "welcome/index"
+  resources :projects
 
   resources :users
 
@@ -8,6 +8,8 @@ Outline::Application.routes.draw do
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
 
+
+  get "welcome/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

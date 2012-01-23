@@ -4,12 +4,8 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
-  id: 1
-  title: "First Domain"
-two:
-  id: 2
-  title: "Second Domain"
-three:
-  id: 3
-  title: "Third Domain"
+one: {}
+# column: value
+#
+two: {}
+#  column: value

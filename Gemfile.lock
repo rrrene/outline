@@ -104,6 +104,7 @@ GEM
       railties (~> 3.2.0.beta)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    shoulda (2.11.3)
     simple_form (1.5.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -142,6 +143,7 @@ DEPENDENCIES
   mysql
   rails (= 3.2.0)
   sass-rails (~> 3.2.3)
+  shoulda
   simple_form
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)

@@ -13,11 +13,12 @@
     .topbar
       .fill
         .container
-          = link_to current_domain.title, root_path, :class => "brand"
+          = link_to current_domain.try(:title), root_path, :class => "brand"
           
 
           %ul.nav
             %li{:class => :active}= link_to "Home", "#"
+            %li= link_to "Projects", projects_path
           
           - if logged_in?
             %ul.nav.secondary-nav
