@@ -9,6 +9,12 @@ module ActsAsOwnedByUser
         validates_presence_of :domain_id
         validates_presence_of :user_id
       end
+      of_this_kind = self.to_s.underscore.pluralize
+      [::User, ::Domain].each do |model|
+        model.instance_eval do
+          has_many of_this_kind
+        end
+      end
     end
   end
 end

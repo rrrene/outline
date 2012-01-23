@@ -1,4 +1,6 @@
 Outline::Application.routes.draw do
+  resources :pages
+
   resources :projects
 
   resources :users

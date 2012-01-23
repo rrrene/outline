@@ -1,11 +1,11 @@
 module ApplicationHelper
-
-end
-
-class SimpleForm::FormBuilder
-  def buttons(submit_text = nil, cancel_text = nil)
-    submit_text ||= "Submit"
-    cancel_text ||= "Cancel"
-    @template.render :partial => "shared/form_buttons", :locals => {:submit_text => submit_text, :cancel_text => cancel_text}
+  def nav_to(text, path)
+    active = if path.is_a?(Symbol)
+      controller_name == path.to_s
+    else
+      current_path?(path)
+    end
+    path = {:controller => path, :action => :index} if path.is_a?(Symbol)
+    content_tag :li, link_to(text, path), :class => active ? :active : nil
   end
 end

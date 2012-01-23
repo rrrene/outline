@@ -17,8 +17,9 @@
           
 
           %ul.nav
-            %li{:class => :active}= link_to "Home", "#"
-            %li= link_to "Projects", projects_path
+            = nav_to "Home", :welcome
+            = nav_to "Projects", :projects
+            = nav_to "Pages", :pages
           
           - if logged_in?
             %ul.nav.secondary-nav

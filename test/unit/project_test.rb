@@ -11,6 +11,10 @@ class ProjectTest < ActiveSupport::TestCase
     assert @project.respond_to?(:user), "Project doesnot respond to :user"
   end
 
+  test "Domain responds to projects" do
+    assert Domain.first.respond_to?(:projects), "Domain doesnot respond to :projects"
+  end
+
   test "creates a context" do
     @project.user = User.first
     @project.domain = Domain.first

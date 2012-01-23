@@ -1,0 +1,2 @@
+class PagesController < AuthorizedController
+end

@@ -14,6 +14,9 @@ $ ->
   domModal = $(".modal").modal(
     backdrop: true
     closeOnEscape: true
-  )
+  ).bind 'shown', ->
+    $(this).find('input[type=text], textarea').first().select()
+
   $(".open-modal").click ->
     domModal.toggle()  
+  

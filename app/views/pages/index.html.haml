@@ -1,0 +1,13 @@
+#new-modal.modal.hide.fade
+  .modal-header
+    %a.close{:href => "#"} &times;
+    %h3 Create new page
+  .modal-body
+    = render "form"
+
+
+
+= link_to "New", {:action => "new"}, :class => "btn success open-modal", :"data-controls-modal" => "new-modal"
+
+= bulk_collection do
+  = bulk_action :destroy

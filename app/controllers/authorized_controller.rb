@@ -10,6 +10,11 @@ class AuthorizedController < ApplicationController
     create!
   end
 
+  def index
+    self.resource = resource_class.new
+    index!
+  end
+
   protected
   
     def begin_of_association_chain
