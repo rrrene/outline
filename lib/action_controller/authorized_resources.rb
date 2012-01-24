@@ -31,6 +31,7 @@ module AuthorizedResources
     extend ActiveSupport::Concern
     
     included do
+      login_required
       inherit_resources
       respond_to :html, :js
       load_and_authorize_resource

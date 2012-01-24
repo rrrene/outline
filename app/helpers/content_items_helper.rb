@@ -12,6 +12,11 @@ module ContentItemsHelper
     render :partial => "shared/js/update_html", :locals => {:resource => record, :content => content}
   end
 
+  def replace_dom(record, render_params)
+    content = escape_javascript(render(render_params))
+    render :partial => "shared/js/replace_dom", :locals => {:resource => record, :content => content}
+  end
+
   def remove_dom(record)
     render :partial => "shared/js/remove_dom", :locals => {:resource => record}
   end

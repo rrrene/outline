@@ -20,3 +20,10 @@ textarea {
 .handle:hover {
   cursor: move;
 }
+
+.ui-state-highlight {
+  background-color: #ffe!important;
+}
+.changed {
+  background-color: #f00!important;
+}

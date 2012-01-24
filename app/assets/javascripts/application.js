@@ -15,6 +15,51 @@
 //= require twitter/bootstrap
 //= require_tree .
 
+var OUT = {};
+
+OUT.handlers = {
+  listSorted: function(event, ui) {
+    console.log("handlers.listSorted", $(this));
+    var url = $(this).attr("data-sort-url");
+    var data = $(this).sortable('serialize');
+    $.ajax({
+      url: url,
+      data: data,
+      type: 'post',
+      dataType: 'script',
+      complete: function(request) {}
+    })
+  }, 
+  dropOnContentItem: function (event, ui) {
+    var draggedId = ui.draggable[0].id;
+    var droppedId = $(this).attr("id");
+    console.log("handlers.dropOnContentItem", event, ui);
+    console.log(draggedId, " -> ", droppedId);
+  }
+};
+
+OUT.initializers = {
+  createContentItemDroppables: function() {
+    console.log("createContentItemDroppables")
+    $('.content-item').droppable({
+      hoverClass: 'ui-state-highlight',
+      drop: OUT.handlers.dropOnContentItem,
+      over: function(event, ui) {
+        var isPlaceholder = $(this).hasClass("ui-sortable-placeholder");
+        if( !isPlaceholder ) {
+          console.log("over", event.type, ui, $(this));
+        }
+      },
+      out: function(event, ui) {
+        var isPlaceholder = $(this).hasClass("ui-sortable-placeholder");
+        if( !isPlaceholder ) {
+          console.log("out", event.type, ui, $(this));
+        }
+      }
+    });
+  }
+};
+
 $(function(){
   $('.content-items').sortable({
     axis: 'y',
@@ -24,16 +69,19 @@ $(function(){
     items: '.content-item',
     opacity: 0.4,
     scroll: true,
-    update: function(){
-      $.ajax({
-        type: 'post',
-        data: $(this).sortable('serialize'),
-        dataType: 'script',
-        complete: function(request){
-          //$(this).effect('highlight');
-        },
-        url: $(this).attr("data-sort-url")
-      })
+    update: OUT.handlers.listSorted,
+    start: function(event, ui) {
+      console.log("start", event.type, ui);
+    },
+    stop: function(event, ui) {
+      console.log("stop", event.type, ui);
+    }, 
+    change: function(event, ui) { 
+      console.log("change", event.type, ui);
+      var t = $("h3").draggable().data("draggable");
+      $.ui.ddmanager.prepareOffsets(t, event);
+      $("h3").draggable("destroy");
     }
   });
+  OUT.initializers.createContentItemDroppables();
 });

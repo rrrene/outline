@@ -1,4 +1,4 @@
 = simple_form_for object do |form|
   = form.hidden_field :content_id
   = render :partial => "#{object_controller}/form", :object => form
-  = form.buttons
+  = form.buttons(:remote => request.xhr?)

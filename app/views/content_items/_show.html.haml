@@ -5,10 +5,9 @@
   %div{:id => dom_id(item)}
     .content-item-inner
       .content-item-options
-        %span.handle
+        %span.handle.btn
           ⇅
-        = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit"}
-        = link_to "Destroy", {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger"}
+        = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit small"}
+        = link_to "&times;".html_safe, {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger small"}
       .content-item-body
         = render :partial => "#{item_path}/show", :locals => {:resource => item}
-  
