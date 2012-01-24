@@ -1,11 +1,14 @@
 - item = content_item.item
 - item_path = item.class.to_s.underscore.pluralize
 
-.content-item.well{:id => dom_id(item)}
-  .content-item-inner
-    .content-item-options
-      = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit"}
-      = link_to "Destroy", {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger"}
-    .content-item-body
-      = render :partial => "#{item_path}/show", :locals => {:resource => item}
+.content-item.well{:id => dom_id(content_item)}
+  %div{:id => dom_id(item)}
+    .content-item-inner
+      .content-item-options
+        %span.handle
+          ⇅
+        = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit"}
+        = link_to "Destroy", {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger"}
+      .content-item-body
+        = render :partial => "#{item_path}/show", :locals => {:resource => item}
   

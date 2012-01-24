@@ -1,6 +1,6 @@
 %h3 New Note
 = render :partial => "notes/new"
 
-.content-items
+.content-items{:"data-sort-url" => "/#{controller_name}/sort_content"}
   - resource.content_items.each do |content_item|
     = render :partial => "content_items/show", :locals => {:content_item => content_item}

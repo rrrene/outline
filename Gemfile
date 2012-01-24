@@ -13,6 +13,8 @@ gem 'cancan'
 gem 'simple_form'
 gem 'inherited_resources'
 
+gem 'acts_as_list'
+
 gem 'haml'
 gem 'json'
 

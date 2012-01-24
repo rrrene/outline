@@ -14,3 +14,25 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+$(document).ready(function(){
+  $('.content-items').sortable({
+    axis: 'y',
+    dropOnEmpty: false,
+    handle: '.handle',
+    cursor: 'crosshair',
+    items: '.content-item',
+    opacity: 0.4,
+    scroll: true,
+    update: function(){
+      $.ajax({
+        type: 'post',
+        data: $(this).sortable('serialize'),
+        dataType: 'script',
+        complete: function(request){
+          //$(this).effect('highlight');
+        },
+        url: $(this).attr("data-sort-url")
+      })
+    }
+  });
+});

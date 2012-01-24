@@ -1,7 +1,11 @@
 Outline::Application.routes.draw do
   resources :notes
 
-  resources :pages
+  resources :pages do
+    collection do
+      post "sort_content"
+    end
+  end
 
   resources :projects
 

@@ -16,3 +16,7 @@
 textarea {
   height: 64px!important;
 }
+
+.handle:hover {
+  cursor: move;
+}
