@@ -14,4 +14,8 @@ module ApplicationHelper
     url_options = {:controller => record_controller, :action => :edit, :id => record}
     link_to "Edit", url_options, {:remote => true, :class => "btn edit"}
   end
+
+  def user_text(text)
+    simple_format(text)
+  end
 end

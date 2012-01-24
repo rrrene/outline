@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123235016) do
+ActiveRecord::Schema.define(:version => 20120124191651) do
 
   create_table "content_items", :force => true do |t|
     t.integer  "content_id"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(:version => 20120123235016) do
 
   create_table "domains", :force => true do |t|
     t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "links", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "user_id"
+    t.integer  "content_id"
+    t.text     "href"
+    t.string   "title"
+    t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

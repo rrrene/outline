@@ -1,4 +1,6 @@
 Outline::Application.routes.draw do
+  resources :links
+
   resources :notes
 
   resources :pages do

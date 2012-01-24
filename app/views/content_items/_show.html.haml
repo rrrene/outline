@@ -1,13 +1,17 @@
 - item = content_item.item
 - item_path = item.class.to_s.underscore.pluralize
 
-.content-item.well{:id => dom_id(content_item)}
+.content-item{:id => dom_id(content_item)}
   %div{:id => dom_id(item)}
     .content-item-inner
       .content-item-options
-        %span.handle.btn
+        %span.handle.btn.small
           ⇅
         = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit small"}
         = link_to "&times;".html_safe, {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger small"}
       .content-item-body
         = render :partial => "#{item_path}/show", :locals => {:resource => item}
+      .content-item-info
+        %small= "##{content_item.id} | "
+        %small.timestamp= l(item.updated_at)
+  %div{:style => "clear:both"}

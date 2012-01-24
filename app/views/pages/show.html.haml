@@ -1,13 +1,12 @@
 %ul.tabs{:"data-tabs" => "tabs"}
-  %li{:class => :active}= link_to "Note", "#new_note"
-  %li= link_to "Note2", "#new_note2"
+  - Outline::ContentManager.item_classes.each_with_index do |model, index|
+    %li{:class => index == 0 ? :active : nil}
+      = link_to model.to_s, "#new_#{model.to_s.underscore}"
 
 .tab-content
-  .tab-pane.active#new_note
-    = render :partial => "notes/new"
-  .tab-pane#new_note2
-    asdfasdf
-    = render :partial => "notes/new"
+  - Outline::ContentManager.item_classes.each_with_index do |model, index|
+    .tab-pane{:class => index == 0 ? :active : nil, :id => "new_#{model.to_s.underscore}"}
+      = render :partial => "#{model.to_s.underscore.pluralize}/new"
 
 .content-items{:"data-sort-url" => "/#{controller_name}/sort_content"}
   - resource.content_items.each do |content_item|

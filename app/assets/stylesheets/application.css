@@ -22,8 +22,14 @@ textarea {
 }
 
 .ui-state-highlight {
-  background-color: #ffe!important;
+  background-color: #ff0!important;
+  border-color: #ffa;
+  border-radius: 2px;
 }
-.changed {
-  background-color: #f00!important;
+
+.content-item .content-item-options {
+  visibility: hidden;
+}
+.content-item:hover .content-item-options {
+  visibility: visible;
 }

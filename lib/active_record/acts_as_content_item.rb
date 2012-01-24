@@ -3,6 +3,7 @@ module ActsAsContentItem
  
   module ClassMethods
     def acts_as_content_item
+      Outline::ContentManager.register_item_class self
       instance_eval do
         acts_as_owned_by_user
         belongs_to :content
