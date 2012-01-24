@@ -5,15 +5,15 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  id: 1
   user_id: 1
   domain_id: 1
-  title: "First page"
+  content_id: 1
+  text: "This is a text"
 # column: value
 #
 two: 
-  id: 2
   user_id: 2
   domain_id: 2
-  title: "Second page"
+  content_id: 2
+  text: "This is another text"
 #  column: value

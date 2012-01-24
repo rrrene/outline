@@ -3,5 +3,7 @@
   = resource.inspect
 %pre
   = " -> " + resource.context.inspect
+%pre
+  = " -> " + resource.content_items.inspect
 
 = link_to "Edit", edit_resource_path(resource), :class => "btn"

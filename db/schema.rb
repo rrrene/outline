@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123224426) do
+ActiveRecord::Schema.define(:version => 20120123235016) do
+
+  create_table "content_items", :force => true do |t|
+    t.integer  "content_id"
+    t.integer  "position"
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "contents", :force => true do |t|
+    t.string   "holder_type"
+    t.integer  "holder_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "contexts", :force => true do |t|
     t.string   "resource_type"
@@ -22,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20120123224426) do
 
   create_table "domains", :force => true do |t|
     t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notes", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "user_id"
+    t.integer  "content_id"
+    t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
