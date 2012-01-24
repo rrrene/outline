@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class NoteTest < ActiveSupport::TestCase
+  fixtures :content_items
+
   # test "the truth" do
   #   assert true
   # end
@@ -38,8 +40,6 @@ class NoteTest < ActiveSupport::TestCase
   test "destroys content_item when destroyed" do
     @note = Note.first
     assert_not_nil @note
-    puts @note.inspect
-    puts ContentItem.all.inspect
 
     @content_item = @note.content_item
     assert_not_nil @content_item
@@ -47,8 +47,8 @@ class NoteTest < ActiveSupport::TestCase
     assert_not_nil @content
 
     @note.destroy
-    assert_nil @content_item.reload
-    assert__not_nil @content.reload
+    assert_equal false, ContentItem.exists?(@content_item)
+    assert_equal true, Content.exists?(@content)
   end
 
 end
