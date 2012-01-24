@@ -1,0 +1,6 @@
+- item = content_item.item
+- item_path = item.class.to_s.underscore.pluralize
+
+.content-item{:id => dom_id(item)}
+  = render :partial => "#{item_path}/show", :locals => {:resource => item}
+  

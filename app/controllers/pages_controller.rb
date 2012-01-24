@@ -1,2 +1,2 @@
-class PagesController < AuthorizedController
+class PagesController < ContentHoldersController
 end

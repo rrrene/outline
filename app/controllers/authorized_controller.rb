@@ -3,10 +3,9 @@ class AuthorizedController < ApplicationController
   load_and_authorize_resource
   check_authorization
 
-  def create
-    self.resource = resource_class.new(params[resource_class.to_s.underscore])
-    resource.user = current_user
-    resource.domain = current_domain
+  def create(&block)
+    create_user_owned_resource
+    yield if block_given?
     create!
   end
 
@@ -19,6 +18,12 @@ class AuthorizedController < ApplicationController
   
     def begin_of_association_chain
       current_domain
+    end
+
+    def create_user_owned_resource
+      self.resource = resource_class.new(params[resource_class.to_s.underscore])
+      resource.user = current_user
+      resource.domain = current_domain
     end
 
     def resource=(value)

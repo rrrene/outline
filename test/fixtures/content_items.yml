@@ -1,9 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   content_id: 1
   position: 1
+  item_type: Note
+  item_id: 1
 
 two:
-  content_id: 1
+  id: 2
+  content_id: 2
   position: 1
+  item_type: Note
+  item_id: 2
