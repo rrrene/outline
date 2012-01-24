@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_domain, :logged_in?
 
   private
-    
+
     def current_domain
       current_user.try(:domain)
     end

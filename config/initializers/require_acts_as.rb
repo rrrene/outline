@@ -1,5 +1,0 @@
-require 'acts_as_owned_by_user'
-require 'acts_as_context'
-require 'acts_as_context_item'
-require 'acts_as_content_holder'
-require 'acts_as_content_item'

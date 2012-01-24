@@ -1,2 +1,0 @@
-class ContentHoldersController < AuthorizedController
-end
