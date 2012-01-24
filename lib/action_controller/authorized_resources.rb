@@ -32,6 +32,7 @@ module AuthorizedResources
     
     included do
       inherit_resources
+      respond_to :html, :js
       load_and_authorize_resource
       check_authorization
       self.send :include, InstanceMethods

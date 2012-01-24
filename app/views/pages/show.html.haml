@@ -1,13 +1,4 @@
-:preserve
-%pre
-  = resource.inspect
-%pre
-  = " -> " + resource.content.inspect
-%pre
-  = " -> " + resource.content_items.inspect
-
-= link_to "Edit", edit_resource_path(resource), :class => "btn"
-
+%h3 New Note
 = render :partial => "notes/new"
 
 .content-items

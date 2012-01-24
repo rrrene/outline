@@ -15,7 +15,6 @@
         .container
           = link_to current_domain.try(:title), root_path, :class => "brand"
           
-
           %ul.nav
             = nav_to "Home", :welcome
             = nav_to "Projects", :projects
@@ -43,12 +42,13 @@
             
 
     .container
-
       .content
         .page-header
-          %h1
-            Page name 
-            %small Supporting text or tagline
+          - if action_name == 'show' && resource.respond_to?(:title)
+            %h1{:id => dom_id(resource)}
+              = resource.title
+              %small
+                = edit_link resource
         
         .row
           .span12
