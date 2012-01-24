@@ -1,5 +1,13 @@
-%h3 New Note
-= render :partial => "notes/new"
+%ul.tabs{:"data-tabs" => "tabs"}
+  %li{:class => :active}= link_to "Note", "#new_note"
+  %li= link_to "Note2", "#new_note2"
+
+.tab-content
+  .tab-pane.active#new_note
+    = render :partial => "notes/new"
+  .tab-pane#new_note2
+    asdfasdf
+    = render :partial => "notes/new"
 
 .content-items{:"data-sort-url" => "/#{controller_name}/sort_content"}
   - resource.content_items.each do |content_item|
