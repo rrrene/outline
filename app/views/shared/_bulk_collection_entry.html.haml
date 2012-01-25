@@ -4,4 +4,8 @@
       = check_box_tag "#{collection_key}[]", resource.id, false, :class => "bulk_item", :id => "checkbox-for-#{dom_id(resource)}"
   .text
     = render :partial => resource_partial, :locals => {:resource => resource}
+    - if resource.respond_to?(:tags) && tags = resource.tags.presence
+      %div.tags
+        - tags.each do |tag|
+          = link_to tag.name, "#tag", :class => "label"
   .clearfix

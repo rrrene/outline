@@ -14,6 +14,7 @@ gem 'simple_form'
 gem 'inherited_resources'
 
 gem 'acts_as_list'
+gem 'acts-as-taggable-on', '~> 2.2.2'
 
 gem 'haml'
 gem 'json'

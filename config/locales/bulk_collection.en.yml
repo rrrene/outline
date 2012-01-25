@@ -1,9 +1,17 @@
 
 en:
   shared:
+    cancel: Cancel
+    submit: Save
     bulk_collection:
       select_all: "Select all"
+      select_hint: "Perform actions like adding tags, ..."
       selected: "Perform on selected:"
       destroy: "Delete"
       destroy_confirm: "Really delete all selected items?"
       move_to_project: "Move to project"
+      add_tags: 
+        link: "Add tags"
+        header: "Add tags"
+        tag_list: "Tags:"
+        submit: "Add tags"

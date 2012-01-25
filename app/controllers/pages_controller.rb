@@ -1,7 +1,7 @@
 Project
 class PagesController < ApplicationController
   content_holder_resources 
-  enable_bulk_actions :destroy, :move_to_project, :move_to_new_project
+  enable_bulk_actions :add_tags, :destroy, :move_to_project, :move_to_new_project
 
   def bulk_execute_move_to_new_project(collection)
     @project = Project.new(params[:bulk][:new_project])

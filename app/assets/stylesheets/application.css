@@ -42,3 +42,8 @@ footer p.powered-by {
 .modal form {
   margin: 0!important;
 }
+
+a.label:hover {
+  text-decoration: none;
+  color: inherit;
+}

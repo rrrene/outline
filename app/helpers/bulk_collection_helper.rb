@@ -2,7 +2,7 @@ module BulkCollectionHelper
   
   # Renders a list of records (with its labels and a checkbox next to them) 
   # and provides options as soon as records are selected.
-  def bulk_collection(collection_key = controller_name, select_hint = "", locals = {}, &block)
+  def bulk_collection(collection_key = controller_name, select_hint = nil, locals = {}, &block)
     locals = {
       :collection => instance_variable_get("@#{collection_key}"),
       :collection_key => collection_key.intern,
@@ -10,7 +10,7 @@ module BulkCollectionHelper
       :resource_key => collection_key.to_s.singularize.intern,
       :resource_partial => "bulk_collection_entry",
       :return_to => url_for(params),
-      :select_hint => select_hint, 
+      :select_hint => select_hint || t("shared.bulk_collection.select_hint"), 
       :select_options => capture(&block), 
     }.merge(locals)
     render(:partial => "shared/bulk_collection", :locals => locals)

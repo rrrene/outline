@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   acts_as_context
+  acts_as_taggable
   
   def activate
     update_attribute :active, true

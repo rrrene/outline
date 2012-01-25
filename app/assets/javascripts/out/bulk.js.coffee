@@ -5,6 +5,9 @@
 window.OUT = {} unless window.OUT?
 
 OUT.bulk = 
+  addTags: (ele) ->
+    $('#bulk_add_tags_tag_list').val $("#bulk_tag_list").val()
+    OUT.bulk.execute "add_tags", ele
   allCheckboxes: ->
     $("#bulk_collection .checkbox input")
   execute: (action, ele, confirm_msg) ->
@@ -32,10 +35,11 @@ OUT.bulk =
       $("#bulk_collection #no_items_selected").show()
       $("#bulk_collection #items_selected").hide()
   moveToNewProject: (ele) ->
-    name = $(".modal #project_title").val();
-    $('#bulk_new_project_title').val(name);
+    $('#bulk_new_project_title').val $("#project_title").val()
     OUT.bulk.execute "move_to_new_project", ele
-
+  showOptionsHelper: (ele) ->
+    $(ele).modal("show")
+    OUT.selectFirstInput(ele)
 $ ->
   OUT.bulk.allCheckboxes().bind "change", ->
     OUT.bulk.markSelected();
@@ -48,12 +52,19 @@ $ ->
       event.preventDefault();
       return false
 
-  $("#move-to-new-project-modal input.primary").bind "click", ->
+  $("#move-to-new-project-modal input.primary").bind "click", (event) ->
     OUT.bulk.moveToNewProject(this);
+    event.preventDefault();
+    return false
+
+  $("#add-tags-modal input.primary").bind "click", (event) ->
+    OUT.bulk.addTags(this);
+    event.preventDefault();
+    return false
 
   $("select#move_to_project_id").bind "change", ->
     if $(this).val() == "-1"
-      $("#move-to-new-project-modal").modal("show")
+      OUT.bulk.showOptionsHelper("#move-to-new-project-modal")
     else
       if $(this).val() != ""
         OUT.bulk.execute "move_to_project", this

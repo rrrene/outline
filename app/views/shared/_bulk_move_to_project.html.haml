@@ -8,15 +8,16 @@
       %option{:value => record.id}= record.title
     %option{:value => -1} New project...
 
-#move-to-new-project-modal.modal.hide
-  .modal-header
-    %a.close{:href => "#"} &times;
-    %h3 Move to new project
-  .modal-body
-    .clearfix.string.required
-      %label.string.required{:for => "project_title"} Title
-      .input
-        %input.string.required#project_title{:type => "text"}
-  .modal-footer
-    = submit_tag "Create & move", :class => "btn primary"
-    = link_to_function "Cancel", "$('#move-to-new-project-modal').modal('hide');", :class => "btn"
+- content_for(:bulk_options_helpers) do
+  #move-to-new-project-modal.bulk-options-helper.modalXXXX.hide
+    .modal-header
+      %a.close{:href => "#"} &times;
+      %h3 Move to new project
+    .modal-body
+      .clearfix.string.required
+        %label.string.required{:for => "project_title"} Title
+        .input
+          %input.string.required#project_title{:type => "text"}
+    .modal-footer
+      = submit_tag "Create & move", :class => "btn primary"
+      = link_to_function "Cancel", "$('#move-to-new-project-modal').modal('hide');", :class => "btn"
