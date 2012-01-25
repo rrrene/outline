@@ -1,3 +1,19 @@
-.box
-  %h3 Login
-  = render 'form'
+#login-modal.modal
+  = form_for :user_session, :url => '/user_sessions', :html => {:class => "simple_form"} do |f|
+    .modal-header
+      %h3 Login
+    .modal-body
+      .clearfix
+        = f.label :login, t("user_sessions.new.login")
+        .input
+          = f.text_field :login, :class => "xlarge"
+      .clearfix
+        = f.label :password, t("user_sessions.new.password")
+        .input
+          = f.password_field :password, :class => "xlarge"
+
+      - if @failed
+        .alert.alert-error
+          = t("user_sessions.new.failed")
+    .modal-footer
+      = f.submit t("user_sessions.new.submit"), :class => "btn primary"

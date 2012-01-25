@@ -1,4 +1,6 @@
 class UserSessionsController < ApplicationController
+  layout Proc.new { |c| c.themed_layout(:login) }
+
   def new
     @user_session = UserSession.new(params[:user_session])
   end

@@ -38,3 +38,7 @@ footer p.powered-by {
   color: #aaa;
   text-shadow: 0px 1px 1px #fff;
 }
+
+.modal form {
+  margin: 0!important;
+}

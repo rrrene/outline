@@ -3,4 +3,8 @@
 
 en:
   hello: world
-      
+  user_sessions:
+    new:
+      login: Username
+      password: Password
+      submit: "Log in"
