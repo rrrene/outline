@@ -7,5 +7,6 @@ require 'active_record/acts_as_content_holder'
 require 'active_record/acts_as_content_item'
 
 require 'action_controller/authorized_resources'
+require 'action_controller/enable_bulk_actions'
 require 'action_controller/content_holder_resources'
 require 'action_controller/content_item_resources'

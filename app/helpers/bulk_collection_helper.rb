@@ -6,7 +6,7 @@ module BulkCollectionHelper
     locals = {
       :collection => instance_variable_get("@#{collection_key}"),
       :collection_key => collection_key.intern,
-      :form_params => {:controller => collection_key, :action => 'execute'},
+      :form_params => {:controller => collection_key, :action => 'bulk_execute'},
       :resource_key => collection_key.to_s.singularize.intern,
       :resource_partial => "bulk_collection_entry",
       :return_to => url_for(params),

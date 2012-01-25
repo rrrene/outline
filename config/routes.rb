@@ -5,11 +5,16 @@ Outline::Application.routes.draw do
 
   resources :pages do
     collection do
+      post "bulk_execute"
       post "sort_content"
     end
   end
 
-  resources :projects
+  resources :projects do
+    collection do
+      post "bulk_execute"
+    end
+  end
 
   resources :users
 

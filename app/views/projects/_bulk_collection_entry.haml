@@ -1,1 +1,2 @@
-= link_to resource.title, resource
+= link_to resource.title, resource, :class => "item"
+%small= resource.active ? :active : :inactive

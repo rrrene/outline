@@ -13,10 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require out/initializers
 //= require_tree .
 
-var OUT = {};
+if (window.OUT == null) window.OUT = {};
 
+/*
 OUT.handlers = {
   listSorted: function(event, ui) {
     console.log("handlers.listSorted", $(this));
@@ -37,28 +39,7 @@ OUT.handlers = {
     console.log(draggedId, " -> ", droppedId);
   }
 };
-
-OUT.initializers = {
-  createContentItemDroppables: function() {
-    console.log("createContentItemDroppables")
-    $('.content-item').droppable({
-      hoverClass: 'ui-state-highlight',
-      drop: OUT.handlers.dropOnContentItem,
-      over: function(event, ui) {
-        var isPlaceholder = $(this).hasClass("ui-sortable-placeholder");
-        if( !isPlaceholder ) {
-          console.log("over", event.type, ui, $(this));
-        }
-      },
-      out: function(event, ui) {
-        var isPlaceholder = $(this).hasClass("ui-sortable-placeholder");
-        if( !isPlaceholder ) {
-          console.log("out", event.type, ui, $(this));
-        }
-      }
-    });
-  }
-};
+*/
 
 $(function(){
   $('.content-items').sortable({

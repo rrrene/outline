@@ -4,5 +4,5 @@ en:
     bulk_collection:
       select_all: "Select all"
       selected: "Perform on selected:"
-      destroy: "Destroy"
-      
+      destroy: "Delete"
+      destroy_confirm: "Really delete all selected items?"
