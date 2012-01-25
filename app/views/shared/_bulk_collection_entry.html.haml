@@ -1,6 +1,7 @@
 .row{:id => dom_id(resource)}
   .checkbox
-    = check_box_tag "#{collection_key}[]", resource.id, false, :class => "bulk_item"
+    %label{:for => "checkbox-for-#{dom_id(resource)}"}
+      = check_box_tag "#{collection_key}[]", resource.id, false, :class => "bulk_item", :id => "checkbox-for-#{dom_id(resource)}"
   .text
     = render :partial => resource_partial, :locals => {:resource => resource}
   .clearfix
