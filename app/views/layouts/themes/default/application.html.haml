@@ -44,11 +44,20 @@
     .container
       .content
         .page-header
-          - if action_name == 'show' && resource.respond_to?(:title)
-            %h1{:id => dom_id(resource)}
-              = resource.title
-              %small
-                = edit_link resource
+          .pull-left
+            - if action_name == 'show' && resource.respond_to?(:title)
+              %h1{:id => dom_id(resource)}
+                = resource.title
+                %small
+                  = edit_link resource
+            - else
+              %h1
+                = t("#{controller_name}.#{action_name}.page_header")
+                %small
+                  = t("#{controller_name}.#{action_name}.page_hint")
+          .pull-right
+            = yield(:page_header)
+          .clearboth
         .row
           .span12
             = yield

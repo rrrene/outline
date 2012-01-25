@@ -1,0 +1,7 @@
+
+en:
+  pages:
+    index:
+      page_header: "Pages"
+      page_hint: "Overview"
+      new_page_link: "Create new page"

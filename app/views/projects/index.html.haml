@@ -1,4 +1,12 @@
-= link_to "New", {:action => "new"}, :class => "btn success"
+#new-modal.modal.hide
+  .modal-header
+    %a.close{:href => "#"} &times;
+    %h3 Create new project
+  .modal-body
+    = render "form"
+
+- content_for(:page_header) do
+  = link_to t(".new_page_link"), {:action => "new"}, :class => "btn success", :"data-controls-modal" => "new-modal"
 
 = bulk_collection do
   = bulk_action :add_tags

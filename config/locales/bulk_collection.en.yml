@@ -5,7 +5,7 @@ en:
     submit: Save
     bulk_collection:
       select_all: "Select all"
-      select_hint: "Perform actions like adding tags, ..."
+      select_hint: "Select and perform actions like adding tags, ..."
       selected: "Perform on selected:"
       destroy: "Delete"
       destroy_confirm: "Really delete all selected items?"

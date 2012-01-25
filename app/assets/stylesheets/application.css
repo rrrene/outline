@@ -47,3 +47,7 @@ a.label:hover {
   text-decoration: none;
   color: inherit;
 }
+
+.clearboth {
+  clear: both;
+}

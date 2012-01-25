@@ -5,13 +5,14 @@
       = hidden_field_tag :"bulk[return_to]", return_to
       .row
         %small.bulk-options
-          = link_to_function t("shared.bulk_collection.select_all"), "OUT.bulk.selectAll();"
-          |
+          %span.select_all
+            = link_to_function t("shared.bulk_collection.select_all"), "OUT.bulk.selectAll();"
           %span.select#no_items_selected
             = select_hint
           %span.select#items_selected{:style => "display: none"}
             = t("shared.bulk_collection.selected")
             = select_options
+          .clearboth
         = yield(:bulk_options_helpers)
       .collection
         - collection.each do |resource|
