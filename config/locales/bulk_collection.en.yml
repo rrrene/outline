@@ -6,3 +6,4 @@ en:
       selected: "Perform on selected:"
       destroy: "Delete"
       destroy_confirm: "Really delete all selected items?"
+      move_to_project: "Move to project"

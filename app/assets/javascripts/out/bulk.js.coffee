@@ -8,8 +8,7 @@ OUT.bulk =
   allCheckboxes: ->
     $("#bulk_collection .checkbox input")
   execute: (action, ele, confirm_msg) ->
-    console.log action, ele, confirm_msg
-    jQuery('#bulk_action').val(action);
+    OUT.bulk.setAction action
     if !confirm_msg || confirm(confirm_msg)
       # OUT.loadingElement(ele);
       jQuery('#bulk_form').submit()
@@ -19,6 +18,8 @@ OUT.bulk =
   selectNone: ->
     OUT.bulk.allCheckboxes().attr("checked", "")
     OUT.bulk.markSelected();
+  setAction: (action) ->
+    jQuery('#bulk_action').val(action);
   markSelected: ->
     all_rows = OUT.bulk.allCheckboxes().parents(".row")
     all_rows.removeClass("active")
@@ -35,3 +36,5 @@ OUT.bulk =
 $ ->
   OUT.bulk.allCheckboxes().bind "change", ->
     OUT.bulk.markSelected();
+  $("select#move_to_project_id").bind "change", ->
+    OUT.bulk.execute "move_to_project", this

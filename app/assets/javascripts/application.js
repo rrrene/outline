@@ -65,4 +65,5 @@ $(function(){
     }
   });
   OUT.initializers.createContentItemDroppables();
+  OUT.initializers.selectFirstInput();
 });

@@ -1,1 +1,4 @@
 = link_to resource.title, resource, :class => "item"
+- if resource.context
+  - resource.context.resource.tap do |project|
+    %small.context= link_to project.title, project

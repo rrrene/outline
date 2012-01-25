@@ -1,0 +1,7 @@
+= link_to_function(t('shared.bulk_collection.move_to_project'), "$('#move-to-project-modal').show(); $(this).hide();", :class => 'move_to_project')
+
+%span#move-to-project-modal.hide
+  %select#move_to_project_id{:name => "bulk[move_to_project]"}
+    %option Select project...
+    - current_domain.projects.accessible_by(current_ability).each do |record|
+      %option{:value => record.id}= record.title

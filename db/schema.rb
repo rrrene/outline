@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20120124191651) do
   create_table "pages", :force => true do |t|
     t.integer  "domain_id"
     t.integer  "user_id"
+    t.integer  "context_id"
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

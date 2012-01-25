@@ -10,4 +10,5 @@
 = link_to "New", {:action => "new"}, :class => "btn success open-modal", :"data-controls-modal" => "new-modal"
 
 = bulk_collection do
+  = bulk_action :move_to_project
   = bulk_action :destroy

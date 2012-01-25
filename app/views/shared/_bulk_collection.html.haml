@@ -1,8 +1,8 @@
 #bulk_collection{:class => collection_key}
   - if collection.present?
     = form_tag(form_params, :id => 'bulk_form') do
-      = hidden_field_tag :bulk_action, nil
-      = hidden_field_tag :bulk_return_to, return_to
+      = hidden_field_tag :"bulk[action]", nil
+      = hidden_field_tag :"bulk[return_to]", return_to
       %small.bulk_options
         = link_to_function t("shared.bulk_collection.select_all"), "OUT.bulk.selectAll();"
         |

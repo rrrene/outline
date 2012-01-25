@@ -18,3 +18,5 @@ OUT.initializers =
         is_placeholder = $(this).hasClass("ui-sortable-placeholder")
         if( !is_placeholder )
           console.log "over", event.type, ui, $(this)
+  selectFirstInput: ->
+    $("form.simple_form input[type=text]").select();

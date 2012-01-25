@@ -3,27 +3,27 @@ module EnableBulkActions
     def bulk_execute
       action = bulk_action_from_params
       bulk_collection_from_params.each do |record|
-        if methods.include?(:"bulk_execute_#{action}")
-          m = method("bulk_execute_#{action}")
-          m.call(record)
-        elsif record.respond_to?(action)
-          record.__send__(action)
+        if record.respond_to?(action)
+          m = record.method(action)
+          args = [action]
+          args << params[:bulk][action.to_sym] if m.arity == 1
+          record.__send__(*args)
         else
-          raise bulk_action_error
+          raise "#{record.class} does not respond_to :#{action}"
         end
       end
-      redirect_to(params[:execute_return_to] || {:action => 'index'})
+      redirect_to(params[:bulk][:return_to] || {:action => 'index'})
     end
 
     private
 
     def bulk_action_from_params
-      params[:bulk_action]
+      params[:bulk][:action]
     end
 
     def bulk_collection_from_params
       ids = params[controller_name].map(&:to_i)
-      end_of_association_chain.find(ids)
+      end_of_association_chain.where(:id => ids)
     end
 
     def validate_bulk_action
@@ -48,11 +48,11 @@ module EnableBulkActions
 
     module ClassMethods
       def allowed_bulk_actions
-        @@allowed_bulk_actions || []
+        @allowed_bulk_actions || []
       end
 
       def allowed_bulk_actions=(actions)
-        @@allowed_bulk_actions = actions.map(&:to_s)
+        @allowed_bulk_actions = actions.map(&:to_s)
       end
     end
   end
