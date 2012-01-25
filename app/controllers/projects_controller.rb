@@ -1,4 +1,4 @@
 class ProjectsController < ApplicationController
   authorized_resources
-  enable_bulk_actions :activate, :deactivate, :destroy
+  enable_bulk_actions :add_tags, :activate, :deactivate, :destroy
 end

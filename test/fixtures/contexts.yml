@@ -12,3 +12,6 @@ one:
 two:
   resource_type: Project
   resource_id: 2
+three:
+  resource_type: Project
+  resource_id: 3

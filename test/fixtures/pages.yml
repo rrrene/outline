@@ -17,3 +17,9 @@ two:
   domain_id: 2
   title: "Second page"
 #  column: value
+
+three:
+  id: 3
+  user_id: 1
+  domain_id: 1
+  title: "First page (2)"

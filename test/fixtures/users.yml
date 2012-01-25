@@ -5,7 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 
-freight_supplier: 
+admin: 
   id: 1
   domain_id: 1
   single_access_token: Z00cdNhca0npWPx26ABs
@@ -21,11 +21,12 @@ freight_supplier:
   persistence_token: 8f7b1215cdf572a4066a32ce52f50b95344309d88f59172930c0cd724ed43e5d225ebbd5a22568092844ebc2bc636ba6f3f94107ce85cf82b1cc401182832f40
   login_count: 1
   last_login_ip: 
-  login: freight_supplier
+  login: admin
   last_login_at: 
   email: freight_supplier@example.org
+  domain_admin: <%= true %>
 
-company_admin: 
+admin2: 
   id: 2
   domain_id: 2
   single_access_token: hSesExquBoqQVQ1XVT
@@ -44,8 +45,9 @@ company_admin:
   login: loading_space_supplier
   last_login_at: 
   email: loading_space_supplier@example.org
+  domain_admin: <%= true %>
 
-company_employee:
+admin3:
   id: 3
   domain_id: 3
   single_access_token: hSesExquBoqQVQ1XVT
@@ -64,8 +66,9 @@ company_employee:
   login: loading_space_supplier_employee
   last_login_at:
   email: loading_space_supplier_employee@example.org
+  domain_admin: <%= true %>
 
-company_intern:
+user1:
   id: 4
   domain_id: 1
   single_access_token: hSesExquBoqQVQ1XVT
@@ -84,8 +87,9 @@ company_intern:
   login: loading_space_supplier_intern
   last_login_at:
   email: loading_space_supplier_intern@example.org
+  domain_admin: <%= false %>
 
-administrator: 
+user2: 
   id: 5
   domain_id: 1
   single_access_token: MtD8kMhumjo7oRJIcPUQ
@@ -104,3 +108,4 @@ administrator:
   login: admin
   last_login_at: 2011-01-10 21:49:28.833772
   email: admin@example.org
+  domain_admin: <%= false %>

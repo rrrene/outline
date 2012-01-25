@@ -18,7 +18,7 @@ module AuthorizedResources
 
     def create_user_owned_resource
       self.resource = resource_class.new(params[resource_class.to_s.underscore])
-      resource.user = current_user
+      resource.user = current_user if resource.respond_to?(:user=)
       resource.domain = current_domain
     end
 

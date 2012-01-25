@@ -23,4 +23,16 @@ class ProjectTest < ActiveSupport::TestCase
     assert_not_nil @project.context
   end
 
+  test "should activate project" do
+    project = Project.first
+    project.activate
+    assert_equal true, project.active?
+  end
+
+  test "should deactivate project" do
+    project = Project.first
+    project.deactivate
+    assert_equal false, project.active?
+  end
+
 end
