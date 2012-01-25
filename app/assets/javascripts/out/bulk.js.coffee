@@ -31,10 +31,29 @@ OUT.bulk =
     else
       $("#bulk_collection #no_items_selected").show()
       $("#bulk_collection #items_selected").hide()
-
+  moveToNewProject: (ele) ->
+    name = $(".modal #project_title").val();
+    $('#bulk_new_project_title').val(name);
+    OUT.bulk.execute "move_to_new_project", ele
 
 $ ->
   OUT.bulk.allCheckboxes().bind "change", ->
     OUT.bulk.markSelected();
+
+  $(".modal input[type=text]").bind "keypress", (event) ->
+    if( event.which == 13 )
+      modal = $(this).parents(".modal")
+      primary = modal.find("input.primary, a.primary")
+      primary.click()
+      event.preventDefault();
+      return false
+
+  $("#move-to-new-project-modal input.primary").bind "click", ->
+    OUT.bulk.moveToNewProject(this);
+
   $("select#move_to_project_id").bind "change", ->
-    OUT.bulk.execute "move_to_project", this
+    if $(this).val() == "-1"
+      $("#move-to-new-project-modal").modal("show")
+    else
+      if $(this).val() != ""
+        OUT.bulk.execute "move_to_project", this

@@ -2,14 +2,19 @@ module EnableBulkActions
   module InstanceMethods
     def bulk_execute
       action = bulk_action_from_params
-      bulk_collection_from_params.each do |record|
-        if record.respond_to?(action)
-          m = record.method(action)
-          args = [action]
-          args << params[:bulk][action.to_sym] if m.arity == 1
-          record.__send__(*args)
-        else
-          raise "#{record.class} does not respond_to :#{action}"
+      if methods.include?(:"bulk_execute_#{action}")
+        m = method(:"bulk_execute_#{action}")
+        m.call(bulk_collection_from_params)
+      else
+        bulk_collection_from_params.each do |record|
+          if record.respond_to?(action)
+            m = record.method(action)
+            args = [action]
+            args << params[:bulk][action.to_sym] if m.arity == 1
+            record.__send__(*args)
+          else
+            raise "#{record.class} does not respond_to :#{action}"
+          end
         end
       end
       redirect_to(params[:bulk][:return_to] || {:action => 'index'})

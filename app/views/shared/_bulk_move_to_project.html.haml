@@ -1,7 +1,22 @@
-= link_to_function(t('shared.bulk_collection.move_to_project'), "$('#move-to-project-modal').show(); $(this).hide();", :class => 'move_to_project')
+= link_to_function(t('shared.bulk_collection.move_to_project'), "$('#move-to-project-options').show(); $(this).hide();", :class => 'move_to_project')
 
-%span#move-to-project-modal.hide
+%span#move-to-project-options.hide
+  %input{:type => "hidden", :id => "bulk_new_project_title", :name => "bulk[new_project][title]"}
   %select#move_to_project_id{:name => "bulk[move_to_project]"}
-    %option Select project...
+    %option{:value => ""} Select project...
     - current_domain.projects.accessible_by(current_ability).each do |record|
       %option{:value => record.id}= record.title
+    %option{:value => -1} New project...
+
+#move-to-new-project-modal.modal.hide
+  .modal-header
+    %a.close{:href => "#"} &times;
+    %h3 Move to new project
+  .modal-body
+    .clearfix.string.required
+      %label.string.required{:for => "project_title"} Title
+      .input
+        %input.string.required#project_title{:type => "text"}
+  .modal-footer
+    = submit_tag "Create & move", :class => "btn primary"
+    = link_to_function "Cancel", "$('#move-to-new-project-modal').modal('hide');", :class => "btn"

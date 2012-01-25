@@ -2,8 +2,13 @@ class Page < ActiveRecord::Base
   acts_as_context_item
   acts_as_content_holder
 
-  def move_to_project(project_id)
-    if project = Project.find(project_id)
+  def move_to_project(project_or_id)
+    project = if project_or_id.is_a?(Project)
+        project_or_id
+      else 
+        Project.find(project_or_id)
+      end
+    if project
       self.context = project.context
       self.save!
     end
