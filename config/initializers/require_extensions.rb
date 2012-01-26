@@ -1,4 +1,4 @@
-require 'outline'
+
 
 require 'active_record/acts_as_owned_by_user'
 require 'active_record/acts_as_context'

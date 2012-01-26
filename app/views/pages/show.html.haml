@@ -1,13 +1,15 @@
-%ul.tabs{:"data-tabs" => "tabs"}
-  - Outline::ContentManager.item_classes.each_with_index do |model, index|
-    %li{:class => index == 0 ? :active : nil}
-      = link_to model.to_s, "#new_#{model.to_s.underscore}"
+.row
+  #top-add-content-item-form.add-content-item-form
+    %ul#add-content-item-tabs.tabs{:"data-tabs" => "tabs"}
+      - Outline::ContentItems.classes.each_with_index do |model, index|
+        %li{:class => index == 0 ? :active : nil}
+          = link_to model.to_s, "#new_#{model.to_s.underscore}"
 
-.tab-content
-  - Outline::ContentManager.item_classes.each_with_index do |model, index|
-    .tab-pane{:class => index == 0 ? :active : nil, :id => "new_#{model.to_s.underscore}"}
-      = render :partial => "#{model.to_s.underscore.pluralize}/new"
-
-.content-items{:"data-sort-url" => "/#{controller_name}/sort_content"}
-  - resource.content_items.each do |content_item|
-    = render :partial => "content_items/show", :locals => {:content_item => content_item}
+    .tab-content
+      - Outline::ContentItems.classes.each_with_index do |model, index|
+        .tab-pane{:class => index == 0 ? :active : nil, :id => "new_#{model.to_s.underscore}"}
+          = render :partial => "#{model.to_s.underscore.pluralize}/new"
+  .clearboth
+  .content-items{:"data-sort-url" => "/#{controller_name}/sort_content"}
+    - resource.content_items.each do |content_item|
+      = render :partial => "content_items/show", :locals => {:content_item => content_item}

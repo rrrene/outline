@@ -1,0 +1,5 @@
+en:
+  simple_form:
+    placeholders:
+      note:
+        text: "Make a note..."

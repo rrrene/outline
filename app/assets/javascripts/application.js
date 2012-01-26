@@ -20,7 +20,7 @@ if (window.OUT == null) window.OUT = {};
 
 OUT.selectFirstInput = function(ele) {
   ele || (ele = window)
-  $(ele).find("input[type=text]").select();
+  $(ele).find("input[type=text], textarea").first().select();
 }
 
 /*

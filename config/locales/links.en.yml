@@ -1,0 +1,10 @@
+en:
+  simple_form:
+    labels:
+      link:
+        href: "URL"
+        title: "Title"
+        text: "Description"
+    placeholders:
+      link:
+        href: "Enter a URL..."

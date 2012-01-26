@@ -13,10 +13,6 @@
  *= require_tree .
 */
 
-textarea {
-  height: 64px!important;
-}
-
 .ui-state-highlight {
   background-color: #ff0!important;
   border-color: #ffa;

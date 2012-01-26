@@ -94,7 +94,7 @@ SimpleForm.setup do |config|
 
 
   # Twitter Bootstrap integration
-  config.components = [ :label, :contained_input ]
+  config.components = [ :placeholder, :label, :contained_input ]
   SimpleForm.wrapper_class = 'clearfix'
   SimpleForm.wrapper_error_class = 'error'
   SimpleForm.error_class = 'help-inline'

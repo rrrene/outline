@@ -2,17 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$content_margin_left: 40px
+
+.add-content-item-form
+  margin-left: $content_margin_left
+  //border: 1px solid red
+
+  form
+    .actions
+      padding-top: 0
+      padding-bottom: 0
+      margin: 0
+      background: transparent
+      border: none
+
+#top-add-content-item-form
+  div.actions
+    width: 410px
+    padding: 0
+    text-align: right
+    .btn
+      float: right
+      margin-left: 5px
+    .cancel
+      display: none
+
 .content-item
   position: relative
-  border-bottom: 1px solid #DDD
-  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  // border-bottom: 1px solid #DDD
+  // -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  // -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  // box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  margin-top: 10px
   margin-bottom: 10px
 
   &:hover .content-item-options,
   &:hover .handle
     visibility: visible
+  .spacer
+    hr
+      border: none
+      border-bottom: 1px solid white
+      border-top: 1px solid #DAD8D4
+      opacity: 0.3
 
   .content-item-options,
   .handle
@@ -24,16 +56,22 @@
     text-align: center
     width: 20px
     height: 32px
-    top: 50%
-    margin-top: -16px
+    top: 30px
+    margin-left: 10px
     &:hover
       cursor: move
   .content-item-options
     float: right
+
   .content-item-inner
-    margin-left: 20px
-    padding: 10px
-  .content-item-body
-    font-size: 14px
-  .content-item-info
-    color: #BFBFBF
+    margin-left: $content_margin_left
+    margin-right: 10px
+    padding: 10px 10px 10px 0
+
+    .content-item-body
+      *
+        font-size: 14px
+      p
+        margin: 10px 0 0 0
+    .content-item-info
+      color: #BFBFBF

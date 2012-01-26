@@ -1,15 +1,18 @@
 module Outline
-  class ContentManager
+  class ContentItems
     class << self
-      def register_item_class(model)
+      def register_class(model)
         @@item_classes ||= []
         @@item_classes << model unless @@item_classes.include?(model)
       end
 
-      def registered_item_classes
+      def classes
         @@item_classes ||= []
       end
-      alias item_classes registered_item_classes
+
+      def classes=(values)
+        @@item_classes = values
+      end
     end
   end
 end
