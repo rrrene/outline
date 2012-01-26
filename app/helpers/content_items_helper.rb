@@ -1,4 +1,11 @@
 module ContentItemsHelper
+
+  def content_item_detail_view(&block)
+    object = resource
+    rendered = block_given? ? capture(&block) : render("show")
+    render :partial => "content_items/detail_view", :locals => {:resource => object, :rendered => rendered}
+  end
+
   def content_item_form_for(symbol, &block)
     content = content_holder.content
     object = instance_variable_get("@#{symbol}") 

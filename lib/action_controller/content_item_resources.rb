@@ -1,13 +1,8 @@
 module ContentItemResources
   module InstanceMethods
-    def create
-      create_user_owned_resource
-      create! do |format|
-        if resource.save
-          format.html { redirect_to resource.content.holder }
-        else
-          raise resource.errors.full_messages.inspect
-        end
+    def create_with_redirect_to_holder
+      create_with_authorization do |success, failure|
+        success.html { redirect_to resource.content.holder }
       end
     end
   end
@@ -18,6 +13,7 @@ module ContentItemResources
 
     included do
       self.send :include, InstanceMethods
+      alias_method_chain :create, :redirect_to_holder
     end
   end
 

@@ -3,9 +3,10 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 require "authlogic/test_case"
-require "test_login_helper"
 
-require 'test_difference_helper'
+require "helpers/test_login_helper"
+require 'helpers/test_difference_helper'
+require 'functional/helpers/content_item_resources'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
