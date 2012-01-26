@@ -3,10 +3,10 @@
 
 .content-item{:id => dom_id(content_item)}
   %div{:id => dom_id(item)}
+    %span.handle
+      = image_tag "move-content-item.png"
     .content-item-inner
       .content-item-options
-        %span.handle.btn.small
-          ⇅
         = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit small"}
         = link_to "&times;".html_safe, {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger small"}
       .content-item-body

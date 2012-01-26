@@ -17,21 +17,10 @@ textarea {
   height: 64px!important;
 }
 
-.handle:hover {
-  cursor: move;
-}
-
 .ui-state-highlight {
   background-color: #ff0!important;
   border-color: #ffa;
   border-radius: 2px;
-}
-
-.content-item .content-item-options {
-  visibility: hidden;
-}
-.content-item:hover .content-item-options {
-  visibility: visible;
 }
 
 footer p.powered-by {

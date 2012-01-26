@@ -3,16 +3,36 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .content-item
+  position: relative
   border-bottom: 1px solid #DDD
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-
   margin-bottom: 10px
-  .content-item-inner
-    padding: 10px
+
+  &:hover .content-item-options,
+  &:hover .handle
+    visibility: visible
+
+  .content-item-options,
+  .handle
+    visibility: hidden
+
+  .handle
+    display: block
+    position: absolute
+    text-align: center
+    width: 20px
+    height: 32px
+    top: 50%
+    margin-top: -16px
+    &:hover
+      cursor: move
   .content-item-options
     float: right
+  .content-item-inner
+    margin-left: 20px
+    padding: 10px
   .content-item-body
     font-size: 14px
   .content-item-info
