@@ -44,14 +44,6 @@ $ ->
   OUT.bulk.allCheckboxes().bind "change", ->
     OUT.bulk.markSelected();
 
-  $(".modal input[type=text]").bind "keypress", (event) ->
-    if( event.which == 13 )
-      modal = $(this).parents(".modal")
-      primary = modal.find("input.primary, a.primary")
-      primary.click()
-      event.preventDefault();
-      return false
-
   $("#move-to-new-project-modal input.primary").bind "click", (event) ->
     OUT.bulk.moveToNewProject(this);
     event.preventDefault();

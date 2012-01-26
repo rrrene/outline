@@ -109,6 +109,8 @@ class PagesControllerTest < ActionController::TestCase
 
       assert_created(Project) do
         post :bulk_execute, params
+        assert_not_nil assigns['new_project']
+        assert assigns['new_project'].valid?
       end
 
       assert_response :redirect
@@ -138,6 +140,8 @@ class PagesControllerTest < ActionController::TestCase
 
       assert_not_created(Project) do
         post :bulk_execute, params
+        assert_not_nil assigns['new_project']
+        assert !assigns['new_project'].valid?, "@new_project should not be valid in this case"
       end
 
       assert_response :redirect
@@ -159,17 +163,79 @@ class PagesControllerTest < ActionController::TestCase
     end
   end
 
-  test "should POST create" do
+  test "should create page" do
     with_login do |user|
       assert_created(Page) do
         params = {:page => {:title => "New page"}}
         post :create, params
+        assert_not_nil assigns[:page]
+        puts assigns[:page].valid?
+        puts assigns[:page].errors.full_messages
+        assert assigns[:page].valid?, "resource should be valid"
         assert_response :redirect
       end
     end
   end
 
-  test "should DELETE destroy" do
+  test "should not create page with invalid params" do
+    with_login do |user|
+      assert_not_created(Page) do
+        params = {:page => {:title => ""}}
+        post :create, params
+        assert_not_nil assigns[:page]
+        assert !assigns[:page].valid?, "resource should not be valid"
+        assert_response :success
+      end
+    end
+  end
+
+  test "should create page with existing project" do
+    with_login do |user|
+      assert_created(Page) do
+        params = {:page => {:title => "New page", :context_id => 1}}
+        post :create, params
+        assert_not_nil assigns[:page], "resource should be valid"
+        assert_not_nil assigns[:page].context, "resource context should not be nil"
+        assert_not_nil assigns[:page].context.resource, "resource context.ressource should not be nil"
+        assert_equal "Project", assigns[:page].context.resource_type
+        assert_response :redirect
+      end
+    end
+  end
+
+  test "should create page with new project" do
+    with_login do |user|
+      assert_created(Page) do
+        assert_created(Project) do
+          params = {:page => {:title => "New page", :context_id => "-1"}, :project => {:title => "my new project"}}
+          post :create, params
+          assert_not_nil assigns[:page]
+          assert assigns[:page].valid?
+          assert_not_nil assigns[:new_project]
+          assert assigns[:new_project].valid?
+          assert_response :redirect
+        end
+      end
+    end
+  end
+
+  test "should not create page with invalid new project" do
+    with_login do |user|
+      assert_not_created(Page) do
+        assert_not_created(Project) do
+          params = {:page => {:title => "New page", :context_id => "-1"}, :project => {:title => ""}}
+          post :create, params
+          assert_not_nil assigns[:page]
+          assert !assigns[:page].valid?
+          assert_not_nil assigns[:new_project]
+          assert !assigns[:new_project].valid?
+          assert_response :success
+        end
+      end
+    end
+  end
+
+  test "should destroy page" do
     with_login do |user|
       assert_destroyed(Page) do
         delete :destroy, :id => 1
@@ -186,7 +252,7 @@ class PagesControllerTest < ActionController::TestCase
     end
   end
 
-  test "should PUT update" do
+  test "should update page" do
     with_login do |user|
       hash = {:title => "New Title"}
       put :update, :id => 1, :page => hash

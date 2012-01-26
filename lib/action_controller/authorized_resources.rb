@@ -1,6 +1,6 @@
 module AuthorizedResources
   module InstanceMethods
-    def create
+    def create_with_authorization
       create_user_owned_resource
       create!
     end
@@ -37,6 +37,7 @@ module AuthorizedResources
       load_and_authorize_resource
       check_authorization
       self.send :include, InstanceMethods
+      alias_method_chain :create, :authorization
     end
   end
 

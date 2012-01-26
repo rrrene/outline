@@ -1,7 +1,12 @@
 
 en:
   pages:
+    new:
+      add_to_new_project: "Add to new project..."
+      page_header: "Pages"
+      page_hint: "New page"
     index:
       page_header: "Pages"
       page_hint: "Overview"
       new_page_link: "Create new page"
+    
