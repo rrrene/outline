@@ -1,6 +1,3 @@
-Project
- Note
- Link
 class PagesController < ApplicationController
   content_holder_resources 
   enable_bulk_actions :add_tags, :destroy, :move_to_project, :move_to_new_project
@@ -37,6 +34,11 @@ class PagesController < ApplicationController
         @new_project.save
         resource.move_to_project(@new_project)
       end
+    else
+      self.resource = resource_class.new
+      # tell inherited_resources something has gone wrong
+      resource.errors.add(:base, "new_project is invalid")
+      create_with_authorization
     end
   end
 

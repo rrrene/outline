@@ -1,8 +1,12 @@
 module AuthorizedResources
   module InstanceMethods
-    def create_with_authorization
+    def create_with_authorization(&block)
       create_user_owned_resource
-      create!
+      #block ||= Proc.new do |success, failure|
+      #    success.html { redirect_to resource }
+      #    failure.html { render :action => "new" }
+      #  end
+      create!(&block)
     end
 
     def index
@@ -17,13 +21,17 @@ module AuthorizedResources
     end
 
     def create_user_owned_resource
-      self.resource = resource_class.new(params[resource_class.to_s.underscore])
+      self.resource ||= resource_class.new(params[resource_key])
       resource.user = current_user if resource.respond_to?(:user=)
       resource.domain = current_domain
     end
 
     def resource=(value)
       instance_variable_set("@#{resource_class.to_s.underscore}", value)
+    end
+
+    def resource_key
+      resource_class.to_s.underscore
     end
   end
 
