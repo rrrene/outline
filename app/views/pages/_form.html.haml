@@ -3,4 +3,6 @@
     = f.input :title
     = f.input :tag_list
 
+    = f.input :context_id, :collection => current_domain.projects.all.map { |project| [project.title, project.context.id] }
+
   = f.buttons

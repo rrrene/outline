@@ -1,5 +1,16 @@
 en:
   simple_form:
+    labels:
+      page:
+        title: 'Title'
+        tag_list: 'Tags'
+        context_id: 'Project'
+    hints:
+      page:
+        tag_list: 'comma-separated'
+    placeholders:
+      page:
+        tag_list: 'comma-separated'
     "yes": 'Yes'
     "no": 'No'
     required:

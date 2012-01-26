@@ -4,4 +4,4 @@ en:
     index:
       page_header: "Projects"
       page_hint: "Overview"
-      new_page_link: "Create new project"
+      new_project_link: "Create new project"

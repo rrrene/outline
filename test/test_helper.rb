@@ -3,7 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 require "authlogic/test_case"
-require "login_test_helper"
+require "test_login_helper"
 
 require 'test_difference_helper'
 
@@ -17,7 +17,7 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
   include Authlogic::TestCase
   setup :activate_authlogic
-  include LoginTestHelper
+  include TestLoginHelper
   
   include TestDifferenceHelper
 end

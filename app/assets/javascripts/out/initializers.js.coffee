@@ -19,4 +19,4 @@ OUT.initializers =
         if( !is_placeholder )
           console.log "over", event.type, ui, $(this)
   selectFirstInput: ->
-    $("form.simple_form input[type=text]").select();
+    $("form.simple_form input[type=text]").first().select();

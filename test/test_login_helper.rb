@@ -1,5 +1,5 @@
 
-module LoginTestHelper
+module TestLoginHelper
   # Add more helper methods to be used by all tests here...
   
   def assert_login_required(user = standard_user, &block)

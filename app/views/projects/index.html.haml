@@ -6,7 +6,7 @@
     = render "form"
 
 - content_for(:page_header) do
-  = link_to t(".new_page_link"), {:action => "new"}, :class => "btn success", :"data-controls-modal" => "new-modal"
+  = link_to t(".new_project_link"), {:action => "new"}, :class => "btn success", :"data-controls-modal" => "new-modal"
 
 = bulk_collection do
   = bulk_action :add_tags

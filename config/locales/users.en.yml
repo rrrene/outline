@@ -1,0 +1,7 @@
+
+en:
+  users:
+    index:
+      page_header: "Users"
+      page_hint: "Overview"
+      new_user_link: "Create new user"
