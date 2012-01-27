@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_user, :current_domain, :logged_in?
+  helper_method :themed, :try_translation
 
   def themed_layout(layout = :application)
     "themes/#{current_theme}/#{layout}"
@@ -22,25 +23,14 @@ class ApplicationController < ActionController::Base
     @current_user ||= ::UserSession.find.try(:user)
   end
   alias logged_in? current_user
-
-
-  # Use this in a controller to restrict access.
-  # 
-  #   class UsersController < ApplicationController
-  #     login_required :only => [:edit, :update, :show]
-  #   end
-  #
-  def self.login_required(opts = {}) # :doc:
-    before_filter :require_user, opts
-  end
-  
-  def store_location
-    session[:return_to] = request.fullpath
-  end
   
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+  
+  def store_location
+    session[:return_to] = request.fullpath
   end
   
   def require_user
@@ -53,5 +43,19 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
+
+  def themed(template_name)
+    "layouts/themes/#{current_theme}/#{template_name}"
+  end
+
+  def try_translation(snippets = [], options = {})
+    options[:default] = ''
+    snippets.each do |s| 
+      val = I18n.t(s, options).presence
+      return val if val
+    end
+    nil
+  end
+  alias tt try_translation
 
 end

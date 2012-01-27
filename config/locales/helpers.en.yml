@@ -1,0 +1,6 @@
+en:
+  helpers:
+    cancel: "Cancel"
+    submit:
+      create: "Create %{model}"
+      update: "Update %{model}"

@@ -12,3 +12,11 @@
   = bulk_action :add_tags
   = bulk_action :move_to_project
   = bulk_action :destroy
+
+- content_for(:contextual_sidebar) do
+  %h4 Filter view
+
+  %h5 By Name
+  %input{:type => "text"}
+
+  %h5 By Tags

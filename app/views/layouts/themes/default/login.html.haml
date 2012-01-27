@@ -1,18 +1,10 @@
 !!! 5
 %html.login
-  %head
-    %title Outline
-    = stylesheet_link_tag    "application"
-    = javascript_include_tag "application"
-    = csrf_meta_tags 
-
-    %style{:type => "text/css"}
+  =render themed(:head)
 
   %body.login
 
     .container
       .row
         = yield
-
-      %footer
-        %p.powered-by Powered by Outline &copy; 2011-#{Time.now.year} René Föhring
+    = render themed(:footer)

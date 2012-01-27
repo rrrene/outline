@@ -1,0 +1,30 @@
+.topbar
+  .fill
+    .container
+      = link_to current_domain.try(:title), root_path, :class => "brand"
+      
+      %ul.nav
+        = nav_to "Home", :welcome
+        = nav_to "Projects", :projects
+        = nav_to "Pages", :pages
+      
+      - if logged_in?
+        %ul.nav.secondary-nav
+          %li.dropdown
+            %a.dropdown-toggle{:href => "#"} Domain
+            
+            %ul.dropdown-menu
+              %li= link_to "Users", users_path
+              %li= link_to "Edit Settings", users_path
+          %li.dropdown
+            %a.dropdown-toggle{:href => "#"}= current_user.login
+            
+            %ul.dropdown-menu
+              %li= link_to "Logout", logout_path
+
+      - else
+        %form.pull-right{:action => user_sessions_path, :method => "POST"}
+          %input.input-small{:name => "user_session[login]", :type => :text, :placeholder => "Username"}
+          %input.input-small{:name => "user_session[password]", :type => :password, :placeholder => "Password"}
+          %button.btn{:type => :submit} Login
+      

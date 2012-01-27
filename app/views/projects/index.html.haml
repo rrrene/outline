@@ -8,6 +8,9 @@
 - content_for(:page_header) do
   = link_to t(".new_project_link"), {:action => "new"}, :class => "btn success", :"data-controls-modal" => "new-modal"
 
+- content_for(:contextual_sidebar) do
+  = tt("shared.no", "shared.yes", "shared.submit", :name => "Rene")
+
 = bulk_collection do
   = bulk_action :add_tags
   = link_to_function(t('.deactivate_project'), "OUT.bulk.execute('deactivate', this);", :class => 'deactivate')

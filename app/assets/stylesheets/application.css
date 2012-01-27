@@ -36,3 +36,8 @@ a.label:hover {
 .clearboth {
   clear: both;
 }
+
+span.translation_missing {
+  background: #fbb;
+  color: #c00;
+}

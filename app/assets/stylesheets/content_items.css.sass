@@ -13,31 +13,42 @@ $content_item_margin_bottom: 20px
     border-top: 1px solid #DAD8D4
     opacity: 0.3
     margin: 0
+
 .add-content-item-form
   ul.tabs,
   div.tab-content
-    padding-left: $content_margin_left
-  //border: 1px solid red
-
-  form
+    margin-bottom: 5px
+    margin-left: $content_margin_left / 2
+    padding-left: $content_margin_left / 2
+    //border: 1px solid red
+  ul.tabs 
+    border-bottom: none
+    li
+      a:hover,
+      &.active a
+        border-color: transparent
+        background: transparent
+        text-decoration: underline
+  .tab-pane
+    border: 1px solid #ddd
+    border-bottom-color: #ccc
+    border-right-color: #ccc
+    form,
+    .clearfix,
     .actions
-      padding-top: 0
-      padding-bottom: 0
       margin: 0
-      background: transparent
-      border: none
+      padding: 0
+    .actions
+      padding: 5px
+      .btn
+        float: right
+        margin-left: 5px
+      .cancel
+        display: none
+
 
 #top-add-content-item-form
   margin-bottom: $content_item_margin_bottom
-  div.actions
-    width: 410px
-    padding: 0
-    text-align: right
-    .btn
-      float: right
-      margin-left: 5px
-    .cancel
-      display: none
 
 .content-items
   position: relative
@@ -90,7 +101,7 @@ $content_item_margin_bottom: 20px
     text-align: center
     width: 20px
     height: 32px
-    top: 20px
+    top: 0
     margin-left: 10px
     &:hover
       cursor: move

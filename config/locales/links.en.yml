@@ -1,4 +1,8 @@
 en:
+  helpers:
+    submit:
+      link:
+        create: "Post Link"
   simple_form:
     labels:
       link:
@@ -7,4 +11,4 @@ en:
         text: "Description"
     placeholders:
       link:
-        href: "Enter a URL..."
+        href: "Enter URL..."

@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+
+  # $("#top-add-content-item-form form.note").addClass "active"
+
   $("#top-add-content-item-form form.note div.text textarea").bind "focus", ->
     $(this).parents("form.note").addClass "active"
   .bind "blur", ->

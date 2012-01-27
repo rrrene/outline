@@ -1,0 +1,15 @@
+.container
+  .row
+    .span12
+      .content.content-resource
+        .page-header
+          .pull-left
+            %h1{:id => dom_id(resource)}= resource.title if resource.respond_to?(:title)
+          .pull-right
+            = edit_link resource
+            = yield(:page_header)
+          .clearboth
+        = yield
+    .span4
+      .sidebar.sidebar-resource
+        = yield(:contextual_sidebar)

@@ -1,4 +1,8 @@
 en:
+  helpers:
+    submit:
+      note:
+        create: "Post Note"
   simple_form:
     placeholders:
       note:
