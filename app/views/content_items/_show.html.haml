@@ -9,9 +9,6 @@
       .content-item-options
         = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit small"}
         = link_to "&times;".html_safe, {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger small"}
-      .content-item-info
-        %small= "##{content_item.id} | "
-        %small.timestamp= l(item.updated_at)
       .content-item-body
         = render :partial => "#{item_path}/show", :locals => {:resource => item}
   .spacer="<hr/>".html_safe
