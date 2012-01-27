@@ -21,9 +21,9 @@ OUT.contentItems =
         OUT.contentItems.resetHoverClues()
       change: (event, ui) ->
         console.log("change", event.type, ui)
-        t = $("h3").draggable().data("draggable")
+        t = $(".sortable-helper").draggable().data("draggable")
         $.ui.ddmanager.prepareOffsets(t, event)
-        $("h3").draggable("destroy")
+        $(".sortable-helper").draggable("destroy")
 
   createDroppables: ->
     console.log "createContentItemDroppables"
