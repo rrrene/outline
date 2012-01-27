@@ -2,8 +2,7 @@
 - item_path = item.class.to_s.underscore.pluralize
 
 .content-item{:id => dom_id(content_item)}
-  %div{:id => dom_id(item)}
-    .spacer="<hr/>".html_safe
+  %div.content-item-wrapper.item-type{:id => dom_id(item)}
     %span.handle
       = image_tag "move-content-item.png"
     .content-item-inner
@@ -15,4 +14,5 @@
         %small.timestamp= l(item.updated_at)
       .content-item-body
         = render :partial => "#{item_path}/show", :locals => {:resource => item}
-  %div{:style => "clear:both"}
+  .spacer="<hr/>".html_safe
+  

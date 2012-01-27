@@ -47,28 +47,7 @@ OUT.handlers = {
 */
 
 $(function(){
-  $('.content-items').sortable({
-    axis: 'y',
-    dropOnEmpty: false,
-    handle: '.handle',
-    cursor: 'crosshair',
-    items: '.content-item',
-    opacity: 0.4,
-    scroll: true,
-    update: OUT.handlers.listSorted,
-    start: function(event, ui) {
-      console.log("start", event.type, ui);
-    },
-    stop: function(event, ui) {
-      console.log("stop", event.type, ui);
-    }, 
-    change: function(event, ui) { 
-      console.log("change", event.type, ui);
-      var t = $("h3").draggable().data("draggable");
-      $.ui.ddmanager.prepareOffsets(t, event);
-      $("h3").draggable("destroy");
-    }
-  });
-  OUT.initializers.createContentItemDroppables();
+  OUT.contentItems.createSortables();
+  OUT.contentItems.createDroppables();
   OUT.initializers.selectFirstInput();
 });

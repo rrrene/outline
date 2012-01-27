@@ -3,9 +3,20 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $content_margin_left: 40px
+$content_item_margin_bottom: 20px
 
+.spacer
+  padding-top: 20px
+  hr
+    border: none
+    border-bottom: 1px solid white
+    border-top: 1px solid #DAD8D4
+    opacity: 0.3
+    margin: 0
 .add-content-item-form
-  margin-left: $content_margin_left
+  ul.tabs,
+  div.tab-content
+    padding-left: $content_margin_left
   //border: 1px solid red
 
   form
@@ -17,6 +28,7 @@ $content_margin_left: 40px
       border: none
 
 #top-add-content-item-form
+  margin-bottom: $content_item_margin_bottom
   div.actions
     width: 410px
     padding: 0
@@ -27,24 +39,45 @@ $content_margin_left: 40px
     .cancel
       display: none
 
-.content-item
+.content-items
   position: relative
+.content-item
+  background-color: white
+  position: relative
+  margin: 0 0 $content_item_margin_bottom 0
   // border-bottom: 1px solid #DDD
   // -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
   // -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
   // box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  margin-top: 10px
-  margin-bottom: 10px
 
   &:hover .content-item-options,
   &:hover .handle
     visibility: visible
-  .spacer
-    hr
-      border: none
-      border-bottom: 1px solid white
-      border-top: 1px solid #DAD8D4
-      opacity: 0.3
+  
+  &.droppable
+    opacity: 0.7
+
+  &.drop-target
+    .sortable-helper
+      position: absolute
+      left: 50%
+      margin-left: -100px
+      top: 50%
+      margin-top: -32px
+      width: 200px
+      background: #333
+      color: #fff
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
+      border-radius: 6px
+      font-weight: bold
+      font-size: 16px
+      padding: 10px
+      text-align: center
+
+
+  .content-item-wrapper
+    padding: 0
+    margin: 0
 
   .content-item-options,
   .handle
@@ -53,10 +86,11 @@ $content_margin_left: 40px
   .handle
     display: block
     position: absolute
+    z-index: 123
     text-align: center
     width: 20px
     height: 32px
-    top: 30px
+    top: 20px
     margin-left: 10px
     &:hover
       cursor: move
@@ -64,9 +98,10 @@ $content_margin_left: 40px
     float: right
 
   .content-item-inner
-    margin-left: $content_margin_left
-    margin-right: 10px
-    padding: 10px 10px 10px 0
+    position: relative
+    padding-left: $content_margin_left
+    padding-right: 10px
+    //padding: 10px 10px 10px 0
 
     .content-item-body
       *

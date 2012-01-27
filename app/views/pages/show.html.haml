@@ -1,3 +1,4 @@
+
 .row
   #top-add-content-item-form.add-content-item-form
     %ul#add-content-item-tabs.tabs{:"data-tabs" => "tabs"}
@@ -9,7 +10,12 @@
       - Outline::ContentItems.classes.each_with_index do |model, index|
         .tab-pane{:class => index == 0 ? :active : nil, :id => "new_#{model.to_s.underscore}"}
           = render :partial => "#{model.to_s.underscore.pluralize}/new"
-  .clearboth
+    .clearboth
+    .spacer="<hr/>".html_safe
   .content-items{:"data-sort-url" => "/#{controller_name}/sort_content"}
     - resource.content_items.each do |content_item|
       = render :partial => "content_items/show", :locals => {:content_item => content_item}
+
+.hide
+  .sortable-helper
+    hover message

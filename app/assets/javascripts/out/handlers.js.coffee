@@ -15,7 +15,3 @@ OUT.handlers =
       type: 'post'
       dataType: 'script'
    
-  dropOnContentItem: (event, ui) ->
-    dragged_id = ui.draggable[0].id
-    dropped_id = $(this).attr("id")
-    console.log "handlers.dropOnContentItem", dragged_id, " -> ", dropped_id
