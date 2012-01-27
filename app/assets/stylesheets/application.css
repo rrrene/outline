@@ -41,3 +41,7 @@ span.translation_missing {
   background: #fbb;
   color: #c00;
 }
+
+.sidebar h5, .sidebar h4 {
+  color: #666;
+}
