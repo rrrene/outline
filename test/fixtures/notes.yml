@@ -19,3 +19,9 @@ two:
   content_id: 2
   text: "This is another text"
 #  column: value
+three:
+  id: 3
+  user_id: 1
+  domain_id: 1
+  content_id: 1
+  text: "This is a text (2)"

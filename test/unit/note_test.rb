@@ -10,6 +10,22 @@ class NoteTest < ActiveSupport::TestCase
     @note = Note.new
   end
 
+  test "should move content_item with item" do
+    item = Note.first
+    content_item = item.content_item
+    assert_not_nil content_item
+
+    new_content = Content.last
+    assert_not_nil new_content
+    assert_not_equal item.content, new_content
+
+    item.content_id = new_content.id
+    item.save
+
+    assert_equal new_content, item.content
+    assert_equal new_content, content_item.content
+  end
+
   test "responds to user" do
     assert_not_nil @note
     assert @note.respond_to?(:content), "Project doesnot respond to :content"

@@ -13,6 +13,11 @@ module ActsAsContentItem
           content_item = ContentItem.create!(:item => item, :content => item.content)
           content_item.move_to_top
         end
+        after_save do |item|
+          if item.content_id != item.content_item.content_id
+            item.content_item.update_attribute :content_id, item.content_id
+          end
+        end
 
         validates_presence_of :content
       end

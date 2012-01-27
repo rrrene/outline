@@ -13,3 +13,10 @@ two:
   position: 1
   item_type: Note
   item_id: 2
+
+three:
+  id: 3
+  content_id: 1
+  position: 1
+  item_type: Note
+  item_id: 3
