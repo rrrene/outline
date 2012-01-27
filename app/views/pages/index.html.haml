@@ -20,3 +20,6 @@
   %input{:type => "text"}
 
   %h5 By Tags
+  %div.tags
+    - current_domain.tags_for(:pages).each do |tag|
+      = link_to tag, params.merge(:tag => tag), :class => "label"

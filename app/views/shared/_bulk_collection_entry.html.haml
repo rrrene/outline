@@ -7,5 +7,5 @@
     - if resource.respond_to?(:tags) && tags = resource.tags.presence
       %div.tags
         - tags.each do |tag|
-          = link_to tag.name, "#tag", :class => "label"
+          = link_to tag, params.merge(:tag => tag), :class => "label"
   .clearfix

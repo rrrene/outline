@@ -2,6 +2,8 @@ class PagesController < ApplicationController
   content_holder_resources 
   enable_bulk_actions :add_tags, :destroy, :move_to_project, :move_to_new_project
 
+  Project # TODO: fix this lazing loading issue
+
   def create
     if add_to_new_project? 
       create_with_new_project

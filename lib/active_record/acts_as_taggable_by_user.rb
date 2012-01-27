@@ -5,13 +5,31 @@ module ActsAsTaggableByUser
     def acts_as_taggable_by_user
       instance_eval do
         acts_as_taggable
+        self.send :include, TagMethods
+        alias_method_chain :tags, :domain
+        alias_method_chain :tag_list, :domain
+        alias_method_chain :tag_list=, :domain
       end
     end
   end
 
-  def add_tags(list)
-    self.tag_list = list
-    self.save!
+  module TagMethods
+    def add_tags(list)
+      self.domain.tag(self, :with => list, :on => :tags)
+      self.save!
+    end
+
+    def tags_with_domain
+      self.domain.blank? ? [] : self.tags_from(self.domain)
+    end
+
+    def tag_list_with_domain
+      tags.join(', ')
+    end
+
+    def tag_list_with_domain=(value)
+      add_tags value
+    end
   end
 end
 
