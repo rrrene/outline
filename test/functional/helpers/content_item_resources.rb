@@ -77,6 +77,8 @@ module ContentItemResources::TestCase
       test "should update item" do
         with_login do |user|
           resource = resource_class.first
+          assert_not_nil resource
+          assert_not_nil resource.content_item
           attributes = alter_attributes(resource_attributes)
           put :update, :id => resource, resource_key => attributes
           assert_not_nil assigns[resource_key]

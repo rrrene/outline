@@ -94,7 +94,7 @@ $content_item_margin_bottom: 20px
   .handle
     display: block
     position: absolute
-    z-index: 123
+    z-index: 10000
     text-align: center
     width: 20px
     height: 32px
@@ -103,7 +103,9 @@ $content_item_margin_bottom: 20px
     &:hover
       cursor: move
   .content-item-options
-    float: right
+    position: absolute
+    z-index: 10000
+    right: 10px
 
   .content-item-inner
     position: relative

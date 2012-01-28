@@ -20,3 +20,21 @@ three:
   position: 1
   item_type: Note
   item_id: 3
+
+four:
+  content_id: 1
+  position: 1
+  item_type: Link
+  item_id: 1
+
+five:
+  content_id: 2
+  position: 1
+  item_type: Link
+  item_id: 2
+
+six:
+  content_id: 1
+  position: 1
+  item_type: Link
+  item_id: 3

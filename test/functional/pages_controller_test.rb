@@ -65,7 +65,7 @@ class PagesControllerTest < ActionController::TestCase
 
       assert_response :redirect
       pages.reload.each do |page|
-        assert_equal tag_list, page.tag_list
+        assert_equal tag_list, page.tags
       end
     end
   end

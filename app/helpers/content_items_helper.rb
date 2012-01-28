@@ -6,7 +6,8 @@ module ContentItemsHelper
     render :partial => "content_items/detail_view", :locals => {:resource => object, :rendered => rendered}
   end
 
-  def content_item_form_for(symbol, &block)
+  def content_item_form_for(model, &block)
+    symbol = model.to_s.underscore.to_sym
     content = content_holder.content
     object = instance_variable_get("@#{symbol}") 
     object ||= symbol.to_s.classify.constantize.new(:content => content)
@@ -27,5 +28,18 @@ module ContentItemsHelper
 
   def remove_dom(record)
     render :partial => "shared/js/remove_dom", :locals => {:resource => record}
+  end
+
+  def partial_for(model, action)
+    partials = ["#{model.to_s.underscore.pluralize}/new", "content_items/new"]
+    partials.detect { |p| controller.template_exists?(p, [], true) }
+  end
+
+  def render_partial_for(model, action, options = {})
+    options[:locals] ||= {}
+    options[:locals][:model] = model
+    partials = ["#{model.to_s.underscore.pluralize}/new", "content_items/new"]
+    partial = partials.detect { |p| controller.template_exists?(p, [], true) }
+    render options.merge(:partial => partial)
   end
 end

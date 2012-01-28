@@ -30,7 +30,7 @@ class PageTest < ActiveSupport::TestCase
     
     page.add_tags tag_list.join(", ")
 
-    assert_equal tag_list, page.tag_list
+    assert_equal tag_list, page.tags
   end
 
   test "should move page to project" do
