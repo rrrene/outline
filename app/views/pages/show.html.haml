@@ -34,5 +34,5 @@
   
   %ul.nav.list
     %li.nav-header Pages
-    - current_domain.pages.each do |page|
+    - current_domain.pages.limit(20).each do |page|
       %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
