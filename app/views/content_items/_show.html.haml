@@ -1,14 +1,14 @@
 - item = content_item.item
 - item_path = item.class.to_s.underscore.pluralize
 
-.content-item{:id => dom_id(content_item)}
+%li.content-item{:id => dom_id(content_item)}
   %div.content-item-wrapper.item-type{:id => dom_id(item)}
     %span.handle
       = image_tag "move-content-item.png"
+    .content-item-options
+      = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit small"}
+      = link_to "&times;".html_safe, {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger small"}
     .content-item-inner
-      .content-item-options
-        = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit small"}
-        = link_to "&times;".html_safe, {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger small"}
       .content-item-body
         = render :partial => "#{item_path}/show", :locals => {:resource => item}
   .spacer="<hr/>".html_safe

@@ -12,9 +12,8 @@
           = render :partial => "#{model.to_s.underscore.pluralize}/new"
     .clearboth
     .spacer="<hr/>".html_safe
-  .content-items{:"data-sort-url" => "/#{controller_name}/sort_content"}
-    - resource.content_items.each do |content_item|
-      = render :partial => "content_items/show", :locals => {:content_item => content_item}
+  
+  = render :partial => "content/show", :locals => {:content => resource.content}
 
 .hide
   .sortable-helper

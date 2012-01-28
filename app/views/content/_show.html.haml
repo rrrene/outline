@@ -1,0 +1,3 @@
+%ul.unstyled.content-items{:id => dom_id(content), :"data-sort-url" => "/#{controller_name}/sort_content"}
+  - content.content_items.each do |content_item|
+    = render :partial => "content_items/show", :locals => {:content_item => content_item}
