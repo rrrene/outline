@@ -1,19 +1,29 @@
-#login-modal.modal
-  = form_for :user_session, :url => '/user_sessions', :html => {:class => "simple_form"} do |f|
+
+#login-modal.modalXXX
+  = form_for :user_session, :url => '/user_sessions', :html => {:class => "simple_form form-horizontal", :id => "login_form"} do |f|
     .modal-header
       %h3 Login
     .modal-body
-      .clearfix
-        = f.label :login, t("user_sessions.new.login")
-        .input
-          = f.text_field :login, :class => "xlarge"
-      .clearfix
-        = f.label :password, t("user_sessions.new.password")
-        .input
-          = f.password_field :password, :class => "xlarge"
-
       - if @failed
         .alert.alert-error
           = t("user_sessions.new.failed")
+      .control-group
+        = f.label :login, t("user_sessions.new.login")
+        .controls
+          = f.text_field :login, :class => "xlarge"
+      .control-group
+        = f.label :password, t("user_sessions.new.password")
+        .controls
+          = f.password_field :password, :class => "xlarge"
     .modal-footer
+      #logging_in{:style => "display: none"}
+        .progress.info.striped.active
+          .bar{:style => "width: 100%"}
       = f.submit t("user_sessions.new.submit"), :class => "btn primary"
+
+:javascript
+  $('#login_form').bind("submit", function(e) {
+    $(this).find("#logging_in").show();
+    $(this).find(".primary").hide();
+    return true;
+  })

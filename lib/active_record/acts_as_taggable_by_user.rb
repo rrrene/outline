@@ -15,8 +15,10 @@ module ActsAsTaggableByUser
 
   module TagMethods
     def add_tags(list)
-      self.domain.tag(self, :with => list, :on => :tags)
-      self.save!
+      if self.domain
+        self.domain.tag(self, :with => list, :on => :tags)
+        self.save!
+      end
     end
 
     def tags_with_domain

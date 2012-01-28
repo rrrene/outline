@@ -6,19 +6,26 @@ html.login
   background: url(login_bg.jpg) top center
 
 body.login
+  background: url(login_bg.jpg) top center
   padding-top: 0
+  
+  .sidebar, .content, .page-wrapper
+    min-height: 100px
+  .content
+    background: transparent
+    margin-top: 280px
 
+    form
+      margin-bottom: 0
   #login-modal
-    top: 280px
-    margin-top: 0
-    width: 460px
-    margin-left: -230px
     div
       text-align: center
       &.input
         margin-left: 110px
       label
         width: 90px
+    .progress
+      margin-bottom: 0
 
   footer
     position: fixed

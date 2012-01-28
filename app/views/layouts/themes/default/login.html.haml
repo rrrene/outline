@@ -3,8 +3,10 @@
   =render themed(:head)
 
   %body.login
-
     .container
       .row
-        = yield
+        .span6.offset3
+          .content
+            .page-wrapper
+              = yield
     = render themed(:footer)

@@ -56,7 +56,7 @@ SimpleForm.setup do |config|
   # config.label_class = nil
 
   # You can define the class to use on all forms. Default is simple_form.
-  # config.form_class = :simple_form
+  config.form_class = "simple_form form-horizontal"
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -95,7 +95,7 @@ SimpleForm.setup do |config|
 
   # Twitter Bootstrap integration
   config.components = [ :placeholder, :label, :contained_input ]
-  SimpleForm.wrapper_class = 'clearfix'
+  SimpleForm.wrapper_class = 'control-group'
   SimpleForm.wrapper_error_class = 'error'
   SimpleForm.error_class = 'help-inline'
 end

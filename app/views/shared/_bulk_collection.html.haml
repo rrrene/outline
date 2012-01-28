@@ -17,4 +17,5 @@
       .collection
         - collection.each do |resource|
           = render :partial => "shared/bulk_collection_entry", :locals => {:collection_key => collection_key, :resource => resource, :resource_partial => resource_partial}
-          
+  
+  = will_paginate collection

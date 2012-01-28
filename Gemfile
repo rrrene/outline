@@ -5,7 +5,7 @@ gem 'rails', '3.2.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+gem 'mysql2'
 
 #gem 'twitter-bootstrap-rails'
 
@@ -13,6 +13,7 @@ gem 'authlogic'
 gem 'cancan'
 gem 'simple_form'
 gem 'inherited_resources'
+gem "will_paginate"
 
 gem 'acts_as_list'
 gem 'acts-as-taggable-on', '~> 2.2.2'
