@@ -23,7 +23,7 @@ module ContentItemResources
       self.send :include, InstanceMethods
       alias_method_chain :create, :redirect_to_holder
       
-      [:new, :edit, :show].each do |action|
+      [:new, :create, :edit, :destroy, :update, :show].each do |action|
         define_method "#{action}_with_fallback" do
           render_action_with_fallback
         end

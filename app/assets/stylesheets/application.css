@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require twitter/bootstrap
  *= require_tree .
 */
 
@@ -20,8 +19,9 @@
 }
 
 footer p.powered-by {
-  color: #aaa;
+  color: #bbb;
   text-shadow: 0px 1px 1px #fff;
+  margin-top: 20px;
 }
 
 .modal form {
@@ -44,4 +44,87 @@ span.translation_missing {
 
 .sidebar h5, .sidebar h4 {
   color: #666;
+}
+
+.navbar .navbar-inner .container .brand-dark {
+  padding-left: 0;
+  font-weight: bold;
+  color: black;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+}
+
+/* Override some defaults */
+html, body {
+  background-color: #eee!important;
+}
+
+body {
+  padding-top: 40px;
+}
+
+.container > footer p {
+  text-align: center; /* center align it with the container */
+}
+
+/* The white background content wrapper */
+.content {
+  background-color: #fff;
+}
+.page-wrapper,
+.page-header {
+  background-color: #f0f0f0;
+}
+
+.sidebar .nav > li > a:hover {
+  text-decoration: none;
+  background-color: #ddd!important;
+}
+
+/* Page header tweaks */
+.page-header {
+  padding: 20px 20px 10px;
+  margin: 0!important;
+}
+
+.topbar .btn {
+  border: 0;
+}
+
+.page-wrapper {
+  border: 1px solid #D7D7D7;
+  -webkit-box-shadow: #cccccc 0px 0px 3px 0px;
+  margin: -1px;
+  border-radius: 6px;
+}
+
+.sidebar, .content, .page-wrapper {
+  min-height: 500px;
+}
+
+.sidebar,
+.content .page-wrapper {
+  margin-top: 20px;
+}
+.content .page-wrapper {
+  background-color: #fff;
+}
+
+.sidebar {
+  padding-right: 20px;
+}
+.sidebar input[type=text] {
+  width: 190px;
+}
+.sidebar ul.list {
+  margin-left: -19px;
+}
+
+.content .page-header {
+  background: transparent;
+  border: none;
+}
+
+.content .page-header h1 {
+  font-weight: normal;
+  color: #333;
 }

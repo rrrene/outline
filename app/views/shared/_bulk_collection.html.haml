@@ -3,7 +3,7 @@
     = form_tag(form_params, :id => 'bulk_form') do
       = hidden_field_tag :"bulk[action]", nil
       = hidden_field_tag :"bulk[return_to]", return_to
-      .row
+      .options
         %small.bulk-options
           %span.select_all
             = link_to_function t("shared.bulk_collection.select_all"), "OUT.bulk.selectAll();"

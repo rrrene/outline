@@ -14,4 +14,13 @@ OUT.handlers =
       data: data
       type: 'post'
       dataType: 'script'
-   
+
+$ ->
+  # When the ENTER key is pressed in a textfield inside a modal, click the primary button
+  $(".modal input[type=text]").bind "keypress", (event) ->
+    if( event.which == 13 )
+      modal = $(this).parents(".modal")
+      primary = modal.find("input.primary, a.primary")
+      primary.click()
+      event.preventDefault();
+      return false

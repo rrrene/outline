@@ -6,8 +6,16 @@
     %span.handle
       = image_tag "move-content-item.png"
     .content-item-options
-      = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit small"}
-      = link_to "&times;".html_safe, {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger small"}
+      .btn-group
+        = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit"}
+        %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
+          %span.caret
+        %ul.dropdown-menu
+          %li= link_to icon(:trash) + "Delete Item", {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete}
+    
+
+      =# link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit small"}
+      =# link_to icon(:trash, :white).html_safe, {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :class => "btn destroy danger small"}
     .content-item-inner
       .content-item-body
         = render :partial => "#{item_path}/show", :locals => {:resource => item}

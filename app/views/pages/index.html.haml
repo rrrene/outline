@@ -1,12 +1,12 @@
-#new-modal.modal.hide
+#new-page-modal.modal
   .modal-header
-    %a.close{:href => "#"} &times;
+    %a.close{:"data-dismiss" => :modal} &times;
     %h3 Create new page
   .modal-body
     = render "form"
 
 - content_for(:page_header) do
-  = link_to t(".new_page_link"), {:action => "new"}, :class => "btn success open-modal", :"data-controls-modal" => "new-modal"
+  = link_to t(".new_page_link"), {:action => :new}, :class => "btn success", :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
 
 = bulk_collection do
   = bulk_action :add_tags

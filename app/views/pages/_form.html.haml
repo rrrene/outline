@@ -5,7 +5,7 @@
 
     = f.input :context_id, :collection => current_domain.projects.all.map { |project| [project.title, project.context.id] } << [t("pages.new.add_to_new_project"), -1]
     
-    #add-to-new-project.hide
+    #add-to-new-project
       .clearfix.string.required
         %label.string.required{:for => "project_title"} Title
         .input

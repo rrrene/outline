@@ -7,7 +7,8 @@ gem 'rails', '3.2.0'
 
 gem 'mysql'
 
-gem 'twitter-bootstrap-rails'
+#gem 'twitter-bootstrap-rails'
+
 gem 'authlogic'
 gem 'cancan'
 gem 'simple_form'

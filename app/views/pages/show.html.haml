@@ -1,27 +1,38 @@
 
-.row
-  #top-add-content-item-form.add-content-item-form
-    %ul#add-content-item-tabs.tabs{:"data-tabs" => "tabs"}
-      - Outline::ContentItems.classes.each_with_index do |model, index|
-        %li{:class => index == 0 ? :active : nil}
-          = link_to model.to_s, "#new_#{model.to_s.underscore}"
+#top-add-content-item-form.add-content-item-form
+  %ul.nav.tabs#add-content-item-tabs.tabs{:"data-tabs" => "tabs"}
+    - Outline::ContentItems.classes.each_with_index do |model, index|
+      %li{:class => index == 0 ? :active : nil}
+        = link_to model.to_s, "#new_#{model.to_s.underscore}", :"data-toggle" => :tab
 
-    .tab-content
-      - Outline::ContentItems.classes.each_with_index do |model, index|
-        .tab-pane{:class => index == 0 ? :active : nil, :id => "new_#{model.to_s.underscore}"}
-          =# render :partial => "#{model.to_s.underscore.pluralize}/new"
-          = render partial_for(model, :new), :resource_class => model
-    .clearboth
-    .spacer="<hr/>".html_safe
-  
-  = render :partial => "content/show", :locals => {:content => resource.content}
+  .tab-content
+    - Outline::ContentItems.classes.each_with_index do |model, index|
+      .tab-pane{:class => index == 0 ? :active : nil, :id => "new_#{model.to_s.underscore}"}
+        =# render :partial => "#{model.to_s.underscore.pluralize}/new"
+        = render partial_for(model, :new), :resource_class => model
+  .clearboth
+  .spacer="<hr/>".html_safe
+
+= render :partial => "content/show", :locals => {:content => resource.content}
+.page-footer
+  &nbsp;
 
 .hide
   .sortable-helper
     hover message
 
+-content_for(:page_header) do
+  .btn-group
+    = link_to icon(:edit) + t(".edit_link"), {:action => :edit, :id => resource}, {:remote => true, :class => "btn edit"}
+    %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
+      %span.caret
+    %ul.dropdown-menu
+      %li= link_to icon(:trash) + "Delete Page", {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
+
+
 - content_for(:contextual_sidebar) do
-  %h5 Pages
-  %ul.navi
-  - current_domain.pages.each do |page|
-    %li= link_to page.title, page
+  
+  %ul.nav.list
+    %li.nav-header Pages
+    - current_domain.pages.each do |page|
+      %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page

@@ -9,4 +9,7 @@ en:
       page_header: "Pages"
       page_hint: "Overview"
       new_page_link: "Create new page"
-    
+    show:
+      edit_link: "Edit"
+      delete_link: "Delete this page"
+      confirm_delete: "Do you really want to permanently delete this page?"

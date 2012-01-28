@@ -3,7 +3,7 @@
 %input{:type => "hidden", :id => "bulk_add_tags_tag_list", :name => "bulk[add_tags]"}
 
 - content_for(:bulk_options_helpers) do
-  #add-tags-modal.bulk-options-helper.modal.hide
+  #add-tags-modal.bulk-options-helper.modal
     .modal-header
       %a.close{:href => "#"} &times;
       %h3= t('shared.bulk_collection.add_tags.link')
@@ -14,4 +14,4 @@
           %input.string.required#bulk_tag_list{:type => "text"}
     .modal-footer
       = submit_tag t('shared.bulk_collection.add_tags.submit'), :class => "btn primary"
-      = link_to_function t("shared.cancel"), "$('#move-to-new-project-modal').modal('hide');", :class => "btn cancel"
+      = link_to_function t("helpers.cancel"), "#", :class => "btn cancel", :"data-dismiss" => :modal

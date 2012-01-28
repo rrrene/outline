@@ -1,24 +1,21 @@
 .container
-  .content
-    .page-header
-      .pull-left
-        - if action_name == 'show' && resource.respond_to?(:title)
-          %h1{:id => dom_id(resource)}
-            = resource.title
-            %small
-              = edit_link resource
-        - else
-          %h1
-            = t("#{controller_name}.#{action_name}.page_header")
-            %small
-              = t("#{controller_name}.#{action_name}.page_hint")
-      .pull-right
-        = yield(:page_header)
-      .clearboth
+  .page-wrapper
     .row
       .span12
-        = yield
-      .span4
+        .page-header
+          .pull-left
+            %h1
+              = t("#{controller_name}.#{action_name}.page_header")
+              %small
+                = t("#{controller_name}.#{action_name}.page_hint")
+          .pull-right
+            = yield(:page_header)
+          .clearboth
+    .row
+      .span9
+        .content
+          = yield
+      .span3
         .sidebar
           = yield(:contextual_sidebar)
-  
+    .clearboth

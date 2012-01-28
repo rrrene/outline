@@ -1,26 +1,35 @@
-.topbar
-  .fill
+.navbar.navbar-fixed-top
+  .navbar-inner
     .container
-      = link_to current_domain.try(:title), root_path, :class => "brand"
+      = link_to current_domain.try(:title), root_path, :class => "brand brand-dark"
       
-      %ul.nav
-        = nav_to "Home", :welcome
+      %ul.nav.pull-left
         = nav_to "Projects", :projects
         = nav_to "Pages", :pages
-      
+      / 
+        %form.navbar-search.pull-left{:action => ""}
+          = text_field_tag "query", "", :class => "search-query span2", :placeholder => "Search"
+
       - if logged_in?
-        %ul.nav.secondary-nav
+        %ul.nav.pull-right
           %li.dropdown
-            %a.dropdown-toggle{:href => "#"} Domain
+            %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"} 
+              Domain
+              %b.caret
             
             %ul.dropdown-menu
               %li= link_to "Users", users_path
+              %li.divider
               %li= link_to "Edit Settings", users_path
           %li.dropdown
-            %a.dropdown-toggle{:href => "#"}= current_user.login
+            %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"} 
+              = current_user.name
+              %b.caret
             
             %ul.dropdown-menu
-              %li= link_to "Logout", logout_path
+              %li= link_to "Edit Profile", edit_user_path(current_user)
+              %li.divider
+              %li= link_to icon(:off) + " Logout", logout_path
 
       - else
         %form.pull-right{:action => user_sessions_path, :method => "POST"}
