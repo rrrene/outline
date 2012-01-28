@@ -6,11 +6,17 @@ module ContentItemResources
       end
     end
 
-    def render_action_with_fallback
-      if template_exists?("#{controller_name}/#{action_name}")
-        method("#{action_name}_without_fallback").call
-      else
-        render :file => "content_items/#{action_name}"
+    def render_with_template_fallback
+      method("#{action_name}_without_fallback").call
+      unless performed?
+        unless template_exists?("#{controller_name}/#{action_name}")
+          fallback = "content_items/#{action_name}"
+          if template_exists?(fallback)
+            render :file => fallback 
+          else
+            nil
+          end
+        end
       end
     end
   end
@@ -25,7 +31,7 @@ module ContentItemResources
       
       [:new, :create, :edit, :destroy, :update, :show].each do |action|
         define_method "#{action}_with_fallback" do
-          render_action_with_fallback
+          render_with_template_fallback
         end
         alias_method_chain action, :fallback
       end
