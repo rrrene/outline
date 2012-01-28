@@ -13,6 +13,7 @@ module AuthorizedResources
 
     def index
       self.resource = resource_class.new
+      filter_collection
       index!
     end
 
@@ -23,19 +24,32 @@ module AuthorizedResources
     end
 
     def collection
-      var_name = "@#{resource_key.pluralize}"
-      if var = instance_variable_get(var_name)
+      if var = instance_variable_get("@#{collection_key}")
         var
       else
-        records = end_of_association_chain.accessible_by(current_ability).paginate(:page => params[:page], :per_page => per_page)
-        instance_variable_set(var_name, records)
+        self.collection = end_of_association_chain.accessible_by(current_ability).order(order_by).paginate(:page => params[:page], :per_page => per_page)
       end
+    end
+
+    def collection=(value)
+      instance_variable_set("@#{collection_key}", value)
+    end
+
+    def collection_key
+      resource_key.pluralize
     end
 
     def create_user_owned_resource
       self.resource ||= resource_class.new(params[resource_key])
       resource.user = current_user if resource.respond_to?(:user=)
       resource.domain = current_domain
+    end
+
+    def filter_collection
+    end
+
+    def order_by
+      "created_at DESC"
     end
 
     def per_page

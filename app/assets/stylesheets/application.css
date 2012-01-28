@@ -97,20 +97,21 @@ body {
   border-radius: 6px;
 }
 
-.sidebar, .content, .page-wrapper {
+.content, .page-wrapper {
   min-height: 500px;
 }
 
-.sidebar,
 .content .page-wrapper {
   margin-top: 20px;
 }
-.content .page-wrapper {
+.page-wrapper {
   background-color: #fff;
 }
 
 .sidebar {
-  padding-right: 20px;
+  padding: 20px;
+  margin-left: -20px;
+  border-left: 1px solid #eee;
 }
 .sidebar input[type=text] {
   width: 190px;

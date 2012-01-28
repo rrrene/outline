@@ -23,7 +23,7 @@ class PagesController < ApplicationController
     end
   end
 
-  private
+  protected
 
   def add_to_new_project?
     params[:page][:context_id].to_i == -1
@@ -45,10 +45,22 @@ class PagesController < ApplicationController
     end
   end
 
+  def filter_collection
+    if @filter_title = params[:title]
+      query = "%#{@filter_title.gsub(' ', '%')}%"
+      self.collection = collection.where(["title LIKE ?", query])
+    end
+  end
+
   def new_project(attributes)
     project = Project.new(attributes)
     project.user = current_user
     project.domain = current_domain
     project
   end
+
+  def order_by
+    "UPPER(title) ASC"
+  end
+
 end
