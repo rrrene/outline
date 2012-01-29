@@ -6,7 +6,7 @@ module ActsAsContentItem
       Outline::ContentItems.register_class self
       instance_eval do
         acts_as_owned_by_user
-        #belongs_to :content
+        
         belongs_to :outer_content, :class_name => "Content", :foreign_key => "content_id"
         has_one :content_item, :as => :item, :dependent => :destroy
 

@@ -10,7 +10,7 @@ module ContentItemsHelper
     symbol = model.to_s.underscore.to_sym
     object = instance_variable_get("@#{symbol}") 
     content = options[:content] || content_holder.inner_content
-    object ||= symbol.to_s.classify.constantize.new(:content => content)
+    object ||= symbol.to_s.classify.constantize.new(:content_id => content.id)
     object_controller = symbol.to_s.underscore.pluralize
     remote = request.xhr?
     render :partial => "content_items/form", :locals => {:resource => object, :content => content, :object_controller => object_controller, :remote => remote}

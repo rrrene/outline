@@ -1,4 +1,3 @@
 class TodoListsController < ContentItemsController
-  content_holder_resources
-  content_item_resources
+  content_item_group_resources
 end
