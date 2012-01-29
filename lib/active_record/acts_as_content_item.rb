@@ -7,6 +7,7 @@ module ActsAsContentItem
       instance_eval do
         acts_as_owned_by_user
         belongs_to :content
+        belongs_to :inner_content, :class_name => "Content"
         has_one :content_item, :as => :item, :dependent => :destroy
 
         after_create do |item|

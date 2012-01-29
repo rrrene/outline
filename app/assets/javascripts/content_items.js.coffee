@@ -7,13 +7,13 @@ window.OUT = {} unless window.OUT?
 OUT.contentItems =
   hover_delay: 500
   hover_timeout_id: null
+
   createSortables: ->
     $('.content-items').sortable
       axis: 'y'
-      dropOnEmpty: false
       handle: '.handle'
       cursor: 'crosshair'
-      items: '.content-item'
+      items: '> .content-item'
       scroll: true
       update: OUT.handlers.listSorted
       start: (event, ui) ->
@@ -26,6 +26,8 @@ OUT.contentItems =
         $(".sortable-helper").draggable("destroy")
 
   createDroppables: ->
+    return
+
     console.log "createContentItemDroppables"
     $('.content-item').droppable
       drop: OUT.contentItems.dropOnContentItem

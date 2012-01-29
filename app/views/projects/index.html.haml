@@ -8,8 +8,7 @@
 - content_for(:page_header) do
   = link_to t(".new_project_link"), {:action => :new}, :class => "btn success", :"data-toggle" => "modal", :"data-target" => "#new-project-modal"
 
-= bulk_collection do
-  = bulk_action :add_tags
-  = link_to_function(t('.deactivate_project'), "OUT.bulk.execute('deactivate', this);", :class => 'deactivate')
-  = link_to_function(t('.activate_project'), "OUT.bulk.execute('activate', this);", :class => 'activate')
-  = bulk_action :destroy
+= render "bulk_collection"
+
+- content_for(:contextual_sidebar) do
+  = render "shared/index/filter"

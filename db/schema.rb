@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120125194808) do
+ActiveRecord::Schema.define(:version => 20120129001227) do
+
+  create_table "content_item_groups", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "user_id"
+    t.integer  "content_id"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "content_items", :force => true do |t|
     t.integer  "content_id"
@@ -95,6 +104,25 @@ ActiveRecord::Schema.define(:version => 20120125194808) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "todo_lists", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "user_id"
+    t.integer  "content_id"
+    t.string   "title"
+    t.integer  "responsible_user_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "todos", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "user_id"
+    t.integer  "content_id"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

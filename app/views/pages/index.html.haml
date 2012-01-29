@@ -8,22 +8,7 @@
 - content_for(:page_header) do
   = link_to t(".new_page_link"), {:action => :new}, :class => "btn success", :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
 
-= bulk_collection do
-  = bulk_action :add_tags
-  = bulk_action :move_to_project
-  = bulk_action :destroy
+= render "bulk_collection"
 
 - content_for(:contextual_sidebar) do
-  %h4 Filter view
-  %hr
-
-  %h5 By Name
-  %form{:method => :get, :action => ""}
-    %input{:type => "text", :name => "filter[title]", :value => @filter_title}
-  %hr
-
-  %h5 By Tags
-  %div.tags
-    - current_domain.tags_for(:pages).each do |tag|
-      = link_to tag, params.merge(:tag => tag), :class => "label"
-  %hr
+  = render "shared/index/filter"

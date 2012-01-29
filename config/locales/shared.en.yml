@@ -13,3 +13,8 @@ en:
         header: "Add tags"
         tag_list: "Tags:"
         submit: "Add tags"
+    index:
+      filter:
+        header: "Browse list"
+        by_title: "By Title"
+        by_tags: "By Tags"

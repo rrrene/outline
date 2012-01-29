@@ -9,6 +9,10 @@ en:
       page_header: "Pages"
       page_hint: "Overview"
       new_page_link: "Create new page"
+      filter:
+        header: "Browse your pages by"
+        by_title: "Title"
+        by_tags: "Tags"
     show:
       edit_link: "Edit"
       delete_link: "Delete this page"

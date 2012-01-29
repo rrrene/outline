@@ -6,28 +6,30 @@ module ContentItemsHelper
     render :partial => "content_items/detail_view", :locals => {:resource => object, :rendered => rendered}
   end
 
-  def content_item_form_for(model, &block)
+  def content_item_form_for(model, options = {}, &block)
     symbol = model.to_s.underscore.to_sym
-    content = content_holder.content
     object = instance_variable_get("@#{symbol}") 
+    content = options[:content] || content_holder.content
     object ||= symbol.to_s.classify.constantize.new(:content => content)
     object_controller = symbol.to_s.underscore.pluralize
     remote = request.xhr?
     render :partial => "content_items/form", :locals => {:resource => object, :content => content, :object_controller => object_controller, :remote => remote}
   end
 
-  def update_html(record, render_params)
+  def update_html(record_or_string, render_params)
     content = escape_javascript(render(render_params))
-    render :partial => "shared/js/update_html", :locals => {:resource => record, :content => content}
+    dom_element_id = record_or_string.is_a?(String) ? record_or_string : dom_id(record_or_string)
+    render :partial => "shared/js/update_html", :locals => {:dom_element_id => dom_element_id, :resource => record_or_string, :content => content}
   end
 
-  def replace_dom(record, render_params)
+  def replace_dom(record_or_string, render_params)
     content = escape_javascript(render(render_params))
-    render :partial => "shared/js/replace_dom", :locals => {:resource => record, :content => content}
+    dom_element_id = record_or_string.is_a?(String) ? record_or_string : dom_id(record_or_string)
+    render :partial => "shared/js/replace_dom", :locals => {:dom_element_id => dom_element_id, :resource => record_or_string, :content => content}
   end
 
-  def remove_dom(record)
-    render :partial => "shared/js/remove_dom", :locals => {:resource => record}
+  def remove_dom(record_or_string)
+    render :partial => "shared/js/remove_dom", :locals => {:resource => record_or_string}
   end
 
   def partial_for(model, action)

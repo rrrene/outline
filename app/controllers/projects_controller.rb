@@ -4,6 +4,10 @@ class ProjectsController < ApplicationController
 
   protected
   
+  def filter_collection
+    filter_by_title
+  end
+
   def order_by
     "UPPER(title) ASC"
   end

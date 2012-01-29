@@ -46,10 +46,7 @@ class PagesController < ApplicationController
   end
 
   def filter_collection
-    if @filter_title = params[:title]
-      query = "%#{@filter_title.gsub(' ', '%')}%"
-      self.collection = collection.where(["title LIKE ?", query])
-    end
+    filter_by_title
   end
 
   def new_project(attributes)

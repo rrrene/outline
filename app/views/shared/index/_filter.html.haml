@@ -1,0 +1,20 @@
+%h4= shared_snippet(".index.filter.header") #tt("#{controller_name}.index.filter.header", "shared.index.filter.header")
+%hr
+
+
+= form_tag(params, :class => "form-stacked", :remote => true, :method => :get) do
+  .control-group
+    = label_tag :title, shared_snippet(".index.filter.by_title")
+    .controls
+      %input{:type => "text", :id => "title", :name => "title", :value => @filter_title}
+
+%hr
+
+= form_tag(params, :class => "form-stacked", :remote => true, :method => :get) do
+  .control-group
+    = label_tag :tags, shared_snippet(".index.filter.by_tags")
+    .controls
+      - current_domain.tags_for(:pages).each do |tag|
+        = link_to tag, params.merge(:tag => tag), :class => "label"
+
+%hr

@@ -1,4 +1,12 @@
 Outline::Application.routes.draw do
+  resources :todos
+
+  resources :todo_lists do
+    member do
+      post "sort_content"
+    end
+  end
+
   resources :links
 
   resources :notes
@@ -6,6 +14,8 @@ Outline::Application.routes.draw do
   resources :pages do
     collection do
       post "bulk_execute"
+    end
+    member do
       post "sort_content"
     end
   end
