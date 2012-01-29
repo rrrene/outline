@@ -41,10 +41,10 @@ module ContentItemResources::TestCase
         with_login do |user|
           page = user.domain.pages.first
           assert_not_nil page
-          assert_not_nil page.content, "Page should have content"
+          assert_not_nil page.inner_content, "Page should have content"
           
           assert_created(resource_class) do
-            attributes = resource_attributes.merge(:content_id => page.content.id)
+            attributes = resource_attributes.merge(:content_id => page.inner_content.id)
             post :create, resource_key => attributes
             assert_response :redirect
           end

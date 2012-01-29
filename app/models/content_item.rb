@@ -1,6 +1,6 @@
 class ContentItem < ActiveRecord::Base
   belongs_to :content
-  belongs_to :item, :polymorphic => true
+  belongs_to :item, :polymorphic => true, :dependent => :destroy
 
   acts_as_list :scope => :content
 

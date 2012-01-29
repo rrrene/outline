@@ -5,13 +5,16 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
   resource_type: Project
   resource_id: 1
 # column: value
 #
 two:
+  id: 2
   resource_type: Project
   resource_id: 2
 three:
+  id: 3
   resource_type: Project
   resource_id: 3

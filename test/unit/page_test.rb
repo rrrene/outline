@@ -8,7 +8,7 @@ class PageTest < ActiveSupport::TestCase
   test "responds to user" do
     assert_not_nil @page
     assert @page.respond_to?(:context), "Project doesnot respond to :context"
-    assert @page.respond_to?(:content), "Project doesnot respond to :content"
+    assert @page.respond_to?(:inner_content), "Project doesnot respond to :content"
   end
 
   test "Domain responds to pages" do
@@ -20,7 +20,7 @@ class PageTest < ActiveSupport::TestCase
     @page.domain = Domain.first
     @page.title = "Test"
     assert @page.save
-    assert_not_nil @page.content
+    assert_not_nil @page.inner_content
   end
 
   test "should add tags" do
@@ -35,7 +35,7 @@ class PageTest < ActiveSupport::TestCase
 
   test "should move page to project" do
     domain = Domain.first
-    page = domain.pages.first
+    page = domain.pages.last
     project = domain.projects.first
     assert_not_equal page.context, project.context
 
@@ -47,7 +47,7 @@ class PageTest < ActiveSupport::TestCase
   test "should move page to project via stringified id" do
     domain = Domain.first
     page = domain.pages.first
-    project = domain.projects.first
+    project = domain.projects.last
     assert_not_equal page.context, project.context
 
     page.move_to_project project.id.to_s

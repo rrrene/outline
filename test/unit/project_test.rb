@@ -35,4 +35,13 @@ class ProjectTest < ActiveSupport::TestCase
     assert_equal false, project.active?
   end
 
+  test "should destroy associated pages" do
+    project = Project.first
+    assert project.respond_to?(:pages)
+    assert_equal false, project.pages.empty?, "project.pages should not be empty"
+    assert_destroyed(Page) do
+      project.destroy
+    end
+  end
+
 end

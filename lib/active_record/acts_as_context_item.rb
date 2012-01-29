@@ -8,6 +8,15 @@ module ActsAsContextItem
         belongs_to :context
         # to be decided: should every item have to have a context?
         #validates_presence_of :context_id
+        of_this_kind = self.to_s.underscore.pluralize.to_sym
+        ::Context.instance_eval do
+          has_many of_this_kind, :dependent => :destroy
+        end
+        [::Project].each do |model|
+          model.instance_eval do
+            has_many of_this_kind, :through => :context, :dependent => :destroy
+          end
+        end
       end
     end
   end

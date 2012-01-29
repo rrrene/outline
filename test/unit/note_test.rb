@@ -17,18 +17,18 @@ class NoteTest < ActiveSupport::TestCase
 
     new_content = Content.last
     assert_not_nil new_content
-    assert_not_equal item.content, new_content
+    assert_not_equal item.outer_content, new_content
 
     item.content_id = new_content.id
     item.save
 
-    assert_equal new_content, item.content
+    assert_equal new_content, item.outer_content
     assert_equal new_content, content_item.content
   end
 
   test "responds to user" do
     assert_not_nil @note
-    assert @note.respond_to?(:content), "Project doesnot respond to :content"
+    assert @note.respond_to?(:outer_content), "Project doesnot respond to :content"
   end
 
   test "Domain responds to pages" do
@@ -38,15 +38,15 @@ class NoteTest < ActiveSupport::TestCase
   test "saves and creates content" do
     @content_holder = Page.first
     assert_not_nil @content_holder
-    assert_not_nil @content_holder.content
+    assert_not_nil @content_holder.inner_content
 
     @note.user = User.first
     @note.domain = Domain.first
-    @note.content = @content_holder.content
+    @note.outer_content = @content_holder.inner_content
     @note.text = "Text"
 
     assert @note.save
-    assert_not_nil @note.content
+    assert_not_nil @note.outer_content
     assert_not_nil @note.content_item
 
     assert_not_nil @note.content_item.content

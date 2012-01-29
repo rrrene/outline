@@ -17,6 +17,6 @@ class ContentItemTest < ActiveSupport::TestCase
     content_item.save
 
     assert_equal new_content, content_item.content
-    assert_equal new_content, item.content
+    assert_equal new_content, item.outer_content
   end
 end

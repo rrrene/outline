@@ -4,9 +4,8 @@ module ActsAsContentItemGroup
   module ClassMethods
     def acts_as_content_item_group(options = {})
       instance_eval do
-        acts_as_content_holder
         acts_as_content_item
-        has_one :inner_content, :class_name => "Content", :as => :holder
+        acts_as_content_holder
       end
     end
   end

@@ -13,7 +13,8 @@
   .clearboth
   .spacer="<hr/>".html_safe
 
-= render :partial => "content/show", :locals => {:content => resource.content}
+= render :partial => "content/show", :locals => {:content => resource.inner_content}
+
 .page-footer
   &nbsp;
 

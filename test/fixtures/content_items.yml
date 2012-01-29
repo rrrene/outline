@@ -22,18 +22,21 @@ three:
   item_id: 3
 
 four:
+  id: 4
   content_id: 1
   position: 1
   item_type: Link
   item_id: 1
 
 five:
+  id: 5
   content_id: 2
   position: 1
   item_type: Link
   item_id: 2
 
 six:
+  id: 6
   content_id: 1
   position: 1
   item_type: Link
