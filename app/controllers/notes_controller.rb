@@ -1,3 +1,3 @@
-class NotesController < ApplicationController
+class NotesController < ContentItemsController
   content_item_resources
 end

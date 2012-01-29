@@ -27,7 +27,7 @@
     %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
       %span.caret
     %ul.dropdown-menu
-      %li= link_to icon(:trash) + "Delete Page", {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
+      %li= link_to icon(:trash) + t(".delete_link"), {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
 
 
 - content_for(:contextual_sidebar) do

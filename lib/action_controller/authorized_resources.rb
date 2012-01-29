@@ -24,7 +24,7 @@ module AuthorizedResources
     end
 
     def collection
-      if var = instance_variable_get("@#{collection_key}")
+      if var = get_collection_ivar
         var
       else
         self.collection = end_of_association_chain.accessible_by(current_ability).order(order_by).paginate(:page => params[:page], :per_page => per_page)
@@ -32,11 +32,11 @@ module AuthorizedResources
     end
 
     def collection=(value)
-      instance_variable_set("@#{collection_key}", value)
+      set_collection_ivar(value)
     end
 
     def collection_key
-      resource_key.pluralize
+      resource_collection_name
     end
 
     def create_user_owned_resource
@@ -57,11 +57,11 @@ module AuthorizedResources
     end
 
     def resource=(value)
-      instance_variable_set("@#{resource_class.to_s.underscore}", value)
+      set_resource_ivar(value)
     end
 
     def resource_key
-      resource_class.to_s.underscore
+      resource_instance_name
     end
   end
 

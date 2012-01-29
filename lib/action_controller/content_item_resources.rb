@@ -26,15 +26,16 @@ module ContentItemResources
     include AuthorizedResources::Base
 
     included do
+      authorized_resources
       self.send :include, InstanceMethods
       alias_method_chain :create, :redirect_to_holder
       
-      [:new, :create, :edit, :destroy, :update, :show].each do |action|
-        define_method "#{action}_with_fallback" do
-          render_with_template_fallback
-        end
-        alias_method_chain action, :fallback
-      end
+      #[:new, :create, :edit, :destroy, :update, :show].each do |action|
+      #  define_method "#{action}_with_fallback" do
+      #    render_with_template_fallback
+      #  end
+      #  alias_method_chain action, :fallback
+      #end
     end
   end
 
