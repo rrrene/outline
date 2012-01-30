@@ -1,0 +1,11 @@
+
+#quick-jump-modal.modal
+  .modal-header
+    %a.close{:"data-dismiss" => :modal} &times;
+    %input.xlarge{:type => "text", :name => "title", :"data-url" => "/pages.json", :autocapitalize => "off", :autocomplete => "off", :autocorrect => "off"}
+  .modal-body
+    .results
+      - Page.limit(10).each do |page|
+        %a.result
+          .title= page.title
+          .path= (page.context ? page.context.resource.title + " / " : "") + page.title

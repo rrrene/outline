@@ -26,8 +26,6 @@ OUT.contentItems =
         $(".sortable-helper").draggable("destroy")
 
   createDroppables: ->
-    return
-
     console.log "createContentItemDroppables"
     $('.content-item').droppable
       drop: OUT.contentItems.dropOnContentItem

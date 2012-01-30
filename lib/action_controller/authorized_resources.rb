@@ -77,7 +77,7 @@ module AuthorizedResources
     
     included do
       inherit_resources
-      respond_to :html, :js
+      respond_to :html, :js, :json
       before_filter :require_user
       load_and_authorize_resource
       check_authorization

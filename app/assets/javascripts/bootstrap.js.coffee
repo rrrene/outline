@@ -11,6 +11,8 @@ $ ->
 $ ->
   $(".alert-message").alert()
 $ ->
-#  $(".modal").modal().bind 'shown', ->
-#    $(this).find('input[type=text], textarea').first().select()
-  $(".modal").modal().modal("hide")
+  $(".modal").modal().modal("hide").bind 'shown', ->
+    $(this).find('input[type=text], textarea').first().select()
+  .bind 'hide', ->
+    $(this).find('input[type=text], textarea').blur()
+  

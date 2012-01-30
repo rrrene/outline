@@ -48,6 +48,6 @@ OUT.handlers = {
 
 $(function(){
   OUT.contentItems.createSortables();
-  OUT.contentItems.createDroppables();
+  // OUT.contentItems.createDroppables();
   OUT.initializers.selectFirstInput();
 });
