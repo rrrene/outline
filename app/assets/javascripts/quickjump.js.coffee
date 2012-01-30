@@ -4,7 +4,22 @@
 
 window.OUT = {} unless window.OUT?
 
+class OUT.QuickJumpDictionary
+  constructor: (@key_length) ->
+    @store = {}
+  
+  getKey: (query) ->
+    query[0...@key_length]
+
+  getResultsFor: (query) ->
+    @store[this.getKey(query)]
+
+  setResultsFor: (query, results) ->
+    @store[this.getKey(query)] = results
+
 class OUT.QuickJump
+  DELAY_BEFORE_SERVER_CALL: 300
+  DICTIONARY_KEY_LENGTH: 3
   KEY_UP: 38
   KEY_DOWN: 40
   KEY_ENTER: 13
@@ -14,6 +29,7 @@ class OUT.QuickJump
   constructor: (selector) ->
     @selector = selector
     @active_result = null
+    @dictionary = new OUT.QuickJumpDictionary(@DICTIONARY_KEY_LENGTH)
 
     $(selector).bind "hidden", ->
       $(selector+" input").blur()
@@ -40,6 +56,9 @@ class OUT.QuickJump
           event.preventDefault()
           $(selector).modal("show")
   
+  highlight: (str, phrases) ->
+    str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
+  
   keydown: (event) ->
     if event.keyCode == @KEY_ENTER
       result = this.getActiveResult()
@@ -54,24 +73,23 @@ class OUT.QuickJump
       false
   
   keyup: (event) ->
-    console.log "keyup", event.keyCode, event.target.value
+    console.log event.type, event.keyCode, event.target.value
 
     query = event.target.value
-    if query.length > 2
-      url = $(event.target).data('url')
-      data = {}
-      data[$(event.target).attr("name")] = query
-      self = this
 
-      console.log "sending query:", data, "url:", url
+    if query != @old_query && query.length >= @DICTIONARY_KEY_LENGTH
+      stored_results = @dictionary.getResultsFor(query)
+      if stored_results?
+        this.setResults query, stored_results
+      else
+        url = $(event.target).data('url')
+        data = {}
+        data[$(event.target).attr("name")] = query
+        self = this
+        OUT.setLazyTimer "quickjump_request", @DELAY_BEFORE_SERVER_CALL, ->
+          self.requestResults(query, url, data)
 
-      $.ajax
-        url: url
-        data: data
-        type: 'get'
-        dataType: 'script'
-        complete: (request) ->
-          self.requestComplete(request)
+    @old_query = query
   
   moveSelection: (modifier) ->
     max_result = Math.min(@results.length, @MAX_RESULTS)
@@ -80,19 +98,43 @@ class OUT.QuickJump
     @active_result = 0 if @active_result > max_result-1
     this.markActiveResult()
 
-  requestComplete: (request) ->
-    @results = eval(request.responseText)
-    this.renderResults(request)
+  requestResults: (query, url, data) ->
+    self = this
+    $.ajax
+      url: url
+      data: data
+      type: 'get'
+      dataType: 'script'
+      complete: (request) ->
+        self.requestComplete(query, request)
+
+  requestComplete: (query, request) ->
+    results = eval(request.responseText)
+    this.setResults(query, results)
+  
+  renderResults: (query) ->
+    out = ""
+    phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
+    template = '<a class=result href="/pages/%{id}"><div class=title>%{title}</div><div class=path>%{path}</div></a>'
+    for result in @results[0...@MAX_RESULTS-1]
+      t = this.highlight(result.title, phrases)
+      out += template.toString().replace("%{title}", t).replace("%{path}", result.id).replace("%{id}", result.id)
+
+    $(@selector+" .results").html(out)
+  
+  setResults: (query, results) ->
+    OUT.clearLazyTimer "quickjump_request"
+    @dictionary.setResultsFor(query, results)
+    @results = this.matchResults(query, results)
+    this.renderResults(query)
     @active_result = 0
     this.markActiveResult();
 
-  renderResults: (request) ->
-    template = '<a class=result href="/pages/%{id}"><div class=title>%{title}</div><div class=path>%{path}</div></a>'
-    out = ""
-    for result in @results[0...@MAX_RESULTS-1]
-      out += template.toString().replace("%{title}", result.title).replace("%{path}", result.id).replace("%{id}", result.id)
-
-    $(@selector+" .results").html(out)
+  matchResults: (query, results) ->
+    results.filter (result) ->
+      name = result.title.toLowerCase()
+      expr = '.*' + query.toLowerCase().replace(/\s/g, '.+') + '.*'
+      name.match(new RegExp(expr))
 
   markActiveResult: ->
     if @active_result?
@@ -103,6 +145,16 @@ class OUT.QuickJump
     if @active_result?
       all = $(@selector+" .result")
       $(all[@active_result])
+
+OUT.lazyTimerIds = {}
+OUT.setLazyTimer = (name, delay, func) ->
+  OUT.clearLazyTimer(name)
+  console.log "lazyTimer set #{name}"
+  OUT.lazyTimerIds[name] = window.setTimeout func, delay
+
+OUT.clearLazyTimer = (name) ->
+  if OUT.lazyTimerIds[name]
+    window.clearTimeout(OUT.lazyTimerIds[name])
 
 $ ->
   OUT.quickjump = new OUT.QuickJump "#quick-jump-modal"
