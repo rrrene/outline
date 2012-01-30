@@ -33,6 +33,8 @@ class OUT.QuickJump
 
     $(selector).bind "hidden", ->
       $(selector+" input").blur()
+    
+    this.setDefaultResults()
 
     self = this
     $(selector+" input[type=text]").bind "keydown", (event) ->
@@ -122,6 +124,11 @@ class OUT.QuickJump
 
     $(@selector+" .results").html(out)
   
+  setDefaultResults: ->
+    @results = OUT.quick_jump_defaults
+    this.renderResults('')
+    @active_result = -1
+
   setResults: (query, results) ->
     OUT.clearLazyTimer "quickjump_request"
     @dictionary.setResultsFor(query, results)

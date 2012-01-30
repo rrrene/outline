@@ -5,8 +5,7 @@
     %input.xlarge{:type => "text", :name => "title", :"data-url" => "/pages.json", :autocapitalize => "off", :autocomplete => "off", :autocorrect => "off"}
   .modal-body
     .results
-      - Page.limit(6).each do |page|
-        %a.result
-          .title= page.title
-          .path= (page.context ? page.context.resource.title + " / " : "") + page.title
   .modal-footer
+
+:javascript
+  OUT.quick_jump_defaults = #{Page.order("created_at desc").limit(8).to_json}
