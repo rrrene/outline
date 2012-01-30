@@ -19,6 +19,7 @@ class OUT.QuickJumpDictionary
 
 class OUT.QuickJump
   DELAY_BEFORE_SERVER_CALL: 300
+  FETCHING_RESULTS: "fetching"
   DICTIONARY_KEY_LENGTH: 3
   KEY_UP: 38
   KEY_DOWN: 40
@@ -79,17 +80,21 @@ class OUT.QuickJump
 
     query = event.target.value
 
-    if query != @old_query && query.length >= @DICTIONARY_KEY_LENGTH
-      stored_results = @dictionary.getResultsFor(query)
-      if stored_results?
-        this.setResults query, stored_results
-      else
-        url = $(event.target).data('url')
-        data = {}
-        data[$(event.target).attr("name")] = query
-        self = this
-        OUT.setLazyTimer "quickjump_request", @DELAY_BEFORE_SERVER_CALL, ->
-          self.requestResults(query, url, data)
+    if query != @old_query 
+      if query == ""
+        this.setDefaultResults()
+      else if query.length >= @DICTIONARY_KEY_LENGTH
+        stored_results = @dictionary.getResultsFor(query)
+        if stored_results?
+          if stored_results != @FETCHING_RESULTS
+            this.setResults query, stored_results
+        else
+          url = $(event.target).data('url')
+          data = {}
+          data[$(event.target).attr("name")] = query
+          self = this
+          OUT.setLazyTimer "quickjump_request", @DELAY_BEFORE_SERVER_CALL, ->
+            self.requestResults(query, url, data)
 
     @old_query = query
   
@@ -101,6 +106,7 @@ class OUT.QuickJump
     this.markActiveResult()
 
   requestResults: (query, url, data) ->
+    @dictionary.setResultsFor(query, @FETCHING_RESULTS)
     self = this
     $.ajax
       url: url
@@ -125,7 +131,7 @@ class OUT.QuickJump
     $(@selector+" .results").html(out)
   
   setDefaultResults: ->
-    @results = OUT.quick_jump_defaults
+    @results = OUT.quick_jump_defaults || []
     this.renderResults('')
     @active_result = -1
 
