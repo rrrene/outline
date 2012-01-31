@@ -1,9 +1,9 @@
-%h5= resource.title
+%h2= resource.title
 
 - if resource.inner_content
   = render :partial => "content/show", :locals => {:content => resource.inner_content}
 
-= link_to_function "add todo", "$('##{dom_id(resource)+'_add_todo'}').toggle()", :class => "new"
+= link_to_function "Add item...", "$('##{dom_id(resource)+'_add_todo'}').toggle()", :class => "new"
 
 .add-content-item-form{:id => dom_id(resource) + '_add_todo', :style => "display: none"}
   = content_item_form_for Todo, :content => resource.inner_content

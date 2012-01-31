@@ -57,14 +57,15 @@ $content_item_margin_bottom: 20px
 .content-item
   background-color: white
   position: relative
-  margin: 0 0 $content_item_margin_bottom 0
+  margin: 0
+  padding-bottom: $content_item_margin_bottom
   // border-bottom: 1px solid #DDD
   // -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
   // -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
   // box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
 
   &:hover > .content-item-wrapper > .content-item-options,
-  &:hover > .content-item-wrapper > .handle
+  &:hover > .content-item-wrapper > .move-handle
     visibility: visible
   
   &.droppable
@@ -91,10 +92,11 @@ $content_item_margin_bottom: 20px
     margin: 0
 
   .content-item-options,
-  .handle
+  .move-handle
     visibility: hidden
 
-  .handle
+  .move-handle
+    background: url(move-content-item.png) center center no-repeat
     display: block
     position: absolute
     z-index: 10000
@@ -125,10 +127,7 @@ $content_item_margin_bottom: 20px
 
       .content-items
         margin-left: -$content_margin_left
-        .handle
-          margin-left: 30px
-        .content-item-inner
-          padding-left: $content_margin_left * 2
+        
 
     .content-item-info
       color: #ccc
