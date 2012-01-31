@@ -1,6 +1,7 @@
 
 
 require 'active_record/has_activity'
+require 'active_record/has_quick_jump_target'
 require 'active_record/acts_as_owned_by_user'
 require 'active_record/acts_as_context'
 require 'active_record/acts_as_context_item'

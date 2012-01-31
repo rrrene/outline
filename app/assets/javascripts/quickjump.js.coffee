@@ -25,7 +25,7 @@ class OUT.QuickJump
   KEY_DOWN: 40
   KEY_ENTER: 13
   KEY_ESC: 27
-  MAX_RESULTS: 8
+  MAX_RESULTS: 10
 
   constructor: (selector) ->
     @selector = selector
@@ -123,10 +123,10 @@ class OUT.QuickJump
   renderResults: (query) ->
     out = ""
     phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
-    template = '<a class=result href="/pages/%{id}"><div class=title>%{title}</div><div class=path>%{path}</div></a>'
-    for result in @results[0...@MAX_RESULTS-1]
+    template = '<a class=result href="%{url}"><div class=title>%{title} <small>%{type}</small></div></a>'
+    for result in @results[0...@MAX_RESULTS]
       t = this.highlight(result.title, phrases)
-      out += template.toString().replace("%{title}", t).replace("%{path}", result.id).replace("%{id}", result.id)
+      out += template.toString().replace("%{title}", t).replace("%{type}", result.resource_type).replace("%{url}", result.url)
 
     $(@selector+" .results").html(out)
   

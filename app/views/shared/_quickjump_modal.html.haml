@@ -2,10 +2,9 @@
 #quick-jump-modal.modal
   .modal-header
     %a.close{:"data-dismiss" => :modal} &times;
-    %input.xlarge{:type => "text", :name => "title", :"data-url" => "/pages.json", :autocapitalize => "off", :autocomplete => "off", :autocorrect => "off"}
+    %input.xlarge{:type => "text", :name => "query", :"data-url" => "/quick_jump_targets.json", :autocapitalize => "off", :autocomplete => "off", :autocorrect => "off"}
   .modal-body
     .results
-  .modal-footer
 
 :javascript
   OUT.quick_jump_defaults = #{Page.order("created_at desc").limit(8).to_json}

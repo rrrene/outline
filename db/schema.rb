@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131003148) do
+ActiveRecord::Schema.define(:version => 20120131155934) do
 
   create_table "activities", :force => true do |t|
     t.integer  "domain_id"
@@ -101,6 +101,17 @@ ActiveRecord::Schema.define(:version => 20120131003148) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end
+
+  create_table "quick_jump_targets", :force => true do |t|
+    t.integer  "domain_id"
+    t.string   "phrase"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "quick_jump_targets", ["domain_id", "phrase"], :name => "index_quick_jump_targets_on_domain_id_and_phrase"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

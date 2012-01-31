@@ -1,5 +1,6 @@
 class Domain < ActiveRecord::Base
   acts_as_tagger
+  has_many :quick_jump_targets
   has_many :activities
   has_many :users
 
