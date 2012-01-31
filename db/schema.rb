@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129001227) do
+ActiveRecord::Schema.define(:version => 20120131003148) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "user_id"
+    t.integer  "context_id"
+    t.integer  "content_id"
+    t.string   "action"
+    t.string   "verb"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "content_item_groups", :force => true do |t|
     t.integer  "domain_id"

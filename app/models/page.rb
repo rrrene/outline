@@ -15,6 +15,14 @@ class Page < ActiveRecord::Base
     end
   end
 
+  def activity_verb(action, changes)
+    if action == :update
+      if changes.size == 1
+        "rename" if changes[:title]
+      end
+    end
+  end
+
   validates_presence_of :title
   validates_uniqueness_of :title
 end

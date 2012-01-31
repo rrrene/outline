@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_domain, :logged_in?
   helper_method :themed, :try_translation
 
+  before_filter :set_activity_user
+
   def themed_layout(layout = :application)
     "themes/#{current_theme}/#{layout}"
   end
@@ -27,6 +29,10 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+
+  def set_activity_user
+    Thread.current[:activity_user] = current_user
   end
   
   def store_location

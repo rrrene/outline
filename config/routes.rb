@@ -1,4 +1,6 @@
 Outline::Application.routes.draw do
+  resources :activities
+
   resources :todos
 
   resources :todo_lists do

@@ -16,8 +16,8 @@ module ActsAsTaggableByUser
   module TagMethods
     def add_tags(list)
       if self.domain
+        self.activity_verb = "tag" if self.respond_to?(:activity_verb)
         self.domain.tag(self, :with => list, :on => :tags)
-        self.save!
       end
     end
 
