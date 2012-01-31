@@ -124,9 +124,6 @@ class PagesControllerTest < ActionController::TestCase
       pages = user.domain.pages
 
       assert pages.count > 1, "Not enough pages to test bulk editing"
-      pages.reload.each do |page|
-        assert_nil page.context
-      end
 
       params = {
         :bulk => {
@@ -152,12 +149,9 @@ class PagesControllerTest < ActionController::TestCase
 
   test "should not move pages to new project via #bulk_execute" do
     with_login do |user|
-      pages = user.domain.pages
+      pages = user.domain.pages.where("context_id IS NULL")
 
       assert pages.count > 1, "Not enough pages to test bulk editing"
-      pages.reload.each do |page|
-        assert_nil page.context
-      end
 
       params = {
         :bulk => {

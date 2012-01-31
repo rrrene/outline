@@ -24,3 +24,9 @@ three:
   user_id: 1
   domain_id: 1
   title: "First page (2)"
+
+four:
+  id: 4
+  user_id: 1
+  domain_id: 1
+  title: "First page (3)"
