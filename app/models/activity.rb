@@ -16,8 +16,8 @@ class Activity < ActiveRecord::Base
           :resource => resource, 
           :user => current_user, 
           :domain => current_user.domain, 
-          :action => action, 
-          :verb => verb
+          :action => action,
+          :verb => verb.to_s
         }
         attributes[:context_id] = resource.context.try(:id) if resource.respond_to?(:context)
         attributes[:content_id] = resource.content.try(:id) if resource.respond_to?(:content)

@@ -63,6 +63,10 @@ module AuthorizedResources
       PER_PAGE
     end
 
+    def read_resource
+      Activity.record(resource, :read)
+    end
+
     def resource=(value)
       set_resource_ivar(value)
     end
@@ -87,6 +91,8 @@ module AuthorizedResources
 
       self.send :include, InstanceMethods
       alias_method_chain :create, :authorization
+
+      after_filter :read_resource, :only => [:show]
     end
   end
 
