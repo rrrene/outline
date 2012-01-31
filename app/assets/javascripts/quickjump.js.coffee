@@ -91,7 +91,7 @@ class OUT.QuickJump
         else
           url = $(event.target).data('url')
           data = {}
-          data[$(event.target).attr("name")] = query
+          data[$(event.target).attr("name")] = @dictionary.getKey(query)
           self = this
           OUT.setLazyTimer "quickjump_request", @DELAY_BEFORE_SERVER_CALL, ->
             self.requestResults(query, url, data)
