@@ -1,5 +1,15 @@
 = render "shared/index/toolbar"
 
+.activity-items
+  - collection.each do |activity|
+    - if activity.resource.present?
+      .activity-item
+        .activity-body
+          = render partial_for(activity.resource.class, :activity_entry, "activities"), :resource => activity.resource, :activity => activity
+        .activity-title
+          = tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
+
+        = spacer
 
 %table.table.table-striped
   %thead
@@ -17,3 +27,11 @@
         %td= activity.action
         %td= activity.context_id
         %td= activity.content_id
+
+
+- content_for(:contextual_sidebar) do
+  
+  %ul.nav.list
+    %li.nav-header Recently viewed
+    - @recently_viewed.each do |item|
+      %li= link_to item.title, item

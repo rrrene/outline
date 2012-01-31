@@ -11,7 +11,7 @@
         =# render :partial => "#{model.to_s.underscore.pluralize}/new"
         = render partial_for(model, :new), :resource_class => model
   .clearboth
-  .spacer="<hr/>".html_safe
+  = spacer
 
 = render :partial => "content/show", :locals => {:content => resource.inner_content}
 

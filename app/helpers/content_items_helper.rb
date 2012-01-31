@@ -32,15 +32,15 @@ module ContentItemsHelper
     render :partial => "shared/js/remove_dom", :locals => {:resource => record_or_string}
   end
 
-  def partial_for(model, action)
-    partials = ["#{model.to_s.underscore.pluralize}/new", "content_items/new"]
+  def partial_for(model, action, fallback_dir = "content_items")
+    partials = ["#{model.to_s.underscore.pluralize}/#{action}", "#{fallback_dir}/#{action}"]
     partials.detect { |p| controller.template_exists?(p, [], true) }
   end
 
   def render_partial_for(model, action, options = {})
     options[:locals] ||= {}
     options[:locals][:model] = model
-    partials = ["#{model.to_s.underscore.pluralize}/new", "content_items/new"]
+    partials = ["#{model.to_s.underscore.pluralize}/#{action}", "content_items/#{action}"]
     partial = partials.detect { |p| controller.template_exists?(p, [], true) }
     render options.merge(:partial => partial)
   end

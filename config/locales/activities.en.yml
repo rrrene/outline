@@ -4,3 +4,11 @@ en:
     index:
       page_header: "Activity"
       page_hint: "Overview"
+    create:
+      default: "%{user} has created a %{model}"
+    update:
+      default: "%{user} has updated a %{model}"
+      tag: "%{user} has tagged a %{model}"
+      move_to_context: "%{user} has moved %{model}"
+    delete:
+      default: "%{user} has deleted a %{model}"

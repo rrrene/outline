@@ -30,6 +30,10 @@ module ApplicationHelper
     link_to icon(:edit) + " " + tt("helpers.edit.#{record.class.to_s.underscore}", "helpers.edit.default"), url_options, {:remote => true, :class => "btn edit"}
   end
 
+  def spacer
+    "<div class=\"spacer\"><hr/></div>".html_safe
+  end
+
   def user_text(text)
     simple_format(text)
   end
