@@ -1,5 +1,6 @@
 class Domain < ActiveRecord::Base
   acts_as_tagger
+  has_many :activities
   has_many :users
 
   def tags

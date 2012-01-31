@@ -1,0 +1,17 @@
+
+%table.table.table-striped
+  %thead
+    %th{:colspan => 2} Resource
+    %th verb
+    %th action
+    %th context
+    %th content
+  %tbody
+    - collection.each do |activity|
+      %tr
+        %td= activity.resource_type
+        %td= activity.resource_id
+        %td= activity.verb
+        %td= activity.action
+        %td= activity.context_id
+        %td= activity.content_id
