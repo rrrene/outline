@@ -1,7 +1,12 @@
 module ApplicationHelper
 
   def body_template
-    %w(new create edit update show).include?(action_name) ? :body_resource : :body_collection
+    resource_action = %w(new create edit update show).include?(action_name)
+    if resource_action # || controller_name == "activities"
+      :body_resource
+    else
+      :body_collection
+    end
   end
 
   def icon(name, second_class = nil)

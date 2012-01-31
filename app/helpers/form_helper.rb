@@ -1,6 +1,6 @@
 module FormHelper
-  def cancel_path
-    if defined?(resource)
+  def cancel_path(resource = nil)
+    if resource
       resource_path(resource)
     else
       collection_path
