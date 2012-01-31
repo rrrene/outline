@@ -5,10 +5,10 @@
 
     = f.input :context_id, :collection => current_domain.projects.all.map { |project| [project.title, project.context.id] } << [t("pages.new.add_to_new_project"), -1]
     
-    #add-to-new-project
-      .clearfix.string.required
+    #add-to-new-project{:style => "display: none"}
+      .control-group.string.required
         %label.string.required{:for => "project_title"} Title
-        .input
+        .controls
           %input.string.required#project_title{:type => "text", :name => "project[title]"}
 
   = f.buttons
