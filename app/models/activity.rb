@@ -5,12 +5,12 @@ class Activity < ActiveRecord::Base
   belongs_to :content
   belongs_to :resource, :polymorphic => true
   class << self
-    def record(resource, action)
+    def record(resource, verb)
       unless resource.activity_recorded == true
-        unless verb = resource.instance_variable_get("@activity_verb")
+        unless action = resource.instance_variable_get("@activity_action")
           changes = resource.changes
           changes.delete(:updated_at)
-          verb = resource.activity_verb(action, changes)
+          action = resource.activity_action(verb, changes)
         end
         attributes = {
           :resource => resource, 

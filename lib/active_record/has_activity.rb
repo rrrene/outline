@@ -15,12 +15,30 @@ module HasActivity
   end
 
   module ActivityMethods
-    def activity_verb(action, changes)
-      # implement me
+    def activity_action(verb, changes)
+      basic_activity_action_for(verb, changes)
     end
 
-    def activity_verb=(value)
-      @activity_verb = value
+    def activity_action=(value)
+      @activity_action = value
+    end
+
+    def basic_activity_action_for(verb, changes)
+      if verb == :update && changes.size == 1
+        activity_action_for_single_attribute_update(changes)
+      end
+    end
+
+    def activity_action_for_single_attribute_update(changes)
+      if changes[:title]
+        "rename"
+      elsif change = changes[:active]
+        change.last == true ? "activate" : "deactivate"
+      elsif change = changes[:context_id]
+        "move_to_context"
+      elsif change = changes[:content_id]
+        "move_to_content"
+      end
     end
   end
 end
