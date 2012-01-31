@@ -6,7 +6,12 @@
           .page-header
             .pull-left
               %h1
-                = resource.title if resource.respond_to?(:title)
+                - if resource.respond_to?(:title)
+                  = resource.title
+                - else
+                  = t("#{controller_name}.#{action_name}.page_header")
+                  %small
+                    = t("#{controller_name}.#{action_name}.page_hint")
             .pull-right
               = yield(:page_header)
             .clearboth

@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def body_template
     resource_action = %w(new create edit update show).include?(action_name)
-    if resource_action # || controller_name == "activities"
+    if resource_action || controller_name == "activities"
       :body_resource
     else
       :body_collection
