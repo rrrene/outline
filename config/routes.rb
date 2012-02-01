@@ -3,7 +3,11 @@ Outline::Application.routes.draw do
 
   resources :activities
 
-  resources :todos
+  resources :todos do
+    member do
+      post "set_active"
+    end
+  end
 
   resources :todo_lists do
     member do

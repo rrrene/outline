@@ -136,9 +136,12 @@ ActiveRecord::Schema.define(:version => 20120131155934) do
     t.integer  "user_id"
     t.integer  "content_id"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "active",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
+
+  add_index "todos", ["content_id", "active"], :name => "index_todos_on_content_id_and_active"
 
   create_table "users", :force => true do |t|
     t.integer  "domain_id"

@@ -8,3 +8,15 @@ window.OUT.deactivateFormHandlers = {} unless window.OUT.deactivateFormHandlers?
 
 window.OUT.deactivateFormHandlers["form.simple_form.todo"] = (form) ->
   OUT.selectFirstInput(form)
+
+$ ->
+  $(".todo-checkbox").bind "change", (event) ->
+    console.log "checkbox.change", $(event.target).val()
+    checked = $(event.target).is(':checked')
+    data = {"active": !checked}
+    url = $(event.target).data("url")
+    $.ajax
+      url: url
+      data: data
+      type: 'post'
+      dataType: 'script'
