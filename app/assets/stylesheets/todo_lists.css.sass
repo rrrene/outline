@@ -23,4 +23,42 @@
     font-size: 12px!important
     padding: 2px
     background: #ffc
+    color: #333
     text-decoration: underline
+
+  .active-todos
+    margin-top: 10px
+    .content-items
+      .content-item
+        .content-item-body
+          input.todo-checkbox
+            float: left
+          span
+            display: block
+            float: left
+            margin-left: 5px
+        &.pending
+          span
+            text-decoration: line-through
+            color: #aaa
+
+  .inactive-todos
+    margin-top: 20px
+    .content-items
+      .content-item
+        .move-handle
+          visibility: hidden
+        padding-bottom: 0
+        .content-item-body
+          span
+            font-size: 12px!important
+            text-decoration: line-through
+            color: #aaa
+        &.pending
+          span
+            text-decoration: none
+            color: inherit
+    a.show_more
+      font-size: 12px!important
+      text-decoration: underline
+      color: #aaa

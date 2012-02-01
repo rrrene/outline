@@ -1,3 +1,4 @@
 %ul.unstyled.content-items{:class => "content-#{content.holder_type.underscore.dasherize}", :id => dom_id(content), :"data-sort-url" => "/#{content.holder_type.underscore.pluralize}/#{content.holder.try :id}/sort_content"}
-  - content.content_items.each do |content_item|
+  - if !defined?(content_items) then content_items = content.content_items end
+  - content_items.each do |content_item|
     = render :partial => "content_items/show", :locals => {:content_item => content_item}

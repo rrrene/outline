@@ -1,9 +1,18 @@
 %h2= resource.title
 
 - if resource.inner_content
-  = render :partial => "content/show", :locals => {:content => resource.inner_content}
+  .active-todos{:id => "active-todos-"+dom_id(resource)}
+    - active_content_items = todo_content_items(resource, true)
+    = render :partial => "content/show", :locals => {:content => resource.inner_content, :content_items => active_content_items}
 
-= link_to "Add item...", new_todo_path(:content_id => resource.inner_content), :"data-toggle" => "content-item-form", :"data-target" => '#' + dom_id(resource) + '_add_todo', :class => "new"
+= link_to t("todo_lists.show.add_todo_link"), new_todo_path(:content_id => resource.inner_content), :"data-toggle" => "content-item-form", :"data-target" => '#' + dom_id(resource) + '_add_todo', :class => "new"
 
 .add-content-item-form{:id => dom_id(resource) + '_add_todo', :style => "display: none"}
   = content_item_form_for Todo, :content => resource.inner_content
+
+- if resource.inner_content
+  .inactive-todos{:id => "inactive-todos-"+dom_id(resource)}
+    - active_content_items = todo_content_items(resource, false, TodoList::INACTIVE_TODOS_SHOWN)
+    = render :partial => "content/show", :locals => {:content => resource.inner_content, :content_items => active_content_items}
+    - if todo_content_items_count(resource, false) > TodoList::INACTIVE_TODOS_SHOWN
+      = link_to t("todo_lists.show.show_more_inactive_todos"), resource, :class => "show_more"

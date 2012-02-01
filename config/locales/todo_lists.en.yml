@@ -10,3 +10,7 @@ en:
     placeholders:
       todo_ĺist:
         href: "Enter Title..."
+  todo_lists:
+    show:
+      add_todo_link: "Add new Item..."
+      show_more_inactive_todos: "Show all"

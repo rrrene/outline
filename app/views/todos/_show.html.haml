@@ -1,2 +1,3 @@
 %input.todo-checkbox{:type => :checkbox, :checked => resource.active? ? nil : :checked, :"data-url" => set_active_todo_path(resource)}
-= resource.title
+%span= resource.title
+.clearboth
