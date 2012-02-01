@@ -32,7 +32,6 @@
 
 
 - content_for(:contextual_sidebar) do
-  
   %ul.nav.list
     %li.nav-header Pages
     - current_domain.pages.limit(20).each do |page|

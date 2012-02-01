@@ -20,6 +20,17 @@ class ActivityTest < ActiveSupport::TestCase
     assert_equal "rename", activity.action
   end
 
+  test "should save :rename action if only title attribute is changed although tag list was submitted too" do
+    project = Project.last
+    project.title = project.title + " (changed)"
+    project.tag_list = project.tag_list
+    project.save
+
+    activity = Activity.last
+    assert_equal activity.resource, project
+    assert_equal "rename", activity.action
+  end
+
   test "should save :deactivate action if only active attribute is changed" do
     project = Project.where(:active => true).first
     assert_not_nil project

@@ -1,7 +1,8 @@
-:preserve
-%pre
-  = resource.inspect
-%pre
-  = " -> " + resource.context.inspect
+- content_for(:page_header) do
+  = link_to "Edit", edit_resource_path(resource), :class => "btn"
 
-= link_to "Edit", edit_resource_path(resource), :class => "btn"
+- content_for(:contextual_sidebar) do
+  %ul.nav.list
+    %li.nav-header Pages
+    - resource.pages.each do |page|
+      %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page

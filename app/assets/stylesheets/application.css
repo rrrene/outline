@@ -129,3 +129,8 @@ body {
   font-weight: normal;
   color: #333;
 }
+
+.context-header h1 {
+  font-weight: normal;
+  margin-top: 20px;
+}

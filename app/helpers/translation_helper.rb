@@ -5,6 +5,7 @@ module TranslationHelper
   
   def tt(*snippets)
     options = snippets.last.is_a?(Hash) ? snippets.pop : {}
-    try_translation(snippets.flatten, options) || t(snippets.last)
+    snippets.flatten!
+    try_translation(snippets, options) || t(snippets.last)
   end
 end

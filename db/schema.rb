@@ -26,15 +26,6 @@ ActiveRecord::Schema.define(:version => 20120131155934) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "content_item_groups", :force => true do |t|
-    t.integer  "domain_id"
-    t.integer  "user_id"
-    t.integer  "content_id"
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "content_items", :force => true do |t|
     t.integer  "content_id"
     t.integer  "position"

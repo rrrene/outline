@@ -5,3 +5,6 @@ en:
       page_header: "Projects"
       page_hint: "Overview"
       new_project_link: "Create new project"
+    show:
+      page_header: Overview
+      page_hint: ""

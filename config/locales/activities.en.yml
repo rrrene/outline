@@ -8,7 +8,9 @@ en:
       default: "%{user} has created a %{model}"
     update:
       default: "%{user} has updated a %{model}"
+      rename: "%{user} has renamed a %{model}"
       tag: "%{user} has tagged a %{model}"
       move_to_context: "%{user} has moved %{model}"
+      move_to_content: "%{user} has moved %{model}"
     delete:
       default: "%{user} has deleted a %{model}"

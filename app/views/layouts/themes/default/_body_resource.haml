@@ -1,12 +1,16 @@
 .container
   .row
+    - if resource.respond_to?(:context) && resource.context
+      .span12
+        .context-header
+          %h1= link_to resource.context.resource.try(:title), resource.context.resource
     .span9
       .content
         .page-wrapper
           .page-header
             .pull-left
               %h1
-                - if resource.respond_to?(:title)
+                - if !resource_is_context_resource && resource.respond_to?(:title)
                   = resource.title
                 - else
                   = t("#{controller_name}.#{action_name}.page_header")
