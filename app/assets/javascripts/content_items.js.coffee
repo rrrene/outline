@@ -24,7 +24,7 @@ OUT.contentItems =
         t = $(".sortable-helper").draggable().data("draggable")
         $.ui.ddmanager.prepareOffsets(t, event)
         $(".sortable-helper").draggable("destroy")
-
+      
   createDroppables: ->
     console.log "createContentItemDroppables"
     $('.content-item').droppable

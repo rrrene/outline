@@ -1,0 +1,12 @@
+en:
+  helpers:
+    submit:
+      todo_ĺist:
+        create: "Post Todo List"
+  simple_form:
+    labels:
+      todo_ĺist:
+        title: "Title"
+    placeholders:
+      todo_ĺist:
+        href: "Enter Title..."

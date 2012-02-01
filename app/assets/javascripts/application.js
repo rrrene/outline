@@ -23,6 +23,11 @@ OUT.selectFirstInput = function(ele) {
   $(ele).find("input[type=text], textarea").first().select();
 }
 
+OUT.deactivateContentItemForm = function(selector) {
+  var form = $(selector);
+  form.find("input[type=text], textarea").val("").blur();
+}
+
 /*
 OUT.handlers = {
   listSorted: function(event, ui) {

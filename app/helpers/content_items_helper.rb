@@ -12,10 +12,15 @@ module ContentItemsHelper
     content = options[:content] || content_holder.try(:inner_content)
     object ||= symbol.to_s.classify.constantize.new(:content_id => content.try(:id))
     object_controller = symbol.to_s.underscore.pluralize
-    remote = request.xhr?
+    remote = true
     render :partial => "content_items/form", :locals => {:resource => object, :content => content, :object_controller => object_controller, :remote => remote}
   end
 
+  def insert_html(method, dom_element_id, render_params)
+    content = escape_javascript(render(render_params))
+    render :partial => "shared/js/insert_html", :locals => {:method => method, :dom_element_id => dom_element_id, :content => content}
+  end
+  
   def update_html(record_or_string, render_params)
     content = escape_javascript(render(render_params))
     dom_element_id = record_or_string.is_a?(String) ? record_or_string : dom_id(record_or_string)
