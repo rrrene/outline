@@ -46,12 +46,39 @@ span.translation_missing {
   color: #666;
 }
 
+/* Higher navbar */
+
+.navbar-static {
+  margin-bottom: 0!important;
+}
+
+.navbar .navbar-inner {
+  border-radius: 0!important;
+  /*height: 90px;*/
+  position: relative;
+}
+/*
+.navbar .navbar-inner .container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -470px;
+}
+
 .navbar .navbar-inner .container .brand-dark {
   padding-left: 0;
   font-weight: bold;
   color: black;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
 }
+.navbar .nav .active > a, .navbar .nav .active > a:hover {
+  border-radius: 5px 5px 0 0;
+}
+*/
+.content-container {
+  border-top: 1px solid #fff;
+}
+
 
 /* Override some defaults */
 html, body {
@@ -59,7 +86,7 @@ html, body {
 }
 
 body {
-  padding-top: 40px;
+  /* padding-top: 40px; */
 }
 
 .container > footer p {
@@ -133,4 +160,9 @@ body {
 .context-header h1 {
   font-weight: normal;
   margin-top: 20px;
+  color: #999;
+}
+
+.context-header h1 a {
+  color: inherit;
 }
