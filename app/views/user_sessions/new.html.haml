@@ -19,11 +19,11 @@
       #logging_in{:style => "display: none"}
         .progress.info.striped.active
           .bar{:style => "width: 100%"}
-      = f.submit t("user_sessions.new.submit"), :class => "btn primary"
+      = f.submit t("user_sessions.new.submit"), :class => "btn btn-primary"
 
 :javascript
   $('#login_form').bind("submit", function(e) {
     $(this).find("#logging_in").show();
-    $(this).find(".primary").hide();
+    $(this).find(".btn-primary").hide();
     return true;
   })

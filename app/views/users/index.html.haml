@@ -1,5 +1,5 @@
 - content_for(:page_header) do
-  = link_to t(".new_user_link"), {:action => "new"}, :class => "btn success open-modal"
+  = link_to icon(:user) + t(".new_user_link"), {:action => "new"}, :class => "btn open-modal"
 
 = bulk_collection do
   = bulk_action :destroy

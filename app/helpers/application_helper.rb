@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def icon(name, second_class = nil)
     classes = "#{name} #{second_class}".strip
-    %Q(<i class="icon #{classes}"></i> ).html_safe
+    %Q(<i class="icon-#{classes}"></i> ).html_safe
   end
 
   def link_to_resource(resource)

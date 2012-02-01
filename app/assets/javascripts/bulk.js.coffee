@@ -44,12 +44,12 @@ $ ->
   OUT.bulk.allCheckboxes().bind "change", ->
     OUT.bulk.markSelected();
 
-  $("#move-to-new-project-modal input.primary").bind "click", (event) ->
+  $("#move-to-new-project-modal input.btn-primary").bind "click", (event) ->
     OUT.bulk.moveToNewProject(this);
     event.preventDefault();
     return false
 
-  $("#add-tags-modal input.primary").bind "click", (event) ->
+  $("#add-tags-modal input.btn-primary").bind "click", (event) ->
     OUT.bulk.addTags(this);
     event.preventDefault();
     return false

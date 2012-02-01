@@ -20,7 +20,7 @@ $ ->
   $(".modal input[type=text]").bind "keypress", (event) ->
     if( event.which == 13 )
       modal = $(this).parents(".modal")
-      primary = modal.find("input.primary, a.primary")
+      primary = modal.find("input.btn-primary, a.btn-primary")
       primary.click()
       event.preventDefault();
       return false

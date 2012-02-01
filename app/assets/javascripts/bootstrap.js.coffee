@@ -1,6 +1,4 @@
 $ ->
-  $("body > .topbar").scrollspy()
-$ ->
   $(".tabs").tab()
 $ ->
   $("a[rel=twipsy]").tooltip live: true
@@ -10,6 +8,8 @@ $ ->
   $('.dropdown-toggle').dropdown()
 $ ->
   $(".alert-message").alert()
+
+# Automatically select and deselect text inputs in modals
 $ ->
   $(".modal").modal().modal("hide").bind 'shown', ->
     $(this).find('input[type=text], textarea').first().select()

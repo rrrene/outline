@@ -28,7 +28,7 @@ $ ->
     OUT.selectFirstInput(selector)
     false
 
-  $("#add-content-item-tabs li.active").removeClass("active")
+  # $("#add-content-item-tabs li.active").removeClass("active")
   $('#add-content-item-tabs').bind 'shown', (event) ->
     console.log event
     pane = event.target.href.match(/(#.+)$/)[0]

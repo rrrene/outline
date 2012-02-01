@@ -1,5 +1,5 @@
 #top-add-content-item-form.add-content-item-form
-  %ul.nav.tabs#add-content-item-tabs.tabs{:"data-tabs" => "tabs"}
+  %ul.nav.nav-tabs#add-content-item-tabs{:"data-toggle" => "tab"}
     - Outline::ContentItems.classes.each_with_index do |model, index|
       %li{:class => index == 0 ? :active : nil}
         = link_to model.to_s, "#new_#{model.to_s.underscore}", :"data-toggle" => :tab
