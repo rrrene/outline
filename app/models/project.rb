@@ -12,5 +12,5 @@ class Project < ActiveRecord::Base
   end
 
   validates_presence_of :title
-  validates_uniqueness_of :title
+  validates_uniqueness_of :title, :scope => :domain_id
 end

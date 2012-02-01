@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
-  def set_activity_user
-    Thread.current[:activity_user] = current_user
+  def set_activity_user(user = current_user)
+    Thread.current[:activity_user] = user
   end
   
   def store_location

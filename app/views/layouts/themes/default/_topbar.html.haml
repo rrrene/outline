@@ -1,16 +1,17 @@
-.navbar.navbar-static
-  .navbar-inner
-    .container
-      = link_to current_domain.try(:title), root_path, :class => "brand brand-dark"
-      
-      %ul.nav.pull-left
-        = nav_to "Projects", :projects
-        = nav_to "Pages", :pages
-      / 
-        %form.navbar-search.pull-left{:action => ""}
-          = text_field_tag "query", "", :class => "search-query span2", :placeholder => "Search"
+- if logged_in?
+  .navbar.navbar-static
+    .navbar-inner
+      .container
+        = link_to current_domain.try(:title), root_path, :class => "brand brand-dark"
+        
+        %ul.nav.pull-left
+          = nav_to "Projects", :projects
+          = nav_to "Pages", :pages
+        / 
+          %form.navbar-search.pull-left{:action => ""}
+            = text_field_tag "query", "", :class => "search-query span2", :placeholder => "Search"
 
-      - if logged_in?
+      
         %ul.nav.pull-right
           %li= link_to "My Page", "#"
           %li.vertical-divider
@@ -25,10 +26,3 @@
               %li.divider
               %li= link_to "Edit My Profile", edit_user_path(current_user)
               %li= link_to icon(:off) + " Logout", logout_path
-
-      - else
-        %form.pull-right{:action => user_sessions_path, :method => "POST"}
-          %input.input-small{:name => "user_session[login]", :type => :text, :placeholder => "Username"}
-          %input.input-small{:name => "user_session[password]", :type => :password, :placeholder => "Password"}
-          %button.btn{:type => :submit} Login
-      

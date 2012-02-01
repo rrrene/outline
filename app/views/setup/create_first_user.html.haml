@@ -1,0 +1,27 @@
+.page-header
+  %h1
+    = t(".page_header")
+    %small=t(".page_hint")
+
+- if Rails.env.development?
+  .alert.alert-warning
+    = t(".default_params_warning").html_safe
+
+= simple_form_for @user, :url => setup_url do |f|
+  = f.input :login
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+
+  .control-group
+    .controls
+      %label.checkbox
+        = check_box_tag "create_example", "true", :checked => :checked
+        = t(".create_example")
+  .form-actions.clearfix
+    = submit_tag(t(".submit").html_safe, :class => "btn large primary")
+    .clearboth
+
+- if Rails.env.development?
+  :javascript
+    $('#user_password, #user_password_confirmation').val('#{@user.password}');

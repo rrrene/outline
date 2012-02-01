@@ -1,8 +1,8 @@
 class Domain < ActiveRecord::Base
   acts_as_tagger
-  has_many :quick_jump_targets
-  has_many :activities
-  has_many :users
+  has_many :quick_jump_targets, :dependent => :destroy
+  has_many :activities, :dependent => :destroy
+  has_many :users, :dependent => :destroy
 
   def tags
     owned_tags.map(&:name).sort

@@ -126,7 +126,7 @@ class ExampleProjectAndPage < Outline::Setup::CreateResources
           note :text => "This is a note. Notes can help you keeping track of things."
           link :href => "outlineapp.com", :title => "Outline Homepage", :text => "This is a link. These are great to keep track of research or client websites."
           todo_list :title => "Todo List (1)" do
-            add_content_items do
+            content_items do
               todo :title => "Meet client"
               todo :title => "Do some research"
               todo :title => "Call accounting"

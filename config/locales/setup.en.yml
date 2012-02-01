@@ -1,0 +1,9 @@
+
+en:
+  setup:
+    create_first_user:
+      page_header: "Setup"
+      page_hint: "Create your user"
+      create_example: "Create one example project."
+      default_params_warning: "<b>DEVELOPMENT MODE:</b> Setup provides default values."
+      submit: "Start using Outline &raquo;"
