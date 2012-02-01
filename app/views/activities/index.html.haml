@@ -4,9 +4,14 @@
   - collection.each do |activity|
     - if activity.resource.present?
       .activity-item
+        .activity-title
+          - if activity.context
+            %span.activity-context= link_to_resource activity.context.resource
+          - if activity.content
+            %span.activity-content= link_to_resource activity.content.holder
         .activity-body
           = render partial_for(activity.resource.class, :activity_entry, "activities"), :resource => activity.resource, :activity => activity
-        .activity-title
+        .activity-action
           = tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
 
         = spacer

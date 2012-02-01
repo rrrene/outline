@@ -3,7 +3,7 @@
     - if resource.respond_to?(:context) && resource.context
       .span12
         .context-header
-          %h1= link_to resource.context.resource.try(:title), resource.context.resource
+          %h1= link_to_resource resource.context.resource
     .span9
       .content
         .page-wrapper

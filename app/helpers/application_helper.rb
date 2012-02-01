@@ -14,6 +14,11 @@ module ApplicationHelper
     %Q(<i class="icon #{classes}"></i> ).html_safe
   end
 
+  def link_to_resource(resource)
+    text = resource.respond_to?(:title) ? resource.title : resource.class.to_s
+    link_to text, resource
+  end
+
   def nav_to(text, path)
     active = if path.is_a?(Symbol)
       controller_name == path.to_s
