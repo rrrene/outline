@@ -3,7 +3,7 @@
 - if resource.inner_content
   = render :partial => "content/show", :locals => {:content => resource.inner_content}
 
-= link_to_function "Add item...", "$('##{dom_id(resource)+'_add_todo'}').toggle()", :class => "new"
+= link_to "Add item...", new_todo_path(:content_id => resource.inner_content), :"data-toggle" => "content-item-form", :"data-target" => '#' + dom_id(resource) + '_add_todo', :class => "new"
 
 .add-content-item-form{:id => dom_id(resource) + '_add_todo', :style => "display: none"}
   = content_item_form_for Todo, :content => resource.inner_content

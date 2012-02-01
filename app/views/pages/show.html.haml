@@ -1,4 +1,3 @@
-
 #top-add-content-item-form.add-content-item-form
   %ul.nav.tabs#add-content-item-tabs.tabs{:"data-tabs" => "tabs"}
     - Outline::ContentItems.classes.each_with_index do |model, index|
@@ -16,10 +15,6 @@
 
 .page-footer
   &nbsp;
-
-.hide
-  .sortable-helper
-    hover message
 
 -content_for(:page_header) do
   .btn-group

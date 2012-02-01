@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require out/initializers
 //= require_tree .
 
 if (window.OUT == null) window.OUT = {};
@@ -23,36 +22,7 @@ OUT.selectFirstInput = function(ele) {
   $(ele).find("input[type=text], textarea").first().select();
 }
 
-OUT.deactivateContentItemForm = function(selector) {
-  var form = $(selector);
-  form.find("input[type=text], textarea").val("").blur();
-}
-
-/*
-OUT.handlers = {
-  listSorted: function(event, ui) {
-    console.log("handlers.listSorted", $(this));
-    var url = $(this).attr("data-sort-url");
-    var data = $(this).sortable('serialize');
-    $.ajax({
-      url: url,
-      data: data,
-      type: 'post',
-      dataType: 'script',
-      complete: function(request) {}
-    })
-  }, 
-  dropOnContentItem: function (event, ui) {
-    var draggedId = ui.draggable[0].id;
-    var droppedId = $(this).attr("id");
-    console.log("handlers.dropOnContentItem", event, ui);
-    console.log(draggedId, " -> ", droppedId);
-  }
-};
-*/
-
 $(function(){
   OUT.contentItems.createSortables();
-  // OUT.contentItems.createDroppables();
-  OUT.initializers.selectFirstInput();
+  OUT.selectFirstInput();
 });

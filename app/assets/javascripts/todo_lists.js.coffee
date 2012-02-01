@@ -5,3 +5,4 @@
 $ ->
   $('.content-todo-list').sortable
     connectWith: ".content-todo-list"
+  
