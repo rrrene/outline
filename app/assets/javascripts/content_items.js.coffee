@@ -11,7 +11,7 @@ OUT.contentItems =
   createSortables: ->
     $('.content-items').sortable
       axis: 'y'
-      handle: '.handle'
+      handle: '.move-handle'
       cursor: 'crosshair'
       items: '> .content-item'
       scroll: true
