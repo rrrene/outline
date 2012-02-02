@@ -9,15 +9,15 @@
     %option{:value => -1} New project...
 
 - content_for(:bulk_options_helpers) do
-  #move-to-new-project-modal.bulk-options-helper.modal.hidden
+  #move-to-new-project-modal.bulk-options-helper.modal
     .modal-header
       %a.close{:href => "#"} &times;
       %h3 Move to new project
     .modal-body
       .clearfix.string.required
-        %label.string.required{:for => "project_title"} Title
+        %label.string.required{:for => "move_to_new_project_title"} Title
         .input
-          %input.string.required#project_title{:type => "text"}
+          %input.string.required#move_to_new_project_title{:type => "text"}
     .modal-footer
       = submit_tag "Create & move", :class => "btn btn-primary"
       = link_to_function t("helpers.cancel"), "#", :class => "btn cancel", :"data-dismiss" => :modal
