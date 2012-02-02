@@ -3,6 +3,12 @@ module Outline::Setup
     def run
     end
 
+    def page(attributes = {}, &block)
+      page = Outline::Setup::Page.new(attributes)
+      page.save
+      page.instance_eval(&block)
+    end
+
     def project(attributes = {}, &block)
       p = Outline::Setup::Project.new(attributes)
       p.instance_eval(&block)
@@ -95,6 +101,10 @@ module Outline::Setup
 
     def note(attributes)
       create_content_item :note, attributes
+    end
+
+    def divider(attributes)
+      # create_content_item :divider, attributes
     end
 
     def link(attributes)

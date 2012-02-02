@@ -22,6 +22,8 @@ OUT.contentItems =
       handler($(selector))
 
 $ ->
+  OUT.contentItems.createSortables()
+
   $('a[data-toggle="content-item-form"]').bind "click", (event) ->
     selector = $(event.target).data('target')
     $(selector).toggle(); 
@@ -30,6 +32,5 @@ $ ->
 
   # $("#add-content-item-tabs li.active").removeClass("active")
   $('#add-content-item-tabs').bind 'shown', (event) ->
-    console.log event
     pane = event.target.href.match(/(#.+)$/)[0]
     OUT.selectFirstInput(pane)

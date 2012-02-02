@@ -1,5 +1,3 @@
-require 'example'
-
 class SetupController < ApplicationController
   layout Proc.new { |c| c.themed_layout(:login) }
 

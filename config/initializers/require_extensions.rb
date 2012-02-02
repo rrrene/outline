@@ -15,3 +15,5 @@ require 'action_controller/enable_bulk_actions'
 require 'action_controller/content_holder_resources'
 require 'action_controller/content_item_resources'
 require 'action_controller/content_item_group_resources'
+
+require 'example'

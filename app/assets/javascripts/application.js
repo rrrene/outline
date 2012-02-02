@@ -14,15 +14,3 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
-
-if (window.OUT == null) window.OUT = {};
-
-OUT.selectFirstInput = function(ele) {
-  ele || (ele = window)
-  $(ele).find("input[type=text], textarea").first().select();
-}
-
-$(function(){
-  OUT.contentItems.createSortables();
-  OUT.selectFirstInput();
-});

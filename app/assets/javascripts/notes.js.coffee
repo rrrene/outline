@@ -11,3 +11,4 @@ $ ->
   .bind "blur", ->
     if( $(this).val() == "" )
       $(this).parents("form.note").removeClass "active"
+  
