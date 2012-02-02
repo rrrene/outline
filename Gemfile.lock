@@ -90,6 +90,7 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2.2)
+    rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
     responders (0.6.5)
@@ -132,6 +133,7 @@ DEPENDENCIES
   json
   mysql2
   rails (= 3.2.0)
+  rdiscount
   sass-rails (~> 3.2.3)
   shoulda
   simple_form

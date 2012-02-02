@@ -13,7 +13,7 @@ module ContentItemsHelper
     object ||= symbol.to_s.classify.constantize.new(:content_id => content.try(:id))
     object_controller = symbol.to_s.underscore.pluralize
     remote = true
-    render :partial => "content_items/form", :locals => {:resource => object, :content => content, :object_controller => object_controller, :remote => remote}
+    render :partial => "content_items/form", :locals => {:resource => object, :content => content, :object_controller => object_controller, :resource_key => symbol, :remote => remote}
   end
 
   def insert_html(method, dom_element_id, render_params)

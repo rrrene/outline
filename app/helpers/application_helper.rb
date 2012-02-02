@@ -47,7 +47,15 @@ module ApplicationHelper
     "<div class=\"spacer\"><hr/></div>".html_safe
   end
 
+  include MarkdownHelper
+  
+  def format_multi_line_user_input(text)
+    text = gfm(text) # uses GitHub flavored markdown from MarkdownHelper
+    RDiscount::new(text).to_html
+  end
+  
   def user_text(text)
-    simple_format(text)
+    text = sanitize(text.to_s)
+    find_and_preserve format_multi_line_user_input(text).html_safe
   end
 end

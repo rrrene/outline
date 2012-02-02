@@ -18,6 +18,8 @@ gem "will_paginate"
 gem 'acts_as_list'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
+gem 'rdiscount'
+
 gem 'haml'
 gem 'json'
 

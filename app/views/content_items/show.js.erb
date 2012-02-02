@@ -1,1 +1,2 @@
 <%= replace_dom resource.content_item, :partial => "content_items/show", :locals => {:content_item => resource.content_item} %>
+OUT.ensureElementIsInViewport("#<%= dom_id(resource.content_item) %>");

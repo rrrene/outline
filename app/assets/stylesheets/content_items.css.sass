@@ -100,6 +100,8 @@ $content_item_margin_bottom: 20px
     //padding: 10px 10px 10px 0
 
     .content-item-body
+      h1, h2, h3, h4, h5
+        font-size: 16px
       p
         margin: 10px 0 0 0
 
@@ -110,3 +112,32 @@ $content_item_margin_bottom: 20px
 
     .content-item-info
       color: #ccc
+
+
+// edit forms
+.content-item-wrapper
+  .content-item-form-wrapper
+    border-radius: 8px
+    background: whiteSmoke
+    padding: 16px
+    margin: 16px
+
+    form
+      margin-bottom: 0
+      background: white
+      border-radius: 3px
+      border: 1px solid #CCC
+      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
+      -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
+      .control-group
+        margin: 16px
+
+        input, textarea, select, .uneditable-input
+          width: 400px
+      .form-actions
+        padding-left: 0
+        margin: 16px
+        margin-top: 0
+        margin-bottom: 0
+        background-color: #fff
