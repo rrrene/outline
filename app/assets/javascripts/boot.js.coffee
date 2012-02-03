@@ -2,7 +2,7 @@
 window.OUT = {} unless window.OUT?
 
 OUT.selectFirstInput = (ele) ->
-  ele or= window
+  ele or= document
   $(ele).find("input[type=text], textarea").first().select()
 
 
