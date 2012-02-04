@@ -47,6 +47,9 @@ class PagesController < ApplicationController
 
   def filter_collection
     filter_by_title
+    if scope = params[:scope].presence
+      self.collection = collection.where("context_id IS NULL") if scope == 'no_context'
+    end
   end
 
   def new_project(attributes)

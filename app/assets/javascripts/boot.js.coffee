@@ -14,4 +14,7 @@ $ ->
   #
   $("textarea").bind "keydown", (event) ->
     if event.keyCode == 13 && event.ctrlKey
-      console.log $(event.target).parents("form").submit()
+      $(event.target).parents("form").submit()
+
+  $('[data-submit="form"]').bind "change", (event) ->
+    $(event.target).parents("form").submit()

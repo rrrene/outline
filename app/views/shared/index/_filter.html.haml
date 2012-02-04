@@ -1,8 +1,9 @@
 %h4= shared_snippet(".index.filter.header") #tt("#{controller_name}.index.filter.header", "shared.index.filter.header")
 %hr
 
+= yield
 
-= form_tag(params.merge(:page => 1), :class => "form-stacked", :remote => true, :method => :get) do
+= filter_form do
   .control-group
     = label_tag :title, shared_snippet(".index.filter.by_title")
     .controls

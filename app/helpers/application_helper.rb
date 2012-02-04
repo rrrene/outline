@@ -9,6 +9,12 @@ module ApplicationHelper
     end
   end
 
+  def filter_form(*args, &block)
+    url_options = params.merge(:page => 1)
+    html_options = {:class => "form-stacked", :remote => false, :method => :get}
+    form_tag(url_options, html_options, &block)
+  end
+
   def icon(name, second_class = nil)
     classes = "#{name} #{second_class}".strip
     %Q(<i class="icon-#{classes}"></i> ).html_safe
