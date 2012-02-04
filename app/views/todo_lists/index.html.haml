@@ -1,0 +1,15 @@
+.container
+  .row
+    .span10
+      .container
+        .row
+          - collection.each do |resource|
+            .span5
+              .page-wrapper
+                %h1= resource.title
+                = render "content_items/show", :content_item => resource.content_item
+    .span2
+      %ul.nav
+        %li erster nav punkt
+        %li erster nav punkt
+        %li erster nav punkt

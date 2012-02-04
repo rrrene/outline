@@ -1,6 +1,7 @@
 module ApplicationHelper
 
   def body_template
+    return @body_template if @body_template
     resource_action = %w(new create edit update show).include?(action_name)
     if resource_action || controller_name == "activities"
       :body_resource
