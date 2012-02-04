@@ -3,7 +3,7 @@
 .activity-items
   - collection.each do |activity|
     - if activity.resource.present?
-      .activity-item
+      .activity-item{:class => "activity-item-#{activity.resource_type.underscore}"}
         .activity-title
           - if activity.context
             %span.activity-context
@@ -16,7 +16,7 @@
         .activity-action
           %small= tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
         .activity-body
-          = render partial_for(activity.resource.class, :activity_entry, "activities"), :resource => activity.resource, :activity => activity
+          = render partial_for(activity.resource.class, :activity_show, "activities"), :resource => activity.resource, :activity => activity
 
         = spacer
 

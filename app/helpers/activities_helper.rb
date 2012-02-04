@@ -11,6 +11,7 @@ module ActivitiesHelper
     action = activity.action || :default
     [
       "#{base}.#{activity.resource_type.underscore}.#{action}",
+      "#{base}.#{activity.resource_type.underscore}.default",
       "#{base}.#{action}",
       "#{base}.default",
     ]

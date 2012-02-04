@@ -1,0 +1,6 @@
+en:
+  activities:
+    update:
+      todo:
+        activate: "%{user} unchecked a %{model}"
+        deactivate: "%{user} checked a %{model}"
