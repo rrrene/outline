@@ -1,6 +1,7 @@
 
 en:
   navigation:
+    activities: "Start"
     projects: "Projects"
     all_projects: "Overview"
     pages: "Pages"
