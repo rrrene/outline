@@ -20,7 +20,7 @@
             %ul.dropdown-menu
               %li= link_to t("navigation.all_projects"), projects_path
               %li.divider
-              - current_domain.projects.limit(5).each do |project|
+              - current_domain.projects.where(:active => true).limit(25).order("UPPER(title) ASC").each do |project|
                 %li= link_to project.title, project
 
 
@@ -32,7 +32,7 @@
             %ul.dropdown-menu
               %li= link_to t("navigation.all_pages"), pages_path
               %li.divider
-              - current_domain.pages.limit(5).each do |page|
+              - current_domain.pages.where("context_id IS NULL").limit(25).order("UPPER(title) ASC").each do |page|
                 %li= link_to page.title, page
                 
 
