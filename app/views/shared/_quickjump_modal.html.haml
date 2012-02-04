@@ -7,4 +7,4 @@
     .results
 
 :javascript
-  OUT.quick_jump_defaults = #{Page.order("created_at desc").limit(8).to_json}
+  OUT.quick_jump_defaults = #{default_quickjump_targets.to_json}

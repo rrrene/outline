@@ -126,7 +126,7 @@ class OUT.QuickJump
     template = '<a class=result href="%{url}"><div class=title>%{title} <small>%{type}</small></div></a>'
     for result in @results[0...@MAX_RESULTS]
       t = this.highlight(result.title, phrases)
-      out += template.toString().replace("%{title}", t).replace("%{type}", result.resource_type).replace("%{url}", result.url)
+      out += template.toString().replace("%{title}", t).replace("%{type}", result.type).replace("%{url}", result.url)
 
     $(@selector+" .results").html(out)
   
