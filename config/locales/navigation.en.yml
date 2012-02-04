@@ -1,0 +1,12 @@
+
+en:
+  navigation:
+    projects: "Projects"
+    all_projects: "Overview"
+    pages: "Pages"
+    all_pages: "Overview"
+    options: "Options"
+    users: "Users"
+    settings: "Settings"
+    my_profile: "Edit my Profile"
+    logout: "Logout"
