@@ -8,7 +8,7 @@ module BulkCollectionHelper
       :collection_key => collection_key.intern,
       :form_params => {:controller => collection_key, :action => 'bulk_execute'},
       :resource_key => collection_key.to_s.singularize.intern,
-      :resource_partial => "bulk_collection_entry",
+      :resource_partial => "#{collection_key}/bulk_collection_entry",
       :return_to => url_for(params),
       :select_hint => select_hint || t("shared.bulk_collection.select_hint"), 
       :select_options => capture(&block), 
