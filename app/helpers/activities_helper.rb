@@ -12,6 +12,7 @@ module ActivitiesHelper
     [
       "#{base}.#{activity.resource_type.underscore}.#{action}",
       "#{base}.#{action}",
+      "#{base}.default",
     ]
   end
 end
