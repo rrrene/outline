@@ -16,7 +16,7 @@ module ApplicationHelper
 
   def link_to_resource(resource)
     text = resource.respond_to?(:title) ? resource.title : resource.class.to_s
-    link_to text, resource
+    link_to inline_user_text(text), resource
   end
 
   def nav_to(text, path)
@@ -55,7 +55,11 @@ module ApplicationHelper
   end
   
   def user_text(text)
-    text = sanitize(text.to_s)
+    text = inline_user_text(text)
     find_and_preserve format_multi_line_user_input(text).html_safe
+  end
+
+  def inline_user_text(text)
+    sanitize(text.to_s)
   end
 end

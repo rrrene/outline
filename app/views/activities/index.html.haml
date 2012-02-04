@@ -7,12 +7,17 @@
         .activity-title
           - if activity.context
             %span.activity-context
-              = icon(:"folder-close")
-              = link_to_resource activity.context.resource
+              - activity.context.resource.tap do |resource|
+                = icon(resource.class.to_s.underscore.dasherize)
+                = link_to_resource resource
           - if activity.content
             %span.activity-content
-              = icon(:file)
-              = link_to_resource activity.content.holder
+              - activity.content.holder.tap do |resource|
+                = icon(resource.class.to_s.underscore.dasherize)
+                = link_to_resource resource
+                - if resource.respond_to?(:outer_content) && resource.outer_content
+                  - resource.outer_content.holder.tap do |resource2|
+                    %small (via #{link_to_resource resource2})
         .activity-action
           %small= tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
         .activity-body
