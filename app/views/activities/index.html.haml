@@ -6,13 +6,17 @@
       .activity-item
         .activity-title
           - if activity.context
-            %span.activity-context= link_to_resource activity.context.resource
+            %span.activity-context
+              = icon(:"folder-close")
+              = link_to_resource activity.context.resource
           - if activity.content
-            %span.activity-content= link_to_resource activity.content.holder
+            %span.activity-content
+              = icon(:file)
+              = link_to_resource activity.content.holder
+        .activity-action
+          %small= tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
         .activity-body
           = render partial_for(activity.resource.class, :activity_entry, "activities"), :resource => activity.resource, :activity => activity
-        .activity-action
-          = tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
 
         = spacer
 

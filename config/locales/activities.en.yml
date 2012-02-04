@@ -5,12 +5,12 @@ en:
       page_header: "Activity"
       page_hint: "Overview"
     create:
-      default: "%{user} has created a %{model}"
+      default: "%{user} created a %{model}"
     update:
-      default: "%{user} has updated a %{model}"
-      rename: "%{user} has renamed a %{model}"
-      tag: "%{user} has tagged a %{model}"
-      move_to_context: "%{user} has moved %{model}"
-      move_to_content: "%{user} has moved %{model}"
+      default: "%{user} updated a %{model}"
+      rename: "%{user} renamed a %{model}"
+      tag: "%{user} tagged a %{model}"
+      move_to_context: "%{user} moved %{model}"
+      move_to_content: "%{user} moved %{model}"
     delete:
-      default: "%{user} has deleted a %{model}"
+      default: "%{user} deleted a %{model}"
