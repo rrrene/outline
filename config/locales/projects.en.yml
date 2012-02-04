@@ -1,5 +1,9 @@
-
 en:
+  activities:
+    update:
+      project:
+        activate: "%{user} reactivated a %{model}"
+        deactivate: "%{user} finished a %{model}"
   projects:
     index:
       page_header: "Projects"
