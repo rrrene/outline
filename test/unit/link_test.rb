@@ -2,9 +2,15 @@ require 'test_helper'
 
 class LinkTest < ActiveSupport::TestCase
   setup do
-    @link = Link.new
+    @link = Link.new(:content_id => 1, :user_id => 1, :domain_id => 1)
   end
 
+  test "should fetch href after creation" do
+    @link.href = "google.de"
+    @link.save
+    assert_equal "Google", @link.title
+  end
+  
   test "responds to user" do
     assert_not_nil @link
     assert @link.respond_to?(:user), "Link doesnot respond to :user"
