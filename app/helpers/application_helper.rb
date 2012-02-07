@@ -56,7 +56,7 @@ module ApplicationHelper
   include MarkdownHelper
   
   def format_multi_line_user_input(text)
-    text = gfm(text) # uses GitHub flavored markdown from MarkdownHelper
+    text = auto_link gfm(text) # uses GitHub flavored markdown from MarkdownHelper
     RDiscount::new(text).to_html
   end
   
