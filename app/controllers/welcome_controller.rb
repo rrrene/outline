@@ -4,6 +4,8 @@ class WelcomeController < ApplicationController
       redirect_to setup_path
     elsif logged_in?
       redirect_to activity_url
+    else
+      redirect_to login_url
     end
   end
 
