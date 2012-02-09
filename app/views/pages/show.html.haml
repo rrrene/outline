@@ -15,7 +15,7 @@
 
 
 - content_for(:contextual_sidebar) do
-  %ul.nav.list
+  %ul.nav.nav-list
     %li.nav-header Pages
     - current_domain.pages.limit(20).each do |page|
       %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
