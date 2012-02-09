@@ -24,6 +24,7 @@ gem 'rails_autolink'
 gem 'haml'
 gem 'json'
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -49,7 +50,7 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
