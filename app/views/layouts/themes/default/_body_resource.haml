@@ -10,7 +10,7 @@
           .page-header
             .pull-left
               %h1
-                - if !resource_is_context_resource && resource.respond_to?(:title)
+                - if !resource_is_context_resource? && resource.respond_to?(:title)
                   = inline_user_text(resource.title)
                 - else
                   = t("#{controller_name}.#{action_name}.page_header")
