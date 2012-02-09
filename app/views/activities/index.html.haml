@@ -45,7 +45,12 @@
 
 - content_for(:contextual_sidebar) do
   
-  %ul.nav.list
-    %li.nav-header Recently viewed
-    - @recently_viewed.each do |item|
+  %ul.nav.nav-list
+    %li.nav-header= "Recently viewed projects"
+    - @recently_viewed_projects.each do |item|
+      %li= link_to item.title, item
+
+  %ul.nav.nav-list
+    %li.nav-header= "Recently viewed pages"
+    - @recently_viewed_pages.each do |item|
       %li= link_to item.title, item

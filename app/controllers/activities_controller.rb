@@ -16,6 +16,7 @@ class ActivitiesController < ApplicationController
     end
     @activities.sort_by!(&:id).reverse!
 
-    @recently_viewed = current_domain.activities.where(:verb => :read, :resource_type => %w(Project Page)).group("resource_type, resource_id").limit(20).map(&:resource)
+    @recently_viewed_projects = current_domain.activities.where(:verb => :read, :resource_type => :Project).group("resource_type, resource_id").limit(5).map(&:resource)
+    @recently_viewed_pages = current_domain.activities.where(:verb => :read, :resource_type => :Page).group("resource_type, resource_id").limit(20).map(&:resource)
   end
 end
