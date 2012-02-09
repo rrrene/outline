@@ -14,8 +14,16 @@
       %li= link_to icon(:trash) + t(".delete_link"), {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
 
 
-- content_for(:contextual_sidebar) do
-  %ul.nav.nav-list
-    %li.nav-header Pages
-    - current_domain.pages.limit(20).each do |page|
-      %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
+- if current_project
+  - content_for(:contextual_sidebar) do
+
+    %ul.nav.nav-list
+      %li.nav-header Links
+      - content_items = ContentItem.where(:content_id => current_project.pages.map(&:inner_content).map(&:id), :item_type => :Link).includes(:item)
+      - content_items.map(&:item).each do |link|
+        %li= link_to link.title, link.href
+
+    %ul.nav.nav-list
+      %li.nav-header Pages
+      - current_project.pages.each do |page|
+        %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page

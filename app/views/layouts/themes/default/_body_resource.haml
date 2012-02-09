@@ -1,9 +1,5 @@
 .container
   .row
-    - if resource.respond_to?(:context) && resource.context
-      .span12
-        .context-header
-          %h1= link_to_resource resource.context.resource
     .span10
       .content
         .page-wrapper
