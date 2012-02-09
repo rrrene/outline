@@ -33,7 +33,7 @@
     %th context
     %th content
   %tbody
-    - collection.each do |activity|
+    - @activities.each do |activity|
       %tr
         %td= activity.resource_type
         %td= activity.resource_id
