@@ -8,3 +8,6 @@ en:
       login: Username
       password: Password
       submit: "Log in"
+  shared:
+    bulk_collection:
+      select_none: "Select none"
