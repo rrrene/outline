@@ -28,14 +28,13 @@
             - if current_project.blank?
               = nav_to t("navigation.activities"), :activities
             - else
-              %li.active= link_to "Pages", "#"
-              %li= link_to "To-Dos", todo_lists_project_path(current_project)
-              %li= link_to "Files", "#"
+              = nav_to t("navigation.project_pages"), current_project.pages.first, :pages
+              = nav_to t("navigation.project_todo_lists"), todo_lists_project_path(current_project)
 
           %ul.nav.pull-right
             - if current_project
 
-              %li= link_to "Project settings", edit_project_path(current_project)
+              = nav_to "Project settings", edit_project_path(current_project)
             - else
               %li.dropdown
                 %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}

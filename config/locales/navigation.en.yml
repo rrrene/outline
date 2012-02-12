@@ -11,5 +11,8 @@ en:
     settings: "Settings"
     my_profile: "Edit my Profile"
     logout: "Logout"
+
+    project_pages: "Pages"
+    project_todo_lists: "To-Dos"
     back_to_home: "Back to Dashboard"
     jump_to_project: "Jump to Project"

@@ -26,11 +26,11 @@ module ApplicationHelper
     link_to inline_user_text(text), resource
   end
 
-  def nav_to(text, path)
-    active = if path.is_a?(Symbol)
-      controller_name == path.to_s
+  def nav_to(text, path, controller = nil)
+    active = if path.is_a?(Symbol) || controller
+      [path.to_s, controller.to_s].include? controller_name
     else
-      current_path?(path)
+      current_page?(path)
     end
     path = {:controller => path, :action => :index} if path.is_a?(Symbol)
     content_tag :li, link_to(text, path), :class => active ? :active : nil

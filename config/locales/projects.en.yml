@@ -15,9 +15,6 @@ en:
           all: "All Projects"
           active: "Only ACTIVE projects"
           inactive: "Only finished projects"
-    todo_lists:
-      page_header: "Todo Lists"
-      page_hint: "Overview"
     edit:
       page_header: "Project"
       page_hint: "Settings"
@@ -25,4 +22,6 @@ en:
       page_header: Overview
       page_hint: ""
     todo_lists:
+      page_header: "Todo Lists"
+      page_hint: "Overview"
       only_active_lists_hint: "Lists without any active items are hidden in this view."
