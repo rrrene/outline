@@ -32,7 +32,7 @@ $ ->
 
   # $("#add-content-item-tabs li.active").removeClass("active")
   $('#add-content-item-tabs').bind 'shown', (event) ->
-    pane = event.target.href.match(/(#.+)$/)[0]
+    pane = $(event.target).attr("href").match(/(#.+)$/)[0]
     OUT.selectFirstInput(pane)
 
   $('a[data-toggle="move-to-page"]').bind "click", (event) ->
