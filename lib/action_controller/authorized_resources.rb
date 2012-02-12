@@ -11,7 +11,7 @@ module AuthorizedResources
       create!(&block)
     end
 
-    def index
+    def index_with_authorization
       self.resource = resource_class.new
       filter_collection
       index!
@@ -91,6 +91,7 @@ module AuthorizedResources
 
       self.send :include, InstanceMethods
       alias_method_chain :create, :authorization
+      alias_method_chain :index, :authorization
 
       after_filter :read_resource, :only => [:show]
     end

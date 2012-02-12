@@ -1,12 +1,8 @@
 class TodoListsController < ContentItemsController
   content_item_group_resources
 
-  before_filter :set_body_template, :only => [:index]
-
-  Project
-  Page
-
-  def set_body_template
-    @body_template = :body_yield
+  def index
+    index_with_authorization
+    @rejected = collection.reject! { |list| list.todos.where(:active => true).count == 0 }
   end
 end

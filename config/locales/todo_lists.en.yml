@@ -14,6 +14,9 @@ en:
     options:
       delete_item: "Remove this List..."
       delete_item_confirm: "Do you really want to permanently delete this list?"
+    index:
+      page_header: "To-do lists"
+      page_hint: "Overview"
     show:
       add_todo_link: "Add new Item..."
       show_more_inactive_todos: "Show all"

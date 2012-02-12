@@ -1,15 +1,17 @@
-.container
-  .row
-    .span10
-      .container
-        .row
-          - collection.each do |resource|
-            .span5
-              .page-wrapper
-                %h1= resource.title
-                = render "content_items/show", :content_item => resource.content_item
-    .span2
-      %ul.nav
-        %li erster nav punkt
-        %li erster nav punkt
-        %li erster nav punkt
+%ul.unstyled.content-items
+  - collection.map(&:content_item).each do |content_item|
+    = render :partial => "content_items/show", :locals => {:content_item => content_item}
+
+
+- content_for(:contextual_sidebar) do
+  - if @rejected.present?
+    = t(".only_active_lists_hint")
+
+  = render :layout => "shared/index/filter" do
+    - filter_form do
+      .control-group
+        = label_tag :title, t("pages.index.filter.by_select")
+        .controls
+          %select{:name => "scope", :"data-submit" => "form"}
+            %option{:value => ""}= t("pages.index.filter.select.all")
+            %option{:value => "no_context", :selected => params[:scope] == "no_context" ? :selected : nil}= t("pages.index.filter.select.no_context")
