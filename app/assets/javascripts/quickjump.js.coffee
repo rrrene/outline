@@ -57,9 +57,11 @@ class OUT.QuickJump
         event.stopPropagation()
       val
 
-  activateResult: ->
-    result = this.getActiveResult()
-    if result?
+  activateResult: (anchor) ->
+    anchor or= this.getActiveResult()
+    if anchor?
+      index = $(anchor).data("result-index")
+      result = @results[index]
       @result_callback.apply(null, [result])
 
   cloneModal: (selector) ->
@@ -130,13 +132,21 @@ class OUT.QuickJump
   
   renderResults: (query) ->
     out = ""
+    index = 0
     phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
-    template = '<a class=result href="%{url}"><div class=title>%{title} <small>%{type}</small></div></a>'
+    template = '<a class="result" data-result-index="%{index}" href="%{url}"><div class=title>%{title} <small>%{type}</small></div></a>'
+
     for result in @results[0...@MAX_RESULTS]
       t = this.highlight(result.title, phrases)
-      out += template.toString().replace("%{title}", t).replace("%{type}", result.type).replace("%{url}", result.url)
+      out += template.toString().replace("%{title}", t).replace("%{type}", result.type).replace("%{url}", result.url).replace("%{index}", index)
+      index += 1
 
     $(@selector+" .results").html(out)
+    self = this
+    $(@selector+" .results a.result").bind "click", (event) ->
+      self.activateResult(this)
+      event.preventDefault()
+      false
   
   setDefaultResults: ->
     @results = OUT.quick_jump_defaults || []
@@ -165,7 +175,7 @@ class OUT.QuickJump
   getActiveResult: ->
     if @active_result?
       all = $(@selector+" .result")
-      $(all[@active_result])
+      anchor = $(all[@active_result])
 
 OUT.lazyTimerIds = {}
 OUT.setLazyTimer = (name, delay, func) ->
@@ -178,12 +188,6 @@ OUT.clearLazyTimer = (name) ->
     window.clearTimeout(OUT.lazyTimerIds[name])
 
 $ ->
-  # OUT.quickjump = new OUT.QuickJump "#quick-jump-modal"
-
-  $('body').bind "keypress", (event) ->
-    char = String.fromCharCode(event.charCode)
-    if event.target == this && (char == "t" || char == "p")
-      event.preventDefault()
-      window.quickjump_to_resource = new OUT.QuickJump (selected) ->
-        console.log "result callback", selected
-        # window.location.href = result.attr('href')
+  OUT.registerKeyboardShortcut "t", ->
+    new OUT.QuickJump (selected) ->
+      window.location.href = selected.url
