@@ -34,3 +34,16 @@ $ ->
   $('#add-content-item-tabs').bind 'shown', (event) ->
     pane = event.target.href.match(/(#.+)$/)[0]
     OUT.selectFirstInput(pane)
+
+  $('a[data-toggle="move-to-page"]').bind "click", (event) ->
+    $("body").click()
+    url = $(event.target).attr("href")
+    quickjump = new OUT.QuickJump (selected) ->
+      $.ajax
+        type: 'POST'
+        url: url
+        data: {"page_id": selected.id}
+        success: () ->
+          quickjump.hide()
+    , "/quick_jump_targets/pages.json"
+    false

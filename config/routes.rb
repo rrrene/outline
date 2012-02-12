@@ -1,5 +1,9 @@
 Outline::Application.routes.draw do
-  resources :quick_jump_targets
+  resources :quick_jump_targets do
+    collection do
+      get "pages"
+    end
+  end
 
   resources :activities
 
@@ -11,13 +15,22 @@ Outline::Application.routes.draw do
 
   resources :todo_lists do
     member do
+      post "move_to_page"
       post "sort_content"
     end
   end
 
-  resources :links
+  resources :links do
+    member do
+      post "move_to_page"
+    end
+  end
 
-  resources :notes
+  resources :notes do
+    member do
+      post "move_to_page"
+    end
+  end
 
   resources :pages do
     collection do

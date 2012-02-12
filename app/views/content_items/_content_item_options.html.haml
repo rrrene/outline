@@ -1,0 +1,13 @@
+- item = content_item.item
+- item_path = item.class.to_s.underscore.pluralize
+
+.content-item-options
+  .btn-group
+    = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit"}
+    %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
+      %span.caret
+    %ul.dropdown-menu
+      = yield
+      %li= link_to icon(:page) + t("content_items.options.move_to_page"), {:controller => item_path, :action => "move_to_page", :id => item}, {:"data-toggle" => "move-to-page"}
+      %li.divider
+      %li= link_to icon(:trash) + t("content_items.options.delete_item"), {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :confirm => t("content_items.options.delete_item_confirm")}
