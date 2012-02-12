@@ -12,7 +12,7 @@
             - else
               %li= link_to current_project.title, current_project, :class => "brand"
               %li.active= link_to "Pages", "#"
-              %li= link_to "To-Dos", todo_lists_path
+              %li= link_to "To-Dos", todo_lists_project_path(current_project)
               %li= link_to "Files", "#"
           /
             %form.navbar-search.pull-left{:action => ""}

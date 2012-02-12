@@ -15,6 +15,9 @@ en:
           all: "All Projects"
           active: "Only ACTIVE projects"
           inactive: "Only finished projects"
+    todo_lists:
+      page_header: "Todo Lists"
+      page_hint: "Overview"
     show:
       page_header: Overview
       page_hint: ""

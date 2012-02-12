@@ -32,6 +32,9 @@ Outline::Application.routes.draw do
     collection do
       post "bulk_execute"
     end
+    member do
+      get "todo_lists"
+    end
   end
 
   resources :users

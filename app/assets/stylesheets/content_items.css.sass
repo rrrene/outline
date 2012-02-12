@@ -67,6 +67,16 @@ $content_item_margin_bottom: 20px
 .content-items
   position: relative
   margin: 0
+
+.content-item
+  .move-handle
+    visibility: hidden
+
+.sortable > .content-item
+  &:hover > .content-item-wrapper > .move-handle
+    visibility: visible
+
+
 .content-item
   background-color: white
   position: relative
@@ -77,16 +87,14 @@ $content_item_margin_bottom: 20px
   // -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
   // box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
 
-  &:hover > .content-item-wrapper > .content-item-options,
-  &:hover > .content-item-wrapper > .move-handle
+  &:hover > .content-item-wrapper > .content-item-options
     visibility: visible
   
   .content-item-wrapper
     padding: 0
     margin: 0
 
-  .content-item-options,
-  .move-handle
+  .content-item-options
     visibility: hidden
 
   .move-handle

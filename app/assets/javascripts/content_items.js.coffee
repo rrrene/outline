@@ -8,7 +8,7 @@ window.OUT.deactivateFormHandlers = {} unless window.OUT.deactivateFormHandlers?
 
 OUT.contentItems =
   createSortables: ->
-    $('.content-items').sortable
+    $('.content-items.sortable').sortable
       axis: 'y'
       handle: '.move-handle'
       cursor: 'crosshair'

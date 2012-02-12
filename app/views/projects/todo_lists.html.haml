@@ -1,0 +1,8 @@
+%ul.unstyled.content-items
+  - @content_items.each do |content_item|
+    = render :partial => "content_items/show", :locals => {:content_item => content_item}
+
+
+- content_for(:contextual_sidebar) do
+  - if @rejected.present?
+    = t(".only_active_lists_hint")
