@@ -27,19 +27,23 @@ class OUT.QuickJump
   KEY_ESC: 27
   MAX_RESULTS: 10
 
-  constructor: (selector, @data_url, @result_callback) ->
+  constructor: (@result_callback, @data_url = "/quick_jump_targets.json", selector = "#quick-jump-template") ->
     @active_result = null
     @dictionary = new OUT.QuickJumpDictionary(@DICTIONARY_KEY_LENGTH)
-    @selector = selector
-    
-    $(@selector).modal("show")
+
+    @selector = this.cloneModal(selector)
+    this.setDefaultResults()
+    self = this
+
 
     $(@selector).bind "hidden", ->
-      $(@selector+" input").blur()
-    
-    this.setDefaultResults()
+      $(self.selector).remove()
 
-    self = this
+    $(@selector).bind "shown", ->
+      $(self.selector+" input").select()
+
+    $(@selector).modal().modal("show")
+
     $(@selector+" input[type=text]").bind "keydown", (event) ->
       val = self.keydown(event)
       if val == false
@@ -57,6 +61,14 @@ class OUT.QuickJump
     result = this.getActiveResult()
     if result?
       @result_callback.apply(null, [result])
+
+  cloneModal: (selector) ->
+    new_modal_id = "quickjump"+new Date().getTime()
+    new_modal = $(selector).clone()
+    new_modal.attr("id", new_modal_id)
+    $("body").append(new_modal)
+    "##{new_modal_id}"
+
 
   highlight: (str, phrases) ->
     str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
@@ -172,6 +184,6 @@ $ ->
     char = String.fromCharCode(event.charCode)
     if event.target == this && (char == "t" || char == "p")
       event.preventDefault()
-      window.quickjump_to_resource = new OUT.QuickJump "#quick-jump-modal", "/quick_jump_targets.json", (selected) ->
+      window.quickjump_to_resource = new OUT.QuickJump (selected) ->
         console.log "result callback", selected
         # window.location.href = result.attr('href')
