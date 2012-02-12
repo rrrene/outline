@@ -7,7 +7,8 @@ window.OUT = {} unless window.OUT?
 OUT.bulk = 
   initialize: ->
     OUT.bulk.allCheckboxes().bind "change", ->
-      OUT.bulk.markSelected();
+      OUT.bulk.markSelected()
+    OUT.bulk.markSelected()
 
     $("#move-to-new-project-modal input.btn-primary").bind "click", (event) ->
       console.log "move to new project"
@@ -42,21 +43,37 @@ OUT.bulk =
     OUT.bulk.allCheckboxes().attr("checked", "checked")
     OUT.bulk.markSelected();
   selectNone: ->
-    OUT.bulk.allCheckboxes().attr("checked", "")
+    OUT.bulk.allCheckboxes().attr("checked", null)
     OUT.bulk.markSelected();
   setAction: (action) ->
     jQuery('#bulk_action').val(action);
   markSelected: ->
-    all_rows = OUT.bulk.allCheckboxes().parents(".row")
+    all_rows = OUT.bulk.allCheckboxes().parents(".entry")
+    console.log "all_rows:", all_rows
     all_rows.removeClass("active")
-    checked_rows = all_rows.find("input:checked").parents(".row")
+    checked_rows = all_rows.find("input:checked").parents(".entry")
+    console.log "checked_rows:", checked_rows
     checked_rows.addClass("active")
+
     if checked_rows.length > 0 
       $("#bulk_collection #no_items_selected").hide()
       $("#bulk_collection #items_selected").show()
     else
       $("#bulk_collection #no_items_selected").show()
       $("#bulk_collection #items_selected").hide()
+
+    if checked_rows.length < all_rows.length
+      $("#bulk_collection .select_all").show()
+    else
+      $("#bulk_collection .select_all").hide()
+
+    if checked_rows.length > 0
+      $("#bulk_collection .select_none").show()
+    else
+      $("#bulk_collection .select_none").hide()
+
+
+
   moveToNewProject: (ele) ->
     $('#bulk_new_project_title').val $("#move_to_new_project_title").val()
     OUT.bulk.execute "move_to_new_project", ele

@@ -7,12 +7,17 @@
         .activity-title
           - if activity.context
             %span.activity-context
-              = icon(:"folder-close")
-              = link_to_resource activity.context.resource
+              - activity.context.resource.tap do |resource|
+                = icon(resource.class.to_s.underscore.dasherize)
+                = link_to_resource resource
           - if activity.content
             %span.activity-content
-              = icon(:file)
-              = link_to_resource activity.content.holder
+              - activity.content.holder.tap do |resource|
+                = icon(resource.class.to_s.underscore.dasherize)
+                = link_to_resource resource
+                - if resource.respond_to?(:outer_content) && resource.outer_content
+                  - resource.outer_content.holder.tap do |resource2|
+                    %small (via #{link_to_resource resource2})
         .activity-action
           %small= tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
         .activity-body
@@ -28,7 +33,7 @@
     %th context
     %th content
   %tbody
-    - collection.each do |activity|
+    - @activities.each do |activity|
       %tr
         %td= activity.resource_type
         %td= activity.resource_id
@@ -40,7 +45,12 @@
 
 - content_for(:contextual_sidebar) do
   
-  %ul.nav.list
-    %li.nav-header Recently viewed
-    - @recently_viewed.each do |item|
+  %ul.nav.nav-list
+    %li.nav-header= "Recently viewed projects"
+    - @recently_viewed_projects.each do |item|
+      %li= link_to item.title, item
+
+  %ul.nav.nav-list
+    %li.nav-header= "Recently viewed pages"
+    - @recently_viewed_pages.each do |item|
       %li= link_to item.title, item

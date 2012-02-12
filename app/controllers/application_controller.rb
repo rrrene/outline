@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   layout :themed_layout
   protect_from_forgery
 
-  helper_method :current_user, :current_domain, :logged_in?
+  helper_method :current_user, :current_domain, :current_project, :logged_in?
   helper_method :themed, :try_translation
 
   before_filter :set_activity_user
@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
 
   def current_domain
     current_user.try(:domain)
+  end
+
+  def current_project
+    @project ||= resource.respond_to?(:context) && resource.context.try(:resource).is_a?(Project) && resource.context.resource
   end
 
   def current_theme

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ActivitiesControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should require login" do
+    assert_login_required_for :index
+  end
 end

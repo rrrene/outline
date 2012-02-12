@@ -1,17 +1,6 @@
-#top-add-content-item-form.add-content-item-form
-  %ul.nav.nav-tabs#add-content-item-tabs{:"data-toggle" => "tab"}
-    - Outline::ContentItems.classes.each_with_index do |model, index|
-      %li{:class => index == 0 ? :active : nil}
-        = link_to model.to_s, "#new_#{model.to_s.underscore}", :"data-toggle" => :tab
+= render "content_items/top_add_form", :content => resource.inner_content
 
-  .tab-content
-    - Outline::ContentItems.classes.each_with_index do |model, index|
-      .tab-pane{:class => index == 0 ? :active : nil, :id => "new_#{model.to_s.underscore}"}
-        = render partial_for(model, :new), :resource_class => model
-  .clearboth
-  = spacer
-
-= render :partial => "content/show", :locals => {:content => resource.inner_content}
+= render "content/show", :content => resource.inner_content
 
 .page-footer
   &nbsp;
@@ -25,8 +14,16 @@
       %li= link_to icon(:trash) + t(".delete_link"), {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
 
 
-- content_for(:contextual_sidebar) do
-  %ul.nav.list
-    %li.nav-header Pages
-    - current_domain.pages.limit(20).each do |page|
-      %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
+- if current_project
+  - content_for(:contextual_sidebar) do
+
+    %ul.nav.nav-list
+      %li.nav-header Links
+      - content_items = ContentItem.where(:content_id => current_project.pages.map(&:inner_content).map(&:id), :item_type => :Link).includes(:item)
+      - content_items.map(&:item).each do |link|
+        %li= link_to link.title, link.href
+
+    %ul.nav.nav-list
+      %li.nav-header Pages
+      - current_project.pages.each do |page|
+        %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page

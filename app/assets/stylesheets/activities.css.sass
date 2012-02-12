@@ -14,12 +14,18 @@
       small
         font-size: 11px
         color: #999
+        strong
+          color: #090
         a
           color: #666
           text-decoration: none
           &:hover
             color: #000
             text-decoration: underline
+          &.resource
+            font-weight: bold
+          &.user
+            color: inherit
     .activity-title
       a
         color: #333
@@ -27,8 +33,17 @@
         font-weight: bold
         border-bottom: 1px solid #ccc
         &:hover
-          border-bottom: 1px solid #333
-
+          border-bottom-color: #333
+      small
+        color: #999
+        a
+          font-weight: normal
+          color: #666
+          text-decoration: none
+          border-bottom: none
+          &:hover
+            color: #000
+            text-decoration: underline
     .activity-body
       border-left: 3px solid #eee
       padding: 10px

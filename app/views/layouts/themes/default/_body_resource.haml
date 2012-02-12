@@ -1,17 +1,13 @@
 .container
   .row
-    - if resource.respond_to?(:context) && resource.context
-      .span12
-        .context-header
-          %h1= link_to_resource resource.context.resource
-    .span9
+    .span10
       .content
         .page-wrapper
           .page-header
             .pull-left
               %h1
-                - if !resource_is_context_resource && resource.respond_to?(:title)
-                  = resource.title
+                - if !resource_is_context_resource? && resource.respond_to?(:title)
+                  = inline_user_text(resource.title)
                 - else
                   = t("#{controller_name}.#{action_name}.page_header")
                   %small
@@ -20,7 +16,7 @@
               = yield(:page_header)
             .clearboth
           = yield
-    .span3
+    .span2
       .sidebar
         = yield(:contextual_sidebar)
   .clearboth

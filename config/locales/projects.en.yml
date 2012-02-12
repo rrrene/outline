@@ -1,10 +1,20 @@
-
 en:
+  activities:
+    update:
+      project:
+        activate: "%{user} reactivated a %{model}"
+        deactivate: "%{user} finished a %{model}"
   projects:
     index:
       page_header: "Projects"
       page_hint: "Overview"
       new_project_link: "Create new project"
+      filter:
+        by_select: "Scope"
+        select:
+          all: "All Projects"
+          active: "Only ACTIVE projects"
+          inactive: "Only finished projects"
     show:
       page_header: Overview
       page_hint: ""

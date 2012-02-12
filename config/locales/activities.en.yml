@@ -5,9 +5,9 @@ en:
       page_header: "Activity"
       page_hint: "Overview"
     create:
-      default: "%{user} created a %{model}"
+      default: "<strong>New</strong> %{model} by %{user}"
     update:
-      default: "%{user} updated a %{model}"
+      default: "%{model} by %{user}"
       rename: "%{user} renamed a %{model}"
       tag: "%{user} tagged a %{model}"
       move_to_context: "%{user} moved %{model}"

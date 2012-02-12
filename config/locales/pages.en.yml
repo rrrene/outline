@@ -13,6 +13,10 @@ en:
         header: "Browse your pages by"
         by_title: "Title"
         by_tags: "Tags"
+        by_select: "Scope"
+        select:
+          all: "All Pages"
+          no_context: "Only pages NOT in a project"
     show:
       edit_link: "Edit"
       delete_link: "Delete this page"

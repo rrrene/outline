@@ -1,8 +1,8 @@
 module ActivitiesHelper
   def activity_tt_options(activity)
     options = {
-      :model => link_to(activity.resource.class.model_name.human, activity.resource),
-      :user => link_to(activity.user.name, activity.user)
+      :model => link_to(activity.resource.class.model_name.human, activity.resource, :class => "resource"),
+      :user => link_to(activity.user.name, activity.user, :class => "user")
     }
   end
 

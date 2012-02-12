@@ -3,4 +3,12 @@
 = render "bulk_collection"
 
 - content_for(:contextual_sidebar) do
-  = render "shared/index/filter"
+  = render :layout => "shared/index/filter" do
+    - filter_form do
+      .control-group
+        = label_tag :title, t("projects.index.filter.by_select")
+        .controls
+          %select{:name => "scope", :"data-submit" => "form"}
+            %option{:value => ""}= t("projects.index.filter.select.all")
+            %option{:value => "active", :selected => params[:scope] == "active" ? :selected : nil}= t("projects.index.filter.select.active")
+            %option{:value => "inactive", :selected => params[:scope] == "inactive" ? :selected : nil}= t("projects.index.filter.select.inactive")

@@ -5,8 +5,11 @@
       = hidden_field_tag :"bulk[return_to]", return_to
       .options
         %small.bulk-options
-          %span.select_all
-            = link_to_function t("shared.bulk_collection.select_all"), "OUT.bulk.selectAll();"
+          .pull-right
+            %small.select_none
+              = link_to_function t("shared.bulk_collection.select_none"), "OUT.bulk.selectNone();"
+            %small.select_all
+              = link_to_function t("shared.bulk_collection.select_all"), "OUT.bulk.selectAll();"
           %span.select#no_items_selected
             = select_hint
           %span.select#items_selected{:style => "display: none"}

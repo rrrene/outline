@@ -19,9 +19,11 @@ gem 'acts_as_list'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
 gem 'rdiscount'
+gem 'rails_autolink'
 
 gem 'haml'
 gem 'json'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -48,7 +50,7 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
