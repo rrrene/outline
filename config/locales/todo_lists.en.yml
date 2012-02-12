@@ -11,6 +11,9 @@ en:
       todo_ĺist:
         href: "Enter Title..."
   todo_lists:
+    options:
+      delete_item: "Remove this List..."
+      delete_item_confirm: "Do you really want to permanently delete this list?"
     show:
       add_todo_link: "Add new Item..."
       show_more_inactive_todos: "Show all"

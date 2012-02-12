@@ -2,5 +2,5 @@ en:
   content_items:
     options:
       delete_item: "Delete this..."
-      delete_item_confirm: "Really delete this?"
+      delete_item_confirm: "Do you really want to permanently delete this item?"
       move_to_page: "Move to Page..."

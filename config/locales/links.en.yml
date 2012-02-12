@@ -12,3 +12,7 @@ en:
     placeholders:
       link:
         href: "Enter URL..."
+  links:
+    options:
+      delete_item: "Remove this Link..."
+      delete_item_confirm: "Do you really want to permanently delete this link?"
