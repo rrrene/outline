@@ -1,7 +1,7 @@
 
 en:
   navigation:
-    activities: "Start"
+    activities: "Dashboard"
     projects: "Projects"
     all_projects: "Overview"
     pages: "Pages"
@@ -11,3 +11,5 @@ en:
     settings: "Settings"
     my_profile: "Edit my Profile"
     logout: "Logout"
+    back_to_home: "Back to Dashboard"
+    jump_to_project: "Jump to Project"
