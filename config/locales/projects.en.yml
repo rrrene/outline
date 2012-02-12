@@ -18,6 +18,11 @@ en:
     todo_lists:
       page_header: "Todo Lists"
       page_hint: "Overview"
+    edit:
+      page_header: "Project"
+      page_hint: "Settings"
     show:
       page_header: Overview
       page_hint: ""
+    todo_lists:
+      only_active_lists_hint: "Lists without any active items are hidden in this view."

@@ -7,3 +7,7 @@ en:
     placeholders:
       note:
         text: "Make a note..."
+  notes:
+    options:
+      delete_item: "Remove this Note..."
+      delete_item_confirm: "Do you really want to permanently delete this note?"

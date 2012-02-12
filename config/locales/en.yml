@@ -8,9 +8,3 @@ en:
       login: Username
       password: Password
       submit: "Log in"
-  shared:
-    bulk_collection:
-      select_none: "Select none"
-  projects:
-    todo_lists:
-      only_active_lists_hint: "Lists without any active items are hidden in this view."

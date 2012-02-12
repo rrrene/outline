@@ -5,14 +5,8 @@
   %div.content-item-wrapper.item-type{:id => dom_id(item)}
     %span.move-handle
       = image_tag "blank.png", :size => "20x20"
-    .content-item-options
-      .btn-group
-        = link_to "Edit", {:controller => item_path, :action => :edit, :id => item}, {:remote => true, :class => "btn edit"}
-        %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
-          %span.caret
-        %ul.dropdown-menu
-          %li= link_to icon(:trash) + "Delete Item", {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete}
-          
+    = render partial_for(item.class, :content_item_options), :content_item => content_item
+
     .content-item-inner
       .content-item-body
         = render :partial => "#{item_path}/show", :locals => {:resource => item}

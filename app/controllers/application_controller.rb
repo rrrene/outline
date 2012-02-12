@@ -18,7 +18,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_project
-    @project ||= resource.respond_to?(:context) && resource.context.try(:resource).is_a?(Project) && resource.context.resource
+    @current_project ||= begin
+      project = if resource.is_a?(Project)
+        resource
+      elsif resource.respond_to?(:context) && resource.context.try(:resource).is_a?(Project)
+        resource.context.resource
+      end
+      !!project.try(:new_record?) ? nil : project
+    end
   end
 
   def current_theme

@@ -3,6 +3,7 @@ en:
   shared:
     bulk_collection:
       select_all: "Select all"
+      select_none: "Select none"
       select_hint: "Select and perform actions like adding tags, ..."
       selected: "Perform on selected:"
       destroy: "Delete"

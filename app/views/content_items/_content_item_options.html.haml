@@ -1,0 +1,14 @@
+- item = content_item.item
+- item_path = item.class.to_s.underscore.pluralize
+
+.content-item-options
+  %ul.nav.nav-pills
+    %li= link_to tt("#{item_path}.options.edit_item", "content_items.options.edit_item"), {:controller => item_path, :action => :edit, :id => item}, {:remote => true}
+    %li.dropdown
+      %a.dropdown-toggle{:"data-toggle" => "dropdown", :href => "#"}
+        %b.caret
+      %ul.dropdown-menu
+        = yield
+        %li= link_to icon(:page) + t("content_items.options.move_to_page"), {:controller => item_path, :action => "move_to_page", :id => item}, {:"data-toggle" => "move-to-page"}
+        %li.divider
+        %li= link_to icon(:trash) + tt("#{item_path}.options.delete_item", "content_items.options.delete_item"), {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :confirm => tt("#{item_path}.options.delete_item_confirm", "content_items.options.delete_item_confirm")}

@@ -1,0 +1,7 @@
+en:
+  content_items:
+    options:
+      delete_item: "Delete this..."
+      delete_item_confirm: "Do you really want to permanently delete this item?"
+      edit_item: "Edit"
+      move_to_page: "Move to Page..."

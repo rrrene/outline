@@ -35,7 +35,6 @@ class OUT.QuickJump
     this.setDefaultResults()
     self = this
 
-
     $(@selector).bind "hidden", ->
       $(self.selector).remove()
 
@@ -71,6 +70,8 @@ class OUT.QuickJump
     $("body").append(new_modal)
     "##{new_modal_id}"
 
+  hide: ->
+    $(@selector).modal("hide")
 
   highlight: (str, phrases) ->
     str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
@@ -129,7 +130,7 @@ class OUT.QuickJump
   requestComplete: (query, request) ->
     results = eval(request.responseText)
     this.setResults(query, results)
-  
+
   renderResults: (query) ->
     out = ""
     index = 0
