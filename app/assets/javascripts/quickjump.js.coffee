@@ -27,18 +27,20 @@ class OUT.QuickJump
   KEY_ESC: 27
   MAX_RESULTS: 10
 
-  constructor: (selector) ->
-    @selector = selector
+  constructor: (selector, @data_url, @result_callback) ->
     @active_result = null
     @dictionary = new OUT.QuickJumpDictionary(@DICTIONARY_KEY_LENGTH)
+    @selector = selector
+    
+    $(@selector).modal("show")
 
-    $(selector).bind "hidden", ->
-      $(selector+" input").blur()
+    $(@selector).bind "hidden", ->
+      $(@selector+" input").blur()
     
     this.setDefaultResults()
 
     self = this
-    $(selector+" input[type=text]").bind "keydown", (event) ->
+    $(@selector+" input[type=text]").bind "keydown", (event) ->
       val = self.keydown(event)
       if val == false
         event.preventDefault()
@@ -51,22 +53,17 @@ class OUT.QuickJump
         event.stopPropagation()
       val
 
-    $('body').bind "keypress", (event) ->
-      console.log event.target, this
-      if event.target == this
-        char = String.fromCharCode(event.charCode)
-        if char == "t" || char == "p"
-          event.preventDefault()
-          $(selector).modal("show")
-  
+  activateResult: ->
+    result = this.getActiveResult()
+    if result?
+      @result_callback.apply(null, [result])
+
   highlight: (str, phrases) ->
     str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
   
   keydown: (event) ->
     if event.keyCode == @KEY_ENTER
-      result = this.getActiveResult()
-      if result?
-        window.location.href = result.attr('href')
+      this.activateResult()
       false
     else if event.keyCode == @KEY_UP
       this.moveSelection(-1)
@@ -89,12 +86,11 @@ class OUT.QuickJump
           if stored_results != @FETCHING_RESULTS
             this.setResults query, stored_results
         else
-          url = $(event.target).data('url')
           data = {}
           data[$(event.target).attr("name")] = @dictionary.getKey(query)
           self = this
           OUT.setLazyTimer "quickjump_request", @DELAY_BEFORE_SERVER_CALL, ->
-            self.requestResults(query, url, data)
+            self.requestResults(query, data)
 
     @old_query = query
   
@@ -105,11 +101,11 @@ class OUT.QuickJump
     @active_result = 0 if @active_result > max_result-1
     this.markActiveResult()
 
-  requestResults: (query, url, data) ->
+  requestResults: (query, data) ->
     @dictionary.setResultsFor(query, @FETCHING_RESULTS)
     self = this
     $.ajax
-      url: url
+      url: @data_url
       data: data
       type: 'get'
       dataType: 'script'
@@ -170,4 +166,12 @@ OUT.clearLazyTimer = (name) ->
     window.clearTimeout(OUT.lazyTimerIds[name])
 
 $ ->
-  OUT.quickjump = new OUT.QuickJump "#quick-jump-modal"
+  # OUT.quickjump = new OUT.QuickJump "#quick-jump-modal"
+
+  $('body').bind "keypress", (event) ->
+    char = String.fromCharCode(event.charCode)
+    if event.target == this && (char == "t" || char == "p")
+      event.preventDefault()
+      window.quickjump_to_resource = new OUT.QuickJump "#quick-jump-modal", "/quick_jump_targets.json", (selected) ->
+        console.log "result callback", selected
+        # window.location.href = result.attr('href')
