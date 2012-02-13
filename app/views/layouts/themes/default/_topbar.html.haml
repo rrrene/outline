@@ -6,7 +6,7 @@
           .navbar-inner
             .container
               .pull-left
-                %h1= link_to current_project.title #image_tag("/logo_outline.png", :style => "height: 64px"), root_path
+                %h1= link_to current_project.title, current_project
               %ul.nav.pull-right
                 %li.dropdown.small
                   %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
