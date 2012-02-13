@@ -1,9 +1,7 @@
-= render "content_items/top_add_form", :content => resource.inner_content
+.page-item
+  = render "content_items/top_add_form", :content => resource.inner_content
 
 = render "content/show", :content => resource.inner_content
-
-.page-footer
-  &nbsp;
 
 -content_for(:page_header) do
   .btn-group

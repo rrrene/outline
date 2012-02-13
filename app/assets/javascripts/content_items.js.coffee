@@ -21,6 +21,12 @@ OUT.contentItems =
     if handler = OUT.deactivateFormHandlers[selector]
       handler($(selector))
 
+  open: (select) ->
+    ele = $(select).animate
+      'margin-top': "20"
+      'margin-bottom': "20"
+      , "slow"
+
 $ ->
   OUT.contentItems.createSortables()
 

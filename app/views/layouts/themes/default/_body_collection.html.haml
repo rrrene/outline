@@ -13,11 +13,14 @@
           .pull-right
             = yield(:page_header)
           .clearboth
-        .row
-          .span7
-            .content
-              = yield
-          .span3
-            .sidebar
-              = yield(:contextual_sidebar)
+
+        .page-item
+          .row
+            .span7
+              .content
+                = yield
+            .span3
+              .sidebar
+                = yield(:contextual_sidebar)
+        .page-footer
     .clearboth

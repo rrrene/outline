@@ -2,6 +2,7 @@ footer p.powered-by
   color: #bbb
   text-shadow: 0px 1px 1px #fff
   margin-top: 20px
+  margin-bottom: 20px
 
 
 .modal form
@@ -95,10 +96,6 @@ body
 .container > footer p
   text-align: center
 
-
-.content
-  background-color: #fff
-
 .page-wrapper,
 .page-header
   background-color: #f0f0f0
@@ -109,27 +106,42 @@ body
   background-color: #ddd
 
 
+.page-header,
+.activity-item,
+.content-item,
+.page-item,
+.page-footer
+  border-left: 1px solid #D7D7D7
+  border-right: 1px solid #D7D7D7
+  background-color: #fff
+  margin-left: -1px!important
+  margin-right: -1px!important
+
+.content-item .content-item
+  border: none
+  -webkit-box-shadow: none
+  margin-left: 0!important
+  margin-right: 0!important
+
 .page-header
   padding: 20px 20px 10px
   margin: 0
+  margin-top: 20px
+  border-radius: 6px 6px 0 0
+  border-top: 1px solid #D7D7D7
 
+.page-footer
+  padding: 10px
+  margin: 0
+  border-radius: 0 0 6px 6px
+  border-bottom: 1px solid #D7D7D7
 
 .topbar .btn
   border: 0
 
 
 .page-wrapper
-  border: 1px solid #D7D7D7
-  -webkit-box-shadow: #cccccc 0px 0px 3px 0px
-  margin: -1px
-  border-radius: 6px
-
-.content .page-wrapper
   margin-top: 20px
-
-.page-wrapper
-  background-color: #fff
-
 
 .sidebar
   padding-top: 20px
@@ -153,17 +165,13 @@ body
 @media (min-width: 1200px)
   .sidebar-left
     ul.nav-list
-      margin-right: -29px
+      margin-right: -30px
   .sidebar-right
     .well
       margin-left: -19px
       padding: 9px
     ul.nav-list
-      margin-left: -29px
-
-.content .page-header
-  background: transparent
-  border: none
+      margin-left: -30px
 
 .form-actions, form
   margin-bottom: 0!important

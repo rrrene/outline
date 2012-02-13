@@ -12,7 +12,6 @@ OUT.selectFirstInput = (ele) ->
   ele or= document
   $(ele).find("input[type=text], textarea").first().select()
 
-
 $ ->
   OUT.selectFirstInput()
   

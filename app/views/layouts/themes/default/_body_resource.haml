@@ -4,20 +4,20 @@
       = render themed("sidebar-left")
     .span8
       .content
-        .page-wrapper
-          .page-header
-            .pull-left
-              %h1
-                - if !resource_is_context_resource? && resource.respond_to?(:title)
-                  = inline_user_text(resource.title)
-                - else
-                  = t("#{controller_name}.#{action_name}.page_header")
-                  %small
-                    = t("#{controller_name}.#{action_name}.page_hint")
-            .pull-right
-              = yield(:page_header)
-            .clearboth
-          = yield
+        .page-header
+          .pull-left
+            %h1
+              - if !resource_is_context_resource? && resource.respond_to?(:title)
+                = inline_user_text(resource.title)
+              - else
+                = t("#{controller_name}.#{action_name}.page_header")
+                %small
+                  = t("#{controller_name}.#{action_name}.page_hint")
+          .pull-right
+            = yield(:page_header)
+          .clearboth
+        = yield
+        .page-footer
     .span2
       .sidebar.sidebar-right
         = yield(:contextual_sidebar)
