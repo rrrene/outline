@@ -1,7 +1,9 @@
 .container
-  .page-wrapper
-    .row
-      .span12
+  .row
+    .span2
+      = render themed("sidebar-left")
+    .span10
+      .page-wrapper
         .page-header
           .pull-left
             %h1
@@ -11,11 +13,11 @@
           .pull-right
             = yield(:page_header)
           .clearboth
-    .row
-      .span9
-        .content
-          = yield
-      .span3
-        .sidebar
-          = yield(:contextual_sidebar)
+        .row
+          .span7
+            .content
+              = yield
+          .span3
+            .sidebar
+              = yield(:contextual_sidebar)
     .clearboth

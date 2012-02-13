@@ -5,7 +5,7 @@
     %li.nav-header Links
     - content_items = ContentItem.where(:content_id => current_project.pages.map(&:inner_content).map(&:id), :item_type => :Link).includes(:item)
     - content_items.map(&:item).each do |link|
-      %li= link_to link.title, link.href
+      %li= link_to truncate(link.title, :length => 20), link.href
 
   %ul.nav.nav-list
     %li.nav-header Pages

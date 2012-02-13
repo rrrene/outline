@@ -136,9 +136,24 @@ body
   border-left: 1px solid #eee
 
   ul.nav-list
-    margin-left: -29px
     .active > a:hover
       background-color: #08C
+
+@media (min-width: 980px)
+  .sidebar-left
+    ul.nav-list
+      margin-right: -19px
+  .sidebar-right
+    ul.nav-list
+      margin-left: -19px
+
+@media (min-width: 1200px)
+  .sidebar-left
+    ul.nav-list
+      margin-right: -29px
+  .sidebar-right
+    ul.nav-list
+      margin-left: -29px
 
 .content .page-header
   background: transparent

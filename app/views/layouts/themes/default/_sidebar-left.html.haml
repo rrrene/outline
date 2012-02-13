@@ -1,0 +1,16 @@
+.sidebar.sidebar-left
+  %ul.nav.nav-list
+    - if current_project
+      %li.nav-header= current_project.title
+      = nav_to t("navigation.project_pages"), current_project.pages.first, :pages
+      = nav_to t("navigation.project_todo_lists"), todo_lists_project_path(current_project)
+      %li.divider
+        %hr
+      = nav_to t("navigation.project_settings"), edit_project_path(current_project)
+
+    - else
+      %li.nav-header Navigation
+      = nav_to t("navigation.activities"), :activities
+      = nav_to t("navigation.todo_lists"), :todo_lists
+      = nav_to t("navigation.projects"), :projects
+      = nav_to t("navigation.pages"), :pages

@@ -1,6 +1,8 @@
 .container
   .row
-    .span10
+    .span2
+      = render themed("sidebar-left")
+    .span8
       .content
         .page-wrapper
           .page-header
@@ -17,6 +19,6 @@
             .clearboth
           = yield
     .span2
-      .sidebar
+      .sidebar.sidebar-right
         = yield(:contextual_sidebar)
   .clearboth

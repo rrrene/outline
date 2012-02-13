@@ -15,5 +15,7 @@ en:
 
     project_pages: "Pages"
     project_todo_lists: "To-Dos"
+    project_settings: "Project settings"
+
     back_to_home: "Back to Dashboard"
     jump_to_project: "Jump to Project"
