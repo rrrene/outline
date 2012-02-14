@@ -44,6 +44,24 @@
 
 
 - content_for(:contextual_sidebar) do
+  - todo_lists = current_domain.todo_lists.where(:user_id => current_user).first(2)
+  - if todo_lists.present?
+    %ul.nav.nav-list
+      %li.nav-header To-Dos
+    - todo_lists.each do |todo_list|
+      .well
+        %h5= link_to inline_user_text(todo_list.title), todo_list
+        %ul.unstyled.todo-list
+          - todo_list.active_todos.each do |todo|
+            %li
+              .todo{:id => dom_id(todo)}
+                %input.todo-checkbox{:type => :checkbox, :checked => todo.active? ? nil : :checked, :"data-url" => set_active_todo_path(todo)}
+                %span= inline_user_text todo.title
+                .clearboth
+          %li= link_to "Add To-Do", "#", :class => "new"
+
+
+- content_for(:contextual_sidebar) do
   
   %ul.nav.nav-list
     %li.nav-header= "Recently viewed projects"

@@ -3,6 +3,6 @@ class TodoListsController < ContentItemsController
 
   def index
     index_with_authorization
-    @rejected = collection.reject! { |list| list.todos.where(:active => true).count == 0 }
+    @rejected = collection.reject! { |list| list.active_todos.count == 0 }
   end
 end
