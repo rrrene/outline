@@ -1,5 +1,4 @@
 class ContentItemsController < ApplicationController
-  Page
   def move_to_page
     @content_item = resource.content_item
     @page = current_domain.pages.accessible_by(current_ability).find(params[:page_id])

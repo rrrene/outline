@@ -3,7 +3,6 @@ class DomainController < ApplicationController
   helper_method :resource, :resource_path
 
   def settings
-    Page
     @domain = current_domain
     if request.put?
       @domain.update_attributes(params[:domain])

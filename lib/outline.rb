@@ -1,18 +1,32 @@
 module Outline
+  module ClassesConfig
+    def register_class(model)
+      @classes ||= []
+      @classes << model unless @classes.include?(model)
+    end
+
+    def classes
+      @classes ||= []
+    end
+
+    def classes=(values)
+      @classes = values
+    end
+  end
+
+  class Contexts
+    class << self
+      include ClassesConfig
+    end
+  end
+  class ContextItems
+    class << self
+      include ClassesConfig
+    end
+  end
   class ContentItems
     class << self
-      def register_class(model)
-        @@item_classes ||= []
-        @@item_classes << model unless @@item_classes.include?(model)
-      end
-
-      def classes
-        @@item_classes ||= []
-      end
-
-      def classes=(values)
-        @@item_classes = values
-      end
+      include ClassesConfig
     end
   end
 end
