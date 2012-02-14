@@ -1,0 +1,8 @@
+.page-item
+  = simple_form_for resource, :url => settings_path do |f|
+    - if @success
+      .alert.alert-success
+        = t(".success").html_safe
+    = f.input :title
+
+    = f.buttons

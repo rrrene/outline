@@ -1,0 +1,7 @@
+
+en:
+  domain:
+    settings:
+      page_header: "Settings"
+      page_hint: ""
+      success: "<b>Well done!</b> Your settings have been saved."

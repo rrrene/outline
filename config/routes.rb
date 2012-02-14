@@ -52,6 +52,8 @@ Outline::Application.routes.draw do
 
   resources :users
 
+  match 'settings' => 'domain#settings', :as => :settings, :via => [:get, :put]
+
   # User Authentification
   resources :user_sessions
   match 'login' => 'user_sessions#new', :as => :login
