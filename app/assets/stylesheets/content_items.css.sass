@@ -30,11 +30,14 @@ $content_item_margin_bottom: 20px
 .add-content-item-form
   ul.nav-tabs,
   div.tab-content
-    margin-bottom: 5px
+    margin-bottom: 0
     margin-left: $content_margin_left / 2
     padding-left: $content_margin_left / 2
     margin-right: $content_margin_left
     //border: 1px solid red
+    li
+      a
+        padding-bottom: 5px
   ul.nav-tabs 
     border-bottom: none
     li
@@ -44,9 +47,14 @@ $content_item_margin_bottom: 20px
         background: transparent
         text-decoration: underline
   .tab-pane
-    border: 1px solid #ddd
-    border-bottom-color: #ccc
-    border-right-color: #ccc
+    background: url(add-content-item-form-arrow.png) 4px top repeat-x
+    padding-top: 7px
+    .inner-tab-pane
+      border: 1px solid #ddd
+      border-top: none
+      border-left-color: #bbb
+
+
     form,
     .control-group,
     .form-actions

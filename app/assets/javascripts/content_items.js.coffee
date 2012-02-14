@@ -27,6 +27,15 @@ OUT.contentItems =
       'margin-bottom': "20"
       , "slow"
 
+  setAddFormArrowTo: (anchor) ->
+    pane = $( $(anchor).attr("href") )
+    if pane?
+      arrow_left_global = anchor.parent().offset().left + anchor.parent().width() / 2
+      arrow_left_local = arrow_left_global - pane.offset().left
+      arrow_width = 16
+      arrow_left = arrow_left_local - arrow_width / 2
+      $(pane).css("background-position", arrow_left+"px 0")
+
 $ ->
   OUT.contentItems.createSortables()
 
@@ -36,10 +45,11 @@ $ ->
     OUT.selectFirstInput(selector)
     false
 
-  # $("#add-content-item-tabs li.active").removeClass("active")
   $('#add-content-item-tabs').bind 'shown', (event) ->
-    pane = $(event.target).attr("href").match(/(#.+)$/)[0]
-    OUT.selectFirstInput(pane)
+    OUT.contentItems.setAddFormArrowTo $(event.target)
+    pane = $(event.target).attr("href")
+    if pane?
+      OUT.selectFirstInput($(pane))
 
   $('a[data-toggle="move-to-page"]').bind "click", (event) ->
     $("body").click()
@@ -53,3 +63,7 @@ $ ->
           quickjump.hide()
     , "/quick_jump_targets/pages.json"
     false
+
+  OUT.contentItems.setAddFormArrowTo $("#add-content-item-tabs li.active a")
+
+  $("#add-content-item-tabs li.active").removeClass("active")
