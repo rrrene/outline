@@ -28,11 +28,11 @@ OUT.contentItems =
       , "slow"
 
   setAddFormArrowTo: (anchor) ->
-    pane = $( $(anchor).attr("href") )
+    pane = $(anchor).attr("href")
     if pane?
-      arrow_left_global = anchor.parent().offset().left + anchor.parent().width() / 2
-      arrow_left_local = arrow_left_global - pane.offset().left
       arrow_width = 16
+      arrow_left_global = $(anchor).parent().offset().left + $(anchor).parent().width() / 2
+      arrow_left_local = arrow_left_global - $(pane).offset().left
       arrow_left = arrow_left_local - arrow_width / 2
       $(pane).css("background-position", arrow_left+"px 0")
 
