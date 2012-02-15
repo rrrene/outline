@@ -12,5 +12,5 @@
  *= require "bootstrap"
  *= require "bootstrap.responsive"
  *= require "bootstrap-changes"
- *= require_tree .
+ *= require_tree ./application
 */

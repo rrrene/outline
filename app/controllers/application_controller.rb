@@ -2,14 +2,19 @@ class ApplicationController < ActionController::Base
   layout :themed_layout
   protect_from_forgery
 
-  helper_method :current_user, :current_domain, :current_project, :logged_in?
+  helper_method :current_user, :current_domain, :current_project, :current_theme, :logged_in?
   helper_method :recently_viewed_pages, :recently_viewed_projects
   helper_method :themed, :try_translation
 
   before_filter :set_activity_user
 
   def themed_layout(layout = :application)
-    "themes/#{current_theme}/#{layout}"
+    file = "themes/#{current_theme}/#{layout}"
+    if template_exists? file
+      file
+    else
+      "themes/default/#{layout}"
+    end
   end
 
   private
@@ -21,8 +26,10 @@ class ApplicationController < ActionController::Base
   def current_project
     @current_project ||= begin
       # use get_collection_ivar instead of resource to avoid lazy loading of resource on index views
-      project = current_project_for(get_collection_ivar)
-      project.try(:new_record?) ? nil : project
+      if respond_to?(:get_collection_ivar)
+        project = current_project_for(get_collection_ivar)
+        project.try(:new_record?) ? nil : project
+      end
     end
   end
 
@@ -37,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme
-    :default
+    params[:theme] || :default
   end
   
   def current_user
@@ -83,7 +90,7 @@ class ApplicationController < ActionController::Base
   end
 
   def themed(template_name)
-    "layouts/themes/#{current_theme}/#{template_name}"
+    "layouts/" + themed_layout(template_name)
   end
 
   def try_translation(snippets = [], options = {})
