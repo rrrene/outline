@@ -25,24 +25,6 @@
 
         = spacer
 
-%table.table.table-striped
-  %thead
-    %th{:colspan => 2} Resource
-    %th verb
-    %th action
-    %th context
-    %th content
-  %tbody
-    - @activities.each do |activity|
-      %tr
-        %td= activity.resource_type
-        %td= activity.resource_id
-        %td= activity.verb
-        %td= activity.action
-        %td= activity.context_id
-        %td= activity.content_id
-
-
 - content_for(:contextual_sidebar) do
   - todo_lists = current_domain.todo_lists.where(:user_id => current_user).first(2)
   - if todo_lists.present?
@@ -63,14 +45,4 @@
           %li= link_to "Add To-Do", "#", :class => "new"
 
 
-- content_for(:contextual_sidebar) do
-  
-  %ul.nav.nav-list
-    %li.nav-header= "Recently viewed projects"
-    - @recently_viewed_projects.each do |item|
-      %li= link_to item.title, item
-
-  %ul.nav.nav-list
-    %li.nav-header= "Recently viewed pages"
-    - @recently_viewed_pages.each do |item|
-      %li= link_to item.title, item
+- content_for(:navigation_sidebar) do

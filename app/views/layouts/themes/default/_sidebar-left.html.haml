@@ -14,3 +14,19 @@
       = nav_to t("navigation.todo_lists"), :todo_lists
       = nav_to t("navigation.projects"), :projects
       = nav_to t("navigation.pages"), :pages
+
+  = yield(:navigation_sidebar)
+
+  - unless current_project
+    - if recent = recently_viewed_projects
+      %ul.nav.nav-list
+        %li.nav-header= "Recently viewed projects"
+        - recent.each do |item|
+          %li= link_to item.title, item
+
+    - if recent = recently_viewed_pages
+      %ul.nav.nav-list
+        %li.nav-header= "Recently viewed pages"
+        - recent.each do |item|
+          %li{:class => current_page?(item) ? :active : nil}= link_to item.title, item
+
