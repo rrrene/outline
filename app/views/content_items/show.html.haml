@@ -1,1 +1,8 @@
-= content_item_detail_view
+%ul.unstyled.content-items{:class => "content-#{resource.class.to_s.underscore.dasherize}"}
+  = render "content_items/show", :content_item => resource.content_item
+
+.page-item
+  .page-item-inner
+    .back= link_to "&laquo; Back".html_safe, resource.outer_content.holder, :class => "btn"
+
+= render "projects/sidebar"

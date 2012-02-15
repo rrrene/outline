@@ -19,12 +19,18 @@ class ApplicationController < ActionController::Base
 
   def current_project
     @current_project ||= begin
-      project = if resource.is_a?(Project)
-        resource
-      elsif resource.respond_to?(:context) && resource.context.try(:resource).is_a?(Project)
-        resource.context.resource
-      end
-      !!project.try(:new_record?) ? nil : project
+      project = current_project_for(resource)
+      project.try(:new_record?) ? nil : project
+    end
+  end
+
+  def current_project_for(resource)
+    if resource.is_a?(Project)
+      resource
+    elsif resource.respond_to?(:context) && resource.context.try(:resource).is_a?(Project)
+      resource.context.resource
+    elsif resource.respond_to?(:outer_content)
+      current_project_for resource.outer_content.holder
     end
   end
 

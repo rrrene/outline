@@ -1,15 +1,15 @@
+- if current_project
+  - content_for(:contextual_sidebar) do
 
-- content_for(:contextual_sidebar) do
+    - content_items = ContentItem.where(:content_id => current_project.pages.map(&:inner_content).map(&:id), :item_type => :Link).includes(:item)
+    - links = content_items.map(&:item)
+    - if links.present?
+      %ul.nav.nav-list
+        %li.nav-header Links
+        - links.each do |link|
+          %li= link_to truncate(link.title, :length => 20), link.href
 
-  - content_items = ContentItem.where(:content_id => current_project.pages.map(&:inner_content).map(&:id), :item_type => :Link).includes(:item)
-  - links = content_items.map(&:item)
-  - if links.present?
     %ul.nav.nav-list
-      %li.nav-header Links
-      - links.each do |link|
-        %li= link_to truncate(link.title, :length => 20), link.href
-
-  %ul.nav.nav-list
-    %li.nav-header Pages
-    - current_project.pages.each do |page|
-      %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
+      %li.nav-header Pages
+      - current_project.pages.each do |page|
+        %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
