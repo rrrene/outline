@@ -55,8 +55,10 @@
           - todo_list.active_todos.each do |todo|
             %li
               .todo{:id => dom_id(todo)}
-                %input.todo-checkbox{:type => :checkbox, :checked => todo.active? ? nil : :checked, :"data-url" => set_active_todo_path(todo)}
-                %span= inline_user_text todo.title
+                .todo-checkbox
+                  %input{:type => :checkbox, :checked => todo.active? ? nil : :checked, :"data-url" => set_active_todo_path(todo)}
+                .todo-title
+                  = inline_user_text todo.title
                 .clearboth
           %li= link_to "Add To-Do", "#", :class => "new"
 

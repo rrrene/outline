@@ -31,12 +31,12 @@
     .content-items
       .content-item
         .content-item-body
-          input.todo-checkbox
+          .todo-checkbox
             float: left
-          span
+            width: 20px
+          .todo-title
             display: block
             float: left
-            margin-left: 5px
             width: 90%
         &.pending
           span
@@ -70,18 +70,17 @@
     h5
       border-bottom: 1px solid #EFEFEF
       border-bottom: 1px solid #ddd
-      a
-        color: inherit
   .todo-list
+    margin-top: 8px
     margin-bottom: 0
     a.new
       font-size: 11px
       text-decoration: underline
       color: inherit
-    input.todo-checkbox
+      margin-left: 20px
+    .todo-checkbox
       float: left
-    span
-      display: block
+      width: 20px
+    .todo-title
       float: left
-      margin-left: 5px
       width: 80%
