@@ -3,7 +3,7 @@
 
 .content-item-options
   %ul.nav.nav-pills
-    %li= link_to_function "Open", "OUT.contentItems.open('##{dom_id(content_item)}');"
+    %li= link_to_function "Open", "OUT.contentItems.open('##{dom_id(content_item)}');", :href => url_for(item)
     %li= link_to tt("#{item_path}.options.edit_item", "content_items.options.edit_item"), {:controller => item_path, :action => :edit, :id => item}, {:remote => true}
     %li.dropdown
       %a.dropdown-toggle{:"data-toggle" => "dropdown", :href => "#"}

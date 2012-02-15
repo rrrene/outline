@@ -1,4 +1,6 @@
-.back
-  = link_to "Back", resource.outer_content.holder
+%ul.unstyled.content-items{:class => "content-#{resource.class.to_s.underscore.dasherize}"}
+  = rendered
 
-= rendered
+.page-item
+  .page-item-inner
+    .back= link_to "&laquo; Back".html_safe, resource.outer_content.holder, :class => "btn"

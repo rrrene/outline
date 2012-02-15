@@ -2,7 +2,7 @@ module ContentItemsHelper
 
   def content_item_detail_view(&block)
     object = resource
-    rendered = block_given? ? capture(&block) : render("show")
+    rendered = block_given? ? capture(&block) : render("content_items/show", :content_item => resource.content_item)
     render :partial => "content_items/detail_view", :locals => {:resource => object, :rendered => rendered}
   end
 

@@ -7,6 +7,14 @@ module ContentItemResources
       end
     end
 
+    def set_page_header
+      holder = resource.outer_content.holder
+      if holder.respond_to?(:title)
+        @page_header = t("#{controller_name}.#{action_name}.page_header", :holder=> holder.title)
+        @page_hint = t("#{controller_name}.#{action_name}.page_hint", :holder=> holder.title)
+      end
+    end
+
     def render_with_template_fallback
       method("#{action_name}_without_fallback").call
       unless performed?
@@ -29,6 +37,7 @@ module ContentItemResources
       authorized_resources
       self.send :include, InstanceMethods
       alias_method_chain :create, :redirect_to_holder
+      self.send :before_filter, :set_page_header, :only => [:new, :create, :edit, :update, :show]
     end
   end
 

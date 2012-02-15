@@ -11,12 +11,17 @@ en:
       todo_ĺist:
         href: "Enter Title..."
   todo_lists:
-    options:
-      delete_item: "Remove this List..."
-      delete_item_confirm: "Do you really want to permanently delete this list?"
     index:
       page_header: "To-do lists"
       page_hint: "Overview"
+    edit:
+      page_header: "Edit Link"
+      page_hint: "on '%{holder}'"
     show:
+      page_header: "Link"
+      page_hint: "on '%{holder}'"
       add_todo_link: "Add new Item..."
       show_more_inactive_todos: "Show all"
+    options:
+      delete_item: "Remove this List..."
+      delete_item_confirm: "Do you really want to permanently delete this list?"

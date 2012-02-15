@@ -13,6 +13,12 @@ en:
       link:
         href: "Enter URL..."
   links:
+    edit:
+      page_header: "Edit Link"
+      page_hint: "on '%{holder}'"
+    show:
+      page_header: "Link"
+      page_hint: "on '%{holder}'"
     options:
       delete_item: "Remove this Link..."
       delete_item_confirm: "Do you really want to permanently delete this link?"
