@@ -25,9 +25,9 @@ class ApplicationController < ActionController::Base
 
   def current_project
     @current_project ||= begin
-      # use get_collection_ivar instead of resource to avoid lazy loading of resource on index views
-      if respond_to?(:get_collection_ivar)
-        project = current_project_for(get_collection_ivar)
+      # use params[:id] instead of resource to avoid lazy loading of resource on index views
+      if params[:id]
+        project = current_project_for(resource)
         project.try(:new_record?) ? nil : project
       end
     end
