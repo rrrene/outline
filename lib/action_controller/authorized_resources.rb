@@ -1,5 +1,5 @@
 module AuthorizedResources
-  PER_PAGE = 3
+  PER_PAGE = 30
 
   module InstanceMethods
     def create_with_authorization(&block)

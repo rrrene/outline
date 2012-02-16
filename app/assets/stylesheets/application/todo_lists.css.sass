@@ -26,20 +26,22 @@
     color: #333
     text-decoration: underline
 
+  .content-item-todo
+    .todo-checkbox
+      float: left
+      width: 20px
+    .todo-title
+      display: block
+      float: left
+      width: 90%
+
   .active-todos
     margin-top: 10px
     .content-items
       .content-item
         .content-item-body
-          .todo-checkbox
-            float: left
-            width: 20px
-          .todo-title
-            display: block
-            float: left
-            width: 90%
         &.pending
-          span
+          .todo-title
             text-decoration: line-through
             color: #aaa
 
@@ -51,12 +53,12 @@
           visibility: hidden
         padding-bottom: 0
         .content-item-body
-          span
+          .todo-title
             font-size: 12px!important
             text-decoration: line-through
             color: #aaa
         &.pending
-          span
+          .todo-title
             text-decoration: none
             color: inherit
     a.show_more
