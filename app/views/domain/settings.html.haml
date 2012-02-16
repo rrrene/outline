@@ -5,4 +5,12 @@
         = t(".success").html_safe
     = f.input :title
 
+    .control-group.string.required
+      %label.string.required{:for => "project_title"} Title
+      .controls
+        - %w(default cyborg).each do |theme|
+          .theme-toggle{}
+            %input{:type => :radio, :name => "domain[theme]", :id => "domain_theme_#{theme}", :"data-toggle" => "theme", :value => theme, :selected => current_theme == theme ? :selected : nil}
+            %label{:for => "domain_theme_#{theme}"}= theme
+
     = f.buttons
