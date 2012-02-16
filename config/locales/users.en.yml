@@ -5,3 +5,6 @@ en:
       page_header: "Users"
       page_hint: "Overview"
       new_user_link: "Create new user"
+    edit:
+      page_header: "Edit user"
+      page_hint: ""
