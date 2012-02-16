@@ -24,14 +24,12 @@
       .navbar.navbar-static
         .navbar-inner
           .container
-
             %ul.nav.pull-left
               - if current_project
                 = nav_to t("navigation.project_pages"), current_project.pages.first, :pages
                 = nav_to t("navigation.project_todo_lists"), todo_lists_project_path(current_project)
               - else
-                = nav_to t("navigation.activities"), :activities
-                = nav_to t("navigation.todo_lists"), :todo_lists
+                %li= link_to current_domain.title, root_path, :class => "brand"
 
             %ul.nav.pull-right
               - if current_project
