@@ -18,7 +18,7 @@ en:
       page_header: "Edit Link"
       page_hint: "on '%{holder}'"
     show:
-      page_header: "Link"
+      page_header: "To-do List"
       page_hint: "on '%{holder}'"
       add_todo_link: "Add new Item..."
       show_more_inactive_todos: "Show all"
