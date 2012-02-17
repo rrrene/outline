@@ -16,10 +16,10 @@ OUT.contentItems =
       scroll: true
       update: OUT.handlers.listSorted
 
-  deactivateForm: (selector) ->
-    $(selector).find("input[type=text], textarea").val("").blur()
-    if handler = OUT.deactivateFormHandlers[selector]
-      handler($(selector))
+  deactivateForm: (form_selector, content_selector) ->
+    $(content_selector+' '+form_selector).find("input[type=text], textarea").val("").blur()
+    if handler = OUT.deactivateFormHandlers[form_selector]
+      handler(form_selector, content_selector)
 
   open: (select) ->
     ele = $(select).animate
