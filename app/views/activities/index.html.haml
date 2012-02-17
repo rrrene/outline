@@ -26,11 +26,10 @@
         = spacer
 
 - content_for(:contextual_sidebar) do
-  - todo_lists = current_domain.todo_lists.where(:user_id => current_user).first(2)
-  - if todo_lists.present?
+  - if favorite_todo_lists.present?
     %ul.nav.nav-list
-      %li.nav-header To-Do Lists
-    - todo_lists.each do |todo_list|
+      %li.nav-header= "Pinned To-Do Lists"
+    - favorite_todo_lists.each do |todo_list|
       .well
         %h5= link_to inline_user_text(todo_list.title), todo_list
         %ul.unstyled.todo-list

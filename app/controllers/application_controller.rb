@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_domain, :current_project, :current_theme
   helper_method :logged_in?, :favorited?
-  helper_method :recently_viewed_pages, :recently_viewed_projects
   helper_method :themed, :try_translation
 
   before_filter :set_activity_user
@@ -68,19 +67,6 @@ class ApplicationController < ActionController::Base
   
   def store_location
     session[:return_to] = request.fullpath
-  end
-
-  def recently_viewed(resource_class, limit = 5)
-    arel = current_domain.activities.where(:verb => :read, :resource_type => resource_class.to_s).group("resource_type, resource_id")
-    arel.limit(limit).map(&:resource)
-  end
-
-  def recently_viewed_pages
-    recently_viewed Page, 5
-  end
-
-  def recently_viewed_projects
-    recently_viewed Project, 20
   end
 
   def require_user

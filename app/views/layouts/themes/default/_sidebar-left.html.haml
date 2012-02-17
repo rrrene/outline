@@ -19,15 +19,15 @@
   = yield(:navigation_sidebar)
 
   - unless current_project
-    - if recent = recently_viewed_projects
+    - if recent = favorite_projects
       %ul.nav.nav-list
-        %li.nav-header= "Recently viewed projects"
+        %li.nav-header= "Pinned projects"
         - recent.each do |item|
           %li= link_to item.title, item
 
-    - if recent = recently_viewed_pages
+    - if recent = favorite_pages
       %ul.nav.nav-list
-        %li.nav-header= "Recently viewed pages"
+        %li.nav-header= "Pinned pages"
         - recent.each do |item|
           %li{:class => current_page?(item) ? :active : nil}= link_to item.title, item
 
