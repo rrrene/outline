@@ -1,4 +1,10 @@
 Outline::Application.routes.draw do
+  resources :favorites do
+    collection do
+      post "set"
+    end
+  end
+
   resources :quick_jump_targets do
     collection do
       get "pages"
@@ -52,6 +58,7 @@ Outline::Application.routes.draw do
 
   resources :users
 
+  match 'dashboard' => 'domain#dashboard', :as => :dashboard
   match 'settings' => 'domain#settings', :as => :settings, :via => [:get, :put]
 
   # User Authentification

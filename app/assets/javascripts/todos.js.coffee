@@ -11,7 +11,7 @@ window.OUT.deactivateFormHandlers["form.simple_form.todo"] = (form) ->
 
 OUT.todos =
   initialize: ->
-    $(".todo-checkbox").bind "change", (event) ->
+    $(".todo-checkbox input").bind "change", (event) ->
       console.log "checkbox.change", $(event.target).val()
       $(event.target).parents(".content-item").addClass("pending")
       checked = $(event.target).is(':checked')

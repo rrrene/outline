@@ -2,6 +2,10 @@ class DomainController < ApplicationController
   before_filter :set_body_template
   helper_method :resource, :resource_path
 
+  def dashboard
+    @body_template = :body_yield
+  end
+
   def settings
     @page_header = t("#{controller_name}.#{action_name}.page_header")
     @domain = current_domain

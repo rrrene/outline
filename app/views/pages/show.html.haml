@@ -3,7 +3,7 @@
 
 = render "content/show", :content => resource.inner_content
 
--content_for(:page_header) do
+- content_for(:page_header) do
   .btn-group
     = link_to icon(:edit) + t(".edit_link"), {:action => :edit, :id => resource}, {:remote => true, :class => "btn edit"}
     %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}

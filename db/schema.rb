@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216145551) do
+ActiveRecord::Schema.define(:version => 20120217110848) do
 
   create_table "activities", :force => true do |t|
     t.integer  "domain_id"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(:version => 20120216145551) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "theme"
+  end
+
+  create_table "favorites", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "user_id"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "links", :force => true do |t|

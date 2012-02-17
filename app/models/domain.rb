@@ -3,6 +3,7 @@ class Domain < ActiveRecord::Base
   has_many :quick_jump_targets, :dependent => :destroy
   has_many :activities, :dependent => :destroy
   has_many :users, :dependent => :destroy
+  has_many :favorites
 
   def tags
     owned_tags.map(&:name).sort

@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   layout :themed_layout
   protect_from_forgery
 
-  helper_method :current_user, :current_domain, :current_project, :current_theme, :logged_in?
+  helper_method :current_user, :current_domain, :current_project, :current_theme
+  helper_method :logged_in?, :favorited?
   helper_method :recently_viewed_pages, :recently_viewed_projects
   helper_method :themed, :try_translation
 
@@ -51,7 +52,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= ::UserSession.find.try(:user)
   end
   alias logged_in? current_user
-  
+
+  def favorited?(resource)
+    current_user.favors?(resource)
+  end
+
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
