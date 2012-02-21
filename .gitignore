@@ -18,3 +18,4 @@
 /tmp
 
 config/database.yml
+public/assets
