@@ -70,20 +70,35 @@
 .sidebar
   .well
     margin-bottom: 10px
-    h5
-      border-bottom: 1px solid #EFEFEF
-      border-bottom: 1px solid #ddd
   .todo-list
     margin-top: 8px
     margin-bottom: 0
-    a.new
-      font-size: 11px
-      text-decoration: underline
-      color: inherit
-      margin-left: 20px
-    .todo-checkbox
-      float: left
-      width: 20px
-    .todo-title
-      float: left
-      width: 80%
+    h2
+      border-bottom: 1px solid #EFEFEF
+      border-bottom: 1px solid #ddd
+      font-size: 13px
+      line-height: 16px
+    .inactive-todos
+      display: none
+    .content-item
+      padding-top: 4px
+      padding-bottom: 0
+      background: transparent
+      &:hover
+        .move-handle
+          margin-left: -10px
+        .content-item-options
+          visibility: hidden
+      .content-item-inner
+        padding: 0
+        padding-left: 10px
+        a.new
+          font-size: 11px
+          text-decoration: underline
+          color: inherit
+        .todo-checkbox
+          float: left
+          width: 20px
+        .todo-title
+          float: left
+          width: 80%
