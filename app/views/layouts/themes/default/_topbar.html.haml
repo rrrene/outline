@@ -1,74 +1,46 @@
 - if logged_in?
   .navbar-wrapper
     .navbar-dummy
-      - if current_project
-        .navbar.navbar-static
-          .navbar-inner
-            .container
-              .pull-left
-                %h1= link_to current_project.title, current_project
-              %ul.nav.pull-right
-                %li.dropdown.small
-                  %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
-                    = t("navigation.jump_to_project")
-                    %b.caret
+    .navbar.navbar-static
+      .navbar-inner
+        .container
+          %ul.nav.pull-left
+            %li= link_to current_domain.title, root_path, :class => "brand"
 
-                  %ul.dropdown-menu
-                    - current_domain.projects.where(:active => true).limit(25).order("UPPER(title) ASC").each do |project|
-                      %li= link_to project.title, project
-                    %li.divider
-                    %li= link_to t("navigation.all_projects"), projects_path
+          %ul.nav.pull-right
+            %li.dropdown
+              %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
+                = t("navigation.projects")
+                %b.caret
 
-                %li.small= link_to t("navigation.back_to_home"), root_url
-    - if current_project.blank?
-      .navbar.navbar-static
-        .navbar-inner
-          .container
-            %ul.nav.pull-left
-              - if current_project
-                = nav_to t("navigation.project_pages"), current_project.pages.first, :pages
-                = nav_to t("navigation.project_todo_lists"), todo_lists_project_path(current_project)
-              - else
-                %li= link_to current_domain.title, root_path, :class => "brand"
-
-            %ul.nav.pull-right
-              - if current_project
-
-                = nav_to t("navigation.project_settings"), edit_project_path(current_project)
-              - else
-                %li.dropdown
-                  %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
-                    = t("navigation.projects")
-                    %b.caret
-
-                  %ul.dropdown-menu
-                    %li= link_to t("navigation.all_projects"), projects_path
-                    %li.divider
-                    - current_domain.projects.where(:active => true).limit(25).order("UPPER(title) ASC").each do |project|
-                      %li= link_to project.title, project
+              %ul.dropdown-menu
+                %li= link_to t("navigation.all_projects"), projects_path
+                %li.divider
+                - current_domain.projects.where(:active => true).limit(25).order("UPPER(title) ASC").each do |project|
+                  %li= link_to project.title, project
 
 
-                %li.dropdown
-                  %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
-                    = t("navigation.pages")
-                    %b.caret
+            %li.dropdown
+              %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
+                = t("navigation.pages")
+                %b.caret
 
-                  %ul.dropdown-menu
-                    %li= link_to t("navigation.all_pages"), pages_path
-                    %li.divider
-                    - current_domain.pages.where("context_id IS NULL").limit(25).order("UPPER(title) ASC").each do |page|
-                      %li= link_to page.title, page
+              %ul.dropdown-menu
+                %li= link_to t("navigation.all_pages"), pages_path
+                %li.divider
+                - current_domain.pages.where("context_id IS NULL").limit(25).order("UPPER(title) ASC").each do |page|
+                  %li= link_to page.title, page
 
 
-                %li.divider-vertical
-                %li.dropdown
-                  %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
-                    = t("navigation.options")
-                    %b.caret
+            %li.divider-vertical
+            %li.dropdown
+              %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
+                = t("navigation.options")
+                %b.caret
 
-                  %ul.dropdown-menu
-                    %li= link_to t("navigation.users"), users_path
-                    %li= link_to t("navigation.settings"), settings_path
-                    %li.divider
-                    %li= link_to t("navigation.my_profile"), edit_user_path(current_user)
-                    %li= link_to icon(:off) + t("navigation.logout"), logout_path
+              %ul.dropdown-menu
+                %li= link_to t("navigation.users"), users_path
+                %li= link_to t("navigation.settings"), settings_path
+                %li.divider
+                %li= link_to t("navigation.my_profile"), edit_user_path(current_user)
+                %li= link_to icon(:off) + t("navigation.logout"), logout_path
