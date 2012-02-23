@@ -1,6 +1,10 @@
 
 en:
   domain:
+    dashboard:
+      projects: "Projects"
+      pages: "Pages"
+      todo_lists: "Todo lists"
     settings:
       page_header: "Settings"
       page_hint: ""
