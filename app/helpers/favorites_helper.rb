@@ -12,6 +12,6 @@ module FavoritesHelper
   end
 
   def favorite_resources(klass)
-    current_user.favorites.where(:resource_type => klass).map(&:resource)
+    current_user.favorites.where(:resource_type => klass).order("created_at DESC").map(&:resource)
   end
 end
