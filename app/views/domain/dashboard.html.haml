@@ -17,16 +17,5 @@
       .row
         - favorite_todo_lists.each do |todo_list|
           .span4.dashboard-todo-list
-            .well
-              %h5= link_to inline_user_text(todo_list.title), todo_list
-              %ul.unstyled.todo-list
-                - todo_list.active_todos.each do |todo|
-                  %li
-                    .todo{:id => dom_id(todo)}
-                      .todo-checkbox
-                        %input{:type => :checkbox, :checked => todo.active? ? nil : :checked, :"data-url" => set_active_todo_path(todo)}
-                      .todo-title
-                        = inline_user_text todo.title
-                      .clearboth
-                %li= link_to "Add To-Do", "#", :class => "new"
-
+            .well.todo-list
+              = render :partial => "todo_lists/show", :locals => {:resource => todo_list}
