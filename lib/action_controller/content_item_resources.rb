@@ -8,7 +8,7 @@ module ContentItemResources
     end
 
     def set_page_header
-      holder = resource.outer_content.holder
+      holder = resource.outer_content.try(:holder)
       if holder.respond_to?(:title)
         @page_header = t("#{controller_name}.#{action_name}.page_header", :holder=> holder.title)
         @page_hint = t("#{controller_name}.#{action_name}.page_hint", :holder=> holder.title)
