@@ -23,7 +23,7 @@ module ApplicationHelper
 
   def link_to_resource(resource)
     text = resource.respond_to?(:title) ? resource.title : resource.class.to_s
-    link_to inline_user_text(text), resource
+    link_to inline_user_text(text), resource, :rel => resource.class.to_s.underscore.dasherize
   end
 
   def nav_to(text, path, controller = nil)

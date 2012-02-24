@@ -1,4 +1,4 @@
-%h2= inline_user_text(resource.title)
+%h2= link_to_resource resource
 
 - if resource.inner_content
   .active-todos{:id => "active-todos-"+dom_id(resource)}

@@ -1,19 +1,19 @@
 .container.dashboard
   .row
     .span4
-      %h2= link_to icon(:project) + content_tag(:span, t(".projects")), projects_path, :class => "with-icon"
+      %h2.category= link_to icon(:project) + content_tag(:span, t(".projects")), projects_path, :class => "with-icon"
       .row
         - favorite_projects.each do |resource|
           .span2.dashboard-project
             = link_to resource.title, resource
     .span4
-      %h2= link_to icon(:page) + content_tag(:span, t(".pages")), pages_path, :class => "with-icon"
+      %h2.category= link_to icon(:page) + content_tag(:span, t(".pages")), pages_path, :class => "with-icon"
       .row
         - favorite_pages.each do |resource|
           .span2.dashboard-page
             = link_to resource.title, resource
     .span4
-      %h2= link_to icon(:"todo-list") + content_tag(:span, t(".todo_lists")), todo_lists_path, :class => "with-icon"
+      %h2.category= link_to icon(:"todo-list") + content_tag(:span, t(".todo_lists")), todo_lists_path, :class => "with-icon"
       .row
         - favorite_todo_lists.each do |todo_list|
           .span4.dashboard-todo-list
