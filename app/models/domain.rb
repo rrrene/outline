@@ -1,5 +1,5 @@
 class Domain < ActiveRecord::Base
-  THEMES = %w(default cyborg slate)
+  THEMES = %w(outline default cyborg slate)
   acts_as_tagger
   has_many :quick_jump_targets, :dependent => :destroy
   has_many :activities, :dependent => :destroy
