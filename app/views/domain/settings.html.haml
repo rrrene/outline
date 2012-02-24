@@ -8,7 +8,7 @@
     .control-group
       %label.control-label{:for => "project_title"}= Domain.human_attribute_name :theme
       .controls
-        - %w(default cyborg).each do |theme|
+        - Domain::THEMES.each do |theme|
           .theme-toggle{}
             %label.radio{:for => "domain_theme_#{theme}"}
               %input{:type => :radio, :name => "domain[theme]", :id => "domain_theme_#{theme}", :"data-toggle" => "theme", :value => theme, :checked => current_theme.to_s == theme ? :checked : nil}
