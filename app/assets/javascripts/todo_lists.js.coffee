@@ -5,4 +5,7 @@
 $ ->
   $('.content-todo-list').sortable
     connectWith: ".content-todo-list"
-  
+    
+  # Remove links to todo-list from todo-lists in content area
+  $('.content a[rel="todo-list"]').each ->
+    $(this).parent().html $(this).html()
