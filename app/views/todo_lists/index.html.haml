@@ -1,4 +1,4 @@
-%ul.unstyled.content-items
+%ul.unstyled.content-items.content-overview
   - collection.map(&:content_item).each do |content_item|
     = render :partial => "content_items/show", :locals => {:content_item => content_item}
 
