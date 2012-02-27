@@ -9,3 +9,12 @@ $ ->
   # Remove links to todo-list from todo-lists in content area
   $('.content h2 a[rel="todo-list"]').each ->
     $(this).parent().html $(this).html()
+
+  title = $(".content-items").data("filter-title")
+  if title?
+    regex = new RegExp("(#{title})", "gi")
+    $(".content-items .content-item-todo-list h2, .content-items .todo-title").each ->
+      old_html = $(this).html()
+      if old_html.match regex
+        # $(this).addClass "filter-matched"
+        $(this).html old_html.replace(regex, '<span class="highlight">$1</span>')
