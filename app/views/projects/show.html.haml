@@ -1,4 +1,6 @@
 - content_for(:page_header) do
-  = link_to "Edit", edit_resource_path(resource), :class => "btn"
+  .btn-group
+    = favorite_button resource
+    = link_to "Edit", edit_resource_path(resource), :class => "btn"
 
 = render "projects/sidebar"

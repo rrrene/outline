@@ -1,4 +1,9 @@
 module FavoritesHelper
+
+  def favorite_button(resource)
+    render :partial => "favorites/button", :locals => {:resource => resource}
+  end
+
   def favorite_pages
     @favorite_pages ||= favorite_resources Page
   end

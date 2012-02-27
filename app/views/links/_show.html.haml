@@ -1,7 +1,7 @@
 = render :partial => "content_items/timestamp", :locals => {:resource => resource}
 
-%h5= link_to inline_user_text(resource.title.presence || resource.href_without_protocol), resource.href, {:rel => :external, :class => :external}
-%small= link_to resource.href, resource.href, {:rel => :external, :class => :external}
+%h2= link_to inline_user_text(resource.title.presence || resource.href_without_protocol), resource.href, {:rel => :external, :class => :external}
+%small.href= link_to resource.href, resource.href, {:rel => :external, :class => :external}
 
 - if resource.text.present?
   %p= user_text resource.text

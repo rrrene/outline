@@ -3,9 +3,21 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+
+  $(".btn.favorite-toggle").bind "click", (event) ->
+    selector = $(this).data("target")
+    checkbox = $(selector).find('input[type=checkbox]')
+    console.log checkbox
+    checkbox.click()
+
+    active = $(checkbox).is(":checked")
+    klass = if active then "icon-favorite" else "icon-no-favorite"
+    $(this).find("i").attr("class", klass)
+
+    true
+
   $('input[data-toggle="favorite"]').bind "change", (event) ->
     $(this).parents("form").submit();
     active = $(this).is(":checked")
     klass = if active then "icon-favorite" else "icon-no-favorite"
-    console.log $(this).val(), active, klass
     $(this).parents("form").find("i").attr("class", klass)

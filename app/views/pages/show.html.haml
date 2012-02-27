@@ -4,12 +4,13 @@
 = render "content/show", :content => resource.inner_content
 
 - content_for(:page_header) do
-  .btn-group
-    = link_to icon(:edit) + t(".edit_link"), {:action => :edit, :id => resource}, {:remote => true, :class => "btn edit"}
-    %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
-      %span.caret
-    %ul.dropdown-menu
-      %li= link_to icon(:trash) + t(".delete_link"), {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
-
+  .pull-right
+    .btn-group
+      = favorite_button resource
+      = link_to icon(:edit) + t(".edit_link"), {:action => :edit, :id => resource}, {:remote => true, :class => "btn edit"}
+      %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
+        %span.caret
+      %ul.dropdown-menu
+        %li= link_to icon(:trash) + t(".delete_link"), {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
 
 = render "projects/sidebar"

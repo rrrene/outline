@@ -6,15 +6,6 @@
       .content
         .page-header
           .pull-left
-            - unless resource.new_record?
-              = form_tag set_favorites_path, :remote => true do
-                = hidden_field_tag "favorite[resource_type]", resource.class
-                = hidden_field_tag "favorite[resource_id]", resource.id
-                %label.radio
-                  %input{:type => :checkbox, :name => "active", :"data-toggle" => "favorite", :value => "true", :checked => favorited?(resource) ? :checked : nil}
-                  = icon(favorited?(resource) ? "favorite" : "no-favorite")
-
-          .pull-left
             %h1
               - if @page_header.present?
                 = @page_header

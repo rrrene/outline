@@ -1,0 +1,7 @@
+%button.btn.favorite-toggle{:"data-toggle" => "button", :"data-target" => "#favorite_"+dom_id(resource), :class => favorited?(resource) ? "active" : nil}= icon(favorited?(resource) ? "favorite" : "no-favorite")
+= form_tag set_favorites_path, :remote => true, :id => "favorite_"+dom_id(resource), :class => "favorite hidden" do
+  = hidden_field_tag "favorite[resource_type]", resource.class
+  = hidden_field_tag "favorite[resource_id]", resource.id
+  %label.radio
+    %input{:type => :checkbox, :name => "active", :"data-toggle" => "favorite", :value => "true", :checked => favorited?(resource) ? :checked : nil}
+    = icon(favorited?(resource) ? "favorite" : "no-favorite")

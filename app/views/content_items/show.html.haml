@@ -6,3 +6,7 @@
     .back= link_to "&laquo; Back".html_safe, resource.outer_content.holder, :class => "btn"
 
 = render "projects/sidebar"
+
+- content_for(:page_header) do
+  .pull-right
+    = favorite_button resource
