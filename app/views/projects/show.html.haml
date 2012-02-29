@@ -3,4 +3,9 @@
     = favorite_button resource
     = link_to "Edit", edit_resource_path(resource), :class => "btn"
 
+.page-item
+  = render "content_items/top_add_form", :content => resource.inner_content
+
+= render "content/show", :content => resource.inner_content
+
 = render "projects/sidebar"

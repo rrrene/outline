@@ -5,12 +5,11 @@ module ActsAsContentHolder
     def acts_as_content_holder
       instance_eval do
         acts_as_owned_by_user
-        #has_one :content, :as => :holder, :dependent => :destroy
         has_one :inner_content, :class_name => "Content", :as => :holder, :dependent => :destroy
         has_many :content_items, :through => :content, :order => 'position'
 
         after_create do |holder|
-          holder.create_inner_content #= Content.create(:holder => holder)
+          holder.create_inner_content
         end
       end
     end
