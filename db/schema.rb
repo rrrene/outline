@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217110848) do
+ActiveRecord::Schema.define(:version => 20120229145027) do
 
   create_table "activities", :force => true do |t|
     t.integer  "domain_id"
@@ -98,9 +98,10 @@ ActiveRecord::Schema.define(:version => 20120217110848) do
     t.integer  "domain_id"
     t.integer  "user_id"
     t.string   "title"
-    t.boolean  "active",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",      :default => true
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.text     "description"
   end
 
   create_table "quick_jump_targets", :force => true do |t|

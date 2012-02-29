@@ -27,10 +27,8 @@
     border-bottom: 1px solid #aaa
   .collection
     .entry
-      height: 48px
+      min-height: 48px
       padding: 8px
-      border-bottom: #aaa
-
       border-bottom: 1px solid #EDEDED
       
       &.active
@@ -64,9 +62,14 @@
           padding-top: 7px
           padding: 8px
           float: left
+          width: 90%
 
-          small a
+          small
             color: #aaa
+            &.info
+              display: block
+            a
+              color: inherit
           
           a.item
             font-size: 14px

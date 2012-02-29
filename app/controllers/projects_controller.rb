@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   authorized_resources
   enable_bulk_actions :add_tags, :activate, :deactivate, :destroy
+  before_filter :set_page_header, :only => [:new, :create, :edit, :update, :show]
 
   def todo_lists
     @content_items = ContentItem.where(:content_id => resource.pages.map(&:inner_content).map(&:id), :item_type => :TodoList).includes(:item)
@@ -21,6 +22,11 @@ class ProjectsController < ApplicationController
 
   def order_by
     "UPPER(title) ASC"
+  end
+
+  def set_page_header
+    @page_header = resource.try(:title)
+    @page_hint = resource.try(:description)
   end
 
 end

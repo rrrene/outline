@@ -1,5 +1,6 @@
 = simple_form_for resource do |f|
   = f.input :title
+  = f.input :description
   = f.input :tag_list
   - unless resource.new_record?
     = f.input :active
