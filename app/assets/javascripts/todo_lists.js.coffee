@@ -9,6 +9,7 @@ $ ->
   # Remove links to todo-list from todo-lists in content area
   $('.content h2 a[rel="todo-list"]').each ->
     $(this).parent().html $(this).html()
+    # TODO: doesnot work with live added data
 
   title = $(".content-items").data("filter-title")
   if title?

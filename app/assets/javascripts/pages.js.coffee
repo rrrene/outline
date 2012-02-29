@@ -4,7 +4,7 @@
 
 
 $ -> 
-  $('#page_context_id').bind 'change', ->
+  $('#page_context_id').live 'change', ->
     new_project_fields = $('#add-to-new-project')
     if $(this).val() == "-1"
       new_project_fields.show()

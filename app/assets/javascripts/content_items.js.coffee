@@ -7,6 +7,9 @@ window.OUT = {} unless window.OUT?
 window.OUT.deactivateFormHandlers = {} unless window.OUT.deactivateFormHandlers?
 
 OUT.contentItems =
+  added: (selector) ->
+    $(selector).find("a.new").click()
+
   createSortables: ->
     $('.content-items.sortable').sortable
       axis: 'y'
@@ -39,7 +42,7 @@ OUT.contentItems =
 $ ->
   OUT.contentItems.createSortables()
 
-  $('a[data-toggle="content-item-form"]').bind "click", (event) ->
+  $('a[data-toggle="content-item-form"]').live "click", (event) ->
     selector = $(event.target).data('target')
     $(selector).toggle(); 
     OUT.selectFirstInput(selector)
@@ -51,7 +54,7 @@ $ ->
     if pane?
       OUT.selectFirstInput($(pane))
 
-  $('a[data-toggle="move-to-page"]').bind "click", (event) ->
+  $('a[data-toggle="move-to-page"]').live "click", (event) ->
     $("body").click()
     url = $(event.target).attr("href")
     quickjump = new OUT.QuickJump (selected) ->

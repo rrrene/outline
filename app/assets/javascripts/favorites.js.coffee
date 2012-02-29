@@ -4,7 +4,7 @@
 
 $ ->
 
-  $(".btn.favorite-toggle").bind "click", (event) ->
+  $(".btn.favorite-toggle").live "click", (event) ->
     selector = $(this).data("target")
     checkbox = $(selector).find('input[type=checkbox]')
     console.log checkbox
@@ -16,7 +16,7 @@ $ ->
 
     true
 
-  $('input[data-toggle="favorite"]').bind "change", (event) ->
+  $('input[data-toggle="favorite"]').live "change", (event) ->
     $(this).parents("form").submit();
     active = $(this).is(":checked")
     klass = if active then "icon-favorite" else "icon-no-favorite"
