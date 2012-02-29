@@ -27,48 +27,6 @@ $content_item_margin_bottom: 20px
     opacity: 0.3
     margin: 0
 
-.add-content-item-form
-  ul.nav-tabs,
-  div.tab-content
-    margin-bottom: 0
-    margin-left: $content_margin_left / 2
-    padding-left: $content_margin_left / 2
-    margin-right: $content_margin_left
-    //border: 1px solid red
-    li
-      a
-        padding-bottom: 5px
-  ul.nav-tabs 
-    border-bottom: none
-    li
-      a:hover,
-      &.active a
-        border-color: transparent
-        background: transparent
-        text-decoration: underline
-  .tab-pane
-    background: url(/assets/add-content-item-form-arrow.png) 4px top repeat-x
-    padding-top: 7px
-    .inner-tab-pane
-      border: 1px solid #ddd
-      border-top: none
-      border-left-color: #bbb
-
-
-    form,
-    .control-group,
-    .form-actions
-      margin: 0
-      padding: 0
-    .form-actions
-      padding: 5px
-      .btn
-        float: right
-        margin-left: 5px
-        margin-bottom: 0
-      .cancel
-        display: none
-
 .content-items
   position: relative
   margin: 0
@@ -144,30 +102,112 @@ $content_item_margin_bottom: 20px
         color: inherit
 
 
+
+
 // edit forms
-.content-item-wrapper
+.form-wrapper,
+.content-item-form-wrapper
+  border-radius: 8px
+  background: whiteSmoke
+  padding: 16px
+  margin: 16px
+
+  form
+    margin-bottom: 0
+    background: white
+    border-radius: 3px
+    border: 1px solid #CCC
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
+
+    label
+      font-style: italic
+      color: #aaa
+
+    .control-group
+      margin: 16px
+      border-bottom: 1px solid #ddd
+
+      input[type="text"], textarea, select,
+      .uneditable-input,
+      input:focus, textarea:focus
+        outline: none
+        border: none
+        -webkit-box-shadow: none
+        -moz-box-shadow: none
+        box-shadow: none
+        width: 400px
+      #project_title,
+      #page_title,
+      #todo_list_title,
+      #domain_title
+        font-size: 16px
+    .form-actions
+      padding-left: 0
+      margin: 16px
+      margin-top: 0
+      margin-bottom: 0
+      background-color: #fff
+      border-top: none
+
+
+.add-content-item-form
+  ul.nav-tabs,
+  div.tab-content
+    margin-bottom: 0
+    margin-left: $content_margin_left / 2
+    padding-left: $content_margin_left / 2
+    margin-right: $content_margin_left
+
+    li
+      a
+        padding-bottom: 5px
+  ul.nav-tabs
+    border-bottom: none
+    li
+      a:hover,
+      &.active a
+        border-color: transparent
+        background: transparent
+        text-decoration: underline
+  .tab-pane
+    background: url(/assets/add-content-item-form-arrow.png) 4px top repeat-x
+    padding-top: 7px
+    .inner-tab-pane
+      border: 1px solid #ddd
+      border-top: none
+      border-left-color: #bbb
+
+
+  .form-wrapper,
   .content-item-form-wrapper
-    border-radius: 8px
-    background: whiteSmoke
-    padding: 16px
-    margin: 16px
+    border-radius: 0
+    background: transparent
+    padding: 0
+    margin: 0
 
     form
       margin-bottom: 0
-      background: white
-      border-radius: 3px
-      border: 1px solid #CCC
-      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
-      -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
-      box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
-      .control-group
-        margin: 16px
+      background: transparent
+      border-radius: 0
+      border: none
+      -webkit-box-shadow: none
+      -moz-box-shadow: none
+      box-shadow: none
 
-        input, textarea, select, .uneditable-input
-          width: 400px
-      .form-actions
-        padding-left: 0
-        margin: 16px
-        margin-top: 0
+    form,
+    .control-group,
+    .form-actions
+      margin: 0!important
+      padding: 0
+    .form-actions
+      padding: 5px
+      background: #f5f5f5
+      .btn
+        float: right
+        margin-left: 5px
         margin-bottom: 0
-        background-color: #fff
+      .cancel
+        display: none
+

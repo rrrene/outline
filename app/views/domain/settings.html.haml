@@ -1,17 +1,19 @@
 .page-item
-  = simple_form_for resource, :url => settings_path do |f|
-    - if @success
-      .alert.alert-success
-        = t(".success").html_safe
-    = f.input :title
+  .page-item-inner
+    .form-wrapper
+      = simple_form_for resource, :url => settings_path do |f|
+        - if @success
+          .alert.alert-success
+            = t(".success").html_safe
+        = f.input :title
 
-    .control-group
-      %label.control-label{:for => "project_title"}= Domain.human_attribute_name :theme
-      .controls
-        - Domain::THEMES.each do |theme|
-          .theme-toggle{}
-            %label.radio{:for => "domain_theme_#{theme}"}
-              %input{:type => :radio, :name => "domain[theme]", :id => "domain_theme_#{theme}", :"data-toggle" => "theme", :value => theme, :checked => current_theme.to_s == theme ? :checked : nil}
-              = theme
+        .control-group
+          %label.control-label{:for => "project_title"}= Domain.human_attribute_name :theme
+          .controls
+            - Domain::THEMES.each do |theme|
+              .theme-toggle{}
+                %label.radio{:for => "domain_theme_#{theme}"}
+                  %input{:type => :radio, :name => "domain[theme]", :id => "domain_theme_#{theme}", :"data-toggle" => "theme", :value => theme, :checked => current_theme.to_s == theme ? :checked : nil}
+                  = theme
 
-    = f.buttons
+        = f.buttons
