@@ -19,4 +19,12 @@ module FavoritesHelper
   def favorite_resources(klass)
     current_user.favorites.where(:resource_type => klass).order("created_at DESC").map(&:resource)
   end
+
+
+  def favorite_project_links
+    content_items = ContentItem.where(:content_id => current_project.pages.map(&:inner_content).map(&:id), :item_type => :Link).includes(:item)
+    links = content_items.map(&:item)
+    links.select { |resource| current_user.favors?(resource) }
+  end
+
 end

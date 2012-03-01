@@ -1,10 +1,8 @@
 - if current_project
   - content_for(:contextual_sidebar) do
 
-    - content_items = ContentItem.where(:content_id => current_project.pages.map(&:inner_content).map(&:id), :item_type => :Link).includes(:item)
-    - links = content_items.map(&:item)
-    - if links.present?
+    - if links = favorite_project_links.presence
       %ul.nav.nav-list
-        %li.nav-header Links
+        %li.nav-header Pinned Links
         - links.each do |link|
           %li= link_to truncate(link.title, :length => 20), link.href
