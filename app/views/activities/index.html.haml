@@ -26,9 +26,9 @@
         = spacer
 
 - content_for(:contextual_sidebar) do
-  - if favorite_todo_lists.present?
+  - if todo_lists = favorite_todo_lists.presence
     %ul.nav.nav-list
       %li.nav-header= "Pinned To-Do Lists"
-    - favorite_todo_lists.each do |todo_list|
+    - todo_lists.each do |todo_list|
       .well.todo-list
         = render :partial => "todo_lists/show", :locals => {:resource => todo_list}

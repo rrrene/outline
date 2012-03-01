@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_domain, :current_project, :current_theme
   helper_method :logged_in?, :favorited?
   helper_method :themed, :try_translation
+  helper_method :current_project_content_ids
 
   before_filter :set_activity_user
 
@@ -31,6 +32,10 @@ class ApplicationController < ActionController::Base
         project.try(:new_record?) ? nil : project
       end
     end
+  end
+
+  def current_project_content_ids
+    @current_project_content_ids ||= current_project.pages.map(&:inner_content).map(&:id) + [current_project.inner_content.id]
   end
 
   def current_project_for(resource)

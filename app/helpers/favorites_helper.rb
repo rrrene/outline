@@ -17,14 +17,20 @@ module FavoritesHelper
   end
 
   def favorite_resources(klass)
-    current_user.favorites.where(:resource_type => klass).order("created_at DESC").map(&:resource)
+    current_user.favorites.where(:resource_type => klass).order("updated_at DESC").map(&:resource)
   end
 
+
+  def favorite_project_todo_lists
+    favorite_project_todo_lists ||= favorite_project_resources TodoList
+  end
 
   def favorite_project_links
-    content_items = ContentItem.where(:content_id => current_project.pages.map(&:inner_content).map(&:id), :item_type => :Link).includes(:item)
-    links = content_items.map(&:item)
-    links.select { |resource| current_user.favors?(resource) }
+    @favorite_project_links ||= favorite_project_resources Link
   end
 
+  def favorite_project_resources(klass)
+    content_items = ContentItem.where(:content_id => current_project_content_ids, :item_type => klass.to_s).includes(:item).order("updated_at DESC")
+    content_items.map(&:item).select { |resource| current_user.favors?(resource) }
+  end
 end
