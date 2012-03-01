@@ -3,11 +3,16 @@
     - if current_project
       %li.nav-header= current_project.title
       = nav_to t("navigation.project_show"), current_project
-      = nav_to t("navigation.project_pages"), current_project.pages.first, :pages
-      = nav_to t("navigation.project_todo_lists"), todo_lists_project_path(current_project)
+      =# nav_to t("navigation.project_pages"), current_project.pages.first, :pages
+      = nav_to t("navigation.project_todo_lists"), todo_lists_project_path(current_project), :todo_lists
       %li.divider
         %hr
-      = nav_to t("navigation.project_settings"), edit_project_path(current_project)
+      =# nav_to t("navigation.project_settings"), edit_project_path(current_project)
+
+      - if pages = current_project.pages.presence
+        %li.nav-header Pages in this project
+        - pages.each do |page|
+          %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
 
     - else
       %li.nav-header Navigation
