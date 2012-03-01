@@ -1,7 +1,19 @@
+#new-page-modal.modal
+  .modal-header
+    %a.close{:"data-dismiss" => :modal} &times;
+    %h3 Create new page
+  .modal-body
+    = render "pages/form", :resource => Page.new(:context_id => current_project.try(:context).try(:id))
+
 - content_for(:page_header) do
   .btn-group
     = favorite_button resource
     = link_to "Edit", edit_resource_path(resource), :class => "btn"
+    %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
+      %span.caret
+    %ul.dropdown-menu
+      %li= link_to icon(:page) + t("pages.index.new_page_link"), {:action => :new}, :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
+
 
 .page-item
   = render "content_items/top_add_form", :content => resource.inner_content

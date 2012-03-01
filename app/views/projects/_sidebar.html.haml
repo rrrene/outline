@@ -9,7 +9,8 @@
         - links.each do |link|
           %li= link_to truncate(link.title, :length => 20), link.href
 
-    %ul.nav.nav-list
-      %li.nav-header Pages
-      - current_project.pages.each do |page|
-        %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
+    - if pages = current_project.pages.presence
+      %ul.nav.nav-list
+        %li.nav-header Pages in this project
+        - pages.each do |page|
+          %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page

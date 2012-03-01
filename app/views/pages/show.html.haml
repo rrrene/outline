@@ -7,7 +7,7 @@
   .pull-right
     .btn-group
       = favorite_button resource
-      = link_to icon(:edit) + t(".edit_link"), {:action => :edit, :id => resource}, {:remote => true, :class => "btn edit"}
+      = link_to icon(:edit) + t(".edit_link"), {:action => :edit, :id => resource}, {:class => "btn edit"}
       %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
         %span.caret
       %ul.dropdown-menu

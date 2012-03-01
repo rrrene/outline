@@ -2,13 +2,13 @@
   %h4= shared_snippet(".index.filter.header") #tt("#{controller_name}.index.filter.header", "shared.index.filter.header")
   %hr
 
-  = yield
-
   = filter_form do
     .control-group
       = label_tag :title, shared_snippet(".index.filter.by_title")
       .controls
         %input{:type => "text", :id => "title", :name => "title", :value => @filter_title}
+
+  = yield
 
   %hr
 
