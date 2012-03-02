@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :set_page_header, :only => [:new, :create, :edit, :update, :show]
 
   def todo_lists
-    @content_items = ContentItem.where(:content_id => current_project_content_ids, :item_type => :TodoList).includes(:item).order("updated_at DESC")
+    @content_items = ContentItem.where(:content_id => current_project.content_ids, :item_type => :TodoList).includes(:item).order("updated_at DESC")
     @rejected = @content_items.reject! do |content_item|
       content_item.item.active_todos.count == 0
     end

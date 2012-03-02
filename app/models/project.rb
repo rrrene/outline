@@ -12,6 +12,11 @@ class Project < ActiveRecord::Base
     update_attribute :active, false
   end
 
+  # TODO: remove hardcoded :pages association. maybe move content_ids method to Context
+  def content_ids
+    @content_ids ||= pages.map(&:inner_content).map(&:id) + [inner_content.id]
+  end
+
   validates_presence_of :title
   validates_uniqueness_of :title, :scope => :domain_id
 end

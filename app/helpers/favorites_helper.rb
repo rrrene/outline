@@ -30,7 +30,7 @@ module FavoritesHelper
   end
 
   def favorite_project_resources(klass)
-    content_items = ContentItem.where(:content_id => current_project_content_ids, :item_type => klass.to_s).includes(:item).order("updated_at DESC")
+    content_items = ContentItem.where(:content_id => current_project.content_ids, :item_type => klass.to_s).includes(:item).order("updated_at DESC")
     content_items.map(&:item).select { |resource| current_user.favors?(resource) }
   end
 end
