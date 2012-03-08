@@ -67,6 +67,6 @@ module ApplicationHelper
   end
 
   def inline_user_text(text)
-    sanitize(text.to_s)
+    sanitize(auto_link(text.to_s))
   end
 end
