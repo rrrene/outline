@@ -24,3 +24,4 @@ $ ->
 
   $('[data-submit="form"]').live "change", (event) ->
     $(event.target).parents("form").submit()
+

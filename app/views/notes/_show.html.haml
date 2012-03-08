@@ -1,3 +1,4 @@
 = render :partial => "content_items/timestamp", :locals => {:resource => resource}
 
-= user_text resource.text
+%div{:"data-convert-content" => true}
+  = user_text resource.text
