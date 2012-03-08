@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_project=(value)
+    @current_project = value
+  end
+
   def current_project_for(resource)
     if resource.is_a?(Project)
       resource
