@@ -14,7 +14,7 @@
 
 - if resource.inner_content
   .inactive-todos{:id => "inactive-todos-"+dom_id(resource)}
-    - active_content_items = todo_content_items(resource, false, TodoList::INACTIVE_TODOS_SHOWN)
+    - active_content_items = todo_content_items(resource, false, inactive_todos_to_show)
     = render :partial => "content/show", :locals => {:content => resource.inner_content, :content_items => active_content_items}
-    - if todo_content_items_count(resource, false) > TodoList::INACTIVE_TODOS_SHOWN
+    - if todo_content_items_count(resource, false) > inactive_todos_to_show
       = link_to t("todo_lists.show.show_more_inactive_todos"), resource, :class => "show_more"

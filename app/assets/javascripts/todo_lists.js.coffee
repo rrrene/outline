@@ -15,7 +15,10 @@ $ ->
   if title?
     regex = new RegExp("(#{title})", "gi")
     $(".content-items .content-item-todo-list h2, .content-items .todo-title").each ->
-      old_html = $(this).html()
-      if old_html.match regex
-        # $(this).addClass "filter-matched"
-        $(this).html old_html.replace(regex, '<span class="highlight">$1</span>')
+      if $(this).html().match regex
+        $(this).parents('.content-item').addClass "filter-matched"
+        $(this).highlight title
+    
+    $('.content-item').hide().filter('.filter-matched').show()
+    matched_lists = $(".content-items .content-item-todo-list h2 span.highlight").parents('.content-item-todo-list')
+    matched_lists.find('.content-item').show()
