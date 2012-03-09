@@ -3487,9 +3487,7 @@ a.thumbnail:hover {
   font-weight: bold;
   color: #333333;
 }
-.navbar .brand:hover {
-  color: #4183c4;
-}
+
 .navbar .navbar-inner {
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);

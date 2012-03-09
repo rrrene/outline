@@ -14,7 +14,7 @@ en:
     my_profile: "Edit my Profile"
     logout: "Logout"
 
-    project_show: "Main Page"
+    project_show: "Project Page"
     project_pages: "Pages"
     project_todo_lists: "To-Do Lists"
     project_settings: "Project settings"

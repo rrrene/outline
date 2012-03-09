@@ -5,7 +5,7 @@
       %ul.nav.nav-list
         %li.nav-header Pinned Links
         - links.each do |link|
-          %li= link_to truncate(link.title, :length => 20), link.href
+          %li= link_to truncate(link.title, :length => 20), link.href, :class => "link external", :target => "_blank"
 
     - if todo_lists = favorite_project_todo_lists.presence
       %ul.nav.nav-list
