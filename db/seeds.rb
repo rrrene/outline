@@ -6,7 +6,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
-Domain.create!(:title => "My Outline") if Domain.count == 0
+Domain.create!(:title => "Outline") if Domain.count == 0
 
 Domain.first.users.create(:login => "admin", :password => "admin", :password_confirmation => "admin", :email => "example@example.org")
 Domain.first.users.create(:login => "demo", :password => "demo", :password_confirmation => "demo", :email => "example2@example.org")
