@@ -1,0 +1,8 @@
+- item = content_item.item
+- item_path = item.class.to_s.underscore.pluralize
+
+.content-item-options
+  %ul.nav.nav-pills
+    / %li= link_to_function "Open", "OUT.contentItems.open('##{dom_id(content_item)}');", :href => url_for(item)
+    %li= link_to tt("#{item_path}.options.edit_item", "content_items.options.edit_item"), {:controller => item_path, :action => :edit, :id => item}, {:remote => true}
+    %li= link_to icon(:trash), {:controller => item_path, :action => :destroy, :id => item}, {:remote => true, :method => :delete, :confirm => tt("#{item_path}.options.delete_item_confirm", "content_items.options.delete_item_confirm")}

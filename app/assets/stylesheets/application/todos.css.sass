@@ -8,29 +8,47 @@
     span.deactivate
       text-decoration: line-through
 
-.content-todo-list
-  .content-item-todo
-    padding-top: 10px
-    padding-bottom: 10px
-    .spacer
-      display: none
-    .move-handle
-      background: url(/assets/move-todo.png) top center no-repeat
-      height: 20px
-      margin-left: 14px!important
-      margin-top: 12px
-    .content-item-options
-      width: 90px
-      left: -60px
-      top: 2px
-      ul.nav.nav-pills
-        margin: 0
-        padding-left: 3px
-        display: inline-block
-        background: white
-        border-radius: 5px
-        > li
-          float: right
+.content-item-todo
+  padding-top: 10px
+  padding-bottom: 10px
+  border-left: 0!important
+  border-right: 0!important
+  .spacer
+    display: none
+  .move-handle
+    background: url(/assets/move-todo.png) top center no-repeat
+    height: 20px
+    margin-left: 16px!important
+    margin-top: 2px
+  .content-item-options
+    width: 100px
+    left: -40px
+    margin-top: -8px
+    ul.nav.nav-pills
+      margin: 0
+      padding-left: 3px
+      display: inline-block
+      background: white
+      border-radius: 5px
+      > li
+        float: right
+        a
+          padding-right: 4px
+          padding-left: 4px
+          i.icon-trash
+            opacity: 0.5
+        &:hover i.icon-trash
+          opacity: 1
+  .todo-checkbox
+    float: left
+    width: 20px
+  .todo-title
+    display: block
+    float: left
+    width: 90%
+    padding-top: 2px
+    p
+      margin: 0
 
 .dashboard,
 .sidebar
@@ -43,7 +61,6 @@
       .move-handle
         margin-left: -8px!important
       .todo-title
-        padding-top: 2px
 
 
 form.todo
