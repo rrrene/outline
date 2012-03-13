@@ -8,3 +8,6 @@ en:
     edit:
       page_header: "Edit user"
       page_hint: ""
+    show:
+      page_header: ""
+      page_hint: "Activity"

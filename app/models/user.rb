@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   acts_as_authentic
 
-  has_many :favorites
+  has_many :favorites, :dependent => :destroy
+  has_many :activities, :dependent => :destroy
 
   def favors?(resource)
     favorite(resource).present?
