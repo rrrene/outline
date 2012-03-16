@@ -1,31 +1,46 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+content_page_1:
   id: 1
   holder_type: Page
   holder_id: 1
 
-two:
+content_page_2:
   id: 2
   holder_type: Page
   holder_id: 2
 
-three:
+content_page_3:
   id: 3
   holder_type: Page
   holder_id: 3
 
-four:
+content_project_1:
   id: 4
   holder_type: Project
   holder_id: 1
 
-five:
+content_project_2:
   id: 5
   holder_type: Project
   holder_id: 2
 
-six:
+content_project_3:
   id: 6
   holder_type: Project
+  holder_id: 3
+
+content_todo_list_1:
+  id: 7
+  holder_type: TodoList
+  holder_id: 1
+
+content_todo_list_2:
+  id: 8
+  holder_type: TodoList
+  holder_id: 2
+
+content_todo_list_3:
+  id: 9
+  holder_type: TodoList
   holder_id: 3

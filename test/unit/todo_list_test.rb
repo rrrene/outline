@@ -30,4 +30,10 @@ class TodoListTest < ActiveSupport::TestCase
 
     assert_equal page_content_id, todo_list.outer_content.id
   end
+
+  test "should give todos and active_todos" do
+    todo_list = TodoList.first
+    assert_not_nil todo_list.todos
+    assert_not_nil todo_list.active_todos
+  end
 end

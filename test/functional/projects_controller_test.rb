@@ -139,11 +139,4 @@ class ProjectsControllerTest < ActionController::TestCase
     end
   end
 
-  test "should GET todo lists" do
-    with_login do |user|
-      get :show, :id => 1
-      assert_not_nil assigns["project"]
-      assert_response :success
-    end
-  end
 end

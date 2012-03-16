@@ -1,43 +1,64 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+content_item_note_1:
   id: 1
   content_id: 1
   position: 1
   item_type: Note
   item_id: 1
 
-two:
+content_item_note_2:
   id: 2
   content_id: 2
   position: 1
   item_type: Note
   item_id: 2
 
-three:
+content_item_note_3:
   id: 3
   content_id: 1
   position: 1
   item_type: Note
   item_id: 3
 
-four:
+content_item_link_1:
   id: 4
   content_id: 1
   position: 1
   item_type: Link
   item_id: 1
 
-five:
+content_item_link_2:
   id: 5
   content_id: 2
   position: 1
   item_type: Link
   item_id: 2
 
-six:
+content_item_link_3:
   id: 6
   content_id: 1
   position: 1
   item_type: Link
+  item_id: 3
+
+content_item_todo_list_1:
+  id: 7
+  content_id: 1
+  position: 1
+  item_type: TodoList
+  item_id: 1
+
+content_item_todo_list_2:
+  id: 8
+  content_id: 2
+  position: 1
+  item_type: TodoList
+  item_id: 2
+
+content_item_todo_list_3:
+  id: 9
+  content_id: 1
+  position: 1
+  item_type: TodoList
   item_id: 3
