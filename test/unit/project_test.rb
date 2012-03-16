@@ -44,4 +44,9 @@ class ProjectTest < ActiveSupport::TestCase
     end
   end
 
+  test "should give content_ids" do
+    project = Project.first
+    assert !project.content_ids.blank?
+  end
+
 end

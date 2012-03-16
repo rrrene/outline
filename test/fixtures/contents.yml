@@ -14,3 +14,18 @@ three:
   id: 3
   holder_type: Page
   holder_id: 3
+
+four:
+  id: 4
+  holder_type: Project
+  holder_id: 1
+
+five:
+  id: 5
+  holder_type: Project
+  holder_id: 2
+
+six:
+  id: 6
+  holder_type: Project
+  holder_id: 3
