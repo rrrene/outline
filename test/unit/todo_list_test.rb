@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class TodoListTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   test "should create todo list on page" do
     page = Page.first
     page_content = page.inner_content
