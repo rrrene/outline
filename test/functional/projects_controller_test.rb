@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProjectsControllerTest < ActionController::TestCase
 
-  test "should allow certain actions" do
+  test "should allow bulk actions" do
     record = Project.new
     actions = %w(add_tags activate deactivate destroy)
     assert_equal controller.class.allowed_bulk_actions.sort, actions.sort
@@ -132,6 +132,14 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test "should GET show" do
+    with_login do |user|
+      get :show, :id => 1
+      assert_not_nil assigns["project"]
+      assert_response :success
+    end
+  end
+
+  test "should GET todo lists" do
     with_login do |user|
       get :show, :id => 1
       assert_not_nil assigns["project"]
