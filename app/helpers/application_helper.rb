@@ -11,9 +11,8 @@ module ApplicationHelper
   end
 
   def filter_form(*args, &block)
-    url_options = params.merge(:page => 1)
-    html_options = {:class => "form-stacked", :remote => false, :method => :get}
-    form_tag(url_options, html_options, &block)
+    filter_params = params.merge(:page => nil, :controller => nil, :action => nil)
+    render :layout => "shared/index/filter_form", :locals => {:filter_params => filter_params}, &block
   end
 
   def icon(name, second_class = nil)

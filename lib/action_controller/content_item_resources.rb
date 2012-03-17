@@ -7,6 +7,18 @@ module ContentItemResources
       end
     end
 
+    def filter_collection_with_project
+      filter_collection_by_project
+      filter_collection_without_project
+    end
+
+    def filter_collection_by_project
+      if params[:project_id]
+        self.current_project = Project.find(params[:project_id])
+        self.collection = collection.where(:content_id => current_project.content_ids)
+      end
+    end
+
     def set_page_header
       holder = resource.outer_content.try(:holder)
       options = holder.respond_to?(:title) ? {:holder=> holder.title} : {}
@@ -35,6 +47,7 @@ module ContentItemResources
     included do
       authorized_resources
       self.send :include, InstanceMethods
+      alias_method_chain :filter_collection, :project
       alias_method_chain :create, :redirect_to_holder
       self.send :before_filter, :set_page_header, :only => [:new, :create, :edit, :update, :show]
     end

@@ -4,9 +4,9 @@
 
   = filter_form do
     .control-group
-      = label_tag :title, shared_snippet(".index.filter.by_title")
+      = label_tag :query, shared_snippet(".index.filter.by_query")
       .controls
-        %input{:type => "text", :id => "title", :name => "title", :value => @filter_title}
+        %input{:type => "text", :id => "query", :name => "query", :value => @filter_query}
 
   = yield
 

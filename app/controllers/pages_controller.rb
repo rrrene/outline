@@ -27,6 +27,15 @@ class PagesController < ApplicationController
     params[:page][:context_id].to_i == -1
   end
 
+  def collection_for_scope(scope)
+    case scope
+      when 'no_context'
+        collection.where("context_id IS NULL")
+      else
+        collection
+    end
+  end
+
   def create_with_new_project
     @new_project = new_project(params[:project])
     if @new_project.valid?
@@ -40,13 +49,6 @@ class PagesController < ApplicationController
       # tell inherited_resources something has gone wrong
       resource.errors.add(:base, "new_project is invalid")
       create_with_authorization
-    end
-  end
-
-  def filter_collection
-    filter_by_title
-    if scope = params[:scope].presence
-      self.collection = collection.where("context_id IS NULL") if scope == 'no_context'
     end
   end
 

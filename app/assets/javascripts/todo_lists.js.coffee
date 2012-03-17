@@ -11,7 +11,7 @@ $ ->
     $(this).parent().html $(this).html()
     # TODO: doesnot work with live added data
 
-  title = $(".content-items").data("filter-title")
+  title = $("ul.content-items").data("filter-query")
   if title?
     regex = new RegExp("(#{title})", "gi")
     $(".content-items .content-item-todo-list h2, .content-items .todo-title").each ->

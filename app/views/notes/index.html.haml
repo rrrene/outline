@@ -4,9 +4,6 @@
 
 
 - content_for(:contextual_sidebar) do
-  - if @rejected.present?
-    = t(".only_active_lists_hint")
-
   = render :layout => "shared/index/filter" do
     - filter_form do
       .control-group

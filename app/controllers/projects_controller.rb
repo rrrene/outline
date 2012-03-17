@@ -11,12 +11,15 @@ class ProjectsController < ApplicationController
   end
 
   protected
-  
-  def filter_collection
-    filter_by_title
-    if scope = params[:scope].presence
-      self.collection = collection.where(:active => true) if scope == 'active'
-      self.collection = collection.where(:active => false) if scope == 'inactive'
+
+  def collection_for_scope(scope)
+    case scope
+      when 'active'
+        collection.where(:active => true)
+      when 'inactive'
+        collection.where(:active => false)
+      else
+        collection
     end
   end
 

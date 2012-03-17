@@ -11,7 +11,7 @@ en:
       new_page_link: "Create new page"
       filter:
         header: "Browse your pages by"
-        by_title: "Title"
+        by_query: "Title"
         by_tags: "Tags"
         by_select: "Scope"
         select:

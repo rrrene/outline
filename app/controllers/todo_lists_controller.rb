@@ -8,18 +8,15 @@ class TodoListsController < ContentItemsController
     @rejected = collection.reject! { |list| list.active_todos.count == 0 }
   end
 
-  def filter_collection
-    if params[:project_id]
-      self.current_project = Project.find(params[:project_id])
-      self.collection = collection.where(:content_id => current_project.content_ids)
-    end
-    if @filter_title = params[:title]
-      q = @filter_title.gsub(/\s+/, "%")
-      todos = current_domain.todos.accessible_by(current_ability).where("title LIKE ?", "%#{q}%").group("content_id")
-      lists = current_domain.todo_lists.accessible_by(current_ability).where("title LIKE ?", "%#{q}%")
-      all_lists = lists + todos.map(&:outer_content).map(&:holder)
-      self.collection = collection.where(:id => all_lists.map(&:id))
-    end
+  def collection_for_query(query)
+    collection.where(:id => all_lists_for_query(query).map(&:id))
+  end
+
+  def all_lists_for_query(query)
+    todos = current_domain.todos.accessible_by(current_ability).where("title LIKE ?", query).group("content_id")
+    todos_lists = todos.map(&:outer_content).map(&:holder)
+    lists = current_domain.todo_lists.accessible_by(current_ability).where("title LIKE ?", query)
+    lists + todos_lists
   end
 
 end

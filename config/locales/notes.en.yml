@@ -8,6 +8,12 @@ en:
       note:
         text: "Make a note..."
   notes:
+    index:
+      page_header: "Notes"
+      page_hint: "Overview"
+      filter:
+        header: "Browse your notes by"
+        by_query: "Search"
     edit:
       page_header: "Edit Note"
       page_hint: "on '%{holder}'"

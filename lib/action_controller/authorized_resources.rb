@@ -45,14 +45,30 @@ module AuthorizedResources
       resource.domain = current_domain
     end
 
-    def filter_by_title
-      if @filter_title = params[:title]
-        query = "%#{@filter_title.gsub(' ', '%')}%"
-        self.collection = collection.where(["title LIKE ?", query])
+    def collection_for_query(query)
+      collection.where(["title LIKE ?", query])
+    end
+
+    def collection_for_scope(scope)
+      collection
+    end
+
+    def filter_collection_by_query
+      if @filter_query = params[:query]
+        query = "%#{@filter_query.gsub(' ', '%')}%"
+        self.collection = collection_for_query(query)
+      end
+    end
+
+    def filter_collection_by_scope
+      if @filter_scope = params[:scope].presence
+        self.collection = collection_for_scope(@filter_scope)
       end
     end
 
     def filter_collection
+      filter_collection_by_query
+      filter_collection_by_scope
     end
 
     def order_by

@@ -17,5 +17,5 @@ en:
     index:
       filter:
         header: "Browse list"
-        by_title: "By Title"
+        by_query: "By Query"
         by_tags: "By Tags"

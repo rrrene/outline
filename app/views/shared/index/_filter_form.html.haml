@@ -1,0 +1,4 @@
+= form_tag({:action => "index"}, {:class => "form-stacked", :remote => false, :method => :get}) do
+  - filter_params.each do |key, value|
+    = hidden_field_tag key, value unless value.nil?
+  = yield

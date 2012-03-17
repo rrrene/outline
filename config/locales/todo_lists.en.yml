@@ -16,7 +16,7 @@ en:
       page_hint: "Overview"
       filter:
         header: "Browse your todos by"
-        by_title: "Title"
+        by_query: "Title"
     edit:
       page_header: "Edit Link"
       page_hint: "on '%{holder}'"
