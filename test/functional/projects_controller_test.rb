@@ -139,4 +139,25 @@ class ProjectsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should GET index with query" do
+    with_login do |user|
+      get :index, :query => "test"
+      assert_response :success
+    end
+  end
+
+  test "should GET index with scope: active" do
+    with_login do |user|
+      get :index, :scope => "active"
+      assert_response :success
+    end
+  end
+
+  test "should GET index with scope: inactive" do
+    with_login do |user|
+      get :index, :scope => "inactive"
+      assert_response :success
+    end
+  end
+
 end

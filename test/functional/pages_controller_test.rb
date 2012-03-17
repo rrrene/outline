@@ -290,4 +290,19 @@ class PagesControllerTest < ActionController::TestCase
       assert_response :success
     end
   end
+
+  test "should GET index with query" do
+    with_login do |user|
+      get :index, :query => "test"
+      assert_response :success
+    end
+  end
+
+  test "should GET index with scope: no_context" do
+    with_login do |user|
+      get :index, :scope => "no_context"
+      assert_response :success
+    end
+  end
+
 end
