@@ -13,12 +13,4 @@ $ ->
       $(this).parents("form.note").removeClass "active"
   .blur()
 
-  query = $("ul.content-items").data("filter-query")
-  if query?
-    regex = new RegExp("(#{query})", "gi")
-    $(".content-items .content-item-note .content-item-body").each ->
-      if $(this).html().match regex
-        $(this).parents('.content-item').addClass "filter-matched"
-        $(this).highlight query
-
-    $('.content-item-note').hide().filter('.filter-matched').show()
+  OUT.contentItems.highlightQueryIn(".content-items .content-item-note .content-item-body")

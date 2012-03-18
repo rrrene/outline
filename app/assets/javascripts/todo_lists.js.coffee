@@ -11,14 +11,6 @@ $ ->
     $(this).parent().html $(this).html()
     # TODO: doesnot work with live added data
 
-  title = $("ul.content-items").data("filter-query")
-  if title?
-    regex = new RegExp("(#{title})", "gi")
-    $(".content-items .content-item-todo-list h2, .content-items .todo-title").each ->
-      if $(this).html().match regex
-        $(this).parents('.content-item').addClass "filter-matched"
-        $(this).highlight title
-    
-    $('.content-item-todo-list').hide().filter('.filter-matched').show()
+  OUT.contentItems.highlightQueryIn ".content-items .content-item-todo-list h2, .content-items .todo-title", (chain) ->
     matched_lists = $(".content-items .content-item-todo-list h2 span.highlight").parents('.content-item-todo-list')
     matched_lists.find('.content-item').show()

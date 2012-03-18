@@ -24,6 +24,19 @@ OUT.contentItems =
     if handler = OUT.deactivateFormHandlers[form_selector]
       handler(form_selector, content_selector)
 
+  highlightQueryIn: (items_selector, after_callback) ->
+    query = $("ul.content-items").data("filter-query")
+    if query?
+      regex = new RegExp("(#{query})", "gi")
+      $(items_selector).each ->
+        if $(this).html().match regex
+          $(this).parents('.content-item').addClass "filter-matched"
+          $(this).highlight query
+
+      chain = $('.content-item').hide().filter('.filter-matched').show()
+      after_callback.apply(null, [chain]) if after_callback?
+
+
   open: (select) ->
     ele = $(select).animate
       'margin-top': "20"
