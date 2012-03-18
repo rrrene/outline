@@ -54,7 +54,7 @@ module AuthorizedResources
     end
 
     def filter_collection_by_query
-      if @filter_query = params[:query]
+      if @filter_query = params[:query].presence
         query = "%#{@filter_query.gsub(' ', '%')}%"
         self.collection = collection_for_query(query)
       end
