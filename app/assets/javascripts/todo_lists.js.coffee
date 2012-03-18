@@ -19,6 +19,6 @@ $ ->
         $(this).parents('.content-item').addClass "filter-matched"
         $(this).highlight title
     
-    $('.content-item').hide().filter('.filter-matched').show()
+    $('.content-item-todo-list').hide().filter('.filter-matched').show()
     matched_lists = $(".content-items .content-item-todo-list h2 span.highlight").parents('.content-item-todo-list')
     matched_lists.find('.content-item').show()

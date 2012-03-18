@@ -21,4 +21,4 @@ $ ->
         $(this).parents('.content-item').addClass "filter-matched"
         $(this).highlight query
 
-    $('.content-item').hide().filter('.filter-matched').show()
+    $('.content-item-note').hide().filter('.filter-matched').show()

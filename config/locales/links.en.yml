@@ -13,6 +13,12 @@ en:
       link:
         href: "Enter URL..."
   links:
+    index:
+      page_header: "Links"
+      page_hint: "Overview"
+      filter:
+        header: "Browse your links by"
+        by_query: "Search"
     edit:
       page_header: "Edit Link"
       page_hint: "on '%{holder}'"

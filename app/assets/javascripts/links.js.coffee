@@ -31,3 +31,14 @@ $ ->
     video_id = $(this).data("video-id")
     $(this).replaceWith youtube_embed_template.replace(/%{video_id}/g, video_id)
     false
+
+
+  query = $("ul.content-items").data("filter-query")
+  if query?
+    regex = new RegExp("(#{query})", "gi")
+    $(".content-items .content-item-link .content-item-body").each ->
+      if $(this).html().match regex
+        $(this).parents('.content-item').addClass "filter-matched"
+        $(this).highlight query
+
+    $('.content-item-link').hide().filter('.filter-matched').show()
