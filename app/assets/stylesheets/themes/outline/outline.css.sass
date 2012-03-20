@@ -2,6 +2,62 @@
 html, body
   background-color: #f5f5f5
 
+body
+  font-family: Verdana, Lucida Grande, Helvetica, sans-serif!important
+
+#content-container
+  border-top: 1px solid #fff
+
+.navbar-static
+  margin-bottom: 0!important
+
+.page-header,
+.activity-item,
+.content-item,
+.page-item,
+.page-footer
+  border-left: 1px solid #D7D7D7
+  border-right: 1px solid #D7D7D7
+  background-color: #fff
+  margin-left: -1px!important
+  margin-right: -1px!important
+
+.content-page .content-todo-list .content-item,
+.content-overview .content-todo-list .content-item,
+.dashboard .content-todo-list .content-item,
+.sidebar .content-todo-list .content-item,
+.content-page .content-item .content-item
+  border: none
+  -webkit-box-shadow: none
+  margin-left: 0!important
+  margin-right: 0!important
+
+.page-header
+  padding: 20px 20px 10px
+  margin-bottom: 0!important
+  border-radius: 6px 6px 0 0
+  border-top: 1px solid #D7D7D7
+
+.page-footer
+  padding: 10px
+  margin: 0
+  border-radius: 0 0 6px 6px
+  border-bottom: 1px solid #D7D7D7
+
+.page-item-inner
+  padding: 18px
+
+.sidebar h5, .sidebar h4
+  color: #666
+
+.sidebar ul.nav li a
+  padding-top: 4px
+  padding-bottom: 4px
+
+.sidebar .nav > li > a:hover
+  text-decoration: none
+  background-color: #ddd
+
 .navbar .nav > li > a
   font-weight: normal
 
@@ -32,6 +88,9 @@ html, body
 .page-footer
   border-color: #eee
 
+
+.nav-list .nav-header
+  margin-top: 20px
 .nav-list li a,
 .nav-list li.active a,
 .nav-list li.active a:hover
@@ -48,3 +107,72 @@ html, body
 .nav-list li a.link.external
   color: inherit!important
   text-decoration: underline!important
+
+
+@media (min-width: 980px)
+  .sidebar-left
+    ul.nav-list
+      margin-right: -19px
+  .sidebar-right
+    .well
+      margin-left: -9px
+      padding: 9px
+    ul.nav-list
+      margin-left: -19px
+
+@media (min-width: 1200px)
+  .sidebar-left
+    ul.nav-list
+      margin-right: -30px
+  .sidebar-right
+    .well
+      margin-left: -19px
+      padding: 9px
+    ul.nav-list
+      margin-left: -29px
+
+.form-actions, form
+  margin-bottom: 0!important
+
+.content .page-header h1
+  font-weight: normal
+  color: #333
+
+textarea
+  height: 80px
+
+
+.modal form
+  margin: 0
+
+
+a.label:hover
+  text-decoration: none
+  color: inherit
+
+
+.icon-project
+  background-position: -384px -120px!important
+
+.icon-page
+  background-position: -24px -24px!important
+
+.icon-todo-list
+  background-position: -264px 0!important
+
+.icon-favorite
+  background-position: -120px 0!important
+
+.icon-no-favorite
+  background-position: -144px 0!important
+
+
+footer p
+  text-align: center
+
+  &.powered-by
+    color: #bbb
+    text-shadow: 0px 1px 1px #fff
+    margin-top: 20px
+    margin-bottom: 20px
+

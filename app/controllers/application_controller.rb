@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme
-    current_domain.try(:theme) || :default
+    params[:theme].presence || current_domain.try(:theme) || :default
   end
   
   def current_user
