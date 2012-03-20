@@ -19,8 +19,8 @@
 - content_for(:page_header) do
   .btn-toolbar
     .btn-group
-      = link_to icon(:"project") + t("projects.index.new_project_link"), {:action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-project-modal"
-      = link_to icon(:"page") + t("pages.index.new_page_link"), {:action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
+      = link_to icon(:"project") + t("projects.index.new_project_link"), {:controller => "projects", :action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-project-modal"
+      = link_to icon(:"page") + t("pages.index.new_page_link"), {:controller => "pages", :action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
       /
         %a.btn.dropdown-toggle{:"data-toggle" => "dropdown", :href => "#"}
           %span.caret
