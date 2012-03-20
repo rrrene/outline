@@ -4,6 +4,8 @@
     %h3 Create new page
   .modal-body
     = render "pages/form", :resource => Page.new
+  .modal-footer
+    = buttons Page.new
 
 #new-project-modal.modal
   .modal-header
@@ -11,13 +13,14 @@
     %h3 Create new project
   .modal-body
     = render "projects/form", :resource => Project.new
-
+  .modal-footer
+    = buttons Project.new
 
 - content_for(:page_header) do
   .btn-toolbar
     .btn-group
-      = link_to icon(:"folder-close") + t("projects.index.new_project_link"), {:action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-project-modal"
-      = link_to icon(:"file") + t("pages.index.new_page_link"), {:action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
+      = link_to icon(:"project") + t("projects.index.new_project_link"), {:action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-project-modal"
+      = link_to icon(:"page") + t("pages.index.new_page_link"), {:action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
       /
         %a.btn.dropdown-toggle{:"data-toggle" => "dropdown", :href => "#"}
           %span.caret

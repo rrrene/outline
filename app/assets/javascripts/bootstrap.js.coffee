@@ -16,6 +16,13 @@ $ ->
   .bind 'hide', ->
     $(this).find('input[type=text], textarea').blur()
 
+  # A cancel link in a modal should dismiss that modal
   $('div.modal a.btn.cancel').bind "click", (event) ->
     $(this).parents('div.modal').modal('hide')
+    false
+
+  # An input[type="submit"] in .modal-footer should submit form in corresponding .modal-body
+  $('div.modal div.modal-footer input[type="submit"]').bind "click", (event) ->
+    form = $(this).parents('div.modal').find('div.modal-body form')
+    form.submit()
     false
