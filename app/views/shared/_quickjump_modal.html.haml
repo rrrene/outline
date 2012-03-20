@@ -4,7 +4,10 @@
     %a.close{:"data-dismiss" => :modal} &times;
     %input.xlarge{:type => "text", :name => "query", :autocapitalize => "off", :autocomplete => "off", :autocorrect => "off"}
   .modal-body
-    .results
+    .form-wrapper
+      .form
+        .results
+  .modal-footer.modal-footer-small
 
 :javascript
   OUT.quick_jump_defaults = #{default_quickjump_targets.to_json}
