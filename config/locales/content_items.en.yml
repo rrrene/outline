@@ -4,4 +4,6 @@ en:
       delete_item: "Delete this..."
       delete_item_confirm: "Do you really want to permanently delete this item?"
       edit_item: "Edit"
+      details: "Details"
       move_to_page: "Move to Page..."
+    details: "Originally posted by %{user} at %{created_at}"

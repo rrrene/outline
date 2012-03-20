@@ -1,3 +1,7 @@
 .content-item-info
   %small.timestamp
     = link_to_resource resource, l(resource.updated_at, :format => :long)
+
+.content-item-details
+  %small
+    = t("content_items.details", {:user => resource.user.try(:name), :created_at => l(resource.created_at, :format => :long)})

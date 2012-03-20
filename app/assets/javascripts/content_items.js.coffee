@@ -38,6 +38,12 @@ OUT.contentItems =
 
 
   open: (select) ->
+    details = $(select).find('.content-item-details')
+    details.animate
+      'display': 'block'
+      'height': 16
+      'opacity': 1
+      , "slow"
     ele = $(select).animate
       'margin-top': "20"
       'margin-bottom': "20"
