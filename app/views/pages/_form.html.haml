@@ -1,13 +1,14 @@
-= simple_form_for resource do |f|
-  = f.input :title
-  = f.input :tag_list
+.form-wrapper
+  = simple_form_for resource do |f|
+    = f.input :title
+    = f.input :tag_list
 
-  = f.input :context_id, :collection => current_domain.projects.all.map { |project| [project.title, project.context.id] } << [t("pages.new.add_to_new_project"), -1]
-  
-  #add-to-new-project{:style => "display: none"}
-    .control-group.string.required
-      %label.string.required{:for => "project_title"} Title
-      .controls
-        %input.string.required#project_title{:type => "text", :name => "project[title]"}
+    = f.input :context_id, :collection => current_domain.projects.all.map { |project| [project.title, project.context.id] } << [t("pages.new.add_to_new_project"), -1]
 
-  = f.buttons
+    #add-to-new-project{:style => "display: none"}
+      .control-group.string.required
+        %label.string.required{:for => "project_title"} Title
+        .controls
+          %input.string.required#project_title{:type => "text", :name => "project[title]"}
+
+    = f.buttons
