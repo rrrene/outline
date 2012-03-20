@@ -1,7 +1,20 @@
 .modal
-  .form-wrapper
-    form
-      input[type="text"], textarea,
-      input[type="text"]:focus, textarea:focus,
-      .uneditable-input
-        width: 260px!important
+  .modal-body
+    padding: 0
+    .form-wrapper
+      margin: 0
+      form
+        input[type="text"], textarea,
+        input[type="text"]:focus, textarea:focus,
+        .uneditable-input
+          width: 320px!important
+        .form-actions
+          padding-right: 0
+          .btn
+            display: block
+            float: right
+            margin-left: 5px
+
+
+.modal-backdrop, .modal-backdrop.fade.in
+  opacity: 0.5
