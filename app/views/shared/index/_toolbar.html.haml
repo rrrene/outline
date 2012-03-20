@@ -1,7 +1,7 @@
 #new-page-modal.modal
   .modal-header
     %a.close{:"data-dismiss" => :modal} &times;
-    %h3 Create new page
+    %h3= t("shared.index.modal.new_page_title")
   .modal-body
     = render "pages/form", :resource => Page.new
   .modal-footer
@@ -10,7 +10,7 @@
 #new-project-modal.modal
   .modal-header
     %a.close{:"data-dismiss" => :modal} &times;
-    %h3 Create new project
+    %h3= t("shared.index.modal.new_project_title")
   .modal-body
     = render "projects/form", :resource => Project.new
   .modal-footer
@@ -21,9 +21,3 @@
     .btn-group
       = link_to icon(:"project") + t("projects.index.new_project_link"), {:controller => "projects", :action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-project-modal"
       = link_to icon(:"page") + t("pages.index.new_page_link"), {:controller => "pages", :action => :new}, :class => "btn", :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
-      /
-        %a.btn.dropdown-toggle{:"data-toggle" => "dropdown", :href => "#"}
-          %span.caret
-        %ul.dropdown-menu
-          %li= link_to icon(:search) + "Search", {:action => :new}, :class => "", :"data-toggle" => :modal, :"data-target" => "#quick-jump-modal"
-  

@@ -14,7 +14,16 @@ en:
         header: "Add tags"
         tag_list: "Tags:"
         submit: "Add tags"
+      move_to_project:
+        link: "Move to project"
+        select: "Select project..."
+        move_to_new_option: "New project..."
+        move_to_new_title: "Move to new project"
+        move_to_new_submit: "Create and move"
     index:
+      modal:
+        new_page_title: Create new page
+        new_project_title: Create new project
       filter:
         header: "Browse list"
         by_query: "By Query"

@@ -1,26 +1,26 @@
-= link_to_function(t('shared.bulk_collection.move_to_project'), "$('#move-to-project-options').show(); $(this).hide();", :class => 'move_to_project')
+= link_to_function(t('shared.bulk_collection.move_to_project.link'), "$('#move-to-project-options').show(); $(this).hide();", :class => 'move_to_project')
 
 %span#move-to-project-options.hide
   %input{:type => "hidden", :id => "bulk_new_project_title", :name => "bulk[new_project][title]"}
   %select#move_to_project_id{:name => "bulk[move_to_project]"}
-    %option{:value => ""} Select project...
+    %option{:value => ""}= t('shared.bulk_collection.move_to_project.select')
     - current_domain.projects.accessible_by(current_ability).each do |record|
       %option{:value => record.id}= record.title
-    %option{:value => -1} New project...
+    %option{:value => -1}= t("shared.bulk_collection.move_to_project.move_to_new_option")
 
 - content_for(:bulk_options_helpers) do
   #move-to-new-project-modal.bulk-options-helper.modal
     .modal-header
       %a.close{:href => "#"} &times;
-      %h3 Move to new project
+      %h3= t("shared.bulk_collection.move_to_project.move_to_new_title")
     .modal-body
       .form-wrapper
         .form
           .control-group.string.required
-            %label.string.required{:for => "move_to_new_project_title"} Title
+            %label.string.required{:for => "move_to_new_project_title"}= Project.human_attribute_name(:title)
             .controls
               .input.string.required
                 %input.string.required#move_to_new_project_title{:type => "text"}
     .modal-footer
-      = submit_tag "Create & move", :class => "btn btn-primary"
+      = submit_tag t("shared.bulk_collection.move_to_project.move_to_new_submit"), :class => "btn btn-primary"
       = link_to_function t("helpers.cancel"), "#", :class => "btn cancel", :"data-dismiss" => :modal
