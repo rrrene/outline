@@ -21,7 +21,13 @@ module ContentItemResources
 
     def set_page_header
       holder = resource.outer_content.try(:holder)
-      options = holder.respond_to?(:title) ? {:holder=> holder.title} : {}
+      options = if holder.respond_to?(:title)
+        title = self.class.helpers.inline_user_text(holder.title)
+        url = url_for(holder)
+        {:holder=> self.class.helpers.link_to(title, url, :class => "holder") }
+      else
+        {}
+      end
       @page_header ||= t("#{controller_name}.#{action_name}.page_header", options)
       @page_hint ||= t("#{controller_name}.#{action_name}.page_hint", options)
     end

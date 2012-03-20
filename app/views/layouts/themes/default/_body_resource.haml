@@ -10,7 +10,7 @@
               - if @page_header.present?
                 = @page_header
                 - if @page_hint.present?
-                  %small= @page_hint
+                  %small= @page_hint.html_safe
               - elsif !resource_is_context_resource? && resource.respond_to?(:title)
                 = inline_user_text(resource.title)
               - else
