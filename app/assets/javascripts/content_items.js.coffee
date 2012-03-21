@@ -26,7 +26,7 @@ OUT.contentItems =
 
   highlightQueryIn: (items_selector, after_callback) ->
     query = $("ul.content-items").data("filter-query")
-    if query?
+    if query? && query != ""
       regex = new RegExp("(#{query})", "gi")
       $(items_selector).each ->
         if $(this).html().match regex

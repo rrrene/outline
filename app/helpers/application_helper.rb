@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def filter_form(*args, &block)
-    filter_params = params.merge(:page => nil, :controller => nil, :action => nil)
+    filter_params = params.merge(:page => nil, :controller => nil, :action => nil, :utf8 => nil)
     render :layout => "shared/index/filter_form", :locals => {:filter_params => filter_params}, &block
   end
 
