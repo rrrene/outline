@@ -1,4 +1,6 @@
-%button.btn.favorite-toggle{:"data-toggle" => "button", :"data-target" => "#favorite_"+dom_id(resource), :class => favorited?(resource) ? "active" : nil}= icon(favorited?(resource) ? "favorite" : "no-favorite")
+%button.btn.favorite-toggle{:"data-toggle" => "button", :"data-target" => "#favorite_"+dom_id(resource), :class => favorited?(resource) ? "active" : nil, :title => t("shared.favorites.button_hint_"+(favorited?(resource) ? "active" : "inactive")), :"data-title-active" => t("shared.favorites.button_hint_active"), :"data-title-inactive" => t("shared.favorites.button_hint_inactive")}
+  = icon(favorited?(resource) ? "favorite" : "no-favorite")
+
 = form_tag set_favorites_path, :remote => true, :id => "favorite_"+dom_id(resource), :class => "favorite hidden" do
   = hidden_field_tag "favorite[resource_type]", resource.class
   = hidden_field_tag "favorite[resource_id]", resource.id

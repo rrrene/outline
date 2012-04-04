@@ -1,6 +1,9 @@
 
 en:
   shared:
+    favorites:
+      button_hint_inactive: "Pin this item to your sidebar"
+      button_hint_active: "Remove this item from your sidebar"
     sidebar:
       favorite_links: "Pinned Links"
       favorite_pages: "Pinned Pages"
