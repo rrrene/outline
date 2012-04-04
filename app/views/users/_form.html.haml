@@ -1,9 +1,9 @@
 = simple_form_for resource do |f|
-  = field_set_tag "Name" do
+  = field_set_tag t("users.edit.fieldset_basics") do
     = f.input :first_name
     = f.input :last_name
     = f.input :email
-  = field_set_tag "Credentials" do
+  = field_set_tag t("users.edit.fieldset_credentials") do
     = f.input :login
     = f.input :password
     = f.input :password_confirmation

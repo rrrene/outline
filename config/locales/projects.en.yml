@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    attributes:
+      project:
+        title: "Name"
   activities:
     update:
       project:

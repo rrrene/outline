@@ -8,6 +8,9 @@ en:
     edit:
       page_header: "Edit user"
       page_hint: ""
+      fieldset_basics: "Name"
+      fieldset_credentials: "Credentials"
     show:
       page_header: ""
       page_hint: "Activity"
+      edit_link: "Edit"

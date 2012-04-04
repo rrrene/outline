@@ -12,7 +12,7 @@
       =# nav_to t("navigation.project_settings"), edit_project_path(current_project)
 
       - if pages = current_project.pages.presence
-        %li.nav-header Pages in this project
+        %li.nav-header= t("shared.sidebar.pages_in_project")
         - pages.each do |page|
           %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
 

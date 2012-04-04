@@ -7,7 +7,7 @@
 
     #add-to-new-project{:style => "display: none"}
       .control-group.string.required
-        %label.string.required{:for => "project_title"} Title
+        %label.string.required{:for => "project_title"}= t("activerecord.attributes.project.title")
         .controls
           %input.string.required#project_title{:type => "text", :name => "project[title]"}
 
