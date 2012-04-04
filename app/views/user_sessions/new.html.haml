@@ -2,7 +2,7 @@
 #login-modal.modalXXX
   = form_for :user_session, :url => '/user_sessions', :html => {:class => "simple_form form-horizontal", :id => "login_form"} do |f|
     .modal-header
-      %h3 Login
+      %h3= t("user_sessions.new.page_title")
     .modal-body
       - if @failed
         .alert.alert-error
