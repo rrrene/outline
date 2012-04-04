@@ -3,7 +3,6 @@
     - if current_project
       %li.nav-header= current_project.title
       = nav_to t("navigation.project_show"), current_project
-      =# nav_to t("navigation.project_pages"), current_project.pages.first, :pages
       = nav_to t("navigation.project_todo_lists"), todo_lists_path(:project_id => current_project), :todo_lists
       = nav_to t("navigation.project_notes"), notes_path(:project_id => current_project), :notes
       = nav_to t("navigation.project_links"), links_path(:project_id => current_project), :links
@@ -18,7 +17,7 @@
 
     - else
       %li.nav-header Navigation
-      = nav_to t("navigation.dashboard"), dashboard_path
+      =# nav_to t("navigation.dashboard"), dashboard_path
       = nav_to t("navigation.activities"), :activities
       = nav_to t("navigation.todo_lists"), :todo_lists
       = nav_to t("navigation.projects"), :projects
@@ -27,13 +26,13 @@
   = yield(:navigation_sidebar)
 
   - unless current_project
-    - if recent = favorite_projects
+    - if recent = favorite_projects.presence
       %ul.nav.nav-list
         %li.nav-header= t("shared.sidebar.favorite_projects")
         - recent.each do |item|
           %li= link_to item.title, item
 
-    - if recent = favorite_pages
+    - if recent = favorite_pages.presence
       %ul.nav.nav-list
         %li.nav-header= t("shared.sidebar.favorite_pages")
         - recent.each do |item|
