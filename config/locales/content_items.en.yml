@@ -7,3 +7,8 @@ en:
       details: "Details"
       move_to_page: "Move to Page..."
     details: "Originally posted by %{user} at %{created_at}"
+    index:
+      filter:
+        by_project: "Project"
+        project:
+          all: "All projects"

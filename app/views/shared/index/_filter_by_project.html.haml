@@ -1,0 +1,9 @@
+
+= filter_form(:project_id) do
+  .control-group
+    = label_tag :title, content_item_snippet(".index.filter.by_project")
+    .controls
+      %select{:name => "project_id", :"data-submit" => "form"}
+        %option{:value => "", :selected => params[:project_id].present? ? nil : :selected}= content_item_snippet(".index.filter.project.all")
+        - current_domain.projects.all.each do |project|
+          %option{:value => project.id, :selected => params[:project_id].to_i == project.id ? :selected : nil}= project.title

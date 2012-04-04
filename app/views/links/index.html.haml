@@ -5,10 +5,4 @@
 
 - content_for(:contextual_sidebar) do
   = render :layout => "shared/index/filter" do
-    - filter_form do
-      .control-group
-        = label_tag :title, t("pages.index.filter.by_select")
-        .controls
-          %select{:name => "scope", :"data-submit" => "form"}
-            %option{:value => ""}= t("pages.index.filter.select.all")
-            %option{:value => "no_context", :selected => params[:scope] == "no_context" ? :selected : nil}= t("pages.index.filter.select.no_context")
+    = render :partial => "shared/index/filter_by_project"
