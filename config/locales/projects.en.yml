@@ -5,6 +5,9 @@ en:
         activate: "%{user} reactivated a %{model}"
         deactivate: "%{user} finished a %{model}"
   projects:
+    bulk_collection:
+      deactivate_project: "Archive"
+      activate_project: "Reactivate"
     index:
       page_header: "Projects"
       page_hint: "Overview"
