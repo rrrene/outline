@@ -11,12 +11,12 @@
   = yield
 
   %hr
+  - if tags = current_domain.tags_for(:pages).presence
+    = form_tag(params.merge(:page => 1), :class => "form-stacked", :remote => true, :method => :get) do
+      .control-group
+        = label_tag :tags, shared_snippet(".index.filter.by_tags")
+        .controls
+          - tags.each do |tag|
+            = link_to tag, params.merge(:tag => tag), :class => "label"
 
-  = form_tag(params.merge(:page => 1), :class => "form-stacked", :remote => true, :method => :get) do
-    .control-group
-      = label_tag :tags, shared_snippet(".index.filter.by_tags")
-      .controls
-        - current_domain.tags_for(:pages).each do |tag|
-          = link_to tag, params.merge(:tag => tag), :class => "label"
-
-  %hr
+    %hr
