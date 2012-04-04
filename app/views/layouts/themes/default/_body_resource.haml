@@ -9,9 +9,9 @@
             .pull-left
               %h1
                 - if @page_header.present?
-                  = @page_header
+                  = inline_user_text @page_header
                   - if @page_hint.present?
-                    %small= @page_hint.html_safe
+                    %small= inline_user_text @page_hint
                 - elsif !resource_is_context_resource? && resource.respond_to?(:title)
                   = inline_user_text(resource.title)
                 - else
