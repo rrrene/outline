@@ -29,13 +29,13 @@
   - unless current_project
     - if recent = favorite_projects
       %ul.nav.nav-list
-        %li.nav-header= "Pinned projects"
+        %li.nav-header= t("shared.sidebar.favorite_projects")
         - recent.each do |item|
           %li= link_to item.title, item
 
     - if recent = favorite_pages
       %ul.nav.nav-list
-        %li.nav-header= "Pinned pages"
+        %li.nav-header= t("shared.sidebar.favorite_pages")
         - recent.each do |item|
           %li{:class => current_page?(item) ? :active : nil}= link_to item.title, item
 

@@ -3,13 +3,13 @@
 
     - if links = favorite_project_links.presence
       %ul.nav.nav-list
-        %li.nav-header Pinned Links
+        %li.nav-header= t("shared.sidebar.favorite_links")
         - links.each do |link|
           %li= link_to truncate(link.title, :length => 20), link.href, :class => "link external", :target => "_blank"
 
     - if todo_lists = favorite_project_todo_lists.presence
       %ul.nav.nav-list
-        %li.nav-header= "Pinned To-Do Lists"
+        %li.nav-header= t("shared.sidebar.favorite_todo_lists")
       - todo_lists.each do |todo_list|
         .well.todo-list
           = render :partial => "todo_lists/show", :locals => {:resource => todo_list}

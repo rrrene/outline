@@ -1,6 +1,11 @@
 
 en:
   shared:
+    sidebar:
+      favorite_links: "Pinned Links"
+      favorite_pages: "Pinned Pages"
+      favorite_projects: "Pinned Projects"
+      favorite_todo_lists: "Pinned To-Do Lists"
     bulk_collection:
       select_all: "Select all"
       select_none: "Select none"
