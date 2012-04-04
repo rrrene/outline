@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('.content-todo-list').sortable
-    connectWith: ".content-todo-list"
+  $('.content-todo-list.sortable').sortable
+    connectWith: ".content-todo-list.sortable"
 
   # Remove links to todo-list from todo-lists in content area
   $('.content h2 a[rel="todo-list"]').each ->

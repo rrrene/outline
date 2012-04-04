@@ -1,4 +1,4 @@
-%ul.unstyled.content-items{:class => "content-#{resource.class.to_s.underscore.dasherize}"}
+%ul.unstyled.not-sortable.content-items{:class => "content-#{resource.class.to_s.underscore.dasherize}"}
   = render "content_items/show", :content_item => resource.content_item
 
 .page-item
