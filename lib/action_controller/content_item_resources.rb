@@ -13,7 +13,7 @@ module ContentItemResources
     end
 
     def filter_collection_by_project
-      if params[:project_id]
+      if params[:project_id].presence
         self.current_project = Project.find(params[:project_id])
         self.collection = collection.where(:content_id => current_project.content_ids)
       end
