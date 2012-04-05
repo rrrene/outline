@@ -122,30 +122,5 @@ module Outline::Setup
       list.save!
       list.instance_eval &block
     end
-
   end
 end
-
-class ExampleProjectAndPage < Outline::Setup::CreateResources
-  def run
-    project :title => "Example Project" do
-      page :title => "Example Page" do
-        tag_list "red, green, blue"
-      
-        content_items do
-          note :text => "This is a note. Notes can help you keeping track of things."
-          link :href => "outlineapp.com", :title => "Outline Homepage", :text => "This is a link. These are great to keep track of research or client websites."
-          todo_list :title => "Todo List (1)" do
-            content_items do
-              todo :title => "Meet client"
-              todo :title => "Do some research"
-              todo :title => "Call accounting"
-              todo :title => "Pickup milk"
-            end
-          end
-        end
-      end
-    end
-  end
-end
-

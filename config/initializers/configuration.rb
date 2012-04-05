@@ -1,7 +1,5 @@
 require 'outline'
 
-require 'example'
-
 module Outline
   class Application < Rails::Application
     config.to_prepare do

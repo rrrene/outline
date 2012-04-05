@@ -1,5 +1,3 @@
-
-
 require 'active_record/has_activity'
 require 'active_record/has_quick_jump_target'
 require 'active_record/acts_as_owned_by_user'
@@ -15,5 +13,3 @@ require 'action_controller/enable_bulk_actions'
 require 'action_controller/content_holder_resources'
 require 'action_controller/content_item_resources'
 require 'action_controller/content_item_group_resources'
-
-require 'example'

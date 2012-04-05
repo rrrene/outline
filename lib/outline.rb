@@ -1,3 +1,6 @@
+require 'outline/setup'
+require 'outline/create_example_resources'
+
 module Outline
   THEMES = Dir[File.join(Rails.root, 'app', 'assets', 'stylesheets', 'themes', '**', 'all.css*')].map { |f| f.scan(/\/(\w+)\/all.css/) }.flatten
 

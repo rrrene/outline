@@ -10,7 +10,7 @@ class SetupController < ApplicationController
       set_activity_user(@user)
       Activity.create(:domain => @domain, :resource => @domain, :user => @user, :verb => "create")
       if params[:create_example] == "true"
-        ExampleProjectAndPage.new.run
+        Outline::CreateExampleResources.new.run
       end
       redirect_to root_url
     end
