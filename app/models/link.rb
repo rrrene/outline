@@ -18,7 +18,7 @@ class Link < ActiveRecord::Base
   end
 
   def fetch_href
-    fetch_href_meta_info if new_record?
+    fetch_href_meta_info if new_record? && title.blank?
   rescue
     nil
   end

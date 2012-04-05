@@ -19,4 +19,20 @@ class ContentItemTest < ActiveSupport::TestCase
     assert_equal new_content, content_item.content
     assert_equal new_content, item.outer_content
   end
+
+  test "should delete content items if domain is destroyed" do
+    content_item = ContentItem.first
+    assert_not_nil content_item
+    item = content_item.item
+    assert_not_nil item
+
+    domain = item.domain
+    assert_not_nil domain
+
+    domain.destroy
+
+    assert !item.class.exists?(item), "Item should be destroyed"
+    assert !content_item.class.exists?(content_item), "ContentItem should be destroyed"
+  end
+
 end
