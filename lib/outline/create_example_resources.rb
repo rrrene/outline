@@ -6,7 +6,7 @@ class Outline::CreateExampleResources < Outline::Setup::CreateResources
       
         content_items do
           note :text => "This is a note. Notes can help you keeping track of things."
-          link :href => "outlineapp.com", :title => "Outline Homepage", :text => "This is a link. These are great to keep track of research or client websites."
+          link :href => "github.com", :title => "Github Homepage", :text => "This is a link. These are great to keep track of research or client websites."
           todo_list :title => "Todo List (1)" do
             content_items do
               todo :title => "Meet client"
