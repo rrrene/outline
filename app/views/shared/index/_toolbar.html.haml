@@ -1,6 +1,6 @@
 #new-page-modal.modal
   .modal-header
-    %a.close{:"data-dismiss" => :modal} &times;
+    %a.close{:"data-dismiss" => "modal"} &times;
     %h3= t("shared.index.modal.new_page_title")
   .modal-body
     = render "pages/form", :resource => Page.new
@@ -9,7 +9,7 @@
 
 #new-project-modal.modal
   .modal-header
-    %a.close{:"data-dismiss" => :modal} &times;
+    %a.close{:"data-dismiss" => "modal"} &times;
     %h3= t("shared.index.modal.new_project_title")
   .modal-body
     = render "projects/form", :resource => Project.new

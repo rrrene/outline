@@ -5,7 +5,7 @@
 - content_for(:bulk_options_helpers) do
   #add-tags-modal.bulk-options-helper.modal
     .modal-header
-      %a.close{:href => "#"} &times;
+      %a.close{:href => "#", :"data-dismiss" => "modal"} &times;
       %h3= t('shared.bulk_collection.add_tags.link')
     .modal-body
       .form-horizontal
