@@ -7,6 +7,7 @@ module ActsAsOwnedByUser
         has_activity
         belongs_to :user
         belongs_to :domain
+        has_one :favorite, :as => :resource, :dependent => :destroy
 
         validates_presence_of :domain_id
         validates_presence_of :user_id
