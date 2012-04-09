@@ -10,9 +10,9 @@ Outline is an open source project and knowledge management application for the f
 
  * Written in Ruby on Rails
  * No-Fluff design
- * Organize To-Dos, Notes and important links in projects
+ * Post Notes, To-Dos and Links to projects
  * Organize knowledge on pages
- * Easy user management
+ * Simple user management
  * Support for themes
  * Support for multiple languages
  * Easily extendable
