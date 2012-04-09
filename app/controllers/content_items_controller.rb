@@ -7,6 +7,7 @@ class ContentItemsController < ApplicationController
     @content_item.save
     @content_item.move_to_top
     respond_to do |format|
+      format.js
       format.html { redirect_to @page }
     end
   end
