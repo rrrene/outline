@@ -3,6 +3,7 @@
 # Explanation:
 #   http://github.github.com/github-flavored-markdown/
 #
+
 require 'digest/md5'
 
 module MarkdownHelper
