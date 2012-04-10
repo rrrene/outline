@@ -7,7 +7,8 @@ window.OUT = {} unless window.OUT?
 window.OUT.deactivateFormHandlers = {} unless window.OUT.deactivateFormHandlers?
 
 window.OUT.deactivateFormHandlers["form.simple_form.todo"] = (form_selector, content_selector) ->
-  $(content_id).find("form.todo input").val('').select()
+  add_form_selector = $(content_selector).parents("*[data-add-form]").data("add-form")
+  $(add_form_selector).find('input[type="text"]').val('').select()
 
 $ ->
   $("form.todo").live "ajax:beforeSend", (event,xhr,status) ->

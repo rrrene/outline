@@ -3,7 +3,7 @@
 %h2= link_to_resource resource
 
 - if resource.inner_content
-  .active-todos{:id => "active-todos-"+dom_id(resource)}
+  .active-todos{:id => "active-todos-"+dom_id(resource), :"data-add-form" => '#'+dom_id(resource) + '_add_todo'}
     - active_content_items = todo_content_items(resource, true)
     = render :partial => "content/show", :locals => {:content => resource.inner_content, :content_items => active_content_items}
 
