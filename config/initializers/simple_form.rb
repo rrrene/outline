@@ -94,8 +94,18 @@ SimpleForm.setup do |config|
 
 
   # Twitter Bootstrap integration
-  config.components = [ :placeholder, :label, :contained_input ]
-  SimpleForm.wrapper_class = 'control-group'
-  SimpleForm.wrapper_error_class = 'error'
-  SimpleForm.error_class = 'help-inline'
+
+  # SimpleForm 1.0 configuration:
+  #
+  # config.components = [ :placeholder, :label, :contained_input ]
+  # SimpleForm.wrapper_class = 'control-group'
+  # SimpleForm.wrapper_error_class = 'error'
+  # SimpleForm.error_class = 'help-inline'
+
+  config.wrappers :tag => :div, :class => 'control-group',
+                  :error_class => 'error' do |b|
+    b.use :label
+    b.use :placeholder
+    b.use :contained_input
+  end
 end

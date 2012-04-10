@@ -9,7 +9,7 @@ module FormHelper
   end
 
   def cancel_path(resource = nil)
-    if resource
+    if resource.present? && !resource.new_record?
       resource_path(resource)
     else
       collection_path

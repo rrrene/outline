@@ -4,8 +4,9 @@
 module SimpleForm 
   module Components 
     module ContainedInput 
-      def contained_input 
-        '<div class="controls">' + input + (error.nil? ? '' : error) + '</div>'
+      def contained_input
+        add = error.nil? ? "" : " <span class=\"help-inline\">#{error}</span>"
+        '<div class="controls">' + input + add + '</div>'
       end 
     end 
   end 
