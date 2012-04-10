@@ -15,7 +15,7 @@ module QuickJumpTargetsHelper
     chain = chain.where("verb <> 'read'").order("created_at DESC")
     offset = 0
     contents = []
-    while contents.length < limit do
+    while contents.length < limit && offset < chain.count do
       activity = chain.offset(offset).first
       content = activity.try(:content).presence
       if content.present? && !contents.include?(content)
