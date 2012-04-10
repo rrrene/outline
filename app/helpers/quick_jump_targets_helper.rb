@@ -17,7 +17,7 @@ module QuickJumpTargetsHelper
     contents = []
     while contents.length < limit do
       activity = chain.offset(offset).first
-      content = activity.content.presence
+      content = activity.try(:content).presence
       if content.present? && !contents.include?(content)
         if !types.present? || types.include?(content.holder_type)
           contents << activity.content
