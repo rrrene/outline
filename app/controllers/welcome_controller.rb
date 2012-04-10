@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
     if outline_just_set_up?
       redirect_to setup_path
     elsif logged_in?
-      redirect_to activity_url
+      redirect_to activities_url
     else
       redirect_to login_url
     end
