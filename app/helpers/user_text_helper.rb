@@ -4,13 +4,13 @@ module UserTextHelper
 
   # Formats multi-line user text (like descriptions)
   def format_multi_line_user_input(text)
-    text = auto_link gfm(text) # uses GitHub flavored markdown from MarkdownHelper
-    sanitize RDiscount::new(text).to_html
+    text = gfm(text) # uses GitHub flavored markdown from MarkdownHelper
+    sanitize RDiscount::new(text, :autolink).to_html
   end
 
   # Formats single line user text (like titles)
   def inline_user_text(text)
-    sanitize(auto_link(text.to_s))
+    sanitize(text.to_s)
   end
 
   def user_text(text)

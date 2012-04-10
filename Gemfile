@@ -19,7 +19,6 @@ gem 'acts_as_list'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
 gem 'rdiscount'
-gem 'rails_autolink'
 
 gem 'haml'
 gem 'json'
