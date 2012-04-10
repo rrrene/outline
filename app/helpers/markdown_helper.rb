@@ -7,8 +7,6 @@ require 'digest/md5'
 
 module MarkdownHelper
   def gfm(text)
-    return text
-    
     # Extract pre blocks
     extractions = {}
     text.gsub!(%r{<pre>.*?</pre>}m) do |match|
