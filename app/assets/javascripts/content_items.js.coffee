@@ -20,7 +20,7 @@ OUT.contentItems =
       update: OUT.handlers.listSorted
 
   deactivateForm: (form_selector, content_selector) ->
-    $(content_selector+' '+form_selector).find("input[type=text], textarea").val("").blur()
+    $(form_selector).find("input[type=text], textarea").val("").blur()
     if handler = OUT.deactivateFormHandlers[form_selector]
       handler(form_selector, content_selector)
 
