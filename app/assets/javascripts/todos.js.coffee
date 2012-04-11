@@ -36,7 +36,7 @@ OUT.todos =
 
 
 
-$ ->
+$(window).load ->
   $("form.todo").live "ajax:beforeSend", (event,xhr,status) ->
     OUT.todos.createFakeTodo(this)
     $(event.target).find('input[type="text"]').val('').select()

@@ -81,5 +81,5 @@ OUT.bulk =
     $(ele).modal("show")
     OUT.selectFirstInput(ele)
 
-$ ->
+$(window).load ->
   OUT.bulk.initialize()

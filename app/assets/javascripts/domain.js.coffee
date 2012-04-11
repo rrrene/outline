@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$ ->
+$(window).load ->
   $('input[data-toggle="theme"]').live "change", (event) ->
     new_theme = $(this).val()
     new_theme_href = "/assets/themes/#{new_theme}/all.css?reload=#{Math.random()}"

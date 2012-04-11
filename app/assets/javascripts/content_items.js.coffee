@@ -61,11 +61,16 @@ OUT.contentItems =
       $(pane).css("background-position", arrow_left+"px 0")
 
 $ ->
+  OUT.contentItems.setAddFormArrowTo $("#add-content-item-tabs li.active a")
+
+  $("#add-content-item-tabs li.active").removeClass("active")
+
+$(window).load ->
   OUT.contentItems.createSortables()
 
   $('a[data-toggle="content-item-form"]').live "click", (event) ->
     selector = $(event.target).data('target')
-    $(selector).toggle(); 
+    $(selector).toggle();
     OUT.selectFirstInput(selector)
     $(this).hide()
     false
@@ -80,22 +85,11 @@ $ ->
     $("body").click()
     url = $(this).attr("href")
     quickjump = new OUT.QuickJump (selected) ->
-      $.ajax
-        type: 'POST'
-        url: url
-        data: {"page_id": selected.id}
-        success: () ->
-          quickjump.hide()
-    , "/quick_jump_targets/pages.json"
+        $.ajax
+          type: 'POST'
+          url: url
+          data: {"page_id": selected.id}
+          success: () ->
+            quickjump.hide()
+      , "/quick_jump_targets/pages.json"
     false
-
-  OUT.contentItems.setAddFormArrowTo $("#add-content-item-tabs li.active a")
-
-  $("#add-content-item-tabs li.active").removeClass("active")
-
-  $('form input[type="text"]').live "keyup", (event) ->
-    if event.keyCode == 27
-      $(this).parents("form").find("a.cancel").click()
-      event.stopImmediatePropagation()
-      event.preventDefault()
-      false

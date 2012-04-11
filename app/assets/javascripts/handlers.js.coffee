@@ -15,7 +15,7 @@ OUT.handlers =
       type: 'post'
       dataType: 'script'
 
-$ ->
+$(window).load ->
   # When the ENTER key is pressed in a textfield inside a modal, click the primary button
   $(".modal input[type=text]").live "keypress", (event) ->
     if( event.which == 13 )

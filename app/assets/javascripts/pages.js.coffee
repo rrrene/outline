@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 
-$ -> 
+$(window).load ->
   $('#page_context_id').live 'change', ->
     new_project_fields = $('#add-to-new-project')
     if $(this).val() == "-1"

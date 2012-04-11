@@ -188,7 +188,7 @@ OUT.clearLazyTimer = (name) ->
   if OUT.lazyTimerIds[name]
     window.clearTimeout(OUT.lazyTimerIds[name])
 
-$ ->
+$(window).load ->
   OUT.registerKeyboardShortcut "t", ->
     new OUT.QuickJump (selected) ->
       window.location.href = selected.url

@@ -8,9 +8,6 @@ window.OUT.addedHandlers["todo_list"] = (selector) ->
   $(selector).find("a.new").click()
 
 $ ->
-  $('.content-todo-list.sortable').sortable
-    connectWith: ".content-todo-list.sortable"
-
   # Remove links to todo-list from todo-lists in content area
   $('.content h2 a[rel="todo-list"]').each ->
     $(this).parent().html $(this).html()
@@ -19,3 +16,7 @@ $ ->
   OUT.contentItems.highlightQueryIn ".content-items .content-item-todo-list h2, .content-items .todo-title", (chain) ->
     matched_lists = $(".content-items .content-item-todo-list h2 span.highlight").parents('.content-item-todo-list')
     matched_lists.find('.content-item').show()
+
+$(window).load ->
+  $('.content-todo-list.sortable').sortable
+    connectWith: ".content-todo-list.sortable"
