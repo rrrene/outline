@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   end
 
   def favor(resource)
-    unless favors?(resource)
+    if resource.domain == self.domain && !favors?(resource)
       favorite = Favorite.new
       favorite.resource = resource
       favorite.user = self

@@ -4,14 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-content_page_1:
+favorite_page_1:
   id: 1
   user_id: 1
   domain_id: 1
   resource_type: Page
   resource_id: 1
 
-content_page_2:
+favorite_page_2:
   id: 2
   user_id: 2
   domain_id: 2
