@@ -1,4 +1,6 @@
-<%= insert_html resource.content_item.position == 1 ? :prepend : :append, dom_id(resource.content_item.content), :partial => "content_items/show", :locals => {:content_item => resource.content_item} %>
+<% if resource.valid? %>
+  <%= insert_html resource.content_item.position == 1 ? :prepend : :append, dom_id(resource.content_item.content), :partial => "content_items/show", :locals => {:content_item => resource.content_item} %>
 
-OUT.contentItems.deactivateForm("form.simple_form.<%= resource.class.to_s.underscore %>", "#<%= dom_id(resource.outer_content) %>");
-OUT.contentItems.added("#<%= dom_id(resource.content_item) %>", "<%= resource.class.to_s.underscore %>");
+  OUT.contentItems.deactivateForm("form.simple_form.<%= resource.class.to_s.underscore %>", "#<%= dom_id(resource.outer_content) %>");
+  OUT.contentItems.added("#<%= dom_id(resource.content_item) %>", "<%= resource.class.to_s.underscore %>");
+<% end %>

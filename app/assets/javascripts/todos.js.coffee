@@ -16,23 +16,23 @@ window.OUT.addedHandlers["todo"] = (selector) ->
 
 OUT.todos =
   createFakeTodo: (ele) ->
-    list = $(ele).parents(".content-item-todo-list").find("div.active-todos ul.content-todo-list")
     title = $(ele).find('input[type="text"]').val()
-
-    html = '<li class="content-item content-item-todo dummy-todo">' +
-      '<div class="content-item-wrapper item-type">' +
-        '<div class="content-item-inner">' +
-          '<div class="content-item-body">' +
-            '<div class="todo-checkbox"><input type="checkbox" disabled="disabled"></div>' +
-            '<div class="todo-title">'+title+'</div>' +
-            '<div class="clearboth"></div>' +
+    if title? && title != ""
+      html = '<li class="content-item content-item-todo dummy-todo">' +
+        '<div class="content-item-wrapper item-type">' +
+          '<div class="content-item-inner">' +
+            '<div class="content-item-body">' +
+              '<div class="todo-checkbox"><input type="checkbox" disabled="disabled"></div>' +
+              '<div class="todo-title">'+title+'</div>' +
+              '<div class="clearboth"></div>' +
+            '</div>' +
           '</div>' +
         '</div>' +
-      '</div>' +
-      '<div class="spacer"><hr></div>' +
-    '</li>'
+        '<div class="spacer"><hr></div>' +
+      '</li>'
 
-    list.append(html)
+      list = $(ele).parents(".content-item-todo-list").find("div.active-todos ul.content-todo-list")
+      list.append(html)
 
 
 
