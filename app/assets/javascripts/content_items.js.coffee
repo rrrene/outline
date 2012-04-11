@@ -65,6 +65,7 @@ $ ->
     selector = $(event.target).data('target')
     $(selector).toggle(); 
     OUT.selectFirstInput(selector)
+    $(this).hide()
     false
 
   $('#add-content-item-tabs').bind 'shown', (event) ->
