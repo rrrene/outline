@@ -39,6 +39,9 @@
             opacity: 0.5
         &:hover i.icon-trash
           opacity: 1
+
+.content-item-todo,
+form.todo-new
   .todo-checkbox
     float: left
     width: 20px
@@ -70,6 +73,14 @@ form.todo
     input
       width: 99%!important
 
+form.todo-edit
+  .todo-checkbox
+    display: none
+
 form.todo-new
+  .controls
+    input
+      padding-left: 0
+      padding-top: 0
   .form-actions
     display: none
