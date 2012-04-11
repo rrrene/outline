@@ -7,7 +7,7 @@
     - active_content_items = todo_content_items(resource, true)
     = render :partial => "content/show", :locals => {:content => resource.inner_content, :content_items => active_content_items}
 
-.add-content-item-form{:id => dom_id(resource) + '_add_todo', :style => "XXXXdisplay: none"}
+.add-content-item-form{:id => dom_id(resource) + '_add_todo', :style => "display: none"}
   = content_item_form_for Todo, :content => resource.inner_content
 
 = link_to t("todo_lists.show.add_todo_link"), new_todo_path(:content_id => resource.inner_content), :"data-toggle" => "content-item-form", :"data-target" => '#' + dom_id(resource) + '_add_todo', :class => "new"

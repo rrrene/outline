@@ -94,3 +94,6 @@ $ ->
   $('form input[type="text"]').live "keyup", (event) ->
     if event.keyCode == 27
       $(this).parents("form").find("a.cancel").click()
+      event.stopImmediatePropagation()
+      event.preventDefault()
+      false

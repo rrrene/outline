@@ -24,3 +24,10 @@ $ ->
       data: data
       type: 'post'
       dataType: 'script'
+
+  $("form.todo-new a.cancel").live "click", (event) ->
+    container = $(this).parents("div.add-content-item-form")
+    container_id = $(container).attr("id")
+    link = $('a[data-toggle="content-item-form"]').filter('a[data-target="#'+container_id+'"]')
+    $(container).hide()
+    $(link).show() if link
