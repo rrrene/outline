@@ -90,3 +90,7 @@ $ ->
   OUT.contentItems.setAddFormArrowTo $("#add-content-item-tabs li.active a")
 
   $("#add-content-item-tabs li.active").removeClass("active")
+
+  $('form input[type="text"]').live "keyup", (event) ->
+    if event.keyCode == 27
+      $(this).parents("form").find("a.cancel").click()
