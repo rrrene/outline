@@ -4,6 +4,8 @@
     %h3= t("shared.index.modal.new_page_title")
   .modal-body
     = render "pages/form", :resource => Page.new(:context_id => current_project.try(:context).try(:id))
+  .modal-footer
+    = buttons Page.new
 
 - content_for(:page_header) do
   .btn-group
