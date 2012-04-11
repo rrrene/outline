@@ -5,10 +5,12 @@
 window.OUT = {} unless window.OUT?
 
 window.OUT.deactivateFormHandlers = {} unless window.OUT.deactivateFormHandlers?
+window.OUT.addedHandlers = {} unless window.OUT.addedHandlers?
 
 OUT.contentItems =
-  added: (selector) ->
-    $(selector).find("a.new").click()
+  added: (selector, type) ->
+    if handler = OUT.addedHandlers[type]
+      handler(selector)
 
   createSortables: ->
     $('.content-items.sortable').sortable

@@ -5,13 +5,40 @@
 window.OUT = {} unless window.OUT?
 
 window.OUT.deactivateFormHandlers = {} unless window.OUT.deactivateFormHandlers?
-
 window.OUT.deactivateFormHandlers["form.simple_form.todo"] = (form_selector, content_selector) ->
   add_form_selector = $(content_selector).parents("*[data-add-form]").data("add-form")
   $(add_form_selector).find('input[type="text"]').val('').select()
 
+window.OUT.addedHandlers = {} unless window.OUT.addedHandlers?
+
+window.OUT.addedHandlers["todo"] = (selector) ->
+  $("li.dummy-todo").remove()
+
+OUT.todos =
+  createFakeTodo: (ele) ->
+    list = $(ele).parents(".content-item-todo-list").find("div.active-todos ul.content-todo-list")
+    title = $(ele).find('input[type="text"]').val()
+
+    html = '<li class="content-item content-item-todo dummy-todo">' +
+      '<div class="content-item-wrapper item-type">' +
+        '<div class="content-item-inner">' +
+          '<div class="content-item-body">' +
+            '<div class="todo-checkbox"><input type="checkbox" disabled="disabled"></div>' +
+            '<div class="todo-title">'+title+'</div>' +
+            '<div class="clearboth"></div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="spacer"><hr></div>' +
+    '</li>'
+
+    list.append(html)
+
+
+
 $ ->
   $("form.todo").live "ajax:beforeSend", (event,xhr,status) ->
+    OUT.todos.createFakeTodo(this)
     $(event.target).find('input[type="text"]').val('').select()
 
   $(".todo-checkbox input").live "change", (event) ->
