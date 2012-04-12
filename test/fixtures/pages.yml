@@ -30,3 +30,9 @@ four:
   user_id: 1
   domain_id: 2
   title: "Second page (2)"
+
+five:
+  id: 5
+  user_id: 1
+  domain_id: 1
+  title: "First page (3)"
