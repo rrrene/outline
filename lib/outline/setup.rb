@@ -67,7 +67,6 @@ module Outline::Setup
   class ResourceWithContent < Base
     def content_items(&block)
       save!
-      puts resource.inspect + " << " + resource.inner_content.inspect
       items = Outline::Setup::ContentItems.new
       items.content_to_post_on = resource.inner_content
       items.instance_eval(&block)
