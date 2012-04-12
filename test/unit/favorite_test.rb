@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class FavoriteTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   test "should delete favorite when item is deleted" do
     favorite = Favorite.first
     assert_not_nil favorite
