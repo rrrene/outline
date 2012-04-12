@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def name
-    "#{first_name} #{last_name}".presence || login
+    "#{first_name} #{last_name}".strip.presence || login
   end
   
   belongs_to :domain
