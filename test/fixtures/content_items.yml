@@ -62,3 +62,17 @@ content_item_todo_list_3:
   position: 1
   item_type: TodoList
   item_id: 3
+
+content_item_todo_1:
+  id: 10
+  content_id: 7
+  position: 1
+  item_type: Todo
+  item_id: 1
+
+content_item_todo_2:
+  id: 11
+  content_id: 8
+  position: 1
+  item_type: Todo
+  item_id: 2
