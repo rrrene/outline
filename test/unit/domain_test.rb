@@ -11,4 +11,21 @@ class DomainTest < ActiveSupport::TestCase
     assert !domain.tags_for(:pages).nil?
   end
 
+  test "should kill everything when destroyed" do
+    models = [Activity, Context, Content, ContentItem]
+    models.concat [User, Favorite, QuickJumpTarget]
+    models.concat [Project, Page]
+    models.concat Outline::ContentItems.classes
+    assert Domain.count > 0
+    models.each do |model|
+      assert model.count > 0, "#{model}.count == 0"
+    end
+
+    Domain.destroy_all
+
+    models.each do |model|
+      assert model.count == 0, "#{model} has not been destroyed"
+    end
+  end
+
 end

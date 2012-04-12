@@ -4,3 +4,31 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+quick_jump_target_1:
+  id: 1
+  domain_id: 1
+  resource_type: Page
+  resource_id: 1
+  phrase: "First Page"
+
+quick_jump_target_2:
+  id: 2
+  domain_id: 2
+  resource_type: Page
+  resource_id: 2
+  phrase: "Second Page"
+
+quick_jump_target_3:
+  id: 3
+  domain_id: 1
+  resource_type: Project
+  resource_id: 1
+  phrase: "First Project"
+
+quick_jump_target_4:
+  id: 4
+  domain_id: 2
+  resource_type: Project
+  resource_id: 2
+  phrase: "Second Project"
