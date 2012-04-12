@@ -23,7 +23,7 @@ admin:
   last_login_ip: 
   login: admin
   last_login_at: 
-  email: freight_supplier@example.org
+  email: admin@outline.dev
   domain_admin: <%= true %>
 
 admin2: 
@@ -42,9 +42,9 @@ admin2:
   persistence_token: 36506eca50a1c105e67121a98923ffa5fe534e69329530eb1251dd36ada8d19be8f27043fc3e34d9ab78f5c5cf5a6fab025919c80cb25aa8639c9497fabd3c3a
   login_count: 0
   last_login_ip: 
-  login: loading_space_supplier
+  login: admin2
   last_login_at: 
-  email: loading_space_supplier@example.org
+  email: admin2@outline.dev
   domain_admin: <%= true %>
 
 admin3:
@@ -63,9 +63,9 @@ admin3:
   persistence_token: 36506eca50a1c105e67121a98923ffa5fe534e69329530eb1251dd36ada8d19be8f27043fc3e34d9ab78f5c5cf5a6fab025919c80cb25aa8639c9497fabd3c3a
   login_count: 0
   last_login_ip:
-  login: loading_space_supplier_employee
+  login: admin3
   last_login_at:
-  email: loading_space_supplier_employee@example.org
+  email: admin3@outline.dev
   domain_admin: <%= true %>
 
 user1:
@@ -84,9 +84,9 @@ user1:
   persistence_token: 36506eca50a1c105e67121a98923ffa5fe534e69329530eb1251dd36ada8d19be8f27043fc3e34d9ab78f5c5cf5a6fab025919c80cb25aa8639c9497fabd3c3a
   login_count: 0
   last_login_ip:
-  login: loading_space_supplier_intern
+  login: user1
   last_login_at:
-  email: loading_space_supplier_intern@example.org
+  email: user1@outline.dev
   domain_admin: <%= false %>
 
 user2: 
@@ -105,7 +105,7 @@ user2:
   persistence_token: 1dbae8673f5f3920b64f86d3b2ceeed24210227246521cd381c7a3531594930bdcdc4b5bb7bfa60cc81fd094efdcca4977ded30ce12420fa6c331cd85777f92b
   login_count: 27
   last_login_ip: 127.0.0.1
-  login: admin
+  login: user2
   last_login_at: 2011-01-10 21:49:28.833772
-  email: admin@example.org
+  email: user2@outline.dev
   domain_admin: <%= false %>
