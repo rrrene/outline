@@ -16,7 +16,7 @@ $ ->
   OUT.selectFirstInput()
 
 $(window).load ->
-  $('form input[type="text"]').live "keyup", (event) ->
+  $('form input[type="text"]').live "keydown", (event) ->
     if event.keyCode == 27
       $(this).parents("form").find("a.cancel").click()
       event.stopImmediatePropagation()
