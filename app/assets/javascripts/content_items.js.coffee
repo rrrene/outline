@@ -21,6 +21,18 @@ OUT.contentItems =
       scroll: true
       update: OUT.handlers.listSorted
 
+  clearDecoratedContentItemOptions: (event) ->
+    $("div.content-item-options").removeClass "open"
+
+  decorateContentItemOptions: (event) ->
+    console.log "decorateContentItemOptions"
+    $("div.content-item-options").each () ->
+      options = $(this)
+      if options.find("li.dropdown.open").length > 0
+        options.addClass "open"
+      else
+        options.removeClass "open"
+
   deactivateForm: (form_selector, content_selector) ->
     $(form_selector).find("input[type=text], textarea").val("").blur()
     if handler = OUT.deactivateFormHandlers[form_selector]
@@ -67,6 +79,9 @@ $ ->
 
 $(window).load ->
   OUT.contentItems.createSortables()
+
+  $('body').bind 'click', OUT.contentItems.clearDecoratedContentItemOptions
+  $('a[data-toggle="dropdown"]').bind 'click', OUT.contentItems.decorateContentItemOptions
 
   $('a[data-toggle="content-item-form"]').live "click", (event) ->
     selector = $(event.target).data('target')
