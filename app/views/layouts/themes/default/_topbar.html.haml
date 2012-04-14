@@ -32,9 +32,10 @@
 
 
           %ul.nav.pull-right
-            %li.dropdown
+            %li.options.dropdown
               %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
-                = t("navigation.options")
+                = icon :cog
+                =# t("navigation.options")
                 %b.caret
 
               %ul.dropdown-menu

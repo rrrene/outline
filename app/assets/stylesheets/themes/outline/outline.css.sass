@@ -70,16 +70,23 @@ h1 small p
 .navbar .nav > li > a
   font-weight: normal
 
-.navbar .nav li a.brand
-  background-color: #ffda22
-  color: #333
-  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px
-  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px
-  &:hover
-    color: #333!important
-    background-color: #ffe736!important
-
+.navbar
+  .nav
+    li
+      a.brand
+        background-color: #ffda22
+        color: #333
+        -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px
+        -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px
+        &:hover
+          color: #333!important
+          background-color: #ffe736!important
+    li.options
+      a.dropdown-toggle
+        opacity: 0.5
+        &:hover
+          opacity: 1
 .page-header,
 .page-footer
   border-radius: 0
