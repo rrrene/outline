@@ -5,7 +5,7 @@
   %body
     %div{:class => controller_name.dasherize + '-controller'}
       %div{:class => action_name.dasherize + '-action'}
-        = render themed(:topbar)
+        = render themed(:navbar)
         #content-container
           = render themed(body_template)
         = render themed(:footer)
