@@ -17,6 +17,7 @@
         = label_tag :tags, shared_snippet(".index.filter.by_tags")
         .controls
           - tags.each do |tag|
-            = link_to tag, params.merge(:tag => tag), :class => "label"
+            - current_tag = @filter_tag == tag
+            = link_to tag, params.merge(:tag => current_tag ? nil : tag), :class => "label #{'label-info' if current_tag}"
 
     %hr
