@@ -15,10 +15,7 @@ module ActsAsTaggableByUser
 
   module TagMethods
     def add_tags(list)
-      if list != tag_list_with_domain && self.domain
-        self.activity_action = "tag" if self.respond_to?(:activity_action)
-        self.domain.tag(self, :with => list, :on => :tags)
-      end
+      self.tag_list = "#{tag_list}, #{list}"
     end
 
     def tags_with_domain
@@ -26,11 +23,14 @@ module ActsAsTaggableByUser
     end
 
     def tag_list_with_domain
-      @tag_list_with_domain ||= tags.join(', ')
+      tags.join(', ')
     end
 
-    def tag_list_with_domain=(value)
-      add_tags value
+    def tag_list_with_domain=(list)
+      if list != tag_list_with_domain && self.domain
+        self.activity_action = "tag" if self.respond_to?(:activity_action)
+        self.domain.tag(self, :with => list, :on => :tags)
+      end
     end
   end
 end

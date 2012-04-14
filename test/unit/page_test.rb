@@ -23,14 +23,27 @@ class PageTest < ActiveSupport::TestCase
     assert_not_nil @page.inner_content
   end
 
-  test "should add tags" do
+  test "should assign tags" do
     domain = Domain.first
     page = domain.pages.first
     tag_list = %w(one two three)
-    
-    page.add_tags tag_list.join(", ")
+
+    page.tag_list = tag_list.join(", ")
 
     assert_equal tag_list, page.tags
+  end
+
+  test "should add tags" do
+    domain = Domain.first
+    page = domain.pages.first
+
+    tag_list = %w(one two three)
+    page.tag_list = tag_list.join(", ")
+    assert_equal tag_list, page.tags
+
+    tag_list2 = %w(four five)
+    page.add_tags tag_list2.join(", ")
+    assert_equal tag_list + tag_list2, page.tags
   end
 
   test "should move page to project" do
