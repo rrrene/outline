@@ -16,5 +16,13 @@ class Page < ActiveRecord::Base
     end
   end
 
+  def title_with_context
+    if context.try(:resource).present?
+      I18n.t("helpers.page.context_with_title", :context_title => context.resource.title, :page_title => title)
+    else
+      title
+    end
+  end
+
   validates_presence_of :title
 end

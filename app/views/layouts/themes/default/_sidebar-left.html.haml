@@ -30,11 +30,11 @@
       %ul.nav.nav-list
         %li.nav-header= t("shared.sidebar.favorite_projects")
         - recent.each do |item|
-          %li= link_to item.title, item
+          %li= link_to item.title, item, :title => item.title
 
     - if recent = favorite_pages.presence
       %ul.nav.nav-list
         %li.nav-header= t("shared.sidebar.favorite_pages")
         - recent.each do |item|
-          %li{:class => current_page?(item) ? :active : nil}= link_to item.title, item
+          %li{:class => current_page?(item) ? :active : nil}= link_to item.title, item, :title => item.title_with_context
 

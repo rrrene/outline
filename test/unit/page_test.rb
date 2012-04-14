@@ -46,6 +46,25 @@ class PageTest < ActiveSupport::TestCase
     assert_equal tag_list + tag_list2, page.tags
   end
 
+  test "should give title with context" do
+    domain = Domain.first
+    page = domain.pages.first
+    assert_not_nil page
+
+    project = page.context.resource
+    assert_not_nil project
+
+    project.update_attribute "title", "TPS"
+    page.update_attribute "title", "Report"
+
+    assert_equal "[TPS] Report", page.title_with_context
+
+    page.context = nil
+    page.save
+
+    assert_equal "Report", page.title_with_context
+  end
+
   test "should move page to project" do
     domain = Domain.first
     page = domain.pages.last

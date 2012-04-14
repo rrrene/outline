@@ -1,5 +1,9 @@
 
 en:
+  helpers:
+    page:
+      context_with_title: "[%{context_title}] %{page_title}"
+
   pages:
     new:
       add_to_new_project: "Add to new project..."
