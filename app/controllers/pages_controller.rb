@@ -1,4 +1,3 @@
-
 class PagesController < ApplicationController
   content_holder_resources 
   enable_bulk_actions :add_tags, :destroy, :move_to_project, :move_to_new_project
@@ -51,6 +50,19 @@ class PagesController < ApplicationController
       create_with_authorization
     end
   end
+
+  def filter_collection_by_project
+    if params[:project_id].presence
+      self.current_project = Project.find(params[:project_id])
+      self.collection = collection.where(:context_id => current_project.context.id)
+    end
+  end
+
+  def filter_collection_with_project
+    filter_collection_by_project
+    filter_collection_without_project
+  end
+  alias_method_chain :filter_collection, :project
 
   def new_project(attributes)
     project = Project.new(attributes)
