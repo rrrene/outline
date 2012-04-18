@@ -9,7 +9,7 @@
     %option{:value => -1}= t("shared.bulk_collection.move_to_project.move_to_new_option")
 
 - content_for(:bulk_options_helpers) do
-  #move-to-new-project-modal.bulk-options-helper.modal
+  #move-to-new-project-modal.bulk-options-helper.modal{:style => "display: none;"}
     .modal-header
       %a.close{:href => "#", :"data-dismiss" => "modal"} &times;
       %h3= t("shared.bulk_collection.move_to_project.move_to_new_title")

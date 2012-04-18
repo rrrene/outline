@@ -3,7 +3,7 @@
 %input{:type => "hidden", :id => "bulk_add_tags_tag_list", :name => "bulk[add_tags]"}
 
 - content_for(:bulk_options_helpers) do
-  #add-tags-modal.bulk-options-helper.modal
+  #add-tags-modal.bulk-options-helper.modal{:style => "display: none;"}
     .modal-header
       %a.close{:href => "#", :"data-dismiss" => "modal"} &times;
       %h3= t('shared.bulk_collection.add_tags.link')
