@@ -37,11 +37,11 @@ OUT.todos =
 
 
 $(window).load ->
-  $("form.todo").live "ajax:beforeSend", (event,xhr,status) ->
+  $("form.todo-new").live "ajax:beforeSend", (event,xhr,status) ->
     OUT.todos.createFakeTodo(this)
     $(event.target).find('input[type="text"]').val('').select()
 
-  $(".todo-checkbox input").live "change", (event) ->
+  $("div.todo-checkbox input").live "change", (event) ->
     $(event.target).parents(".content-item").addClass("pending")
     checked = $(event.target).is(':checked')
     data = {"active": !checked}
