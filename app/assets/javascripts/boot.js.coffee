@@ -1,6 +1,9 @@
 
 window.OUT = {} unless window.OUT?
 
+OUT.cancelFormFor = (ele) ->
+  $(ele).parents("form").find("a.cancel").click()
+
 OUT.registerKeyboardShortcut = (key, cb) ->
   $('body').live "keypress", (event) ->
     char = String.fromCharCode(event.charCode)
@@ -18,7 +21,7 @@ $ ->
 $(window).load ->
   $('form input[type="text"]').live "keydown", (event) ->
     if event.keyCode == 27
-      $(this).parents("form").find("a.cancel").click()
+      OUT.cancelFormFor(this)
       event.stopImmediatePropagation()
       event.preventDefault()
       false
