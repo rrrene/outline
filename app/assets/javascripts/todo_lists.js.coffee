@@ -2,9 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-window.OUT.addedHandlers = {} unless window.OUT.addedHandlers?
-
-window.OUT.addedHandlers["todo_list"] = (selector) ->
+OUT.registerAddedHandler "todo_list", (selector) ->
   $(selector).find("a.new").click()
 
 $ ->

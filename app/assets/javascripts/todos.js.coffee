@@ -2,16 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-window.OUT = {} unless window.OUT?
-
-window.OUT.deactivateFormHandlers = {} unless window.OUT.deactivateFormHandlers?
-window.OUT.deactivateFormHandlers["form.simple_form.todo"] = (form_selector, content_selector) ->
+OUT.registerDeactivateFormHandler "form.todo", (form_selector, content_selector) ->
   add_form_selector = $(content_selector).parents("*[data-add-form]").data("add-form")
   $(add_form_selector).find('input[type="text"]').val('').select()
 
-window.OUT.addedHandlers = {} unless window.OUT.addedHandlers?
-
-window.OUT.addedHandlers["todo"] = (selector) ->
+OUT.registerAddedHandler "todo", (selector) ->
   $("li.dummy-todo").remove()
 
 OUT.todos =

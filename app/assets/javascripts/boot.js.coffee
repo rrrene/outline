@@ -1,6 +1,9 @@
 
 window.OUT = {} unless window.OUT?
 
+#
+# Helper methods
+#
 OUT.cancelFormFor = (ele) ->
   $(ele).parents("form").find("a.cancel").click()
 
@@ -15,6 +18,31 @@ OUT.selectFirstInput = (ele) ->
   ele or= document
   $(ele).find("input[type=text], textarea").first().select()
 
+#
+# Handler & trigger methods
+#
+OUT.handlers = {} unless OUT.handlers?
+OUT.HANDLER_ADDED_ITEM = "added-item"
+OUT.HANDLER_DEACTIVATE_FORM = "deactivate-form"
+
+OUT.registerHandler = (namespace, name, callback) ->
+  OUT.handlers[namespace] = {} if OUT.handlers[namespace] == undefined
+  OUT.handlers[namespace][name] = callback
+
+OUT.registerAddedHandler = (name, callback) ->
+  OUT.registerHandler OUT.HANDLER_ADDED_ITEM, name, callback
+
+OUT.registerDeactivateFormHandler = (name, callback) ->
+  OUT.registerHandler OUT.HANDLER_DEACTIVATE_FORM, name, callback
+
+OUT.triggerHandler = (namespace, name, args) ->
+  handlers = OUT.handlers[namespace]
+  if callback = handlers[name]
+    callback.apply(null, args)
+
+#
+# Ready & load handlers
+#
 $ ->
   OUT.selectFirstInput()
 

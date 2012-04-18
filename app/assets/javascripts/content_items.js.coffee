@@ -8,9 +8,11 @@ window.OUT.deactivateFormHandlers = {} unless window.OUT.deactivateFormHandlers?
 window.OUT.addedHandlers = {} unless window.OUT.addedHandlers?
 
 OUT.contentItems =
+  #
+  # Wrapper method that is called when a content_item is added to the current page
+  #
   added: (selector, type) ->
-    if handler = OUT.addedHandlers[type]
-      handler(selector)
+    OUT.triggerHandler OUT.HANDLER_ADDED_ITEM, type, [selector]
 
   createSortables: ->
     $('.content-items.sortable').sortable
@@ -33,10 +35,12 @@ OUT.contentItems =
       else
         options.removeClass "open"
 
+  #
+  # Wrapper method that is called when a content_item form should be deactivated
+  #
   deactivateForm: (form_selector, content_selector) ->
     $(form_selector).find("input[type=text], textarea").val("").blur()
-    if handler = OUT.deactivateFormHandlers[form_selector]
-      handler(form_selector, content_selector)
+    OUT.triggerHandler OUT.HANDLER_DEACTIVATE_FORM, form_selector, [form_selector, content_selector]
 
   highlightQueryIn: (items_selector, after_callback) ->
     query = $("ul.content-items").data("filter-query")
