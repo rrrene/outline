@@ -8,6 +8,10 @@
     span.deactivate
       text-decoration: line-through
 
+//
+// Style appearance
+//
+
 .content-item-todo
   padding-top: 10px
   padding-bottom: 10px
@@ -40,6 +44,9 @@
         &:hover i.icon-trash
           opacity: 1
 
+//
+// Alignment of checkbox and title
+//
 .content-item-todo,
 form.todo-new
   .todo-checkbox
@@ -48,11 +55,12 @@ form.todo-new
   .todo-title
     display: block
     float: left
-    width: 90%
+    width: 88%
     padding-top: 2px
     p
       margin: 0
 
+// Appearance in dashboard and sidebar
 .dashboard,
 .sidebar
   .content-todo-list
@@ -65,42 +73,51 @@ form.todo-new
         margin-left: -8px!important
       .todo-title
 
-form.todo
+//
+// Style forms
+//
+
+@mixin has-plain-content-item-form
+  .content-item-form-wrapper,
+  form
+    padding: 0
+    margin: 0
+    background: transparent
+    border: none
+    box-shadow: none
+
+@mixin has-plain-form-controls
   label
     display: none
-  .controls
-    margin-left: 0
-    input
-      width: 99%!important
+  .control-group
+    margin: 0!important
+    .controls
+      margin-left: 0
+      input
+        padding-left: 0
+        padding-top: 0
+        margin-left: -1px
+        width: 99%!important
 
-form.todo-edit
-  .todo-checkbox
-    display: none
-
-.sidebar div.content-item-wrapper[id^="todo_"] form.todo-edit,
-form.todo-new
-  .controls
-    input
-      padding-left: 0
-      padding-top: 0
+@mixin has-hidden-form-actions
   .form-actions
     display: none
 
+@mixin has-plain-todo-form-controls
+  @include has-plain-form-controls
+  @include has-hidden-form-actions
+
+div.content-item-wrapper[id^="todo_"]
+  @include has-plain-content-item-form
+
+form.todo
+  @include has-plain-todo-form-controls
+
+.content
+  form.todo-edit
+    padding-left: 40px!important
+
 .sidebar
-  div.content-item-wrapper[id^="todo_"]
-    form.todo-edit,
-    .content-item-form-wrapper
-      padding: 0
-      margin: 0
-      background: transparent
-      border: none
-      box-shadow: none
-  form.todo-new,
-  div.content-item-wrapper[id^="todo_"] form.todo-edit
-    padding-left: 10px
-    .todo-checkbox
-      display: block
-    .todo-title
-      width: 88%
-      .control-group
-        margin: 0
+  form.todo
+    padding-left: 10px!important
+
