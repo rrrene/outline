@@ -4,6 +4,8 @@ en:
     index:
       page_header: "Activity"
       page_hint: "Overview"
+      prev-day: "&laquo; Previous day"
+      next-day: "Next day &raquo;"
     create:
       default: "<strong>New</strong> %{model} by %{user}"
     update:

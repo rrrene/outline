@@ -1,5 +1,15 @@
 = render "shared/index/toolbar"
 
+- if @prev_time || @next_item
+  .page-item
+    - if @prev_time
+      .prev-day.pull-left
+        = link_to t("activities.index.prev-day").html_safe, :start_time => @prev_time
+    - if @next_time
+      .next-day.pull-right
+        = link_to t("activities.index.next-day").html_safe, :start_time => @next_time
+    .clearboth
+
 - @now = Time.now.midnight + 1.day
 .activity-items
   - collection.each do |activity|
