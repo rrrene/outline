@@ -77,6 +77,7 @@ form.todo-edit
   .todo-checkbox
     display: none
 
+.sidebar div.content-item-wrapper[id^="todo_"] form.todo-edit,
 form.todo-new
   .controls
     input
@@ -84,3 +85,22 @@ form.todo-new
       padding-top: 0
   .form-actions
     display: none
+
+.sidebar
+  div.content-item-wrapper[id^="todo_"]
+    form.todo-edit,
+    .content-item-form-wrapper
+      padding: 0
+      margin: 0
+      background: transparent
+      border: none
+      box-shadow: none
+  form.todo-new,
+  div.content-item-wrapper[id^="todo_"] form.todo-edit
+    padding-left: 10px
+    .todo-checkbox
+      display: block
+    .todo-title
+      width: 88%
+      .control-group
+        margin: 0
