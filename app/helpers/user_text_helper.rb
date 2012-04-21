@@ -14,6 +14,7 @@ module UserTextHelper
   end
 
   def user_text(text)
+    return nil if text.blank?
     find_and_preserve format_multi_line_user_input(text).html_safe
   end
 end
