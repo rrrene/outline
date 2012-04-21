@@ -32,6 +32,16 @@ module Outline
   class ContentItems
     class << self
       include ClassesConfig
+
+      def postable_directly
+        classes - not_postable_directly
+      end
+
+      def not_postable_directly(model = nil)
+        @not_postable_directly ||= []
+        @not_postable_directly << model if model && !@not_postable_directly.include?(model)
+        @not_postable_directly
+      end
     end
   end
 end

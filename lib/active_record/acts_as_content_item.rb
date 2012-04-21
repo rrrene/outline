@@ -2,8 +2,11 @@ module ActsAsContentItem
   extend ActiveSupport::Concern
  
   module ClassMethods
-    def acts_as_content_item
-      Outline::ContentItems.register_class self
+    def acts_as_content_item(options = {})
+      Outline::ContentItems.register_class(self)
+      if options[:not_postable_directly]
+        Outline::ContentItems.not_postable_directly(self)
+      end
       instance_eval do
         acts_as_owned_by_user
         
