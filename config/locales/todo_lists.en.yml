@@ -8,8 +8,8 @@ en:
       todo_ĺist:
         title: "Title"
     placeholders:
-      todo_ĺist:
-        href: "Enter Title..."
+      todo_list:
+        title: "Enter Title..."
   todo_lists:
     index:
       page_header: "To-do lists"
