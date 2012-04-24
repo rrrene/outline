@@ -1,2 +1,3 @@
 <%= replace_dom resource.content_item, :partial => "content_items/show", :locals => {:content_item => resource.content_item} %>
+OUT.updated("#<%= dom_id(resource.content_item) %>", "<%= resource.class.to_s.underscore %>");
 OUT.ensureElementIsInViewport("#<%= dom_id(resource.content_item) %>");

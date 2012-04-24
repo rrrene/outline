@@ -6,7 +6,7 @@ OUT.registerDeactivateFormHandler "form.todo", (form_selector, content_selector)
   add_form_selector = $(content_selector).parents("*[data-add-form]").data("add-form")
   $(add_form_selector).find('input[type="text"]').val('').select()
 
-OUT.registerAddedHandler "todo", (selector) ->
+OUT.registerCreatedHandler "todo", (selector) ->
   $("li.dummy-todo").remove()
 
 OUT.todos =

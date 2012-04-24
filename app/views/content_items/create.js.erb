@@ -2,5 +2,5 @@
   <%= insert_html resource.content_item.position == 1 ? :prepend : :append, dom_id(resource.content_item.content), :partial => "content_items/show", :locals => {:content_item => resource.content_item} %>
 
   OUT.contentItems.deactivateForm("form.<%= resource.class.to_s.underscore %>", "#<%= dom_id(resource.outer_content) %>");
-  OUT.contentItems.added("#<%= dom_id(resource.content_item) %>", "<%= resource.class.to_s.underscore %>");
+  OUT.created("#<%= dom_id(resource.content_item) %>", "<%= resource.class.to_s.underscore %>");
 <% end %>
