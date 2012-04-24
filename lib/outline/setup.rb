@@ -54,23 +54,24 @@ module Outline::Setup
     end
   end
 
-  class Project < Base
-    def page(attributes = {}, &block)
-      save!
-      page = Outline::Setup::Page.new(attributes)
-      page.resource.context = self.resource.context
-      page.save
-      page.instance_eval(&block)
-    end
-  end
-
   class ResourceWithContent < Base
     def content_items(&block)
       save!
       items = Outline::Setup::ContentItems.new
       items.content_to_post_on = resource.inner_content
       items.instance_eval(&block)
+      items.create!
       items
+    end
+  end
+
+  class Project < ResourceWithContent
+    def page(attributes = {}, &block)
+      save!
+      page = Outline::Setup::Page.new(attributes)
+      page.resource.context = self.resource.context
+      page.save
+      page.instance_eval(&block)
     end
   end
 
@@ -88,14 +89,25 @@ module Outline::Setup
   class ContentItems
     attr_accessor :content_to_post_on # the Content object to which the items are saved
 
-    def create_content_item(class_name, attributes)
+    def initialize
+      @items = []
+    end
+
+    def create!
+      @items.each(&:save!)
+    end
+
+    def create_content_item(class_name, attributes, concat = false)
       resource_class = eval("::#{class_name.to_s.classify}")
       item = resource_class.new(attributes)
       item.content_id = self.content_to_post_on.id
       item.user = self.content_to_post_on.holder.user
       item.domain = self.content_to_post_on.holder.user.domain
-      item.save!
-      item
+      if concat
+        @items << item
+      else
+        @items.unshift item
+      end
     end
 
     def note(attributes)
@@ -111,7 +123,7 @@ module Outline::Setup
     end
 
     def todo(attributes)
-      create_content_item :todo, attributes
+      create_content_item :todo, attributes, true
     end
 
     def todo_list(attributes, &block)
