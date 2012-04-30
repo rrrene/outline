@@ -39,7 +39,11 @@ $content_item_margin_bottom: 20px
     visibility: hidden
 
 .sortable > .content-item
-  &:hover > .content-item-wrapper > .move-handle
+  &.ui-sortable-helper > .content-item-wrapper > .move-handle,
+  &:hover > .content-item-wrapper > .move-handle,
+  &.ui-sortable-helper > .content-item-wrapper > .content-item-options,
+  &:hover > .content-item-wrapper > .content-item-options,
+  .content-item-options.open
     visibility: visible
 
 
@@ -48,12 +52,9 @@ $content_item_margin_bottom: 20px
   position: relative
   margin: 0
   padding-top: $content_item_margin_bottom
+
   .content-item
     padding-top: 0
-
-  &:hover > .content-item-wrapper > .content-item-options,
-  .content-item-options.open
-    visibility: visible
 
   .content-item-wrapper
     padding: 0
