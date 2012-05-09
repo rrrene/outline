@@ -5,6 +5,8 @@ en:
       delete_item_confirm: "Do you really want to permanently delete this item?"
       edit_item: "Edit"
       details: "Details"
+      favor: "Pin to sidebar"
+      unfavor: "Remove from sidebar"
       move_to_page: "Move to Page..."
     details: "Originally posted by %{user} at %{created_at}"
     index:

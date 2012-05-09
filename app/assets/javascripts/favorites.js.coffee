@@ -2,6 +2,26 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+OUT.favorites =
+  states: {}
+  toggle: (resource_type, resource_id, initial_value) ->
+    console.log "toggle", arguments
+    key = resource_type + '#' + resource_id
+    states = OUT.favorites.states
+    if !states[key]?
+      states[key] = initial_value
+    states[key] = !states[key]
+    $.ajax
+      type: 'POST'
+      url: "/favorites/set"
+      dataType: "script"
+      data:
+        favorite:
+          resource_type: resource_type
+          resource_id: resource_id
+        active: states[key]
+    states[key]
+
 
 $(window).load ->
 
@@ -11,6 +31,21 @@ $(window).load ->
   OUT.registerCreatedHandler "favorite", handler
   OUT.registerDeletedHandler "favorite", handler
 
+  $('a[data-toggle="favorite"]').live "click", (event) ->
+    type = $(this).data("resource-type")
+    id = $(this).data("resource-id")
+    initial_value = $(this).data("initial-value")
+    now_active = OUT.favorites.toggle(type, id, initial_value)
+
+    # change icon + title
+    klass = if now_active then "icon-no-favorite" else "icon-favorite"
+    title_key = if now_active then "title-active" else "title-inactive"
+    title = $(this).data(title_key)
+    $(this).html "<i class=#{klass}></i> #{title}"
+
+    false
+
+  # deprecated
   $(".btn.favorite-toggle").live "click", (event) ->
     selector = $(this).data("target")
     checkbox = $(selector).find('input[type=checkbox]')
@@ -27,6 +62,7 @@ $(window).load ->
 
     true
 
+  # deprecated
   $('input[data-toggle="favorite"]').live "change", (event) ->
     $(this).parents("form").submit();
     active = $(this).is(":checked")
