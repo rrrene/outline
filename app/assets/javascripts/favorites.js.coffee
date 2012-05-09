@@ -7,7 +7,7 @@ $(window).load ->
 
   handler = (selector) ->
     console.log "reload: ", self.location.href
-    
+
   OUT.registerCreatedHandler "favorite", handler
   OUT.registerDeletedHandler "favorite", handler
 

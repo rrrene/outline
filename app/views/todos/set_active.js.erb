@@ -1,11 +1,7 @@
-$('#<%= dom_id(resource) %>').parent().remove();
-
 <%
   options = {:partial => "content_items/show", :locals => {:content_item => resource.content_item}}
   method = resource.active? ? :append : :prepend
   status = resource.active? ? :active : :inactive
 %>
-
 <%= insert_html method, "#{status}-todos-#{dom_id(resource.outer_content.holder)} .content-items", options %>
-
-OUT.todos.initialize();
+OUT.updated("todo", "#<%= dom_id(resource) %>");
