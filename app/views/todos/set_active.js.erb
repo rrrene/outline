@@ -3,5 +3,7 @@
   method = resource.active? ? :append : :prepend
   status = resource.active? ? :active : :inactive
 %>
+
+$('#<%= dom_id(resource) %>').parent().remove();
+
 <%= insert_html method, "#{status}-todos-#{dom_id(resource.outer_content.holder)} .content-items", options %>
-OUT.updated("todo", "#<%= dom_id(resource) %>");

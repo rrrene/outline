@@ -10,7 +10,6 @@ OUT.registerCreatedHandler "todo", (selector) ->
   $("li.dummy-todo").remove()
 
 OUT.registerUpdatedHandler "todo", (selector) ->
-  $(selector).parent().remove()
   OUT.todos.initialize()
 
 OUT.todos =
