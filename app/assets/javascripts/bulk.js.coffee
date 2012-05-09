@@ -6,9 +6,10 @@ window.OUT = {} unless window.OUT?
 
 OUT.bulk = 
   initialize: ->
-    OUT.bulk.allCheckboxes().bind "change", ->
+    if $('#bulk_collection').length > 0
+      OUT.bulk.allCheckboxes().bind "change", ->
+        OUT.bulk.markSelected()
       OUT.bulk.markSelected()
-    OUT.bulk.markSelected()
 
     $("#move-to-new-project-modal input.btn-primary").bind "click", (event) ->
       console.log "move to new project"
