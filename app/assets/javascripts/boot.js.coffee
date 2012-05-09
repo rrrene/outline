@@ -57,6 +57,7 @@ OUT.registerDeactivateFormHandler = (name, callback) ->
 
 OUT.triggerHandler = (namespace, name, args) ->
   handlers = OUT.handlers[namespace]
+  console.log "triggerHandler handlers:", name
   if callback = handlers[name]
     callback.apply(null, args)
 

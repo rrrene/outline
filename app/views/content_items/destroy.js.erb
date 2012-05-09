@@ -1,2 +1,2 @@
-OUT.deleted("#<%= dom_id(resource) %>", "<%= resource.class.to_s.underscore %>");
+OUT.deleted("<%= resource.class.to_s.underscore %>", "#<%= dom_id(resource) %>");
 $('#<%= dom_id(resource) %>').parent().remove();
