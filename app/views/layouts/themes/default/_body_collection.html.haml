@@ -20,7 +20,6 @@
               .content
                 = yield
             .span3
-              .sidebar
-                = yield(:contextual_sidebar)
+              = render themed("sidebar-right")
         .page-footer
     .clearboth

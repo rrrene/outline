@@ -6,7 +6,7 @@
 $(window).load ->
 
   handler = (selector) ->
-    console.log "reload: ", self.location.href
+    $.ajax self.location.href + '.js?update_sidebar=true'
 
   OUT.registerCreatedHandler "favorite", handler
   OUT.registerDeletedHandler "favorite", handler

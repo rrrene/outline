@@ -53,4 +53,9 @@ module ApplicationHelper
     "<div class=\"spacer\"><hr/></div>".html_safe
   end
 
+  def update_sidebar_if_requested
+    if params[:update_sidebar].present?
+      render :partial => "shared/js/update_sidebar"
+    end
+  end
 end
