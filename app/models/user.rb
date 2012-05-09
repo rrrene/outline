@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
       favorite.user = self
       favorite.domain = domain
       favorite.save
+      favorite
     end
   end
 

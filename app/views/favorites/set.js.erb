@@ -1,0 +1,2 @@
+<% method = @create ? :created : :deleted %>
+OUT.<%= method %>("#<%= dom_id(@resource) %>", "favorite");

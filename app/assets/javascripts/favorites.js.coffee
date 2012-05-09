@@ -7,7 +7,7 @@ $(window).load ->
   $(".btn.favorite-toggle").live "click", (event) ->
     selector = $(this).data("target")
     checkbox = $(selector).find('input[type=checkbox]')
-    console.log checkbox
+
     checkbox.click()
 
     active = $(checkbox).is(":checked")
