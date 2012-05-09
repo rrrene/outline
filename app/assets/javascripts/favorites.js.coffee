@@ -31,7 +31,9 @@ $(window).load ->
   OUT.registerCreatedHandler "favorite", handler
   OUT.registerDeletedHandler "favorite", handler
 
-  $('a[data-toggle="favorite"]').live "click", (event) ->
+  $('a[data-toggle="favorite"], button[data-toggle="favorite"]').live "click", (event) ->
+    console.log $(this), $(this).context.tagName
+
     type = $(this).data("resource-type")
     id = $(this).data("resource-id")
     initial_value = $(this).data("initial-value")
@@ -44,27 +46,3 @@ $(window).load ->
     $(this).html "<i class=#{klass}></i> #{title}"
 
     false
-
-  # deprecated
-  $(".btn.favorite-toggle").live "click", (event) ->
-    selector = $(this).data("target")
-    checkbox = $(selector).find('input[type=checkbox]')
-
-    checkbox.click()
-
-    active = $(checkbox).is(":checked")
-    klass = if active then "icon-favorite" else "icon-no-favorite"
-    $(this).find("i").attr("class", klass)
-
-    title_data = if active then "title-active" else "title-inactive"
-    title = $(this).data(title_data)
-    $(this).attr("title", title)
-
-    true
-
-  # deprecated
-  $('input[data-toggle="favorite"]').live "change", (event) ->
-    $(this).parents("form").submit();
-    active = $(this).is(":checked")
-    klass = if active then "icon-favorite" else "icon-no-favorite"
-    $(this).parents("form").find("i").attr("class", klass)
