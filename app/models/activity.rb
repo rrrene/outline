@@ -16,9 +16,8 @@ class Activity < ActiveRecord::Base
           :action => action_for(resource, verb),
           :verb => verb.to_s
         }
-        attributes[:context_id] = resource.context.try(:id) if resource.respond_to?(:context)
-        attributes[:content_id] = resource.content.try(:id) if resource.respond_to?(:content)
-        attributes[:content_id] = resource.outer_content.try(:id) if resource.respond_to?(:outer_content)
+        attributes[:context_id] = context_for(resource).try(:id)
+        attributes[:content_id] = content_for(resource).try(:id)
         Activity.create(attributes)
         resource.activity_recorded = true if resource.respond_to?(:activity_recorded=)
       end
@@ -32,6 +31,24 @@ class Activity < ActiveRecord::Base
         action = resource.activity_action(verb, changes)
       end
       action
+    end
+
+    def context_for(resource)
+      if resource.respond_to?(:context)
+        resource.context
+      elsif content = content_for(resource).presence
+        context_for(content.holder)
+      end
+    end
+
+    def content_for(resource)
+      if resource.respond_to?(:content)
+        resource.content
+      elsif resource.respond_to?(:outer_content)
+        resource.outer_content
+      elsif resource.respond_to?(:inner_content)
+        resource.inner_content
+      end
     end
 
     def current_user
