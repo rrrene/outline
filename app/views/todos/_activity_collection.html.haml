@@ -11,7 +11,10 @@
 
 .activity-body
   - todo_lists.each do |todo_list|
-    %h2= todo_list.title
+    %h2
+      = todo_list.title
+      - if resource = todo_list.outer_content.try(:holder)
+        %small= link_to_resource(resource)
     %ul.content-items.unstyled
       - todos.select { |todo| todo.outer_content == todo_list.inner_content }.each do |todo|
         %li.content-item.content-item-todo{:class => todo.active? ? :active : :inactive}
