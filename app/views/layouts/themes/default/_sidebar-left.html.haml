@@ -1,7 +1,7 @@
 .sidebar#sidebar-left
   %ul.nav.nav-list
     - if current_project
-      %li.nav-header= current_project.title
+      %li.nav-header= link_to current_project.title, current_project
       = nav_to t("navigation.project_show"), current_project
       = nav_to t("navigation.project_todo_lists"), todo_lists_path(:project_id => current_project), :todo_lists
       = nav_to t("navigation.project_notes"), notes_path(:project_id => current_project), :notes
