@@ -7,3 +7,9 @@ en:
   todos:
     activity_collection:
       header: "To-Dos"
+      intro_active:
+        one: "One to-do was started."
+        other: "%{count} to-dos were started."
+      intro_inactive:
+        one: "One to-do was completed."
+        other: "%{count} to-dos were completed."

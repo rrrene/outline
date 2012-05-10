@@ -1,0 +1,22 @@
+- todos = Todo.where(:id => collection.map(&:resource_id).uniq)
+- active = todos.select(&:active?).size
+- inactive = todos.size - active
+- todo_lists = TodoList.where(:id => todos.map(&:outer_content).map(&:holder_id)).order("UPPER(title)")
+
+%h3
+  = t(".header")
+  %small
+    = t(".intro_active", :count => active) unless active == 0
+    = t(".intro_inactive", :count => inactive) unless inactive == 0
+
+.activity-body
+  - todo_lists.each do |todo_list|
+    %h2= todo_list.title
+    %ul.content-items.unstyled
+      - todos.select { |todo| todo.outer_content == todo_list.inner_content }.each do |todo|
+        %li.content-item.content-item-todo{:class => todo.active? ? :active : :inactive}
+          .todo-checkbox
+            %input{:type => :checkbox, :checked => todo.active? ? nil : :checked, :"data-url" => set_active_todo_path(todo)}
+          .todo-title
+            = user_text todo.title
+          .clearboth
