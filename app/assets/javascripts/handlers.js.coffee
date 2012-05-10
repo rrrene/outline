@@ -4,16 +4,15 @@
 
 window.OUT = {} unless window.OUT?
 
-OUT.handlers =
-  listSorted: (event, ui) ->
-    console.log "handlers.listSorted", $(this)
-    url = $(this).attr("data-sort-url")
-    data = $(this).sortable('serialize')
-    $.ajax
-      url: url
-      data: data
-      type: 'post'
-      dataType: 'script'
+OUT.handlers["listSorted"] = (event, ui) ->
+  console.log "handlers.listSorted", $(this)
+  url = $(this).attr("data-sort-url")
+  data = $(this).sortable('serialize')
+  $.ajax
+    url: url
+    data: data
+    type: 'post'
+    dataType: 'script'
 
 $(window).load ->
   # When the ENTER key is pressed in a textfield inside a modal, click the primary button

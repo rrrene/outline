@@ -1,15 +1,16 @@
-= render "shared/index/toolbar"
+#activities-container
+  = render "shared/index/toolbar"
 
-- if @prev_time || @next_item
-  .page-item
-    - if @prev_time
-      .prev-day.pull-left
-        = link_to t("activities.index.prev-day").html_safe, :start_time => @prev_time
-    - if @next_time
-      .next-day.pull-right
-        = link_to t("activities.index.next-day").html_safe, :start_time => @next_time
-    .clearboth
+  - if @prev_time || @next_item
+    .page-item
+      - if @prev_time
+        .prev-day.pull-left
+          = link_to t("activities.index.prev-day").html_safe, :start_time => @prev_time
+      - if @next_time
+        .next-day.pull-right
+          = link_to t("activities.index.next-day").html_safe, :start_time => @next_time
+      .clearboth
 
-= render "day_collection", :collection => collection
+  = render "day_collection", :collection => collection
 
-= render "shared/sidebar_no_context"
+  = render "shared/sidebar_no_context"

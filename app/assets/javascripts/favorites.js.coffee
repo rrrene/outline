@@ -28,8 +28,7 @@ $(window).load ->
   handler = (selector) ->
     $.ajax self.location.href + '.js?update_sidebar=true'
 
-  OUT.registerCreatedHandler "favorite", handler
-  OUT.registerDeletedHandler "favorite", handler
+  OUT.registerHandler OUT.HANDLER_WILDCARD, "favorite", handler
 
   $('a[data-toggle="favorite"], button[data-toggle="favorite"]').live "click", (event) ->
     console.log $(this), $(this).context.tagName

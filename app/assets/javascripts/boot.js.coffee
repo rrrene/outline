@@ -22,6 +22,7 @@ OUT.selectFirstInput = (ele) ->
 # Handler & trigger methods
 #
 OUT.handlers = {} unless OUT.handlers?
+OUT.HANDLER_WILDCARD = "*"
 OUT.HANDLER_CREATED_ITEM = "created-item"
 OUT.HANDLER_UPDATED_ITEM = "updated-item"
 OUT.HANDLER_DELETED_ITEM = "deleted-item"
@@ -29,15 +30,15 @@ OUT.HANDLER_DEACTIVATE_FORM = "deactivate-form"
 
 OUT.created = (type, selector) ->
   console.log "OUT.created", arguments
-  OUT.triggerHandler OUT.HANDLER_CREATED_ITEM, type, [selector]
+  OUT.triggerAllHandlers OUT.HANDLER_CREATED_ITEM, type, [selector]
 
 OUT.updated = (type, selector) ->
   console.log "OUT.updated", arguments
-  OUT.triggerHandler OUT.HANDLER_UPDATED_ITEM, type, [selector]
+  OUT.triggerAllHandlers OUT.HANDLER_UPDATED_ITEM, type, [selector]
 
 OUT.deleted = (type, selector) ->
   console.log "OUT.deleted", arguments
-  OUT.triggerHandler OUT.HANDLER_DELETED_ITEM, type, [selector]
+  OUT.triggerAllHandlers OUT.HANDLER_DELETED_ITEM, type, [selector]
 
 OUT.registerHandler = (namespace, name, callback) ->
   OUT.handlers[namespace] = {} if OUT.handlers[namespace] == undefined
@@ -56,11 +57,17 @@ OUT.registerDeletedHandler = (name, callback) ->
 OUT.registerDeactivateFormHandler = (name, callback) ->
   OUT.registerHandler OUT.HANDLER_DEACTIVATE_FORM, name, callback
 
+OUT.triggerAllHandlers = (namespace, name, args) ->
+  OUT.triggerHandler namespace, name, args
+  OUT.triggerHandler namespace, OUT.HANDLER_WILDCARD, args
+  OUT.triggerHandler OUT.HANDLER_WILDCARD, name, args
+  OUT.triggerHandler OUT.HANDLER_WILDCARD, OUT.HANDLER_WILDCARD, args
+
 OUT.triggerHandler = (namespace, name, args) ->
   handlers = OUT.handlers[namespace]
-  console.log "triggerHandler handlers:", name
-  if callbacks = handlers[name]
-    callback.apply(null, args) for callback in callbacks
+  if handlers
+    if callbacks = handlers[name]
+      callback.apply(null, args) for callback in callbacks
 
 
 #

@@ -13,6 +13,11 @@ class ActivitiesController < ApplicationController
     if next_activity = activity_chain.where("created_at >= ?", Time.at(@end_time)).first
       @next_time = next_activity.created_at.midnight.to_i
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def activity_chain
