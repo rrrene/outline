@@ -12,6 +12,6 @@
       %h2.timestamp= l activity.updated_at.midnight.to_date, :format => :short
 
     - @sub_collection_order.each do |sub_key|
-      - @sub_collection[sub_key].tap do |sub_collection|
+      - if sub_collection = @sub_collection[sub_key].presence
         .sub-collection{:class => "sub-collection-#{sub_key.underscore.pluralize}"}
           = render partial_for(sub_key.underscore.pluralize, "activity_collection", "activities"), :collection => sub_collection, :sub_key => sub_key

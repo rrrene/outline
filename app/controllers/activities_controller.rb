@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
   authorized_resources
 
   def index
-    @start_time = params[:start_time].presence.try(:to_i) || activity_chain.first.created_at.midnight.to_i
+    @start_time = start_time
     @end_time = @start_time + 1.day.to_i
     @activity = Activity.new
     @activities = activities_between(@start_time, @end_time)
@@ -28,5 +28,14 @@ class ActivitiesController < ApplicationController
       .first
     end
     activities.sort_by(&:id).reverse
+  end
+
+  def start_time
+    if t = params[:start_time].presence.try(:to_i)
+      t
+    else
+      t = activity_chain.first.try(:created_at) || Time.now
+      t.midnight.to_i
+    end
   end
 end
