@@ -10,34 +10,6 @@
         = link_to t("activities.index.next-day").html_safe, :start_time => @next_time
     .clearboth
 
-- @now = Time.now.midnight + 1.day
-.activity-items
-  - collection.each do |activity|
-    - if activity.resource.present?
-      - if activity.updated_at < @now
-        - @now = activity.updated_at.midnight
-        .activity-item
-          %h2.timestamp= l @now.to_date, :format => :short
-      .activity-item{:class => "activity-item-#{activity.resource_type.underscore}"}
-        .activity-title
-          - if activity.context
-            %span.activity-context
-              - activity.context.resource.tap do |resource|
-                = icon(resource.class.to_s.underscore.dasherize)
-                = link_to_resource resource
-          - if activity.content
-            %span.activity-content
-              - activity.content.holder.tap do |resource|
-                = icon(resource.class.to_s.underscore.dasherize)
-                = link_to_resource resource
-                - if resource.respond_to?(:outer_content) && resource.outer_content
-                  - resource.outer_content.holder.tap do |resource2|
-                    %small (via #{link_to_resource resource2})
-        .activity-action
-          %small= tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
-        .activity-body
-          = render partial_for(activity.resource.class, :activity_show, "activities"), :resource => activity.resource, :activity => activity
-
-        = spacer
+= render "day_collection", :collection => collection
 
 = render "shared/sidebar_no_context"

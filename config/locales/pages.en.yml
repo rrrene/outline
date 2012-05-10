@@ -2,9 +2,12 @@
 en:
   helpers:
     page:
+      activity_collection: "Pages touched:"
       context_with_title: "[%{context_title}] %{page_title}"
 
   pages:
+    activity_collection:
+      header: "Pages touched:"
     new:
       add_to_new_project: "Add to new project..."
       page_header: "Pages"

@@ -8,6 +8,8 @@ en:
       note:
         text: "Make a note..."
   notes:
+    activity_collection:
+      header: "Notes"
     index:
       page_header: "Notes"
       page_hint: "Overview"

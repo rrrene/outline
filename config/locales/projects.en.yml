@@ -9,6 +9,8 @@ en:
         activate: "%{user} reactivated a %{model}"
         deactivate: "%{user} finished a %{model}"
   projects:
+    activity_collection:
+      header: "Projects touched:"
     bulk_collection:
       deactivate_project: "Archive"
       activate_project: "Reactivate"

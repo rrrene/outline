@@ -13,6 +13,8 @@ en:
       link:
         href: "Enter URL..."
   links:
+    activity_collection:
+      header: "Links"
     index:
       page_header: "Links"
       page_hint: "Overview"

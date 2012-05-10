@@ -6,6 +6,7 @@ en:
       page_hint: "Overview"
       prev-day: "&laquo; Previous day"
       next-day: "Next day &raquo;"
+      sub_collection: "Sub collection: %{key}"
     create:
       default: "<strong>New</strong> %{model} by %{user}"
     update:

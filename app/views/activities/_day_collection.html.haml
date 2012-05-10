@@ -1,0 +1,17 @@
+- @projects = collection.map(&:context_id).compact.uniq.map { |id| ::Context.find(id).resource }
+- @sub_collection_types = collection.map(&:resource_type).uniq
+- @sub_collection_order = (%w(Project Page Todo Link Note) + @sub_collection_types).uniq
+- @sub_collection = {}
+- collection.each do |activity|
+  - @sub_collection[activity.resource_type] ||= []
+  - @sub_collection[activity.resource_type] << activity
+
+.activity-items
+  .activity-item
+    - if activity = collection.first.presence
+      %h2.timestamp= l activity.updated_at.midnight.to_date, :format => :short
+
+    - @sub_collection_order.each do |sub_key|
+      - @sub_collection[sub_key].tap do |sub_collection|
+        .sub-collection{:class => "sub-collection-#{sub_key.underscore.pluralize}"}
+          = render partial_for(sub_key.underscore.pluralize, "activity_collection", "activities"), :collection => sub_collection, :sub_key => sub_key

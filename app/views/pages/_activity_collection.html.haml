@@ -1,0 +1,9 @@
+- pages = Page.where(:id => collection.map(&:resource_id).uniq).order("UPPER(title)")
+
+%h3= t(".header")
+.activity-body
+  %ul
+    - pages.each do |page|
+      %li= link_to_resource page
+
+.clearfix

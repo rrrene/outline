@@ -4,3 +4,6 @@ en:
       todo:
         activate: "%{user} unchecked a %{model}"
         deactivate: "%{user} checked a %{model}"
+  todos:
+    activity_collection:
+      header: "To-Dos"
