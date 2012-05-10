@@ -41,7 +41,8 @@ OUT.deleted = (type, selector) ->
 
 OUT.registerHandler = (namespace, name, callback) ->
   OUT.handlers[namespace] = {} if OUT.handlers[namespace] == undefined
-  OUT.handlers[namespace][name] = callback
+  OUT.handlers[namespace][name] = [] if OUT.handlers[namespace][name] == undefined
+  OUT.handlers[namespace][name].push callback
 
 OUT.registerCreatedHandler = (name, callback) ->
   OUT.registerHandler OUT.HANDLER_CREATED_ITEM, name, callback
@@ -58,8 +59,8 @@ OUT.registerDeactivateFormHandler = (name, callback) ->
 OUT.triggerHandler = (namespace, name, args) ->
   handlers = OUT.handlers[namespace]
   console.log "triggerHandler handlers:", name
-  if callback = handlers[name]
-    callback.apply(null, args)
+  if callbacks = handlers[name]
+    callback.apply(null, args) for callback in callbacks
 
 
 #

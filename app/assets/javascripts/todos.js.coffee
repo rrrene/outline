@@ -9,9 +9,6 @@ OUT.registerDeactivateFormHandler "form.todo", (form_selector, content_selector)
 OUT.registerCreatedHandler "todo", (selector) ->
   $("li.dummy-todo").remove()
 
-OUT.registerUpdatedHandler "todo", (selector) ->
-  OUT.todos.initialize()
-
 OUT.todos =
   createFakeTodo: (ele) ->
     title = $(ele).find('input[type="text"]').val()
