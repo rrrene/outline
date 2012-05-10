@@ -13,4 +13,4 @@
         %li= link_to favor_icon_with_title(resource), resource, data_attributes_for_favorite_toggle(resource)
         %li= link_to icon(:trash) + t(".delete_link"), {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
 
-= render "projects/sidebar"
+= render "shared/sidebar_for_context"

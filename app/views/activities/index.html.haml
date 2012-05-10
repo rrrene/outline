@@ -40,10 +40,4 @@
 
         = spacer
 
-- content_for(:contextual_sidebar) do
-  - if todo_lists = favorite_todo_lists.presence
-    %ul.nav.nav-list
-      %li.nav-header= t("shared.sidebar.favorite_todo_lists")
-    - todo_lists.each do |todo_list|
-      .well.todo-list
-        = render :partial => "todo_lists/show", :locals => {:resource => todo_list}
+= render "shared/sidebar_no_context"
