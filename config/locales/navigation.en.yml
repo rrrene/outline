@@ -2,7 +2,7 @@
 en:
   navigation:
     dashboard: "Dashboard"
-    activities: "Activities"
+    activities: "Daily Progress"
     todo_lists: "To-Dos"
     projects: "Projects"
     all_projects: "Overview"
