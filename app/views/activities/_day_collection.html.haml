@@ -1,10 +1,12 @@
 - @projects = collection.map(&:context_id).compact.uniq.map { |id| ::Context.find(id).resource }
 - @sub_collection_types = collection.map(&:resource_type).uniq
-- @sub_collection_order = (%w(Project Page Todo Link Note) + @sub_collection_types).uniq
+- @sub_collection_order = %w(Project Page Todo Link Note)
 - @sub_collection = {}
 - collection.each do |activity|
   - @sub_collection[activity.resource_type] ||= []
   - @sub_collection[activity.resource_type] << activity
+
+- @not_in_sub_collection = collection.select { |a| !@sub_collection_order.include?(a.resource_type) }
 
 .activity-items
   .activity-item
@@ -15,3 +17,28 @@
       - if sub_collection = @sub_collection[sub_key].presence
         .sub-collection{:class => "sub-collection-#{sub_key.underscore.pluralize}"}
           = render partial_for(sub_key.underscore.pluralize, "activity_collection", "activities"), :collection => sub_collection, :sub_key => sub_key
+    - if @not_in_sub_collection.present?
+      .other-activities
+        %h3.other-activities= t("activities.index.other_activities.header")
+
+        - @not_in_sub_collection.each do |activity|
+          - if activity.resource.present?
+            .activity-item{:class => "activity-item-#{activity.resource_type.underscore}"}
+              .activity-action
+                = t("activities.index.other_activities.timestamp", :time => l(activity.created_at, :format => :short))
+                %small
+                  = tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
+
+                  - if activity.context
+                    %span.activity-context
+                      - activity.context.resource.tap do |resource|
+                        |
+                        = link_to_resource(resource)
+                  - if activity.content && (activity.content.holder != activity.context.try(:resource))
+                    %span.activity-content
+                      - activity.content.holder.tap do |resource|
+                        |
+                        = link_to_resource resource
+                        - if resource.respond_to?(:outer_content) && resource.outer_content
+                          - resource.outer_content.holder.tap do |resource2|
+                            %small (via #{link_to_resource resource2})

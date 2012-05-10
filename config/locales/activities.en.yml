@@ -7,6 +7,9 @@ en:
       prev-day: "&laquo; Previous day"
       next-day: "Next day &raquo;"
       sub_collection: "Sub collection: %{key}"
+      other_activities:
+        header: "Everything else:"
+        timestamp: "%{time}:"
     create:
       default: "<strong>New</strong> %{model} by %{user}"
     update:

@@ -1,28 +1,26 @@
-%h3= tt("#{sub_key.underscore.pluralize}.activity_collection.header", "activities.index.sub_collection", :key => sub_key)
+- if sub_key.present?
+  %h3= tt("#{sub_key.underscore.pluralize}.activity_collection.header", "activities.index.sub_collection", :key => sub_key)
 
 - collection.each do |activity|
   - if activity.resource.present?
     .activity-item{:class => "activity-item-#{activity.resource_type.underscore}"}
-      .activity-title
+      .activity-body
+        = render partial_for(activity.resource.class, :activity_show, "activities"), :resource => activity.resource, :activity => activity
       .activity-action
         %small
-          = tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
-
+          =# tt(activity_tt_snippets(activity), activity_tt_options(activity)).html_safe
+          = link_to_resource(activity.resource, l(activity.created_at, :format => :long))
           - if activity.context
             %span.activity-context
               - activity.context.resource.tap do |resource|
-                =# icon(resource.class.to_s.underscore.dasherize)
                 |
                 = link_to_resource(resource)
           - if activity.content && (activity.content.holder != activity.context.try(:resource))
             %span.activity-content
               - activity.content.holder.tap do |resource|
-                =# icon(resource.class.to_s.underscore.dasherize)
                 |
                 = link_to_resource resource
                 - if resource.respond_to?(:outer_content) && resource.outer_content
                   - resource.outer_content.holder.tap do |resource2|
                     %small (via #{link_to_resource resource2})
-      .activity-body
-        = render partial_for(activity.resource.class, :activity_show, "activities"), :resource => activity.resource, :activity => activity
       = spacer
