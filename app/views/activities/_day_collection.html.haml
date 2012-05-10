@@ -1,4 +1,3 @@
-- @projects = collection.map(&:context_id).compact.uniq.map { |id| ::Context.find(id).resource }
 - @sub_collection_types = collection.map(&:resource_type).uniq
 - @sub_collection_order = %w(Project Page Todo Link Note)
 - @sub_collection = {}

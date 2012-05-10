@@ -12,7 +12,7 @@
 .activity-body
   - todo_lists.each do |todo_list|
     %h2
-      = todo_list.title
+      = link_to_resource todo_list
       - if resource = todo_list.outer_content.try(:holder)
         %small= link_to_resource(resource)
     %ul.content-items.unstyled
