@@ -30,13 +30,13 @@ module ActsAsTaggableByUser
       domain.taggings.create(:tag_id => tag.id, :resource => self)
     end
 
-    def tag_records
-      tag_ids = Tagging.where(:resource_type => self.class.to_s, :resource_id => self.id).map(&:tag_id)
-      Tag.where(:id => tag_ids).order("UPPER(tags.title)")
+    def tag_titles
+      tags.map(&:title)
     end
 
     def tags
-      tag_records.map(&:title)
+      tag_ids = Tagging.where(:resource_type => self.class.to_s, :resource_id => self.id).map(&:tag_id)
+      Tag.where(:id => tag_ids).order("UPPER(tags.title)")
     end
 
     def tags=(array_of_strings)

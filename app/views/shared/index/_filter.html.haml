@@ -18,6 +18,6 @@
         .controls
           - tags.each do |tag|
             - current_tag = @filter_tag == tag.id
-            = link_to tag.title, params.merge(:tag => current_tag ? nil : tag.id), :class => "label #{'label-info' if current_tag}"
+            = link_tag tag, current_tag
 
     %hr
