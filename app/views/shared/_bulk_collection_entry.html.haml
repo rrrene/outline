@@ -4,8 +4,8 @@
       = check_box_tag "#{collection_key}[]", resource.id, false, :class => "bulk_item", :id => "checkbox-for-#{dom_id(resource)}"
   .text
     = render :partial => resource_partial, :locals => {:resource => resource}
-    - if resource.respond_to?(:tags) && tags = resource.tags.presence
+    - if resource.respond_to?(:tags) && tags = resource.tag_records.presence
       %div.tags
         - tags.each do |tag|
-          = link_to tag, params.merge(:tag => tag), :class => "label"
+          = link_to tag.title, params.merge(:tag => tag.id), :class => "label"
   .clearboth

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120229145027) do
+ActiveRecord::Schema.define(:version => 20120511073600) do
 
   create_table "activities", :force => true do |t|
     t.integer  "domain_id"
@@ -116,20 +116,23 @@ ActiveRecord::Schema.define(:version => 20120229145027) do
   add_index "quick_jump_targets", ["domain_id", "phrase"], :name => "index_quick_jump_targets_on_domain_id_and_phrase"
 
   create_table "taggings", :force => true do |t|
+    t.integer  "domain_id"
     t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       :limit => 128
-    t.datetime "created_at"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
+  add_index "taggings", ["resource_id", "resource_type"], :name => "index_taggings_on_resource_id_and_resource_type"
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
-    t.string "name"
+    t.integer  "domain_id"
+    t.string   "title"
+    t.string   "style"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "todo_lists", :force => true do |t|

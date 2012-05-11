@@ -68,9 +68,9 @@ module AuthorizedResources
 
     def filter_collection_by_tag
       if @filter_tag = params[:tag].presence
-        tag_ids = ActsAsTaggableOn::Tag.named(@filter_tag)
-        taggings = current_domain.owned_taggings.where(:tag_id => tag_ids, :taggable_type => resource_class)
-        self.collection = collection.where(:id => taggings.map(&:taggable_id))
+        tag_ids = current_domain.tags.where(:id => @filter_tag).map(&:id)
+        taggings = current_domain.taggings.where(:tag_id => tag_ids, :resource_type => resource_class)
+        self.collection = collection.where(:id => taggings.map(&:resource_id))
       end
     end
 

@@ -29,8 +29,9 @@ class PageTest < ActiveSupport::TestCase
     tag_list = %w(one two three)
 
     page.tag_list = tag_list.join(", ")
+    page.save
 
-    assert_equal tag_list, page.tags
+    assert_equal tag_list.sort, page.tags.sort
   end
 
   test "should add tags" do
@@ -39,11 +40,13 @@ class PageTest < ActiveSupport::TestCase
 
     tag_list = %w(one two three)
     page.tag_list = tag_list.join(", ")
-    assert_equal tag_list, page.tags
+    page.save
+
+    assert_equal tag_list.sort, page.tags.sort
 
     tag_list2 = %w(four five)
     page.add_tags tag_list2.join(", ")
-    assert_equal tag_list + tag_list2, page.tags
+    assert_equal (tag_list + tag_list2).sort, page.tags.sort
   end
 
   test "should give title with context" do

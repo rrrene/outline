@@ -51,7 +51,7 @@ class PagesControllerTest < ActionController::TestCase
 
       assert pages.count > 1, "Not enough pages to test bulk editing"
       pages.reload.each do |page|
-        assert_not_equal tag_list, page.tag_list
+        assert_not_equal tag_list.sort, page.tags.sort
       end
 
       params = {
@@ -65,7 +65,7 @@ class PagesControllerTest < ActionController::TestCase
 
       assert_response :redirect
       pages.reload.each do |page|
-        assert_equal tag_list, page.tags
+        assert_equal tag_list.sort, page.tags.sort
       end
     end
   end
