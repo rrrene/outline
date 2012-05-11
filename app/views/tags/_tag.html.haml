@@ -1,1 +1,1 @@
-= link_to tag.title, params.merge(:tag => active ? nil : tag.id), :class => "label #{'label-info' if active}"
+= link_to tag.title, params.merge(:tag => active ? nil : tag.id), :class => "#{classes.join(' ')}#{' tag-active' if active}"

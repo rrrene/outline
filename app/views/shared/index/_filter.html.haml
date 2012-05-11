@@ -11,13 +11,27 @@
   = yield
 
   %hr
+  - if current_tag
+    #current-tag
+      = "Showing:"
+      = link_tag current_tag
+      %small= link_to "Edit", edit_tag_path(current_tag), :"data-toggle" => "modal", :"data-target" => "#current-tag-modal"
+
+    %hr
+
   - if tags = current_domain.tags_for(resource_class).presence
     = form_tag(params.merge(:page => 1), :class => "form-stacked", :remote => true, :method => :get) do
       .control-group
         = label_tag :tags, shared_snippet(".index.filter.by_tags")
         .controls
           - tags.each do |tag|
-            - current_tag = @filter_tag == tag.id
-            = link_tag tag, current_tag
+            = link_tag tag
 
     %hr
+
+#current-tag-modal.modal{:style => "display: none;"}
+  .modal-header
+    %a.close{:href => "#", :"data-dismiss" => "modal"} &times;
+    %h3= "Edit Tag"
+  .modal-body
+    = render "tags/form", :resource => current_tag

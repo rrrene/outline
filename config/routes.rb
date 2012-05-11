@@ -13,6 +13,8 @@ Outline::Application.routes.draw do
 
   resources :activities
 
+  resources :tags
+
   resources :todos do
     member do
       post "set_active"
