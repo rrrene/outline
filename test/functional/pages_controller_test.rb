@@ -65,7 +65,7 @@ class PagesControllerTest < ActionController::TestCase
 
       assert_response :redirect
       pages.reload.each do |page|
-        assert_equal tag_list.sort, page.tags.sort
+        assert_equal tag_list.sort, page.tag_titles.sort
       end
     end
   end
@@ -301,6 +301,23 @@ class PagesControllerTest < ActionController::TestCase
   test "should GET index with scope: no_context" do
     with_login do |user|
       get :index, :scope => "no_context"
+      assert_response :success
+    end
+  end
+
+  test "should filter pages by project" do
+    with_login do |user|
+      get :index, :project_id => 1
+      assert_not_nil assigns["pages"]
+      assert_response :success
+    end
+  end
+
+  test "should GET index with tag" do
+    with_login do |user|
+      tag = user.domain.tags.create(:title => "first")
+      get :index, :tag => tag.id
+      assert_not_nil assigns["pages"]
       assert_response :success
     end
   end

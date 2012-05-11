@@ -29,9 +29,10 @@
 
     %hr
 
-#current-tag-modal.modal{:style => "display: none;"}
-  .modal-header
-    %a.close{:href => "#", :"data-dismiss" => "modal"} &times;
-    %h3= "Edit Tag"
-  .modal-body
-    = render "tags/form", :resource => current_tag
+- if current_tag
+  #current-tag-modal.modal{:style => "display: none;"}
+    .modal-header
+      %a.close{:href => "#", :"data-dismiss" => "modal"} &times;
+      %h3= "Edit Tag"
+    .modal-body
+      = render "tags/form", :resource => current_tag

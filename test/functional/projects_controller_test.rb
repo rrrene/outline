@@ -160,4 +160,13 @@ class ProjectsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should GET index with tag" do
+    with_login do |user|
+      tag = user.domain.tags.create(:title => "first")
+      get :index, :tag => tag.id
+      assert_not_nil assigns["projects"]
+      assert_response :success
+    end
+  end
+
 end
