@@ -10,7 +10,7 @@ module ActsAsContentItem
       instance_eval do
         acts_as_owned_by_user
         
-        belongs_to :outer_content, :class_name => "Content", :foreign_key => "content_id"
+        belongs_to :outer_content, :class_name => "Content", :foreign_key => "content_id", :touch => true
         has_one :content_item, :as => :item, :dependent => :destroy
 
         after_create do |item|
