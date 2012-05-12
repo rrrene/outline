@@ -75,6 +75,10 @@ OUT.triggerHandler = (namespace, name, args) ->
 #
 $ ->
   OUT.selectFirstInput()
+  $('#ajax-active').ajaxSend ->
+    $(this).show()
+  .ajaxComplete ->
+    $(this).hide()
 
 $(window).load ->
   $('form input[type="text"]').live "keydown", (event) ->

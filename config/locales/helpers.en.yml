@@ -1,5 +1,6 @@
 en:
   helpers:
+    ajax-active: "Loading..."
     cancel: "Cancel"
     edit:
       default: "Edit"
