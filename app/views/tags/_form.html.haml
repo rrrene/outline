@@ -7,5 +7,6 @@
       - [nil, :red, :green, :blue].each do |style|
         %label.radio.inline
           %input{:type => :radio, :name => "tag[style]", :value => style, :checked => resource.style.to_s == style.to_s ? :checked : nil}
-          %span{:class => "tag tag-active tag-#{style}"}= resource.title
+          %span{:class => "tag tag-active tag-#{style}"}
+            %a= resource.title
   = form.buttons

@@ -1,14 +1,16 @@
 module TagsHelper
 
-  def link_tag(tag)
+  def link_tag(tag, options = {})
+    resource = options[:resource]
     active = current_tag == tag
     classes = ["tag"]
     classes << "tag-#{tag.style}" if tag.style
-    render "tags/tag", :tag => tag, :active => active, :classes => classes
+    classes << "tag-with-remove" if resource.present?
+    render "tags/tag", :tag => tag, :tag_resource => resource, :active => active, :classes => classes
   end
 
   def render_tags_for(resource)
-    render("tags/tags", :tags => resource.tags) if resource.respond_to?(:tags)
+    render("tags/tags", :tags => resource.tags, :resource => resource) if resource.respond_to?(:tags)
   end
 
   def current_tag

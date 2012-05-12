@@ -1,5 +1,5 @@
 - if tags.presence
   %ul.unstyled.tags
     - tags.each do |tag|
-      %li= link_tag tag
+      %li= link_tag tag, :resource => resource
   .clearboth

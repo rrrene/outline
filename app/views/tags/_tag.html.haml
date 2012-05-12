@@ -1,1 +1,5 @@
-= link_to tag.title, params.merge(:tag => active ? nil : tag.id), :class => "#{classes.join(' ')}#{' tag-active' if active}"
+%div{:class => "#{classes.join(' ')}#{' tag-active' if active}"}
+  = link_to tag.title, params.merge(:tag => active ? nil : tag.id), :class => "title"
+  - if tag_resource.present?
+    %a.remove{:"data-toggle" => "tagging", :"data-url" => "", :href => "#"} &times;
+  .clearboth

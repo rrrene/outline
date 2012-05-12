@@ -37,26 +37,57 @@ ul.tags
 
 
 .tag
-  background-color: #ccc
-  color: #666!important
-  padding: 2px 4px 2px
+  display: inline-block
   font-size: 11px
   font-weight: bold
-  border-radius: 3px
-  opacity: 0.7
+  a
+    opacity: 0.7
+    &:hover
+      opacity: 1.0
+    float: left
+    padding: 1px 4px
+    border-radius: 3px
+
+.tag-with-remove
+  a
+    &.title
+      border-radius: 3px 0 0 3px
+    &.remove
+      border-radius: 0 3px 3px 0
+      //border-left: 1px solid rgba(255, 255, 255, 0.2)
+      margin-left: 1px
+      font-size: 14px
+      font-weight: normal
+      line-height: 18px
+      color: white
+      text-shadow: 0 1px 0 white
+
+
 .tag-active,
-.tag:hover
-  opacity: 1.0
+.tag a:hover
   text-decoration: none
 
+// Styles
+
+// default
+
+.tag
+  a
+    background-color: #ddd
+    color: #888!important
+
+
 .tag-red
-  background-color: #c00!important
-  color: #fff!important
+  a
+    background-color: #c00!important
+    color: #fff!important
 
 .tag-green
-  background-color: #72cc2f!important
-  color: #fff!important
+  a
+    background-color: #72cc2f!important
+    color: #fff!important
 
 .tag-blue
-  background-color: #3c63cc!important
-  color: #fff!important
+  a
+    background-color: #3c63cc!important
+    color: #fff!important
