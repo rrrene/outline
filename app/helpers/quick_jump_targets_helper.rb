@@ -1,6 +1,20 @@
 module QuickJumpTargetsHelper
   def default_quickjump_targets
     targets = find_last_active_contents(:limit => 8, :type => Page).map(&:holder).compact.uniq
+    quick_jumpify(targets)
+  end
+
+  def default_quickjump_projects
+    targets = current_domain.projects.where(:active => true).limit(25).order("UPPER(title) ASC")
+    quick_jumpify(targets)
+  end
+
+  def default_quickjump_pages
+    targets = current_domain.pages.where("context_id IS NULL").limit(25).order("UPPER(title) ASC")
+    quick_jumpify(targets)
+  end
+
+  def quick_jumpify(targets)
     targets.map do |record|
       url = url_for(record)
       record.attributes.merge(:type => record.class.to_s, :title => record.title, :url => url)

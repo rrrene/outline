@@ -205,8 +205,11 @@ class OUT.QuickJump.Base
       OUT.setLazyTimer "quickjump_request", @DELAY_BEFORE_SERVER_CALL, ->
         self.requestResults(query, data)
 
+  getDefaultResults: ->
+    []
+
   setDefaultResults: ->
-    @results = OUT.quick_jump_defaults || []
+    @results = this.getDefaultResults()
     @renderer.renderResults('')
     @controls.active_result = -1
 
@@ -235,10 +238,14 @@ class OUT.QuickJump.Modal extends OUT.QuickJump.Base
     @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
     this.setDefaultResults()
 
+  getDefaultResults: ->
+    OUT.quick_jump_modal_defaults || []
+
 
 class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
   constructor: (@dropdown) ->
     @data_url = $(@dropdown).data("target-url")
+    @type = $(@dropdown).data("target-type")
     @result_callback = (selected) ->
       window.location.href = selected.url
     @dictionary = new OUT.QuickJump.Dictionary(@DICTIONARY_KEY_LENGTH)
@@ -246,6 +253,9 @@ class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
     @selector = @renderer.selector
     @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
     this.setDefaultResults()
+
+  getDefaultResults: ->
+    OUT["quick_jump_#{@type}s_defaults"] || []
 
 
 OUT.lazyTimerIds = {}
