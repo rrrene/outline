@@ -15,7 +15,9 @@
 .activity-items
   .activity-item
     - if activity = collection.first.presence
-      %h2.timestamp= l activity.updated_at.midnight.to_date, :format => :short
+      %h2.timestamp
+        %i.icon-calendar
+        = l activity.updated_at.midnight.to_date, :format => :short
 
     - if @projects.present? || @pages.present?
       .sub-collection
