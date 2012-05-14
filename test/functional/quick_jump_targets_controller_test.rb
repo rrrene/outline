@@ -11,8 +11,9 @@ class QuickJumpTargetsControllerTest < ActionController::TestCase
       @data = assigns['data']
       assert_not_nil @data
       assert !@data.empty?
-      assert @data.any? { |item| item["type"] == "Project" }
-      assert @data.any? { |item| item["type"] == "Page" }
+      puts @data.inspect
+      assert @data.any? { |item| item["type"] == "project" }
+      assert @data.any? { |item| item["type"] == "page" }
     end
   end
 
@@ -22,7 +23,8 @@ class QuickJumpTargetsControllerTest < ActionController::TestCase
       @data = assigns['data']
       assert_not_nil @data
       assert !@data.empty?
-      assert @data.all? { |item| item["type"] == "Page" }
+      puts @data.inspect
+      assert @data.all? { |item| item["type"] == "page" }
     end
   end
 end
