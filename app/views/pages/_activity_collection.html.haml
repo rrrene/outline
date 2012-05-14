@@ -1,4 +1,4 @@
-- pages = Page.where(:id => collection.map(&:resource_id).uniq).order("UPPER(title)")
+- pages = collection # Page.where(:id => collection.map(&:resource_id).uniq).order("UPPER(title)")
 
 %h3= t(".header")
 .activity-body

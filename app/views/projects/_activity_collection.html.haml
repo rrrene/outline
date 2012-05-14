@@ -1,4 +1,4 @@
-- projects = Project.where(:id => collection.map(&:resource_id).uniq).order("UPPER(title)")
+- projects = collection # Project.where(:id => collection.map(&:resource_id).uniq).order("UPPER(title)")
 
 %h3= t(".header")
 .activity-body

@@ -1,9 +1,14 @@
+
 - @sub_collection_types = collection.map(&:resource_type).uniq
-- @sub_collection_order = %w(Project Page Todo Link Note)
+- @sub_collection_order = %w(Todo Link Note)
 - @sub_collection = {}
 - collection.each do |activity|
   - @sub_collection[activity.resource_type] ||= []
   - @sub_collection[activity.resource_type] << activity
+
+- @projects = projects_for_activities(collection)
+- @pages = pages_for_activities(collection)
+
 
 - @not_in_sub_collection = collection.select { |a| !@sub_collection_order.include?(a.resource_type) }
 
@@ -12,10 +17,21 @@
     - if activity = collection.first.presence
       %h2.timestamp= l activity.updated_at.midnight.to_date, :format => :short
 
+    - if @projects.present? || @pages.present?
+      .sub-collection
+        - if @projects.present?
+          .sub-collection-projects
+            = render "projects/activity_collection", :collection => @projects
+        - if @pages.present?
+          .sub-collection-pages
+            = render "pages/activity_collection", :collection => @pages
+        .clearboth
+
     - @sub_collection_order.each do |sub_key|
       - if sub_collection = @sub_collection[sub_key].presence
         .sub-collection{:class => "sub-collection-#{sub_key.underscore.pluralize}"}
           = render partial_for(sub_key.underscore.pluralize, "activity_collection", "activities"), :collection => sub_collection, :sub_key => sub_key
+
     - if @not_in_sub_collection.present?
       .other-activities
         %h3.other-activities= t("activities.index.other_activities.header")
