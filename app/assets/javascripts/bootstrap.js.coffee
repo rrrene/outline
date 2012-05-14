@@ -5,6 +5,16 @@ $ ->
 $ ->
   $("a[rel=popover]").popover offset: 10
 $ ->
+  $('a.direct-search-toggle').bind "click", (event) ->
+    input = $(this).parents('li').find('form.direct-search input')
+    console.log ">", input
+    setTimeout ->
+      console.log "!"
+      input.focus()
+    , 100
+
+    true
+
   $('.dropdown-toggle').dropdown()
 $ ->
   $(".alert-message").alert()

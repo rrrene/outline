@@ -8,15 +8,19 @@
             %li= link_to current_domain.title, root_path, :class => "brand"
 
             %li.dropdown
-              %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
+              %a.dropdown-toggle.direct-search-toggle{:"data-toggle" => :dropdown, :href => "#"}
                 = t("navigation.projects")
                 %b.caret
 
               %ul.dropdown-menu
-                %li= link_to t("navigation.all_projects"), projects_path
+                %li
+                  %form.direct-search{:action => projects_url, :method => "GET"}
+                    %input{:type => "text", :placeholder => "Search..."}
                 %li.divider
                 - current_domain.projects.where(:active => true).limit(25).order("UPPER(title) ASC").each do |project|
                   %li= link_to project.title, project
+                %li.divider
+                %li= link_to t("navigation.all_projects"), projects_path
 
 
             %li.dropdown
