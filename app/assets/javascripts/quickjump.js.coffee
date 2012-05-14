@@ -135,7 +135,7 @@ class OUT.QuickJump
     out = ""
     index = 0
     phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
-    template = '<a class="result" data-result-index="%{index}" href="%{url}"><div class=title>%{title} <small>%{type}</small></div></a>'
+    template = '<a class="result" data-result-index="%{index}" href="%{url}"><div class=title><i class="icon-%{type}"></i> <span>%{title}</span></div></a>'
 
     for result in @results[0...@MAX_RESULTS]
       t = this.highlight(result.title, phrases)

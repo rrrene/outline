@@ -19,7 +19,7 @@ class QuickJumpTargetsController < ApplicationController
     collection = collection.where(:resource_type => [types].flatten) if types
     @data = collection.map do |record|
       url = url_for(:controller => record.resource_type.underscore.pluralize, :action => :show, :id => record.resource_id)
-      {:type => record.resource_type, :id => record.resource_id, :title => record.phrase, :url => url}
+      {:type => record.resource_type.underscore, :id => record.resource_id, :title => record.phrase, :url => url}
     end
     respond_to do |format|
       format.json { render :text => @data.to_json }
