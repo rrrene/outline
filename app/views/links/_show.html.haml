@@ -1,6 +1,6 @@
 = render :partial => "content_items/timestamp", :locals => {:resource => resource}
 
-%h2= link_to inline_user_text(resource.title.presence || resource.href_without_protocol), resource.href, {:rel => :external, :class => :external}
+%h2= link_to inline_user_text(resource.title.presence || resource.href_without_protocol), resource.href, {:rel => :external, :class => :external, :target => '_blank'}
 %small.href= link_to resource.href, resource.href, {:rel => :external, :class => :external}
 
 .thumb
