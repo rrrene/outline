@@ -51,6 +51,9 @@ class OUT.QuickJump.Controls
     else if event.keyCode == @KEY_DOWN
       @parent.moveSelection(+1)
       false
+    else if event.keyCode == @KEY_ESC
+      @parent.deactivate()
+      false
 
   keyup: (event) ->
     query = event.target.value
@@ -163,8 +166,8 @@ class OUT.QuickJump.Base
       all = $(@selector).find(".result")
       anchor = $(all[@active_result])
 
-  hide: ->
-    $(@selector).modal("hide")
+  deactivate: ->
+
 
   markActiveResult: ->
     if @active_result?
@@ -238,6 +241,9 @@ class OUT.QuickJump.Modal extends OUT.QuickJump.Base
     @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
     this.setDefaultResults()
 
+  deactivate: ->
+    $(@selector).modal("hide")
+
   getDefaultResults: ->
     OUT.quick_jump_modal_defaults || []
 
@@ -253,6 +259,10 @@ class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
     @selector = @renderer.selector
     @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
     this.setDefaultResults()
+
+  deactivate: ->
+    $(@selector).find("input").val("")
+    $(@selector).parents("li.dropdown").removeClass("open")
 
   getDefaultResults: ->
     OUT["quick_jump_#{@type}s_defaults"] || []
