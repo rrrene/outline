@@ -24,7 +24,7 @@ class OUT.QuickJump.Controls
   KEY_DOWN: 40
   KEY_ENTER: 13
   KEY_ESC: 27
-  
+
   constructor: (@parent, @selector, @result_callback) ->
     @active_result = null
     self = this
@@ -62,19 +62,11 @@ class OUT.QuickJump.Controls
     @old_query = query
 
 
-
-class OUT.QuickJump.Base
-  DELAY_BEFORE_SERVER_CALL: 300
-  FETCHING_RESULTS: "fetching"
-  DICTIONARY_KEY_LENGTH: 1
+class OUT.QuickJump.Renderer
   MAX_RESULTS: 10
 
-  constructor: (@result_callback, @data_url = "/quick_jump_targets.json", selector = "#quick-jump-template") ->
-    @dictionary = new OUT.QuickJump.Dictionary(@DICTIONARY_KEY_LENGTH)
+  constructor: (@parent, selector) ->
     @selector = this.cloneModal(selector)
-    @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
-    this.setDefaultResults()
-
     self = this
     $(@selector).bind "hidden", ->
       $(self.selector).remove()
@@ -84,19 +76,53 @@ class OUT.QuickJump.Base
 
     $(@selector).modal().modal("show")
 
-  activateResult: (anchor) ->
-    anchor or= this.getActiveResult()
-    if anchor?
-      index = $(anchor).data("result-index")
-      result = @results[index]
-      @result_callback.apply(null, [result])
-
   cloneModal: (selector) ->
     new_modal_id = "quickjump"+new Date().getTime()
     new_modal = $(selector).clone()
     new_modal.attr("id", new_modal_id)
     $("body").append(new_modal)
     "##{new_modal_id}"
+
+  highlight: (str, phrases) ->
+    str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
+
+  renderResults: (query) ->
+    out = ""
+    index = 0
+    phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
+    template = '<a class="result" data-result-index="%{index}" href="%{url}"><div class=title><i class="icon-%{type}"></i> <span>%{title}</span></div></a>'
+
+    for result in @parent.results[0...@MAX_RESULTS]
+      t = this.highlight(result.title, phrases)
+      out += template.toString().replace("%{title}", t).replace("%{type}", result.type).replace("%{url}", result.url).replace("%{index}", index)
+      index += 1
+
+    $(@selector+" .results").html(out)
+    self = this
+    $(@selector+" .results a.result").bind "click", (event) ->
+      self.parent.activateResult(this)
+      event.preventDefault()
+      false
+
+
+class OUT.QuickJump.Base
+  DELAY_BEFORE_SERVER_CALL: 300
+  FETCHING_RESULTS: "fetching"
+  DICTIONARY_KEY_LENGTH: 1
+
+  constructor: (@result_callback, @data_url = "/quick_jump_targets.json", selector = "#quick-jump-template") ->
+    @dictionary = new OUT.QuickJump.Dictionary(@DICTIONARY_KEY_LENGTH)
+    @renderer = new OUT.QuickJump.Renderer(this, selector)
+    @selector = @renderer.selector
+    @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
+    this.setDefaultResults()
+
+  activateResult: (anchor) ->
+    anchor or= this.getActiveResult()
+    if anchor?
+      index = $(anchor).data("result-index")
+      result = @results[index]
+      @result_callback.apply(null, [result])
 
   getActiveResult: ->
     if @active_result?
@@ -105,9 +131,6 @@ class OUT.QuickJump.Base
 
   hide: ->
     $(@selector).modal("hide")
-
-  highlight: (str, phrases) ->
-    str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
 
   markActiveResult: ->
     if @active_result?
@@ -136,24 +159,6 @@ class OUT.QuickJump.Base
     results = eval(request.responseText)
     this.setResults(query, results)
 
-  renderResults: (query) ->
-    out = ""
-    index = 0
-    phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
-    template = '<a class="result" data-result-index="%{index}" href="%{url}"><div class=title><i class="icon-%{type}"></i> <span>%{title}</span></div></a>'
-
-    for result in @results[0...@MAX_RESULTS]
-      t = this.highlight(result.title, phrases)
-      out += template.toString().replace("%{title}", t).replace("%{type}", result.type).replace("%{url}", result.url).replace("%{index}", index)
-      index += 1
-
-    $(@selector+" .results").html(out)
-    self = this
-    $(@selector+" .results a.result").bind "click", (event) ->
-      self.activateResult(this)
-      event.preventDefault()
-      false
-
   setOrRequestResults: (query) ->
     stored_results = @dictionary.getResultsFor(query)
     if stored_results?
@@ -168,14 +173,14 @@ class OUT.QuickJump.Base
 
   setDefaultResults: ->
     @results = OUT.quick_jump_defaults || []
-    this.renderResults('')
+    @renderer.renderResults('')
     @controls.active_result = -1
 
   setResults: (query, results) ->
     OUT.clearLazyTimer "quickjump_request"
     @dictionary.setResultsFor(query, results)
     @results = this.matchResults(query, results)
-    this.renderResults(query)
+    @renderer.renderResults(query)
     @active_result = 0
     this.markActiveResult();
 
