@@ -28,7 +28,7 @@ class OUT.QuickJump.Controls
   constructor: (@parent, @selector, @result_callback) ->
     @active_result = null
     self = this
-    $(@selector+" input[type=text]").bind "keydown", (event) ->
+    $(@selector).find("input[type=text]").bind "keydown", (event) ->
       val = self.keydown(event)
       if val == false
         event.preventDefault()
@@ -112,10 +112,28 @@ class OUT.QuickJump.RendererForModal extends OUT.QuickJump.Renderer
 
   renderResults: (query) ->
     out = this.renderResultsToString(query)
-    console.log @selector, out
-    $(@selector+" .results").html(out)
+    $(@selector).find(".results").html(out)
     self = this
-    $(@selector+" .results a.result").bind "click", (event) ->
+    $(@selector).find(".results a.result").bind "click", (event) ->
+      self.parent.activateResult(this)
+      event.preventDefault()
+      false
+
+
+class OUT.QuickJump.RendererForDropdown extends OUT.QuickJump.Renderer
+
+  getResultTemplate: ->
+    '<li class="result" data-result-index="%{index}"><a href="%{url}"><div class=title><i class="icon-%{type}"></i> <span>%{title}</span></div></a></li>'
+
+  renderResults: (query) ->
+    out = this.renderResultsToString(query)
+
+    last_li = $(@selector).find("li.insert-results-after")
+    last_li.nextAll().remove()
+    $(out).insertAfter(last_li)
+
+    self = this
+    $(@selector).find(".results a.result").bind "click", (event) ->
       self.parent.activateResult(this)
       event.preventDefault()
       false
@@ -142,7 +160,7 @@ class OUT.QuickJump.Base
 
   getActiveResult: ->
     if @active_result?
-      all = $(@selector+" .result")
+      all = $(@selector).find(".result")
       anchor = $(all[@active_result])
 
   hide: ->
@@ -150,7 +168,7 @@ class OUT.QuickJump.Base
 
   markActiveResult: ->
     if @active_result?
-      $(@selector+" .result").removeClass "active"
+      $(@selector).find(".result").removeClass "active"
       this.getActiveResult().addClass "active"
 
   moveSelection: (modifier) ->
@@ -218,6 +236,18 @@ class OUT.QuickJump.Modal extends OUT.QuickJump.Base
     this.setDefaultResults()
 
 
+class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
+  constructor: (@dropdown) ->
+    @data_url = $(@dropdown).data("target-url")
+    @result_callback = (selected) ->
+      window.location.href = selected.url
+    @dictionary = new OUT.QuickJump.Dictionary(@DICTIONARY_KEY_LENGTH)
+    @renderer = new OUT.QuickJump.RendererForDropdown(this, @dropdown)
+    @selector = @renderer.selector
+    @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
+    this.setDefaultResults()
+
+
 OUT.lazyTimerIds = {}
 OUT.setLazyTimer = (name, delay, func) ->
   OUT.clearLazyTimer(name)
@@ -233,5 +263,5 @@ $(window).load ->
       window.location.href = selected.url
     new OUT.QuickJump.Modal result_callback
 
-  $('li.quickjump-dropdown').each (item, index, arr) ->
-    console.log $(this), item, index
+  $('ul.quickjump-dropdown').each (index, item, arr) ->
+    new OUT.QuickJump.Dropdown(item)

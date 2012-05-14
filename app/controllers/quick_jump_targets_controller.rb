@@ -9,6 +9,10 @@ class QuickJumpTargetsController < ApplicationController
     render_targets("Page")
   end
 
+  def projects
+    render_targets("Project")
+  end
+
   private
 
   def render_targets(types = nil)

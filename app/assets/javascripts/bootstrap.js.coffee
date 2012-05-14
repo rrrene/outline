@@ -7,8 +7,8 @@ $ ->
 $ ->
   # TODO: find a better way to set this event handler
   # it is here, so this 'click' is handled before the 'dropdown' one
-  $('a.direct-search-toggle').bind "click", (event) ->
-    input = $(this).parents('li').find('form.direct-search input')
+  $('ul.quickjump-dropdown').parents("li.dropdown").find("a.dropdown-toggle").bind "click", (event) ->
+    input = $(this).parents('li.dropdown').find('li.quickjump-input input')
     console.log ">", input
     setTimeout ->
       input.focus()

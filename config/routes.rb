@@ -8,6 +8,7 @@ Outline::Application.routes.draw do
   resources :quick_jump_targets do
     collection do
       get "pages"
+      get "projects"
     end
   end
 
