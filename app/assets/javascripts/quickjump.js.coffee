@@ -128,8 +128,18 @@ class OUT.QuickJump.RendererForDropdown extends OUT.QuickJump.Renderer
   getResultTemplate: ->
     '<li class="result" data-result-index="%{index}"><a href="%{url}"><div class=title><i class="icon-%{type}"></i> <span>%{title}</span></div></a></li>'
 
+  extendResults: (html) ->
+    out
+
   renderResults: (query) ->
     out = this.renderResultsToString(query)
+    if out != ""
+      out += '<li class="divider after-results"></li>'
+    # if query == ""
+    if query != ""
+      out += ('<li><a href="/%{type}s/new?%{type}[title]=%{query}"><i class="icon-plus"></i> '+@parent.new_template+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
+      out += '<li class="divider"></li>'
+    out += ('<li><a href="/%{type}s">'+@parent.index_link+'</a></li>').replace("%{type}", @parent.type).replace("%{query}", @query)
 
     last_li = $(@selector).find("li.insert-results-after")
     last_li.nextAll().remove()
@@ -252,6 +262,8 @@ class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
   constructor: (@dropdown) ->
     @data_url = $(@dropdown).data("target-url")
     @type = $(@dropdown).data("target-type")
+    @index_link = $(@dropdown).data("index-link")
+    @new_template = $(@dropdown).data("new-template")
     @result_callback = (selected) ->
       window.location.href = selected.url
     @dictionary = new OUT.QuickJump.Dictionary(@DICTIONARY_KEY_LENGTH)
