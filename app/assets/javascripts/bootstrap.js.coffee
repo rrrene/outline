@@ -5,11 +5,12 @@ $ ->
 $ ->
   $("a[rel=popover]").popover offset: 10
 $ ->
+  # TODO: find a better way to set this event handler
+  # it is here, so this 'click' is handled before the 'dropdown' one
   $('a.direct-search-toggle').bind "click", (event) ->
     input = $(this).parents('li').find('form.direct-search input')
     console.log ">", input
     setTimeout ->
-      console.log "!"
       input.focus()
     , 100
 
