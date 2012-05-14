@@ -4,7 +4,9 @@
 
 window.OUT = {} unless window.OUT?
 
-class OUT.QuickJumpDictionary
+window.OUT.QuickJump = {}
+
+class OUT.QuickJump.Dictionary
   constructor: (@key_length) ->
     @store = {}
   
@@ -17,32 +19,15 @@ class OUT.QuickJumpDictionary
   setResultsFor: (query, results) ->
     @store[this.getKey(query)] = results
 
-class OUT.QuickJump
-  DELAY_BEFORE_SERVER_CALL: 300
-  FETCHING_RESULTS: "fetching"
-  DICTIONARY_KEY_LENGTH: 1
+class OUT.QuickJump.Controls
   KEY_UP: 38
   KEY_DOWN: 40
   KEY_ENTER: 13
   KEY_ESC: 27
-  MAX_RESULTS: 10
-
-  constructor: (@result_callback, @data_url = "/quick_jump_targets.json", selector = "#quick-jump-template") ->
+  
+  constructor: (@parent, @selector, @result_callback) ->
     @active_result = null
-    @dictionary = new OUT.QuickJumpDictionary(@DICTIONARY_KEY_LENGTH)
-
-    @selector = this.cloneModal(selector)
-    this.setDefaultResults()
     self = this
-
-    $(@selector).bind "hidden", ->
-      $(self.selector).remove()
-
-    $(@selector).bind "shown", ->
-      $(self.selector+" input").select()
-
-    $(@selector).modal().modal("show")
-
     $(@selector+" input[type=text]").bind "keydown", (event) ->
       val = self.keydown(event)
       if val == false
@@ -55,6 +40,49 @@ class OUT.QuickJump
         event.preventDefault()
         event.stopPropagation()
       val
+
+  keydown: (event) ->
+    if event.keyCode == @KEY_ENTER
+      @parent.activateResult()
+      false
+    else if event.keyCode == @KEY_UP
+      @parent.moveSelection(-1)
+      false
+    else if event.keyCode == @KEY_DOWN
+      @parent.moveSelection(+1)
+      false
+
+  keyup: (event) ->
+    query = event.target.value
+    if query != @old_query
+      if query == ""
+        @parent.setDefaultResults()
+      else if query.length >= @parent.DICTIONARY_KEY_LENGTH
+        @parent.setOrRequestResults(query)
+    @old_query = query
+
+
+
+class OUT.QuickJump.Base
+  DELAY_BEFORE_SERVER_CALL: 300
+  FETCHING_RESULTS: "fetching"
+  DICTIONARY_KEY_LENGTH: 1
+  MAX_RESULTS: 10
+
+  constructor: (@result_callback, @data_url = "/quick_jump_targets.json", selector = "#quick-jump-template") ->
+    @dictionary = new OUT.QuickJump.Dictionary(@DICTIONARY_KEY_LENGTH)
+    @selector = this.cloneModal(selector)
+    @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
+    this.setDefaultResults()
+
+    self = this
+    $(@selector).bind "hidden", ->
+      $(self.selector).remove()
+
+    $(@selector).bind "shown", ->
+      $(self.selector+" input").select()
+
+    $(@selector).modal().modal("show")
 
   activateResult: (anchor) ->
     anchor or= this.getActiveResult()
@@ -70,45 +98,22 @@ class OUT.QuickJump
     $("body").append(new_modal)
     "##{new_modal_id}"
 
+  getActiveResult: ->
+    if @active_result?
+      all = $(@selector+" .result")
+      anchor = $(all[@active_result])
+
   hide: ->
     $(@selector).modal("hide")
 
   highlight: (str, phrases) ->
     str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
-  
-  keydown: (event) ->
-    if event.keyCode == @KEY_ENTER
-      this.activateResult()
-      false
-    else if event.keyCode == @KEY_UP
-      this.moveSelection(-1)
-      false
-    else if event.keyCode == @KEY_DOWN
-      this.moveSelection(+1)
-      false
-  
-  keyup: (event) ->
-    console.log event.type, event.keyCode, event.target.value
 
-    query = event.target.value
+  markActiveResult: ->
+    if @active_result?
+      $(@selector+" .result").removeClass "active"
+      this.getActiveResult().addClass "active"
 
-    if query != @old_query 
-      if query == ""
-        this.setDefaultResults()
-      else if query.length >= @DICTIONARY_KEY_LENGTH
-        stored_results = @dictionary.getResultsFor(query)
-        if stored_results?
-          if stored_results != @FETCHING_RESULTS
-            this.setResults query, stored_results
-        else
-          data = {}
-          data[$(event.target).attr("name")] = @dictionary.getKey(query)
-          self = this
-          OUT.setLazyTimer "quickjump_request", @DELAY_BEFORE_SERVER_CALL, ->
-            self.requestResults(query, data)
-
-    @old_query = query
-  
   moveSelection: (modifier) ->
     max_result = Math.min(@results.length, @MAX_RESULTS)
     @active_result += modifier
@@ -148,11 +153,23 @@ class OUT.QuickJump
       self.activateResult(this)
       event.preventDefault()
       false
-  
+
+  setOrRequestResults: (query) ->
+    stored_results = @dictionary.getResultsFor(query)
+    if stored_results?
+      if stored_results != @FETCHING_RESULTS
+        this.setResults query, stored_results
+    else
+      data = {}
+      data[$(event.target).attr("name")] = @dictionary.getKey(query)
+      self = this
+      OUT.setLazyTimer "quickjump_request", @DELAY_BEFORE_SERVER_CALL, ->
+        self.requestResults(query, data)
+
   setDefaultResults: ->
     @results = OUT.quick_jump_defaults || []
     this.renderResults('')
-    @active_result = -1
+    @controls.active_result = -1
 
   setResults: (query, results) ->
     OUT.clearLazyTimer "quickjump_request"
@@ -168,15 +185,7 @@ class OUT.QuickJump
       expr = '.*' + query.toLowerCase().replace(/\s/g, '.+') + '.*'
       name.match(new RegExp(expr))
 
-  markActiveResult: ->
-    if @active_result?
-      $(@selector+" .result").removeClass "active"
-      this.getActiveResult().addClass "active"
-  
-  getActiveResult: ->
-    if @active_result?
-      all = $(@selector+" .result")
-      anchor = $(all[@active_result])
+
 
 OUT.lazyTimerIds = {}
 OUT.setLazyTimer = (name, delay, func) ->
@@ -190,5 +199,5 @@ OUT.clearLazyTimer = (name) ->
 
 $(window).load ->
   OUT.registerKeyboardShortcut "t", ->
-    new OUT.QuickJump (selected) ->
+    new OUT.QuickJump.Base (selected) ->
       window.location.href = selected.url
