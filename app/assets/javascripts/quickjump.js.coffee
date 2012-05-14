@@ -65,6 +65,33 @@ class OUT.QuickJump.Controls
 class OUT.QuickJump.Renderer
   MAX_RESULTS: 10
 
+  constructor: (@parent, @selector) ->
+
+  highlight: (str, phrases) ->
+    str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
+
+  getResultTemplate: ->
+    '<a class="result" data-result-index="%{index}" href="%{url}"><div class=title><i class="icon-%{type}"></i> <span>%{title}</span></div></a>'
+
+  renderResultsToString: (query) ->
+    out = ""
+    index = 0
+    phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
+    template = this.getResultTemplate()
+
+    for result in @parent.results[0...@MAX_RESULTS]
+      t = this.highlight(result.title, phrases)
+      out += template.toString().replace("%{title}", t).replace("%{type}", result.type).replace("%{url}", result.url).replace("%{index}", index)
+      index += 1
+    out
+
+  renderResults: (query) ->
+    # out = this.renderResultsToString(query)
+    # $(@selector+" .results").html(out)
+
+
+
+class OUT.QuickJump.RendererForModal extends OUT.QuickJump.Renderer
   constructor: (@parent, selector) ->
     @selector = this.cloneModal(selector)
     self = this
@@ -83,20 +110,9 @@ class OUT.QuickJump.Renderer
     $("body").append(new_modal)
     "##{new_modal_id}"
 
-  highlight: (str, phrases) ->
-    str.toString().replace(new RegExp('('+phrases.join('|')+')', 'gi'), '<strong>$1</strong>')
-
   renderResults: (query) ->
-    out = ""
-    index = 0
-    phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
-    template = '<a class="result" data-result-index="%{index}" href="%{url}"><div class=title><i class="icon-%{type}"></i> <span>%{title}</span></div></a>'
-
-    for result in @parent.results[0...@MAX_RESULTS]
-      t = this.highlight(result.title, phrases)
-      out += template.toString().replace("%{title}", t).replace("%{type}", result.type).replace("%{url}", result.url).replace("%{index}", index)
-      index += 1
-
+    out = this.renderResultsToString(query)
+    console.log @selector, out
     $(@selector+" .results").html(out)
     self = this
     $(@selector+" .results a.result").bind "click", (event) ->
@@ -192,10 +208,19 @@ class OUT.QuickJump.Base
 
 
 
+
+class OUT.QuickJump.Modal extends OUT.QuickJump.Base
+  constructor: (@result_callback, @data_url = "/quick_jump_targets.json") ->
+    @dictionary = new OUT.QuickJump.Dictionary(@DICTIONARY_KEY_LENGTH)
+    @renderer = new OUT.QuickJump.RendererForModal(this, "#quick-jump-template")
+    @selector = @renderer.selector
+    @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
+    this.setDefaultResults()
+
+
 OUT.lazyTimerIds = {}
 OUT.setLazyTimer = (name, delay, func) ->
   OUT.clearLazyTimer(name)
-  console.log "lazyTimer set #{name}"
   OUT.lazyTimerIds[name] = window.setTimeout func, delay
 
 OUT.clearLazyTimer = (name) ->
@@ -204,5 +229,9 @@ OUT.clearLazyTimer = (name) ->
 
 $(window).load ->
   OUT.registerKeyboardShortcut "t", ->
-    new OUT.QuickJump.Base (selected) ->
+    result_callback = (selected) ->
       window.location.href = selected.url
+    new OUT.QuickJump.Modal result_callback
+
+  $('li.quickjump-dropdown').each (item, index, arr) ->
+    console.log $(this), item, index
