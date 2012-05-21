@@ -23,11 +23,27 @@
 
 .content-item-link
   .content-item-body
-    small.href
-      a
-        color: #aaa
-        &:hover
-          text-decoration: none
+    .text,
+    .thumb
+      margin-top: 10px
+    .text
+      h2
+        line-height: 16px
+      small.href
+        a
+          color: #aaa
+          &:hover
+            text-decoration: none
+
+.content-item-link-with-thumb
+  .content-item-body
+    .text
+      float: left
+      width: 75%
+    .thumb
+      float: left
+      img
+        margin-right: 10px
 
 form.link-edit
   .controls

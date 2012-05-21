@@ -28,6 +28,7 @@ OUT.links =
           if matched
             video_id = matched[1]
             insert_link_here.html youtube_thumb_template.replace(/%{video_id}/g, video_id)
+            content_item.addClass "content-item-link-with-thumb"
 
     $('a[data-convert-into="youtube_embed_player"]').live "click", (event) ->
       video_id = $(this).data("video-id")
@@ -35,5 +36,7 @@ OUT.links =
       false
 
 $ ->
+  OUT.registerCreatedHandler "link", OUT.links.thumbnailizeVideoLinks
+  OUT.registerUpdatedHandler "link", OUT.links.thumbnailizeVideoLinks
   OUT.links.thumbnailizeVideoLinks()
   OUT.contentItems.highlightQueryIn(".content-items .content-item-link .content-item-body")
