@@ -9,7 +9,6 @@ $ ->
   # it is here, so this 'click' is handled before the 'dropdown' one
   $('ul.quickjump-dropdown').parents("li.dropdown").find("a.dropdown-toggle").bind "click", (event) ->
     input = $(this).parents('li.dropdown').find('li.quickjump-input input')
-    console.log ">", input
     setTimeout ->
       input.focus()
     , 100
