@@ -157,12 +157,13 @@ img {
   -o-box-shadow: 0 0 5px #ebebeb;
   -ms-box-shadow: 0 0 5px #ebebeb;
 }
-img.screenshot {
+img.plain {
   position: relative;
   margin: 0;
   padding: 0;
   margin: 0;
   border: none;
+  width: auto;
 
   box-shadow: none;
   -webkit-box-shadow: none;
@@ -321,7 +322,7 @@ Full-Width Styles
 #project_title {
   margin: 0;
   color: #fff;
-  font-size: 42px;
+  font-size: 64px;
   font-weight: 700;
   text-shadow: #111 0px 0px 10px;
 }
