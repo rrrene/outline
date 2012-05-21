@@ -47,7 +47,7 @@ module ActsAsTaggableByUser
     end
 
     def tag_list
-      @tag_list ||= tags.join(TAG_DELIMITER)
+      @tag_list ||= tag_titles.join(TAG_DELIMITER)
     end
 
     def write_tags
