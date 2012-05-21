@@ -139,7 +139,7 @@ class OUT.QuickJump.RendererForDropdown extends OUT.QuickJump.Renderer
     if query != ""
       out += ('<li><a href="/%{type}s/new?%{type}[title]=%{query}"><i class="icon-plus"></i> '+@parent.new_template+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
       out += '<li class="divider"></li>'
-    out += ('<li><a href="/%{type}s">'+@parent.index_link+'</a></li>').replace("%{type}", @parent.type).replace("%{query}", @query)
+    out += ('<li><a href="/%{type}s?query=%{query}">'+@parent.index_link+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
 
     last_li = $(@selector).find("li.insert-results-after")
     last_li.nextAll().remove()
