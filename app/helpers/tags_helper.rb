@@ -5,7 +5,7 @@ module TagsHelper
     active = current_tag == tag
     classes = ["tag"]
     classes << "tag-#{tag.style}" if tag.style
-    classes << "tag-with-remove" if resource.present?
+    # classes << "tag-with-remove" if resource.present?
     render "tags/tag", :tag => tag, :tag_resource => resource, :active => active, :classes => classes
   end
 
