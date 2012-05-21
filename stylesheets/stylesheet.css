@@ -157,6 +157,19 @@ img {
   -o-box-shadow: 0 0 5px #ebebeb;
   -ms-box-shadow: 0 0 5px #ebebeb;
 }
+img.screenshot {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  -ms-box-shadow: none;
+}
 
 pre, code {
   width: 100%;
