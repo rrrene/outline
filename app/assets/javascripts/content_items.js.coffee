@@ -76,6 +76,9 @@ $ ->
 $(window).load ->
   OUT.contentItems.createSortables()
 
+  OUT.registerCreatedHandler "*", ->
+    $("ul.content-items li.blank-slate").remove()
+
   $('body').bind 'click', OUT.contentItems.clearDecoratedContentItemOptions
   $('a[data-toggle="dropdown"]').bind 'click', OUT.contentItems.decorateContentItemOptions
 

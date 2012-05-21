@@ -11,6 +11,9 @@ en:
   projects:
     activity_collection:
       header: "Projects touched:"
+    blank_slate:
+      header: "Nothing posted yet."
+      body: "You can now post notes, todos and links to this project."
     bulk_collection:
       deactivate_project: "Archive"
       activate_project: "Reactivate"

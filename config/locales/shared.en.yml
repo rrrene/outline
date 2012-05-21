@@ -1,6 +1,9 @@
 
 en:
   shared:
+    blank_slate:
+      header: "No content yet."
+      body: "You can now post items to this content area."
     favorites:
       button_hint_inactive: "Pin this item to your sidebar"
       button_hint_active: "Remove this item from your sidebar"

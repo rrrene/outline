@@ -8,6 +8,9 @@ en:
   pages:
     activity_collection:
       header: "Pages touched:"
+    blank_slate:
+      header: "Nothing posted yet."
+      body: "You can now post notes, todos and links to this page."
     new:
       add_to_new_project: "Add to new project..."
       page_header: "Pages"
