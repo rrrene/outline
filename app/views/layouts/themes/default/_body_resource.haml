@@ -6,7 +6,7 @@
       .content
         .page-wrapper
           .page-header
-            .pull-left
+            .pull-left.header-title
               %h1
                 - if @page_header.present?
                   = inline_user_text @page_header
@@ -18,7 +18,7 @@
                   = t("#{controller_name}.#{action_name}.page_header")
                   %small
                     = t("#{controller_name}.#{action_name}.page_hint")
-            .pull-right
+            .pull-right.header-options
               = yield(:page_header)
             .clearboth
           = yield

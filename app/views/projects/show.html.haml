@@ -8,13 +8,14 @@
     = buttons Page.new
 
 - content_for(:page_header) do
-  .btn-group
-    = link_to "Edit", edit_resource_path(resource), :class => "btn"
-    %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
-      %span.caret
-    %ul.dropdown-menu
-      %li= link_to favor_icon_with_title(resource), resource, data_attributes_for_favorite_toggle(resource)
-      %li= link_to icon(:page) + t("pages.index.new_page_link"), {:action => :new}, :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
+  .pull-right
+    .btn-group
+      = link_to "Edit", edit_resource_path(resource), :class => "btn"
+      %a.btn.dropdown-toggle{:"data-toggle" => "dropdown"}
+        %span.caret
+      %ul.dropdown-menu
+        %li= link_to favor_icon_with_title(resource), resource, data_attributes_for_favorite_toggle(resource)
+        %li= link_to icon(:page) + t("pages.index.new_page_link"), {:action => :new}, :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
 
   = render_tags_for(resource)
 
