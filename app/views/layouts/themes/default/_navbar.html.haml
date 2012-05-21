@@ -23,7 +23,7 @@
 
 
             %li.dropdown
-              %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
+              %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => pages_url}
                 = t("navigation.pages")
                 %b.caret
 
@@ -39,7 +39,7 @@
           %ul.nav.pull-right
             %li.my-page= link_to current_user.name, user_path(current_user)
             %li.options.dropdown
-              %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
+              %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => projects_url}
                 = icon :cog
                 =# t("navigation.options")
                 %b.caret
