@@ -12,7 +12,7 @@
                 = t("navigation.projects")
                 %b.caret
 
-              %ul.dropdown-menu.quickjump-dropdown{:"data-target-type" => "project", :"data-new-template" => t("navigation.create_new_project_from_search"), :"data-index-link" => t("navigation.all_projects"), :"data-target-url" => url_for(:controller => "quick_jump_targets", :action => "projects")}
+              %ul.dropdown-menu.quickjump-dropdown{:"data-target-type" => "project", :"data-new-template" => t("navigation.create_new_project_from_search"), :"data-index-link" => t("navigation.all_projects"), :"data-search-link" => t("navigation.all_projects_with_query"), :"data-target-url" => url_for(:controller => "quick_jump_targets", :action => "projects")}
                 %li.quickjump-input
                   %input{:type => "text", :placeholder => "Search..."}
                 %li.divider.insert-results-after
@@ -27,7 +27,7 @@
                 = t("navigation.pages")
                 %b.caret
 
-              %ul.dropdown-menu.quickjump-dropdown{:"data-target-type" => "page", :"data-new-template" => t("navigation.create_new_page_from_search"), :"data-index-link" => t("navigation.all_pages"), :"data-target-url" => url_for(:controller => "quick_jump_targets", :action => "pages")}
+              %ul.dropdown-menu.quickjump-dropdown{:"data-target-type" => "page", :"data-new-template" => t("navigation.create_new_page_from_search"), :"data-index-link" => t("navigation.all_pages"), :"data-search-link" => t("navigation.all_pages_with_query"), :"data-target-url" => url_for(:controller => "quick_jump_targets", :action => "pages")}
                 %li.quickjump-input
                   %input{:type => "text", :placeholder => "Search..."}
                 %li.divider.insert-results-after

@@ -76,15 +76,15 @@ class OUT.QuickJump.Renderer
   getResultTemplate: ->
     '<a class="result" data-result-index="%{index}" href="%{url}"><div class=title><i class="icon-%{type}"></i> <span>%{title}</span></div></a>'
 
-  renderResultsToString: (query) ->
+  renderResultsToString: (query, results = @parent.results[0...@MAX_RESULTS]) ->
     out = ""
     index = 0
     phrases = query.replace(/^\s+|\s+$/g, '').split(' ')
     template = this.getResultTemplate()
 
-    for result in @parent.results[0...@MAX_RESULTS]
+    for result in results
       t = this.highlight(result.title, phrases)
-      out += template.toString().replace("%{title}", t).replace("%{type}", result.type).replace("%{url}", result.url).replace("%{index}", index)
+      out += template.toString().replace("%{title}", t).replace(/%\{type\}/g, result.type).replace("%{url}", result.url).replace("%{index}", index).replace("%{query}", query)
       index += 1
     out
 
@@ -136,10 +136,11 @@ class OUT.QuickJump.RendererForDropdown extends OUT.QuickJump.Renderer
     if out != ""
       out += '<li class="divider after-results"></li>'
     # if query == ""
-    if query != ""
+    if query == ""
+      out += ('<li><a href="/%{type}s">'+@parent.index_link+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
+    else
       out += ('<li><a href="/%{type}s/new?%{type}[title]=%{query}"><i class="icon-plus"></i> '+@parent.new_template+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
-      out += '<li class="divider"></li>'
-    out += ('<li><a href="/%{type}s?query=%{query}">'+@parent.index_link+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
+    #  out += '<li class="divider"></li>'
 
     last_li = $(@selector).find("li.insert-results-after")
     last_li.nextAll().remove()
@@ -175,6 +176,9 @@ class OUT.QuickJump.Base
     if @active_result?
       all = $(@selector).find(".result")
       anchor = $(all[@active_result])
+
+  getMatchingResults: (query, results) ->
+    this.matchResults(query, results)
 
   deactivate: ->
 
@@ -229,7 +233,7 @@ class OUT.QuickJump.Base
   setResults: (query, results) ->
     OUT.clearLazyTimer "quickjump_request"
     @dictionary.setResultsFor(query, results)
-    @results = this.matchResults(query, results)
+    @results = this.getMatchingResults(query, results)
     @renderer.renderResults(query)
     @active_result = 0
     this.markActiveResult();
@@ -263,6 +267,7 @@ class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
     @data_url = $(@dropdown).data("target-url")
     @type = $(@dropdown).data("target-type")
     @index_link = $(@dropdown).data("index-link")
+    @search_link = $(@dropdown).data("search-link")
     @new_template = $(@dropdown).data("new-template")
     @result_callback = (selected) ->
       window.location.href = selected.url
@@ -278,6 +283,14 @@ class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
 
   getDefaultResults: ->
     OUT["quick_jump_#{@type}s_defaults"] || []
+
+  getMatchingResults: (query, results) ->
+    results = this.matchResults(query, results)
+    results.unshift
+      type: 'search'
+      url: "/#{@type}s?query=%{query}".replace(/%\{query\}/g, query)
+      title: @search_link
+    results
 
 
 OUT.lazyTimerIds = {}

@@ -5,10 +5,12 @@ en:
     activities: "Daily Progress"
     todo_lists: "To-Dos"
     projects: "Projects"
-    all_projects: "Overview"
+    all_projects: "All projects"
+    all_projects_with_query: 'Search "%{query}"'
     create_new_project_from_search: 'Create "%{query}"'
     pages: "Pages"
-    all_pages: "Overview"
+    all_pages: "All pages"
+    all_pages_with_query: 'Search "%{query}"'
     create_new_page_from_search: 'Create "%{query}"'
     options: "Options"
     users: "Users"
