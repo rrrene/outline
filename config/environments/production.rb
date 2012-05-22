@@ -48,6 +48,11 @@ Outline::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
+  # Precompile all theme related stylesheets as well
+  glob = File.join(Rails.root, "app", "assets", "stylesheets", "themes", "**", "all.css*")
+  themes = Dir[glob].map { |f| f.match(/(themes.+all.css)/).to_s }
+  config.assets.precompile += themes
+
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
