@@ -6,8 +6,6 @@
       = nav_to t("navigation.project_todo_lists"), todo_lists_path(:project_id => current_project), :todo_lists
       = nav_to t("navigation.project_notes"), notes_path(:project_id => current_project), :notes
       = nav_to t("navigation.project_links"), links_path(:project_id => current_project), :links
-      %li.divider
-        %hr
       =# nav_to t("navigation.project_settings"), edit_project_path(current_project)
 
       - if pages = current_project.pages.presence
@@ -24,6 +22,10 @@
       = nav_to t("navigation.todo_lists"), :todo_lists
 
   = yield(:navigation_sidebar)
+
+  %ul.nav.nav-list
+    %li.divider
+      %hr
 
   - if recent = favorite_projects.presence
     %ul.nav.nav-list

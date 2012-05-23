@@ -31,7 +31,7 @@ $(window).load ->
   OUT.registerHandler OUT.HANDLER_WILDCARD, "favorite", handler
 
   $('a[data-toggle="favorite"], button[data-toggle="favorite"]').live "click", (event) ->
-    console.log $(this), $(this).context.tagName
+    console.log "data-toggle: favorite", $(this), $(this).context.tagName
 
     type = $(this).data("resource-type")
     id = $(this).data("resource-id")
@@ -44,4 +44,5 @@ $(window).load ->
     title = $(this).data(title_key)
     $(this).html "<i class=#{klass}></i> #{title}"
 
+    event.stopImmediatePropagation()
     false
