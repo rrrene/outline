@@ -8,7 +8,7 @@ en:
       button_hint_inactive: "Pin this item to your sidebar"
       button_hint_active: "Remove this item from your sidebar"
     footer:
-      author_note: "Powered by Outline &copy; 2011-%{now} René Föhring"
+      author_note: 'Powered by <a href="http://outlineapp.com" target="_blank">Outline</a> &copy; 2011-%{now} René Föhring'
     sidebar:
       favorite_links: "Pinned Links"
       favorite_pages: "Pinned Pages"
