@@ -25,11 +25,11 @@ module FavoritesHelper
   end
 
   def favorite_pages
-    @favorite_pages ||= favorite_resources Page
+    @favorite_pages ||= favorite_resources(Page).sort_by { |p| p.title.upcase }
   end
 
   def favorite_projects
-    @favorite_projects ||= favorite_resources Project
+    @favorite_projects ||= favorite_resources(Project).sort_by { |p| p.title.upcase }
   end
 
   def favorite_todo_lists

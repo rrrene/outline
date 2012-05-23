@@ -8,7 +8,7 @@
       = nav_to t("navigation.project_links"), links_path(:project_id => current_project), :links
       =# nav_to t("navigation.project_settings"), edit_project_path(current_project)
 
-      - if pages = current_project.pages.presence
+      - if pages = current_project.pages.order("UPPER(title) ASC").presence
         %li.nav-header= link_to t("shared.sidebar.pages_in_project"), pages_path(:project_id => current_project)
         - pages.each do |page|
           %li{:class => current_page?(page) ? :active : nil}= link_to page.title, page
