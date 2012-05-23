@@ -12,5 +12,15 @@ class Content < ActiveRecord::Base
     end
   end
 
+  def self.association_for(resource)
+    if resource.respond_to?(:content)
+      resource.content
+    elsif resource.respond_to?(:outer_content)
+      resource.outer_content
+    elsif resource.respond_to?(:inner_content)
+      resource.inner_content
+    end
+  end
+
   validates_presence_of :holder
 end
