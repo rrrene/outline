@@ -22,7 +22,12 @@ Outline is an open source project and knowledge management application for the f
 
 Outline is a Ruby on Rails application, meaning that you can configure and run it the way you would any other Rails application.
 
-    $ git clone git@github.com:rrrene/outline.git
+    git clone git@github.com:rrrene/outline.git
+    cd outline
+    bundle
+    cp config/database.yml.mysql config/database.yml
+    rake db:create:all db:migrate
+    unicorn_rails
 
 The use of RVM is recommended.
 
