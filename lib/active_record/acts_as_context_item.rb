@@ -17,6 +17,11 @@ module ActsAsContextItem
             has_many of_this_kind, :through => :context, :dependent => :destroy
           end
         end
+        after_save do |item|
+          if item.respond_to?(:inner_content)
+            item.inner_content.update_context
+          end
+        end
       end
     end
   end

@@ -79,6 +79,19 @@ class PageTest < ActiveSupport::TestCase
     assert_equal page.context, project.context
   end
 
+  test "should set context_id of inner_content according to holder context_id" do
+    domain = Domain.first
+    page = domain.pages.last
+    project = domain.projects.first
+    assert_nil page.inner_content.context
+    assert_not_nil project.context
+
+    page.context = project.context
+    page.save
+
+    assert_equal page.inner_content.context, project.context
+  end
+
   test "should move page to project via stringified id" do
     domain = Domain.first
     page = domain.pages.first

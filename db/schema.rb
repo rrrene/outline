@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120511073600) do
+ActiveRecord::Schema.define(:version => 20120523083229) do
 
   create_table "activities", :force => true do |t|
     t.integer  "domain_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20120511073600) do
     t.integer  "holder_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "context_id"
   end
 
   create_table "contexts", :force => true do |t|

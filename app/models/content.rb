@@ -1,5 +1,6 @@
 class Content < ActiveRecord::Base
   belongs_to :holder, :polymorphic => true
+  belongs_to :context
   has_many :content_items, :order => 'position', :dependent => :destroy
 
   def content_item_ids=(ids)
@@ -9,6 +10,15 @@ class Content < ActiveRecord::Base
       content_item.content = self
       content_item.position = ids.index(content_item.id) + 1 
       content_item.save
+    end
+  end
+
+  def update_context
+    if holder.respond_to?(:context)
+      if self.context != holder.context
+        self.context = holder.context
+        self.save
+      end
     end
   end
 

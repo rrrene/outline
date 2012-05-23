@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
-  acts_as_context_item
   acts_as_content_holder
+  acts_as_context_item
   acts_as_taggable_by_user
   has_quick_jump_target { [context.try(:resource).try(:title), title].compact.join(' / ') }
   

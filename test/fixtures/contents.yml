@@ -15,32 +15,42 @@ content_page_3:
   holder_type: Page
   holder_id: 3
 
-content_project_1:
+content_page_4:
   id: 4
+  holder_type: Page
+  holder_id: 4
+
+content_page_5:
+  id: 5
+  holder_type: Page
+  holder_id: 5
+
+content_project_1:
+  id: 6
   holder_type: Project
   holder_id: 1
 
 content_project_2:
-  id: 5
+  id: 7
   holder_type: Project
   holder_id: 2
 
 content_project_3:
-  id: 6
+  id: 8
   holder_type: Project
   holder_id: 3
 
 content_todo_list_1:
-  id: 7
+  id: 9
   holder_type: TodoList
   holder_id: 1
 
 content_todo_list_2:
-  id: 8
+  id: 10
   holder_type: TodoList
   holder_id: 2
 
 content_todo_list_3:
-  id: 9
+  id: 11
   holder_type: TodoList
   holder_id: 3
