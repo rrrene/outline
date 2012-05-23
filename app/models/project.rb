@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
 
   def all_content_items
     content_ids = Content.where(:context_id => context.id).map(&:id)
+    content_ids << inner_content.id
     ContentItem.where(:content_id => content_ids).order("updated_at DESC")
   end
 
