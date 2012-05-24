@@ -23,6 +23,6 @@
 .page-item
   = render "content_items/top_add_form", :content => resource.inner_content
 
-= render "content/show", :content => resource.inner_content, :content_items => resource.all_content_items, :sortable => false
+= render "content/show", :content => resource.inner_content, :content_items => resource.all_content_items, :sortable => false, :blank_slate => true
 
 = render "shared/sidebar_for_context"

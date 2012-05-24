@@ -1,7 +1,7 @@
 .page-item
   = render "content_items/top_add_form", :content => resource.inner_content
 
-= render "content/show", :content => resource.inner_content
+= render "content/show", :content => resource.inner_content, :blank_slate => true
 
 - content_for(:page_header) do
   .pull-right
