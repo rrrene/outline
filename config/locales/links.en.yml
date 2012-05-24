@@ -15,6 +15,9 @@ en:
   links:
     activity_collection:
       header: "Links"
+    blank_slate:
+      header: "No links yet."
+      body: "You can add links to projects, etc. by clicking on the timeline."
     index:
       page_header: "Links"
       page_hint: "Overview"

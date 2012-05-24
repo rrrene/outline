@@ -10,6 +10,9 @@ en:
   notes:
     activity_collection:
       header: "Notes"
+    blank_slate:
+      header: "No notes yet."
+      body: "You can add notes to projects, etc. by clicking on the timeline."
     index:
       page_header: "Notes"
       page_hint: "Overview"

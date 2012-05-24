@@ -7,10 +7,4 @@
     - content_items.each do |content_item|
       = render :partial => "content_items/show", :locals => {:content_item => content_item}
   - else
-    - if blank_slate
-      %li.content-item.blank-slate
-        .content-item-inner
-          .content-item-body
-            %h2= tt("#{controller_name}.blank_slate.header", "shared.blank_slate.header")
-            %p= tt("#{controller_name}.blank_slate.body", "shared.blank_slate.body")
-        = spacer
+    = render "content/blank_slate" if blank_slate

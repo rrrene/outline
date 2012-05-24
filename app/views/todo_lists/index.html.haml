@@ -1,7 +1,4 @@
-%ul.unstyled.content-items.content-overview{:"data-filter-query" => @filter_query}
-  - collection.map(&:content_item).each do |content_item|
-    = render :partial => "content_items/show", :locals => {:content_item => content_item}
-
+= render "content_items/index_collection"
 
 - content_for(:contextual_sidebar) do
   - if @rejected.present?
