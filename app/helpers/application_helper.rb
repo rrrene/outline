@@ -15,6 +15,22 @@ module ApplicationHelper
     render :layout => "shared/index/filter_form", :locals => {:filter_params => filter_params}, &block
   end
 
+  def html_title
+    domain_title = current_domain.presence.try(:title).to_s
+    generic_title = if @page_header.present?
+      inline_user_text @page_header
+    elsif defined?(resource) && !resource_is_context_resource? && resource.respond_to?(:title) && !resource.new_record?
+      inline_user_text resource.title
+    else
+      t("#{controller_name}.#{action_name}.page_header")
+    end
+    if generic_title.present?
+      "#{generic_title} - #{domain_title}"
+    else
+      domain_title
+    end
+  end
+
   def icon(name, second_class = nil)
     classes = "#{name} #{second_class}".strip
     %Q(<i class="icon-#{classes}"></i> ).html_safe
