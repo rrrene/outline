@@ -35,8 +35,19 @@ OUT.links =
       $(this).replaceWith youtube_embed_template.replace(/%{video_id}/g, video_id)
       false
 
+  urlPasted: ->
+    # TODO: Get webpage info on the fly and display form to edit description etc.
+
 $ ->
   OUT.registerCreatedHandler "link", OUT.links.thumbnailizeVideoLinks
   OUT.registerUpdatedHandler "link", OUT.links.thumbnailizeVideoLinks
   OUT.links.thumbnailizeVideoLinks()
   OUT.contentItems.highlightQueryIn(".content-items .content-item-link .content-item-body")
+
+  $("#top-add-content-item-form form.link input#link_href").live "paste", ->
+    self = $(this)
+    setTimeout ->
+      new_value = self.val()
+      if new_value.match(/^http\S+$/)
+        console.log "URL?", new_value
+    , 0
