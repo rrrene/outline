@@ -133,12 +133,10 @@ class OUT.QuickJump.RendererForDropdown extends OUT.QuickJump.Renderer
     out = this.renderResultsToString(query)
     if out != ""
       out += '<li class="divider after-results"></li>'
-    # if query == ""
     if query == ""
-      out += ('<li><a href="/%{type}s">'+@parent.index_link+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
+      out += ('<li class="result"><a href="/%{type}s" class="result">'+@parent.index_link+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
     else
-      out += ('<li><a href="/%{type}s/new?%{type}[title]=%{query}"><i class="icon-plus"></i> '+@parent.new_template+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
-    #  out += '<li class="divider"></li>'
+      out += ('<li class="result"><a href="/%{type}s/new?%{type}[title]=%{query}"><i class="icon-plus"></i> '+@parent.new_template+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
 
     last_li = $(@selector).find("li.insert-results-after")
     last_li.nextAll().remove()
@@ -168,8 +166,13 @@ class OUT.QuickJump.Base
     anchor or= this.getActiveResult()
     if anchor?
       index = $(anchor).data("result-index")
-      result = @results[index]
-      @result_callback.apply(null, [result])
+      console.log( anchor, index )
+      if index?
+        result = @results[index]
+        @result_callback.apply(null, [result])
+      else
+        # follow link
+        window.location.href = $(anchor).find("a").attr("href")
 
   getActiveResult: ->
     if @active_result?
@@ -181,6 +184,9 @@ class OUT.QuickJump.Base
 
   deactivate: ->
 
+  getMaxResult: ->
+    Math.min(@results.length, @MAX_RESULTS)
+
   hide: ->
     this.deactivate()
 
@@ -190,8 +196,7 @@ class OUT.QuickJump.Base
       this.getActiveResult().addClass "active"
 
   moveSelection: (modifier) ->
-    console.log "moveSelection", @active_result, @results.length, @MAX_RESULTS
-    max_result = Math.min(@results.length, @MAX_RESULTS)
+    max_result = this.getMaxResult()
     @active_result += modifier
     @active_result = max_result-1 if @active_result < 0
     @active_result = 0 if @active_result > max_result-1
@@ -266,6 +271,7 @@ class OUT.QuickJump.Modal extends OUT.QuickJump.Base
 
 
 class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
+  MAX_RESULTS: 20
   constructor: (@dropdown) ->
     @data_url = $(@dropdown).data("target-url")
     @type = $(@dropdown).data("target-type")
@@ -294,6 +300,9 @@ class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
       url: "/#{@type}s?query=%{query}".replace(/%\{query\}/g, query)
       title: @search_link
     results
+
+  getMaxResult: ->
+    Math.min(@results.length, @MAX_RESULTS) + 1
 
 
 OUT.lazyTimerIds = {}
