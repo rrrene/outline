@@ -66,8 +66,6 @@ class OUT.QuickJump.Controls
 
 
 class OUT.QuickJump.Renderer
-  MAX_RESULTS: 10
-
   constructor: (@parent, @selector) ->
 
   highlight: (str, phrases) ->
@@ -154,6 +152,7 @@ class OUT.QuickJump.RendererForDropdown extends OUT.QuickJump.Renderer
 
 
 class OUT.QuickJump.Base
+  MAX_RESULTS: 10
   DELAY_BEFORE_SERVER_CALL: 300
   FETCHING_RESULTS: "fetching"
   DICTIONARY_KEY_LENGTH: 1
@@ -191,6 +190,7 @@ class OUT.QuickJump.Base
       this.getActiveResult().addClass "active"
 
   moveSelection: (modifier) ->
+    console.log "moveSelection", @active_result, @results.length, @MAX_RESULTS
     max_result = Math.min(@results.length, @MAX_RESULTS)
     @active_result += modifier
     @active_result = max_result-1 if @active_result < 0
