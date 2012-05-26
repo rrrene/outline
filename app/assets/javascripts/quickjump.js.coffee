@@ -230,7 +230,8 @@ class OUT.QuickJump.Base
   setDefaultResults: ->
     @results = this.getDefaultResults()
     @renderer.renderResults('')
-    @controls.active_result = -1
+    @active_result = 0
+    this.markActiveResult()
 
   setResults: (query, results) ->
     OUT.clearLazyTimer "quickjump_request"
@@ -238,7 +239,7 @@ class OUT.QuickJump.Base
     @results = this.getMatchingResults(query, results)
     @renderer.renderResults(query)
     @active_result = 0
-    this.markActiveResult();
+    this.markActiveResult()
 
   matchResults: (query, results) ->
     results.filter (result) ->
