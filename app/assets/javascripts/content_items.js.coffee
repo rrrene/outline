@@ -98,7 +98,7 @@ $(window).load ->
   $('a[data-toggle="move-to-page"]').live "click", (event) ->
     $("body").click()
     url = $(this).attr("href")
-    quickjump = new OUT.QuickJump (selected) ->
+    quickjump = new OUT.QuickJump.Modal (selected) ->
         $.ajax
           type: 'POST'
           url: url

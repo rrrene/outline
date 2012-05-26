@@ -182,6 +182,8 @@ class OUT.QuickJump.Base
 
   deactivate: ->
 
+  hide: ->
+    this.deactivate()
 
   markActiveResult: ->
     if @active_result?
