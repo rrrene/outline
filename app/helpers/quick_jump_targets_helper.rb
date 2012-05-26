@@ -4,13 +4,13 @@ module QuickJumpTargetsHelper
     quick_jumpify(targets)
   end
 
-  def default_quickjump_projects
-    targets = current_domain.projects.where(:active => true).limit(25).order("UPPER(title) ASC")
+  def default_quickjump_projects(_limit = 20)
+    targets = current_domain.projects.where(:active => true).limit(_limit).order("UPPER(title) ASC")
     quick_jumpify(targets)
   end
 
-  def default_quickjump_pages
-    targets = current_domain.pages.where("context_id IS NULL").limit(25).order("UPPER(title) ASC")
+  def default_quickjump_pages(_limit = 20)
+    targets = current_domain.pages.where("context_id IS NULL").limit(_limit).order("UPPER(title) ASC")
     quick_jumpify(targets)
   end
 
