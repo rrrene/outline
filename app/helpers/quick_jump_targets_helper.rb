@@ -1,7 +1,10 @@
 module QuickJumpTargetsHelper
   def default_quickjump_targets
-    targets = find_last_active_contents(:limit => 8, :type => Page).map(&:holder).compact.uniq
-    quick_jumpify(targets)
+    if current_project
+      quick_jumpify(current_project.pages)
+    else
+      default_quickjump_pages(8)
+    end
   end
 
   def default_quickjump_projects(_limit = 20)
@@ -21,24 +24,4 @@ module QuickJumpTargetsHelper
     end
   end
 
-  # TODO: this solution seems terrible
-  def find_last_active_contents(options = {})
-    limit = options.fetch(:limit, 8)
-    types = [options.fetch(:type)].flatten.compact.map(&:to_s)
-    chain = Activity.accessible_by(current_ability).where(:user_id => current_user.id)
-    chain = chain.where("verb <> 'read'").order("created_at DESC")
-    offset = 0
-    contents = []
-    while contents.length < limit && offset < chain.count do
-      activity = chain.offset(offset).first
-      content = activity.try(:content).presence
-      if content.present? && !contents.include?(content)
-        if !types.present? || types.include?(content.holder_type)
-          contents << activity.content
-        end
-      end
-      offset += 1
-    end
-    contents
-  end
 end
