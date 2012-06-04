@@ -286,6 +286,9 @@ class OUT.QuickJump.Dropdown extends OUT.QuickJump.Base
     @controls = new OUT.QuickJump.Controls(this, @selector, @result_callback)
     this.setDefaultResults()
 
+    $(@selector).find("input").bind "click", (e) ->
+      e.stopImmediatePropagation()
+
   deactivate: ->
     $(@selector).find("input").val("")
     $(@selector).parents("li.dropdown").removeClass("open")
