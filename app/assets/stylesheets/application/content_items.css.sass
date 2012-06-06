@@ -69,7 +69,6 @@ $content_item_margin_bottom: 20px
     visibility: hidden
 
   .move-handle
-    background: url(/assets/move-content-item.png) center center no-repeat
     display: block
     position: absolute
     z-index: 900
@@ -77,9 +76,13 @@ $content_item_margin_bottom: 20px
     width: 20px
     height: 32px
     top: 0
-    margin-left: 10px
+    margin-left: 4px
+    padding: 8px
     &:hover
       cursor: move
+    i
+      font-size: 14px
+      color: #ddd
 
   .content-item-options
     position: absolute

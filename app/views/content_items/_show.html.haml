@@ -4,7 +4,7 @@
 %li.content-item{:class => "content-item-#{item.class.to_s.underscore.dasherize}", :id => dom_id(content_item)}
   %div.content-item-wrapper.item-type{:id => dom_id(item)}
     %span.move-handle
-      = image_tag "blank.png", :size => "20x20"
+      = icon "reorder"
     = render partial_for(item.class, :content_item_options), :content_item => content_item
 
     .content-item-inner
