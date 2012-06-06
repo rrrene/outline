@@ -53,6 +53,8 @@ Outline::Application.configure do
   themes = Dir[glob].map { |f| f.match(/(themes.+all.css)/).to_s }
   config.assets.precompile += themes
 
+  config.assets.precompile += %w( print.css )
+
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
