@@ -1,0 +1,8 @@
+
+
+.icon-favorite:before           { content: "\f08d"; }
+.icon-no-favorite:before        { content: "\f00d"; }
+.icon-project:before            { content: "\f07c"; }
+.icon-page:before               { content: "\f016"; }
+.icon-project-active:before     { content: "\f005"; }
+.icon-project-inactive:before   { content: "\f006"; }

@@ -13,4 +13,5 @@
  *= require "bootstrap.responsive"
  *= require_tree ./application
  *= require "font-awesome"
+ *= require "font-awesome-outline"
 */
