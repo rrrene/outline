@@ -5,11 +5,19 @@
 OUT.registerCreatedHandler "todo_list", (selector) ->
   $(selector).find("a.new").click()
 
-$ ->
+# TODO: doesnot work when user clicks on "cancel" (triggers :show action, no update)
+OUT.registerUpdatedHandler "todo_list", (selector) ->
+  OUT.todo_lists.flattenTitleLinks(selector)
+
+OUT.todo_lists =
   # Remove links to todo-list from todo-lists in content area
-  $('.content h2 a[rel="todo-list"]').each ->
-    $(this).replaceWith $(this).html()
-    # TODO: doesnot work with live added data
+  flattenTitleLinks: (root = '.content') ->
+    $(root).find('h2 a[rel="todo-list"]').each ->
+      $(this).replaceWith $(this).html()
+
+$ ->
+  OUT.todo_lists.flattenTitleLinks()
+
 
   OUT.contentItems.highlightQueryIn ".content-items .content-item-todo-list h2, .content-items .todo-title", (chain) ->
     matched_lists = $(".content-items .content-item-todo-list h2 span.highlight").parents('.content-item-todo-list')
