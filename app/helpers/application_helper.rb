@@ -25,7 +25,11 @@ module ApplicationHelper
       t("#{controller_name}.#{action_name}.page_header")
     end
     if generic_title.present?
-      "#{generic_title} - #{domain_title}"
+      if domain_title.present?
+        "#{generic_title} - #{domain_title}"
+      else
+        generic_title
+      end
     else
       domain_title
     end
