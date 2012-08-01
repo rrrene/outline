@@ -1,1 +1,1 @@
-rvm use @outline --create
+rvm use 1.9.2@outline --create
