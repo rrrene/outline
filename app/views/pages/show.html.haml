@@ -1,7 +1,4 @@
-.page-item
-  = render "content_items/top_add_form", :content => resource.inner_content
-
-= render "content/show", :content => resource.inner_content, :blank_slate => true
+= render "shared/new_page_modal"
 
 - content_for(:page_header) do
   .pull-right
@@ -12,7 +9,14 @@
       %ul.dropdown-menu
         %li= link_to favor_icon_with_title(resource), resource, data_attributes_for_favorite_toggle(resource)
         %li= link_to icon(:trash) + t(".delete_link"), {:action => :destroy, :id => resource}, {:method => :delete, :confirm => t(".confirm_delete")}
+        %li.divider
+        %li= link_to icon(:page) + t("pages.index.new_page_link"), {:action => :new}, :"data-toggle" => :modal, :"data-target" => "#new-page-modal"
 
   = render_tags_for(resource)
+
+.page-item
+  = render "content_items/top_add_form", :content => resource.inner_content
+
+= render "content/show", :content => resource.inner_content, :blank_slate => true
 
 = render "shared/sidebar_for_context"
