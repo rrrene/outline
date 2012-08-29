@@ -136,7 +136,7 @@ class OUT.QuickJump.RendererForDropdown extends OUT.QuickJump.Renderer
     if query == ""
       out += ('<li class="result"><a href="/%{type}s" class="result">'+@parent.index_link+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
     else
-      out += ('<li class="result"><a href="/%{type}s/new?%{type}[title]=%{query}"><i class="icon-plus"></i> '+@parent.new_template+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
+      out += ('<li class="result"><a href="/%{type}s/new?%{type}[title]=%{query}" onclick="OUT.%{type}s.showModal(\'%{query}\', true); return false;"><i class="icon-plus"></i> '+@parent.new_template+'</a></li>').replace(/%\{type\}/g, @parent.type).replace(/%\{query\}/g, query)
 
     last_li = $(@selector).find("li.insert-results-after")
     last_li.nextAll().remove()
@@ -172,7 +172,8 @@ class OUT.QuickJump.Base
         @result_callback.apply(null, [result])
       else
         # follow link
-        window.location.href = $(anchor).find("a").attr("href")
+        $(anchor).find("a").click()
+        #window.location.href = $(anchor).find("a").attr("href")
 
   getActiveResult: ->
     if @active_result?

@@ -9,6 +9,10 @@
         #content-container
           = render themed(body_template)
         = render themed(:footer)
+
     = render "shared/quickjump_modal"
+    = render "shared/new_page_modal"
+    = render "shared/new_project_modal"
+
     #ajax-active{:style => "display: none"}
       .inner= t("helpers.ajax-active")

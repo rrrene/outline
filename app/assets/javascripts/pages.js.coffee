@@ -2,6 +2,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+window.OUT = {} unless window.OUT?
+
+
+OUT.pages =
+  showModal: (title = "", auto_submit = false) ->
+    m = $('#new-page-modal')
+    if title != ""
+      m.find("input#page_title").val(title)
+    if auto_submit
+      m.find("form").submit()
+    else
+      m.modal('show')
 
 $(window).load ->
   $('#page_context_id').live 'change', ->

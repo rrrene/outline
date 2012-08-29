@@ -1,21 +1,3 @@
-#new-page-modal.modal{:style => "display: none;"}
-  .modal-header
-    %a.close{:"data-dismiss" => "modal"} &times;
-    %h3= t("shared.index.modal.new_page_title")
-  .modal-body
-    = render "pages/form", :resource => Page.new
-  .modal-footer
-    = buttons Page.new
-
-#new-project-modal.modal{:style => "display: none;"}
-  .modal-header
-    %a.close{:"data-dismiss" => "modal"} &times;
-    %h3= t("shared.index.modal.new_project_title")
-  .modal-body
-    = render "projects/form", :resource => Project.new
-  .modal-footer
-    = buttons Project.new
-
 - content_for(:page_header) do
   .btn-toolbar
     .btn-group
