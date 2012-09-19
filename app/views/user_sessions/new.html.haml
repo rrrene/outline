@@ -3,9 +3,6 @@
     = t("user_sessions.new.page_title")
 
 = form_for :user_session, :url => '/user_sessions', :html => {:class => "simple_form form-horizontal", :id => "login_form"} do |f|
-  - if @failed
-    .alert.alert-error
-      = t("user_sessions.new.failed")
   .control-group
     = f.label :login, t("user_sessions.new.login")
     .controls
@@ -14,5 +11,8 @@
     = f.label :password, t("user_sessions.new.password")
     .controls
       = f.password_field :password, :class => "xlarge"
+  - if @failed
+    .alert.alert-error
+      = t("user_sessions.new.failed")
   .form-actions
     = f.submit t("user_sessions.new.submit"), :class => "btn btn-large btn-primary"
