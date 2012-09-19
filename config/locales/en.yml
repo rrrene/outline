@@ -3,11 +3,3 @@
 
 en:
   hello: world
-  user_sessions:
-    new:
-      page_header: Login
-      page_title: Welcome!
-      login: Username
-      password: Password
-      submit: "Log in"
-      failed: "Login attempt failed!"
