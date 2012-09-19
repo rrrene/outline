@@ -7,7 +7,8 @@ class UserSessionsController < ApplicationController
   
   # Authenticates a User by creating and saving a UserSession.
   def create
-    @user_session = UserSession.new(params[:user_session])
+    options = {:remember_me => true}.merge(params[:user_session])
+    @user_session = UserSession.new(options)
     if @user_session.save
       redirect_back_or_default root_url
     else
