@@ -10,3 +10,4 @@ en:
       login: Username
       password: Password
       submit: "Log in"
+      failed: "Login attempt failed!"
