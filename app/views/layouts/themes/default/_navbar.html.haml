@@ -7,6 +7,8 @@
           %ul.nav.pull-left
             %li= link_to current_domain.title, root_path, :class => "brand"
 
+            // Left side navigation
+
             %li.dropdown
               %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => "#"}
                 = t("navigation.projects")
@@ -36,7 +38,14 @@
                 %li.divider
                 %li= link_to t("navigation.all_pages"), pages_path
 
+
+          // Right side navigation
+
           %ul.nav.pull-right
+            %li
+              %form.navbar-search{:method => :get, :action => search_path, :style => "margin-left: 40px"}
+                %input{:type => "text", :name => "query", :value => @filter_query}
+            %li.divider-vertical
             %li.my-page= link_to current_user.name, user_path(current_user)
             %li.options.dropdown
               %a.dropdown-toggle{:"data-toggle" => :dropdown, :href => projects_url}

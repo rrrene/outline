@@ -63,6 +63,7 @@ Outline::Application.routes.draw do
 
   match 'dashboard' => 'domain#dashboard', :as => :dashboard
   match 'settings' => 'domain#settings', :as => :settings, :via => [:get, :put]
+  match 'search' => 'domain#search', :as => :search, :via => [:get]
 
   # User Authentification
   resources :user_sessions

@@ -12,7 +12,7 @@ module FormHelper
     if resource.present? && !resource.new_record?
       resource_path(resource)
     else
-      collection_path
+      collection_path if defined?(collection_path)
     end
   end
 

@@ -1,0 +1,9 @@
+- @results.each do |result_type, collection|
+  %ul.unstyled.content-items.content-overview{:"data-filter-query" => @filter_query}
+    - collection.each do |resource|
+      %li.content-item{:class => "content-item-#{resource.class.to_s.underscore}"}
+        .content-item-inner
+          .content-item-body
+            %span.label= result_type
+            = render partial_for(resource.class, :show, nil), :resource => resource
+          = spacer

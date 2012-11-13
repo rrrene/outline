@@ -5,6 +5,9 @@ en:
       projects: "Projects"
       pages: "Pages"
       todo_lists: "Todo lists"
+    search:
+      page_header: "Search"
+      page_hint: ""
     settings:
       page_header: "Settings"
       page_hint: ""

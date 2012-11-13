@@ -9,6 +9,17 @@ module ActsAsOwnedByUser
         belongs_to :domain
         has_one :favorite, :as => :resource, :dependent => :destroy
 
+        def self.search(query)
+          q = "%" + query.gsub(' ', '%') + "%"
+          if columns_hash['title']
+            where("title LIKE ?", q)
+          elsif columns_hash['text']
+            where("text LIKE ?", q)
+          else
+            []
+          end
+        end
+
         validates_presence_of :domain_id
         validates_presence_of :user_id
       end
