@@ -12,7 +12,10 @@ class DomainController < ApplicationController
     search_classes.each do |model|
       if model.respond_to?(:search)
         arel = model.search(@filter_query)
-        @results[model.to_s] = arel.accessible_by(current_ability) unless arel.blank?
+        if arel.present?
+          arel = arel.where(:domain_id => current_domain)
+          @results[model.to_s] = arel.accessible_by(current_ability)
+        end
       end
     end
   end
