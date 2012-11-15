@@ -18,11 +18,6 @@ OUT.todo_lists =
 $ ->
   OUT.todo_lists.flattenTitleLinks()
 
-
-  OUT.contentItems.highlightQueryIn ".content-items .content-item-todo-list h2, .content-items .todo-title", (chain) ->
-    matched_lists = $(".content-items .content-item-todo-list h2 span.highlight").parents('.content-item-todo-list')
-    matched_lists.find('.content-item').show()
-
 $(window).load ->
   $('.content-todo-list.sortable').sortable
     connectWith: ".content-todo-list.sortable"

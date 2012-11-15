@@ -42,7 +42,6 @@ $ ->
   OUT.registerCreatedHandler "link", OUT.links.thumbnailizeVideoLinks
   OUT.registerUpdatedHandler "link", OUT.links.thumbnailizeVideoLinks
   OUT.links.thumbnailizeVideoLinks()
-  OUT.contentItems.highlightQueryIn(".content-items .content-item-link .content-item-body")
 
   $("#top-add-content-item-form form.link input#link_href").live "paste", ->
     self = $(this)

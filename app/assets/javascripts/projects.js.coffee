@@ -14,6 +14,3 @@ OUT.projects =
       m.find("form").submit()
     else
       m.modal('show')
-
-$ ->
-  OUT.contentItems.highlightQueryIn(".content-items .content-item-project .content-item-body")

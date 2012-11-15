@@ -7,6 +7,9 @@ window.OUT = {} unless window.OUT?
 OUT.cancelFormFor = (ele) ->
   $(ele).parents("form").find("a.cancel").click()
 
+OUT.log = (args) ->
+  console.log(args)
+
 OUT.registerKeyboardShortcut = (key, cb) ->
   $('body').live "keypress", (event) ->
     char = String.fromCharCode(event.charCode)
@@ -29,15 +32,15 @@ OUT.HANDLER_DELETED_ITEM = "deleted-item"
 OUT.HANDLER_DEACTIVATE_FORM = "deactivate-form"
 
 OUT.created = (type, selector) ->
-  console.log "OUT.created", arguments
+  OUT.log "OUT.created", arguments
   OUT.triggerAllHandlers OUT.HANDLER_CREATED_ITEM, type, [selector]
 
 OUT.updated = (type, selector) ->
-  console.log "OUT.updated", arguments
+  OUT.log "OUT.updated", arguments
   OUT.triggerAllHandlers OUT.HANDLER_UPDATED_ITEM, type, [selector]
 
 OUT.deleted = (type, selector) ->
-  console.log "OUT.deleted", arguments
+  OUT.log "OUT.deleted", arguments
   OUT.triggerAllHandlers OUT.HANDLER_DELETED_ITEM, type, [selector]
 
 OUT.registerHandler = (namespace, name, callback) ->

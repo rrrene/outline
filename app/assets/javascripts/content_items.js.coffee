@@ -34,19 +34,6 @@ OUT.contentItems =
     $(form_selector).find("input[type=text], textarea").val("").blur()
     OUT.triggerHandler OUT.HANDLER_DEACTIVATE_FORM, form_selector, [form_selector, content_selector]
 
-  highlightQueryIn: (items_selector, after_callback) ->
-    query = $("ul.content-items").data("filter-query")
-    if query? && query != ""
-      regex = new RegExp("(#{query})", "gi")
-      $(items_selector).each ->
-        if $(this).html().match regex
-          $(this).parents('.content-item').addClass "filter-matched"
-          $(this).highlight query
-
-      chain = $('.content-item').hide().filter('.filter-matched').show()
-      after_callback.apply(null, [chain]) if after_callback?
-
-
   open: (select) ->
     details = $(select).find('.content-item-details')
     details.animate

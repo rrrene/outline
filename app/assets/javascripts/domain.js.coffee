@@ -8,3 +8,16 @@ $(window).load ->
     new_theme_href = "/assets/themes/#{new_theme}/all.css?reload=#{Math.random()}"
     theme_stylesheet = $('head link[href^="/assets/themes/"]')
     theme_stylesheet.attr("href", new_theme_href)
+
+
+OUT.highlightQuery = () ->
+  $("*[data-highlight-query]").each ->
+    query = $(this).data("highlight-query")
+    if query? && query != ""
+      regex = new RegExp("(#{query})", "gi")
+      if $(this).html().match regex
+        $(this).addClass "highlighted-query"
+        $(this).highlight query
+
+$ ->
+  OUT.highlightQuery()

@@ -22,5 +22,3 @@ $ ->
         form.find('a[href="#new_link"]').click()
         OUT.links.urlPasted()
     , 0
-
-  OUT.contentItems.highlightQueryIn(".content-items .content-item-note .content-item-body")

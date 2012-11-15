@@ -23,6 +23,3 @@ $(window).load ->
       OUT.selectFirstInput(new_project_fields)
     else
       new_project_fields.hide()
-
-$ ->
-  OUT.contentItems.highlightQueryIn(".content-items .content-item-page .content-item-body")
