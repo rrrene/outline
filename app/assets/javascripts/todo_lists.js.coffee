@@ -4,6 +4,7 @@
 
 OUT.registerCreatedHandler "todo_list", (selector) ->
   $(selector).find("a.new").click()
+  OUT.todo_lists.flattenTitleLinks()
 
 # TODO: doesnot work when user clicks on "cancel" (triggers :show action, no update)
 OUT.registerUpdatedHandler "todo_list", (selector) ->
